@@ -1,9 +1,10 @@
 
 
 import * as React from 'react';
-import { View, Text,Button } from 'react-native';
+import { View,Button ,FlatList} from 'react-native';
 import styles from './style';
 import {NavigationInjectedProps} from 'react-navigation';
+import Names from './names';
 
 export default class HomeScreen extends React.Component<NavigationInjectedProps>{
 
@@ -11,18 +12,29 @@ export default class HomeScreen extends React.Component<NavigationInjectedProps>
         this.props.navigation.navigate('profile');
     }
 
+    navTo(name:string){
+        this.props.navigation.navigate(name)
+    }
 
     render(){
         return (
-        <View >
+            
+        <View style={styles.container}>
 
-        <Text style={styles.welcome}>hello world with typescript</Text>
-        <Text style={styles.welcome}>Welcome   welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        
         <Button 
-            title='home'
+            title='profile'
             onPress={()=>{this.toHome()}}
         />
+        <FlatList
+            data={Names}
+            renderItem={({item})=>(
+                <Button 
+            title={item}
+            onPress={()=>{this.navTo(item)}}
+        />
+            )}
+        ></FlatList>
 
       </View>
         )

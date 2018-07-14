@@ -7,8 +7,10 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, View} from 'react-native';
-import styles from './src/style';
+import {Platform} from 'react-native';
+
+import {Props} from './src/globalInterface';
+
 
 import Route from './src/route';
 
@@ -19,14 +21,13 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-interface Props {}
 export default class App extends Component<Props> {
   
   render() {
     return (
-      <View style={styles.container}>
-        <Route />
-      </View>
+      
+        <Route /> 
+      
     );
   }
 }

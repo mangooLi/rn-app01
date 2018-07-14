@@ -8,12 +8,13 @@ const  styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'red',
+      backgroundColor: '#efefef',
     },
     welcome: {
       fontSize: 20,
       textAlign: 'center',
       margin: 10,
+      color:'red'
     },
     instructions: {
       textAlign: 'center',

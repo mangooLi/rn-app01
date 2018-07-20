@@ -1,42 +1,38 @@
 
 
 import * as React from 'react';
-import { View,Button ,FlatList} from 'react-native';
+import { View,  Text, Button } from 'react-native';
+
 import styles from './style';
-import {NavigationInjectedProps} from 'react-navigation';
+import { NavigationInjectedProps } from 'react-navigation';
 import Names from './names';
+
+
+
 
 export default class HomeScreen extends React.Component<NavigationInjectedProps>{
 
-    toHome(){
+    toHome() {
         this.props.navigation.navigate('profile');
     }
 
-    navTo(name:string){
+    navTo(name: string) {
         this.props.navigation.navigate(name)
     }
 
-    render(){
+    render() {
         return (
-            
-        <View style={styles.container}>
 
-        
-        <Button 
-            title='profile'
-            onPress={()=>{this.toHome()}}
-        />
-        <FlatList
-            data={Names}
-            renderItem={({item})=>(
-                <Button 
-            title={item}
-            onPress={()=>{this.navTo(item)}}
-        />
-            )}
-        ></FlatList>
+            <View style={styles.container}>
+                <Button
+                    title='profile'
+                    onPress={() => { this.toHome() }}
+                />
+                {Names.map(name=>
+                    <Button key={Math.random()} title={name} onPress={() => { this.navTo(name) }} />
+                )}
 
-      </View>
+            </View>
         )
     }
 }

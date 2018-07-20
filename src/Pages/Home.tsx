@@ -1,8 +1,8 @@
 
 
 import * as React from 'react';
-import { View, Text ,FlatList} from 'react-native';
-import {getDataPlanList,DataHeroInformation,DataLabInformation,DataFiftyInformation} from '../api/index'
+import { View ,FlatList,Text} from 'react-native';
+import {getDataPlanList,DataHeroInformation,DataLabInformation,DataFiftyInformation} from '../api'
 import ArticleBrief from './ArticleBrief';
 
 import styles from '../style';
@@ -23,37 +23,30 @@ export default class HomePage extends React.Component{
 
     componentWillMount(){
         getDataPlanList().then(res=>{
-            this.setState({
-                data_hero_list:res.data_hero_informations,
-                data_lab_list:res.data_lab_informations,
-                data_fifty_list:res.data_fifty_informations
-            })
+            if(res.data){
+                this.setState({
+                    data_hero_list:res.data.data. data_hero_informations,
+                    data_lab_list:res.data. data.data_lab_informations,
+                    data_fifty_list:res.data.data.data_fifty_informations
+                })
+            }
+           
         })
     }
 
     render(){
         const {data_hero_list,data_lab_list,data_fifty_list}=this.state;
         return (
-            <View style={styles.container}>
+            <View style={styles.container} testID='homePage'>
 
                 <FlatList
-                    data={data_hero_list}
+                    data={[...data_hero_list,...data_lab_list,...data_fifty_list]}
                     renderItem={({item})=>{
-                        return <ArticleBrief  {...item}/>
+                        return <ArticleBrief key={Math.random()} {...item}/>
                     }}
+                    keyExtractor={(index) => String(index)+String(Math.random())}
                 />
-                <FlatList
-                    data={data_lab_list}
-                    renderItem={({item})=>{
-                        return <ArticleBrief  {...item}/>
-                    }}
-                />
-                <FlatList
-                    data={data_fifty_list}
-                    renderItem={({item})=>{
-                        return <ArticleBrief  {...item}/>
-                    }}
-                />
+                
 
             </View>
         )

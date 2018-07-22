@@ -9,7 +9,7 @@ const  styles = StyleSheet.create({
       // width:'100%',
       justifyContent: 'space-around',
       alignItems: 'center',
-      backgroundColor: '#efefef',
+      backgroundColor: '#fff',
     },
     welcome: {
       fontSize: 20,

@@ -21,16 +21,18 @@ export default class ArticleBrief extends React.Component<Props>{
         const {thumbnail_url,author,date,title}=this.props;
         return (
             <View style={homeStyle.container}>
-                <Image style={homeStyle.img} source={{uri:thumbnail_url}}/>
-                <View style={homeStyle.view}>
-                    <View >
-                        <Text style={homeStyle.view_author}>{author}</Text>
+                <View style={homeStyle.img_container}>
+                    <Image style={homeStyle.img} source={{uri:thumbnail_url}}/>
+                </View>
+                <View style={homeStyle.detail_container}>
+                    <View style={homeStyle.detail_author}>
+                        <Text style={homeStyle.detail_author_text}>{author}</Text>
                     </View>
-                    <View style={homeStyle.view_right}>
-                        <Text numberOfLines={2} ellipsizeMode='tail' style={homeStyle.view_title}>{title}</Text>
+                    <View style={homeStyle.detail_title}>
+                        <Text style={homeStyle.detail_title_text} numberOfLines={2} >{title}</Text>
                     </View>
-                    <View>
-                        <Text style={homeStyle.view_date}>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
+                    <View style={homeStyle.detail_date}>
+                        <Text  style={homeStyle.detail_date_text}>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
                     </View>
                 </View>
             </View>

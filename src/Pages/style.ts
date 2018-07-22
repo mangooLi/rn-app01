@@ -1,48 +1,54 @@
 import {getSize} from '../utils';
 
-import {StyleSheet,ViewStyle} from 'react-native';
+import {StyleSheet } from 'react-native';
 
 
 export const homeStyle=StyleSheet.create({
     
         container:{
-            // paddingLeft:getSize(16),
-            // paddingRight:getSize(16),
             flexDirection:'row',
+            paddingTop:getSize(24)
+        },
+        img_container:{
+            width:getSize(164),
+            height:getSize(83),
+            paddingLeft:getSize(16) 
         },
         img:{
             width:getSize(148),
             height:getSize(83),
-            // paddingLeft:getSize(16)
+            borderRadius:getSize(4)
         },
-        view:{
-            // flexGrow:1,
-            // width:'100%',
-            marginLeft:getSize(12),
-            marginRight:getSize(12),
-            // paddingLeft:getSize(12),
-            backgroundColor:'#ef9',
-            borderColor:'red',
-            // borderWidth:1,
-            overflow:'hidden',
-
+        detail_container:{
+            flexGrow:1,
+            paddingLeft:getSize(12),
+            paddingRight:getSize(12),
+            // overflow:'hidden',
         },
-        view_author:{
+        detail_author:{
+            height:getSize(17)
+        },
+        detail_author_text:{
             fontSize:getSize(12),
-            color:'#ee5e2b'
+            color:'#ff570c',
         },
-        view_title:{
+        detail_title:{
+            
+            width:getSize(187),
+            height:getSize(40)
+        },
+        detail_title_text:{
             fontSize:getSize(14),
             color:'#333333',
-            width:'50%'
         },
-        view_date:{
+        detail_date:{
+            height:getSize(14)
+        },
+        detail_date_text:{
+            color:'#999',
             fontSize:getSize(12),
-            color:'#999'
-        },
-        view_right:{
-            width:'100%'
         }
+       
     
 })
 

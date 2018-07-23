@@ -57,6 +57,7 @@ export default function request<T>(options: Options):Promise<Response<T>> {
         return response.text();
       }
     }).then(resp => {
+      console.log('resp',resp)
       return {
         success: true,
         data: resp,

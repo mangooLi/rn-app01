@@ -1,34 +1,33 @@
 
 
 import { createStackNavigator } from 'react-navigation';
-import HomeScreen from './HomeScreen';
-import ProfileScreen from './ProfileScreen';
 
-// Component 
-import DatePickerIOSPage from './component/DatePickerIOS'
 
 // pages
-import HomePage from './Pages/Home';
+import HomePage from './Pages/Home/Home';
+import Main from './Main';
+
+
+// route
+import ListRoute from './Pages/ListRoute';
+// Demo page
+import DemoMain from './DemoPage/DemoMain';
+import DemoRoute from './DemoPage/DemoRoute';
 
 const Route = createStackNavigator({
-    home:{
-        screen:HomeScreen
-    },
-    profile:{
-        screen:ProfileScreen
-    },
-    DatePickerIOS:{
-        screen:DatePickerIOSPage
-    },
-    HomePage:{
-        screen:HomePage
-    }
+    Main:Main,
+    HomePage:HomePage,
+    ListRoute:ListRoute,
+    // demo
+    Demo:DemoMain,
+    DemoRoute:DemoRoute
 
 
-
-},{
+    },{
         
-            initialRouteName: 'home',
+        initialRouteName: 'Main',
+        mode: 'modal',
+        headerMode: 'none',
           
     })
 

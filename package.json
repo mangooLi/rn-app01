@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/lodash.assign": "^4.2.3",
+    "@types/lodash.map": "^4.6.12",
     "buffer": "^5.1.0",
     "lodash.assign": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
@@ -22,6 +23,7 @@
     "react-native-elements": "^0.19.1",
     "react-native-image-zoom-viewer": "^2.2.8",
     "react-native-markdown-renderer": "^3.2.8",
+    "react-native-whc-banner": "^1.0.1",
     "react-navigation": "^2.6.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

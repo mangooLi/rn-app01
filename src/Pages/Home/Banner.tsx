@@ -7,12 +7,14 @@ import  {
     ScrollView,
     Animated,
     View,
-    Image
+    Image,
+    Text
 } from 'react-native';
-import Banner,{IndicaterType} from 'react-native-whc-banner';
+import moment from 'moment';
+import Banner,{IndicaterType,IndicaterAlign} from 'react-native-whc-banner';
 import {BannerItem} from '../../api';
 
-import { homeStyle } from './style';
+import { bannerStyle } from './style';
 
 
 
@@ -22,36 +24,27 @@ interface Props{
 
 export default class HomeBanner extends Component<Props>{
 
-    private _scrollView:any;
-
-    constructor(props:Props){
-        super(props)
-
-    }
-
-    
-    _onTouchStart(){
-
-    }
-    _onTouchEnd(){
-
-    }
-    _onScroll(){}
-
     renderImg(){
         const {banners}=this.props;
 
         return banners.map(bn=>(
-            <View key={bn.id} style={homeStyle.banner_image}>
-                <Image style={homeStyle.banner_image} key={bn.id} source={{uri:bn.thumbnail_url}}/>
+            <View key={bn.id} style={bannerStyle.banner}>
+                <Image style={bannerStyle.image} key={bn.id} source={{uri:bn.thumbnail_url}}/>
+                <View style={bannerStyle.detail}>
+                    <Text style={bannerStyle.detail_prefix}>{bn.prefix}</Text>
+                    <Text style={bannerStyle.detail_title} numberOfLines={2} >{bn.title}</Text>
+                    <Text style={bannerStyle.detail_date}>{moment(bn.date).format('MM-DD HH:mm:ss')}</Text>
+                </View>
             </View>
+
         ))
     }
 
     render(){
         return (
-            <Banner style={homeStyle.banner}
-                indicaterType = {IndicaterType.number}
+            <Banner style={bannerStyle.banner}
+                indicaterType = {IndicaterType.circle}
+                indicaterAlign={IndicaterAlign.right}
             >
                 {this.renderImg()}
             </Banner>

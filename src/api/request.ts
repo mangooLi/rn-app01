@@ -2,22 +2,27 @@
 
 
 export const baseUrl='http://staging.dtcj.com/';
-interface Options {
+export interface Options<T> {
   url: string;
   method?: string;
   headers?: any;
-  data?: any;
+  data?: T;
 };
 
 function addParamsToUrl(url: string, data: any) {
-  let paramStr = url.indexOf('?') !== -1 ? '&' : '?';
-  for (let key in data) {
-    paramStr = `${paramStr}&${key}=${data[key]}`;
-  }
-  return `${url}${paramStr}`;
+  let linkStr = url.indexOf('?') !== -1 ? '&' : '?';
+  
+  // for (let key in data) {
+  //   paramStr = `${paramStr}&${key}=${data[key]}`;
+  // }
+
+  let  paramStr = Object.keys(data).map(key=>`${key}=${data[key]}`).join('&')
+
+
+  return `${url}${linkStr}${paramStr}`;
 }
 
-function getConfig(options: Options) {
+function getConfig(options: Options<any>) {
 
     const config: any = {
       headers: {
@@ -45,7 +50,7 @@ interface Response<T>{
     message:string|number|null;
 }
 
-export default function request<T>(options: Options):Promise<Response<T>> {
+export default function request<T>(options: Options<any>):Promise<Response<T>> {
   
 
     const config=getConfig(options);

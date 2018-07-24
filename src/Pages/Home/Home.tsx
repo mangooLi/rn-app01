@@ -1,62 +1,118 @@
 
 
 import * as React from 'react';
-import { View ,FlatList} from 'react-native';
-import {getHomePageAllList,HomePageAll} from '../../api'
+import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent} from 'react-native';
+import { getInformationFlow,getBanners,getRandomReportProduct,BannerItem,DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,ReportProductItem,InformationFlowType} from '../../api'
 import ArticleBrief from './ArticleBrief';
 import Banner from './Banner';
-
+import DataLabCard from './DataLabCard';
 import styles from '../../style';
+import { debounce } from '../../utils';
+import Report, {ReportProps} from './Report'
 
+
+
+
+interface HomeState{
+    banners:BannerItem[],
+    report_product:ReportProductItem[],
+    information:DataDiscoverItem[]|DataLabItem[]|DataHeroItem[]|DataFiftyItem[]
+}
 
 export default class HomePage extends React.Component{
+    preInfo:any[]=[]
+    loadInfo:() => void;
+    pageToLoad:number=1;
+    totalPage:number =1;
+    per:number=20;
 
     static navigationOptions={
         // tabBarVisible:false,
-        // header:null    //因此顶部导航栏
+        // header:null    //隐藏顶部导航栏
     }
 
    
-   state:HomePageAll={
+   state:HomeState={
        banners:[],
-       data_discover:[],
-       data_lab:[],
-       data_hero:[],
-       data_visualization:[],
-       report_product:[]
+       report_product:[],
+       information:[]
+   }
+
+   _loadinfo():Promise<any>{
+       console.log('loading info')
+       if( this.pageToLoad>this.totalPage)return Promise.resolve([]);
+       return getInformationFlow({page:this.pageToLoad,per:this.per}).then(res=>{
+           if(res.data){
+               let {information}=this.state;
+               this.setState({information:[...information,...res.data.data]});
+                this.totalPage=res.data.meta.total_page;
+                this.pageToLoad+=1;
+           }
+       })
    }
 
 
     componentWillMount(){
-        getHomePageAllList().then(res=>{
-            console.log('res',res.data)
+        this.loadInfo=debounce(this._loadinfo,1000)
+        this._loadinfo().then(()=>{
+
+
+
+            let information=this.state.information;
+            this.preInfo= information.splice(0,7)
+            this.setState({information})
+
+
+        });
+        getBanners().then(res=>{
             if(res.data){
-                this.setState({
-                   banners:res.data.banners,
-                   data_discover:res.data.data_discover,
-                   data_lab:res.data.data_lab,
-                   data_hero:res.data.data_hero,
-                   data_visualization:res.data.data_visualization,
-                   report_product:res.data.report_product
-                })
+                this.setState({banners:res.data.data})
             }
-           
+        })
+        getRandomReportProduct().then(res=>{
+            if(res.data){
+                this.setState({report_product:res.data.data})
+            }
         })
     }
 
+    handleScroll(e:NativeSyntheticEvent<NativeScrollEvent> |undefined){
+        if(!e){return}
+        const offsetY = e.nativeEvent.contentOffset.y; //滑动距离
+        const contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
+        const oriageScrollHeight = e.nativeEvent.layoutMeasurement.height; //scrollView高度
+        if (offsetY + oriageScrollHeight >= contentSizeHeight-20){
+            // 滑动到底部
+            this.loadInfo()
+        }
+
+    }
+
+
     render(){
-        const {banners, data_discover,data_lab,data_hero,data_visualization,report_product}=this.state;
+        const {banners, information,report_product}=this.state;
         return (
-            <View style={styles.container} testID='homePage'>
+            <View style={styles.container}>
+            <ScrollView  
+                onScroll={(e)=>this.handleScroll(e)}
+                testID='homePage'>
                 <Banner banners={banners}/>
+
+                <View>
+                    {this.preInfo?this.preInfo.map(item=>{
+                        return (item._type===InformationFlowType.data_lab_information?<DataLabCard key={item.id} {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
+                    }):null}
+                </View>
+                <Report {...{list:report_product}}/>
+
                 <FlatList
-                    data={[...data_discover,...data_lab,...data_hero,...data_visualization,...report_product]}
+                    data={information}
                     renderItem={({item})=>{
-                        return <ArticleBrief key={Math.random()} {...item}/>
+                        return (item._type===InformationFlowType.data_lab_information?<DataLabCard {...item as DataLabItem}/>:<ArticleBrief {...item}/>)
                     }}
                     keyExtractor={(index) => String(index)+String(Math.random())}
                 />
-
+            </ScrollView>
             </View>
         )
     }

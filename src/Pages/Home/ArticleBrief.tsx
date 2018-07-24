@@ -1,15 +1,17 @@
 
 
 import * as React from 'react';
-import { View,Image, Text } from 'react-native';
+import { View,Image, Text ,TouchableOpacity} from 'react-native';
 import moment from 'moment';
 
 import {homeStyle} from './style';
+import {handlePress} from './config'
 interface Props{
     thumbnail_url:string;
     author?:string;
     date:string|Date;
-    summary:string
+    summary:string,
+    id:number
 }
 
 
@@ -17,10 +19,13 @@ interface Props{
 
 export default class ArticleBrief extends React.Component<Props>{
 
+  
+
     render(){
         const {thumbnail_url,author,date,summary}=this.props;
         return (
-            <View style={homeStyle.container}>
+            <TouchableOpacity onPress={()=>handlePress(this.props)} activeOpacity={1}>
+            <View style={homeStyle.container} >
                 <View style={homeStyle.img_container}>
                     <Image style={homeStyle.img} source={{uri:thumbnail_url}}/>
                 </View>
@@ -36,6 +41,7 @@ export default class ArticleBrief extends React.Component<Props>{
                     </View>
                 </View>
             </View>
+            </TouchableOpacity>
         )
     }
 }

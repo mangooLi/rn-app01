@@ -1,10 +1,11 @@
 
 import  React ,{Component}from 'react';
 import {DataLabItem} from '../../api'
-import {View,Text,Image} from 'react-native';
+import {View,Text,Image,TouchableOpacity} from 'react-native';
 import {dataLabStyle} from './style';
 import moment from 'moment';
 import 'moment/locale/zh-cn' 
+import { handlePress } from './config';
 
 
 export default class DataLabCard extends Component<DataLabItem>{
@@ -15,6 +16,7 @@ export default class DataLabCard extends Component<DataLabItem>{
 
         const {thumbnail_url,date,title,place,tags,address,place_pinyin,category,state }=this.props;
         return (
+            <TouchableOpacity onPress={()=>handlePress(this.props)} activeOpacity={1}>
             <View style={dataLabStyle.container}>
                 <Text style={dataLabStyle.head}>数据侠实验室</Text>
                 <Image style={dataLabStyle.img} source={{uri:thumbnail_url}}/>
@@ -32,6 +34,7 @@ export default class DataLabCard extends Component<DataLabItem>{
                     </View>
                 </View>
             </View>
+            </TouchableOpacity>
         )
     }
 }

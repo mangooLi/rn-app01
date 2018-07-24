@@ -88,6 +88,7 @@ export default class HomePage extends React.Component{
 
     }
 
+    
 
     render(){
         const {banners, information,report_product}=this.state;
@@ -117,3 +118,4 @@ export default class HomePage extends React.Component{
         )
     }
 }
+

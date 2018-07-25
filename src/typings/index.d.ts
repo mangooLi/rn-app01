@@ -16,3 +16,9 @@ declare module 'react-native-render-html'{
     export default HTML;
 
 }
+
+
+declare const AutoHeightWebView:any;
+declare module 'react-native-autoheight-webview'{
+    export default AutoHeightWebView;
+}

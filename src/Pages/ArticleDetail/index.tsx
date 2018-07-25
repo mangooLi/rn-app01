@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {Text,View,Image,ScrollView} from'react-native';
 import {NavigationInjectedProps} from 'react-navigation';
 
-import DetailModel from './model';
+// import DetailModel from './model';
 
 import Article from './Article';
 import TabBar from './TabBar';
@@ -14,7 +14,9 @@ import styles from '../../style';
 class ArticleDetail extends Component<NavigationInjectedProps> {
 
     
-    store = new DetailModel()
+    // store = new DetailModel()
+
+    state:any={}
 
     static navigationOptions={
         tabBarVisible:true,
@@ -24,18 +26,16 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
 
     componentWillMount(){
         const id=this.props.navigation.getParam('id');
-        // console.log('id is ',id);
-        // this.id=id;
-        this.store.setId(id)
+       this.setState({id})
     }
 
     render (){
         return (
             <View style={detailStyle.pageContainer}>
-                {/* <TabBar /> */}
+                <TabBar />
                 <View style={detailStyle.container}>
                     <ScrollView>
-                        <Article store={this.store}/>
+                        <Article id={this.state.id}/>
                     </ScrollView>
                 </View>
             </View>

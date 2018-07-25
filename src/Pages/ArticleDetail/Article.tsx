@@ -3,7 +3,7 @@ import {View,Text,Image,WebView} from 'react-native';
 import HTML from 'react-native-render-html';
 import AutoHeightWebView from 'react-native-autoheight-webview'
 // import DetailModel from './model';
-import {map, getSize} from '../../utils';
+import {map, getSize, moment} from '../../utils';
 import {detailStyle,articleStyle} from './style';
 import {getInformaatinDetail} from '../../api'
 
@@ -30,7 +30,7 @@ export default class Article extends Component<Props> {
 
 
     render (){
-        const {tags,title,author,content,thumbnail_url}=this.state;
+        const {tags,title,author,content,thumbnail_url,date}=this.state;
         console.log('state is', this.state)
 
         
@@ -38,6 +38,7 @@ export default class Article extends Component<Props> {
             content? (<View >
                  <Text style={articleStyle.tag}>{map(tags,tag=>tag.name).join('・')}</Text>
                 <Text style={articleStyle.title}>{title}</Text>
+                <Text style={articleStyle.author}>文/{author}&nbsp;&nbsp;&nbsp;{moment(date).format('MM-DD HH:mm')}</Text>
                 <Image style={articleStyle.thumnb_nail} source={{uri:thumbnail_url}} />
                 {/* <Text >{content}</Text> */}
 

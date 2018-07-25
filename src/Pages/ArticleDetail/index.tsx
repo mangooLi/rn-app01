@@ -1,15 +1,46 @@
 import React,{Component} from 'react';
-import {Text,View,Image} from'react-native';
+import {Text,View,Image,ScrollView} from'react-native';
+import {NavigationInjectedProps} from 'react-navigation';
 
-export default class ArticleDetail extends Component {
+import DetailModel from './model';
+
+import Article from './Article';
+import TabBar from './TabBar';
+import {detailStyle} from './style'
+import styles from '../../style';
 
 
+
+class ArticleDetail extends Component<NavigationInjectedProps> {
+
+    
+    store = new DetailModel()
+
+    static navigationOptions={
+        tabBarVisible:true,
+        // header:    //隐藏顶部导航栏
+    }
+
+
+    componentWillMount(){
+        const id=this.props.navigation.getParam('id');
+        // console.log('id is ',id);
+        // this.id=id;
+        this.store.setId(id)
+    }
 
     render (){
         return (
-            <View>
-                <Text>article detail</Text>
+            <View style={detailStyle.pageContainer}>
+                {/* <TabBar /> */}
+                <View style={detailStyle.container}>
+                    <ScrollView>
+                        <Article store={this.store}/>
+                    </ScrollView>
+                </View>
             </View>
         )
     }
 }
+
+export default ArticleDetail;

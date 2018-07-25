@@ -4,7 +4,7 @@
 import {createMaterialTopTabNavigator} from 'react-navigation';
 import {getSize} from '../utils';
 
-import HomePage from './Home/Home';
+import HomePage from './Home';
 import DataInsight from './DataInsight';
 import DataReport from './DataReport';
 
@@ -33,8 +33,9 @@ const ListRoute=createMaterialTopTabNavigator({
             height:getSize(46),
             paddingBottom:getSize(12),
             paddingTop:0
-        }
+        },
     }
+
 })
 
 

@@ -1,5 +1,5 @@
 
-import {Meta,PageQuery} from './index';
+import {Meta,PageQuery} from '.';
 import fetch from './request';
 export enum InformationFlowType{
     /**

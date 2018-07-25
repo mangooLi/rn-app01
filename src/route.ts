@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 
 
 // pages
-import HomePage from './Pages/Home/Home';
+import HomePage from './Pages/Home';
 import Main from './Main';
 import ArticleDetail from './Pages/ArticleDetail';
 

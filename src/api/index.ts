@@ -28,3 +28,4 @@ export interface PageQuery{
 }
 
 export * from './home';
+export * from './information';

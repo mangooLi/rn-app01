@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 
 import {Props} from 'src/globalInterface';
-
+import 'core-js/es6/symbol';
 
 import Route from './src/route';
 

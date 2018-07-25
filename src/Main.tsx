@@ -29,6 +29,11 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='ListRoute'
                     onPress={()=>{this.props.navigation.navigate('ListRoute')}}
                 ></Button>
+
+                <Button
+                    title='article detail '
+                    onPress={()=>{this.props.navigation.navigate('ArticleDetail',{id:57})}}
+                ></Button>
             </View>
         )
     }

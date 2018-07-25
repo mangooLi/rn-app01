@@ -5,22 +5,25 @@ import {View,Text,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {ReportProductItem} from '../../api';
 import {moment,map} from '../../utils';
 import  {reportStyle} from './style'
-import { handlePress } from './config';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+
 
 export interface ReportProps{
     list:ReportProductItem[],
 }
 
-export default class Report extends Component<ReportProps> {
+class Report extends Component<ReportProps & NavigationInjectedProps> {
 
-
+    handlePress(item:ReportProductItem){
+        this.props.navigation.navigate('ArticleDetail',{id:item.id})
+    }
 
     ReportItmm(item:ReportProductItem){
 
         const {thumbnail_url,title,date,id}=item;
         return (
-            <TouchableOpacity onPress={()=>handlePress(item)} activeOpacity={1}>
-            <View key={id} style={reportStyle.card}>
+            <TouchableOpacity key={id} onPress={()=>this.handlePress(item)} activeOpacity={1}>
+            <View  style={reportStyle.card}>
                 <Image style={reportStyle.img} source={{uri:thumbnail_url}}/>
                 <Text style={reportStyle.title} numberOfLines={1} >{title}</Text>
                 <Text style={reportStyle.date}>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
@@ -46,6 +49,8 @@ export default class Report extends Component<ReportProps> {
         )
     }
 }
+
+export default withNavigation<ReportProps>(Report)
 
 
 

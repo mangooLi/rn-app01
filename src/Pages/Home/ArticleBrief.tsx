@@ -3,28 +3,35 @@
 import * as React from 'react';
 import { View,Image, Text ,TouchableOpacity} from 'react-native';
 import moment from 'moment';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+
 
 import {homeStyle} from './style';
-import {handlePress} from './config'
+
 interface Props{
     thumbnail_url:string;
     author?:string;
     date:string|Date;
     summary:string,
-    id:number
+    id:number,
 }
 
 
 
 
-export default class ArticleBrief extends React.Component<Props>{
+ class ArticleBrief extends React.Component<Props & NavigationInjectedProps>{
 
-  
+    
+    handlePress(){
+        
+        const {navigation,id} =this.props
+        navigation.navigate('ArticleDetail',{id})
+    }
 
     render(){
-        const {thumbnail_url,author,date,summary}=this.props;
+        const {thumbnail_url,author,date,summary}=this.props as Props;
         return (
-            <TouchableOpacity onPress={()=>handlePress(this.props)} activeOpacity={1}>
+            <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
             <View style={homeStyle.container} >
                 <View style={homeStyle.img_container}>
                     <Image style={homeStyle.img} source={{uri:thumbnail_url}}/>
@@ -45,3 +52,5 @@ export default class ArticleBrief extends React.Component<Props>{
         )
     }
 }
+
+export default withNavigation<Props>(ArticleBrief)

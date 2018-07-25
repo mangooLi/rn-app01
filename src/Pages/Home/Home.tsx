@@ -9,6 +9,8 @@ import DataLabCard from './DataLabCard';
 import styles from '../../style';
 import { debounce } from '../../utils';
 import Report, {ReportProps} from './Report'
+import { NavigationInjectedProps } from 'react-navigation';
+
 
 
 
@@ -19,7 +21,7 @@ interface HomeState{
     information:DataDiscoverItem[]|DataLabItem[]|DataHeroItem[]|DataFiftyItem[]
 }
 
-export default class HomePage extends React.Component{
+export default class HomePage extends React.Component<NavigationInjectedProps>{
     preInfo:any[]=[]
     loadInfo:() => void;
     pageToLoad:number=1;
@@ -101,7 +103,7 @@ export default class HomePage extends React.Component{
 
                 <View>
                     {this.preInfo?this.preInfo.map(item=>{
-                        return (item._type===InformationFlowType.data_lab_information?<DataLabCard key={item.id} {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
+                        return (item._type===InformationFlowType.data_lab_information?<DataLabCard key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
                     }):null}
                 </View>
                 <Report {...{list:report_product}}/>

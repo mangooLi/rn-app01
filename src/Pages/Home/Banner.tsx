@@ -11,9 +11,10 @@ import  {
 import moment from 'moment';
 import Banner,{IndicaterType,IndicaterAlign} from 'react-native-whc-banner';
 import {BannerItem} from '../../api';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { bannerStyle } from './style';
-import { handlePress } from './config';
+
 
 
 
@@ -21,14 +22,20 @@ interface Props{
     banners:BannerItem[]
 }
 
-export default class HomeBanner extends Component<Props>{
+ class HomeBanner extends Component<Props & NavigationInjectedProps>{
+
+    handlePress(item:BannerItem){
+        // console.log(item)
+        const {navigation} =this.props
+        navigation.navigate('ArticleDetail',{id:item.id})
+    }
 
     renderImg(){
         const {banners}=this.props;
 
         return banners.map(bn=>
-            <TouchableOpacity onPress={()=>handlePress(bn)} activeOpacity={1}>
-            <View key={bn.id} style={bannerStyle.banner}>
+            <TouchableOpacity key={bn.id} onPress={()=>this.handlePress(bn)} activeOpacity={1}>
+            <View  style={bannerStyle.banner}>
                 <Image style={bannerStyle.image} key={bn.id} source={{uri:bn.thumbnail_url}}/>
                 <View style={bannerStyle.detail}>
                     <Text style={bannerStyle.detail_prefix}>{bn.prefix}</Text>
@@ -52,3 +59,5 @@ export default class HomeBanner extends Component<Props>{
         )
     }
 }
+
+export default withNavigation<Props>(HomeBanner)

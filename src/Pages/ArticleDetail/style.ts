@@ -1,6 +1,10 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet,ViewStyle} from 'react-native'
 import { getSize } from '../../utils';
 
+const common={
+    width:getSize(375-32),
+    marginLeft:getSize(16)
+}
 export const detailStyle=StyleSheet.create({
 
     pageContainer:{
@@ -15,15 +19,29 @@ export const detailStyle=StyleSheet.create({
     container:{
         flexGrow:1
 
-    }
+    },
+    tagBar:{
+        height:getSize(30),
+        width:getSize(375),
+        borderTopWidth:getSize(0.3),
+        borderTopColor:'#333',
+        borderBottomWidth:getSize(0.3),
+        borderBottomColor:'#333'
+    },
+    recommendations:{
+        // width:getSize(375-32)
+        // ...common
+    },
+    none:{
+        width:getSize(375),
+        height:getSize(100),
+        backgroundColor:'#0dbc79'
+    },
 })
 
 
 
-const common={
-    width:getSize(375-32),
-    marginLeft:getSize(16)
-}
+
 export const articleStyle=StyleSheet.create({
     tag:{
        ...common,
@@ -40,10 +58,8 @@ export const articleStyle=StyleSheet.create({
         marginTop:getSize(24)
     },
     title:{
-        ...common,
-        height:getSize(90),
-        fontSize:getSize(22),
-        color:'#333',
+        width:getSize(375-32),
+        marginLeft:getSize(8),
         marginTop:getSize(8)
 
     },
@@ -59,4 +75,13 @@ export const articleStyle=StyleSheet.create({
         ...common,
 
     },
+    
+})
+
+export const recommendationStyle=StyleSheet.create({
+    title:{
+        height:getSize(100),
+        fontSize:getSize(60),
+        textAlign:'center'
+    }
 })

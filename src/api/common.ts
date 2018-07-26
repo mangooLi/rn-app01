@@ -10,6 +10,26 @@ export interface Video{
 
 }
 
+export interface Meta{
+  current_page: number,
+  next_page: 2,
+  prev_page: null,
+  total_page: 2,
+  total_count: 30
+}
+/**
+ * 分页查询参数
+ */
+export interface PageQuery{
+  /**
+   * 分页数(默认值:1)
+   */
+  page:number,
+  /**
+   * 每页数量(默认值:20)
+   */
+  per:number
+}
 
 
 /**
@@ -171,4 +191,25 @@ export interface ReportProductsInformation{
     video: Video// 详情页视频
     content_video: Video // 介绍页视频
       
+}
+
+export interface RecommendationDetail{
+  
+    id: number,
+    _type: string, // 文章资讯类型  data_discover_information:数据洞察 data_fifty_information:数据科学50人 data_hero_information:数据侠专栏 data_lab_information:数据侠实验室 data_visualization_information:数据可视化
+    title: string,
+    summary: string,
+    date: string,
+    thumbnail_url: string,
+    tags: [
+      {
+        id: number,
+        name: string,
+      }
+    ],
+}
+
+export interface Recommendations{
+  data:RecommendationDetail[],
+  meta:Meta
 }

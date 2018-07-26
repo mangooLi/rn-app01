@@ -5,6 +5,8 @@ const common={
     width:getSize(375-32),
     marginLeft:getSize(16)
 }
+
+
 export const detailStyle=StyleSheet.create({
 
     pageContainer:{
@@ -14,7 +16,8 @@ export const detailStyle=StyleSheet.create({
     },
 
     tabBar:{
-        height:getSize(64)
+        height:getSize(44),
+
     },
     container:{
         flexGrow:1
@@ -33,6 +36,15 @@ export const detailStyle=StyleSheet.create({
         height:getSize(100),
         backgroundColor:'#0dbc79'
     },
+})
+
+export const tabBarStyle=Object.create({
+   img:{
+    marginTop:getSize(10),
+    paddingLeft:getSize(10),
+    width:getSize(30),
+    height:getSize(20)
+   }
 })
 
 

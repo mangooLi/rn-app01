@@ -24,14 +24,13 @@ class Recommendations extends Component<Props> {
 
         const {recommendations} =this.props.store
         return recommendations.length ?(
-            <View style={detailStyle.recommendations}>
+            <View >
                 <Text style={recommendationStyle.title}>更多推荐</Text>
                 {
                 map(recommendations,rmd=>(
                     <ArticleBrief key={rmd.id} {...rmd}/>
                 ))   
             }
-
             </View>
         ):null
     }

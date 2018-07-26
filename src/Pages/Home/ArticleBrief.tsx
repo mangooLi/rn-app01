@@ -23,13 +23,13 @@ interface Props{
 
     
     handlePress(){
-        
         const {navigation,id} =this.props
-        navigation.navigate('ArticleDetail',{id})
+        console.log('article brief pressed')
+        navigation.push('ArticleDetail',{id})
     }
 
     render(){
-        const {thumbnail_url,author,date,summary}=this.props as Props;
+        const {thumbnail_url,author,date,summary}=this.props;
         return (
             <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
             <View style={homeStyle.container} >

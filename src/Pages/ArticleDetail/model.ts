@@ -38,6 +38,11 @@ export default class DetailModel{
         getInformaatinDetail(this.id).then(res=>{
             if(res.data){
                 this.updateArticle(res.data.data);
+                const {content} = this.article;
+
+                if(content.length<300){ // 如果正文字数太少，直接加载推荐文章
+                    this.loadRecommendations()
+                }
             }
         })
     }

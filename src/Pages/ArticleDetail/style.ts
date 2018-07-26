@@ -28,18 +28,12 @@ export const detailStyle=StyleSheet.create({
         borderBottomWidth:getSize(0.3),
         borderBottomColor:'#333'
     },
-    recommendations:{
-        // width:getSize(375-32)
-        // ...common
-    },
     none:{
         width:getSize(375),
         height:getSize(100),
         backgroundColor:'#0dbc79'
     },
 })
-
-
 
 
 export const articleStyle=StyleSheet.create({

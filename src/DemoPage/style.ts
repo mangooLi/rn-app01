@@ -5,6 +5,10 @@ import {StyleSheet,ViewStyle} from 'react-native';
 import {getSize } from '../utils';
 
 export const demoStyle = StyleSheet.create({
+    con:{
+        width:getSize(375),
+        height:getSize(400)
+    },
     view:{
         width: getSize(375),
         borderWidth:getSize(0.5),
@@ -40,6 +44,6 @@ export const demoStyle = StyleSheet.create({
     img:{
         marginLeft:getSize(50),
         width:getSize(683/3),
-        // height:getSize(1024/3)
+        height:getSize(1024/3)
     }
 })

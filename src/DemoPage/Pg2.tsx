@@ -12,9 +12,9 @@ export default class Pg2 extends React.Component {
     render (){
         
         return (
-        <View >
-            <Image style={{height:getSize(100)}} source={require('../assets/img/caiyilin.png')}/>
-            <WebView style={{flex:1}} source={{html:a+a}}/>
+        <View style={demoStyle.con}>
+        {/* <Image style={demoStyle.img} source={require('../assets/img/cai.jpg')}/> */}
+            <WebView  source={{html:a+a}}/>
         </View>
         )
     }

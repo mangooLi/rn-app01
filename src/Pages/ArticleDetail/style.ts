@@ -17,6 +17,7 @@ export const detailStyle=StyleSheet.create({
 
     tabBar:{
         height:getSize(44),
+        flexDirection:'row'
 
     },
     container:{
@@ -41,9 +42,15 @@ export const detailStyle=StyleSheet.create({
 export const tabBarStyle=Object.create({
    img:{
     marginTop:getSize(10),
-    paddingLeft:getSize(10),
-    width:getSize(30),
+    marginLeft:getSize(10),
+    width:getSize(20),
     height:getSize(20)
+   },
+   none:{
+       flexGrow:1
+   },
+   share:{
+       marginRight:getSize(10)
    }
 })
 

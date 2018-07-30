@@ -59,7 +59,6 @@ export default class HomePage extends React.Component<NavigationInjectedProps>{
         this._loadinfo().then(()=>{
 
 
-
             let information=this.state.information;
             this.preInfo= information.splice(0,7)
             this.setState({information})

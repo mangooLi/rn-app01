@@ -1,7 +1,7 @@
 
 
 import * as React from 'react';
-import { View,Image, Text ,TouchableOpacity} from 'react-native';
+import { View,Image, Text ,TouchableOpacity,GestureResponderEvent} from 'react-native';
 import moment from 'moment';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
@@ -22,16 +22,20 @@ interface Props{
  class ArticleBrief extends React.Component<Props & NavigationInjectedProps>{
 
     
-    handlePress(){
+    handlePress(e:GestureResponderEvent){
         const {navigation,id} =this.props
-        console.log('article brief pressed')
+        // console.log('article brief pressed')
+        // console.log (e)
+        // console.log(e.nativeEvent)
+        // console.log(e.target)
+
         navigation.push('ArticleDetail',{id})
     }
 
     render(){
         const {thumbnail_url,author,date,summary}=this.props;
         return (
-            <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
+            <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
             <View style={homeStyle.container} >
                 <View style={homeStyle.img_container}>
                     <Image style={homeStyle.img} source={{uri:thumbnail_url}}/>

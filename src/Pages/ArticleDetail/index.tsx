@@ -13,21 +13,16 @@ import Recommendations from './Recommendations'
 
 import {detailStyle} from './style';
 
-import styles from '../../style';
-
-
 
 @observer
 class ArticleDetail extends Component<NavigationInjectedProps> {
 
     scroll:any ;
     store = new DetailModel()
-    /**
-     *  是否已经加载过推荐文章
-     */
-    // hasLoadRecommend:boolean = false;
+   
+
     static navigationOptions={
-        tabBarVisible:true,
+        // tabBarVisible:true,
         // header:    //隐藏顶部导航栏
     }
 
@@ -56,7 +51,7 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
     render (){
         return (
             <View style={detailStyle.pageContainer}>
-                <TabBar />
+                <TabBar store={this.store}/>
                 <View style={detailStyle.container}>
                     <ScrollView onScroll={(e)=>this.handleScroll(e)} ref={c=>this.scroll =c}>
                         <Article  store={this.store}/>

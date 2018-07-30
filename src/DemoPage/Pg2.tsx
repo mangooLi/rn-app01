@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { View,Text,Image,WebView} from 'react-native';
+import { View,Text,Image,WebView,ScrollView} from 'react-native';
 import {demoStyle} from './style'
 
-import {a} from './constants'
+import {a,b,style} from './constants'
 import { getSize } from '../utils';
 export default class Pg2 extends React.Component {
 
@@ -13,8 +13,16 @@ export default class Pg2 extends React.Component {
         
         return (
         <View style={demoStyle.con}>
-        {/* <Image style={demoStyle.img} source={require('../assets/img/cai.jpg')}/> */}
-            <WebView  source={{html:a+a}}/>
+        <ScrollView>
+            <Image style={demoStyle.img} source={require('../assets/img/cai.jpg')}/>
+            <WebView source={{html:a}}/>
+            <Image style={demoStyle.img} source={require('../assets/img/cai.jpg')}/>
+            <View style={demoStyle.txt}>
+                <Text  >text</Text>
+            </View>
+        </ScrollView>
+
+
         </View>
         )
     }

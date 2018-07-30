@@ -11,6 +11,26 @@ export const a=`<div data-v-ab6113be="" class="p-profile"><a data-v-ab6113be="" 
         </div> <div data-v-ab6113be="" class="detail-skill">
           1
         </div> <div data-v-ab6113be="" class="text-center detail-type">
+          <div class="div">div div div div</div>
           
         </div></div></div> <div data-v-ab6113be="" class="detail-count" style="padding-top: 15px;"><ul data-v-ab6113be="" class="text-center float-left" style="width: 33%;"><li data-v-ab6113be="">粉丝数</li> <li data-v-ab6113be="">122</li></ul> <ul data-v-ab6113be="" class="text-center float-left" style="width: 33%;"><li data-v-ab6113be="">总人气</li> <li data-v-ab6113be="">340767194</li></ul> <ul data-v-ab6113be="" class="text-center float-left" style="width: 33%;"><li data-v-ab6113be="">7日直播热度</li> <li data-v-ab6113be="">41992</li></ul></div> <div data-v-ab6113be="" class="detail-yet-count" style="margin-bottom: 15px;"><ul data-v-ab6113be=""><li data-v-ab6113be="" class="float-left">已收到礼物<span data-v-ab6113be="">0个</span></li> <li data-v-ab6113be="" class="float-right">已直播场次<span data-v-ab6113be="">64个</span></li></ul></div> <button data-v-ab6113be="" type="button" class="el-button el-button--text" style="padding: 0px; width: 100%;"><!----><!----><span><div data-v-ab6113be="" class="detail-attention"><em data-v-ab6113be="">+</em>关注</div></span></button></div></label></p> <div data-v-ab6113be="" class="popularity"><div data-v-ab6113be="" class="focus-btn"><div data-v-ab6113be="" class="attention-btn g-big-followbtns unfollowed"><div data-v-ab6113be="" class="g-big-followbtns-group"><button data-v-ab6113be="" type="button" class="el-button el-button--text" style="padding: 0px;"><!----><!----><span><div data-v-ab6113be="" class="followbtn"><img data-v-ab6113be="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAYAAACALL/6AAAAoUlEQVQYlZXLMUoDQQCF4W9W8QTeZIqcQhQUBAPpQ84REEwrwpaCgiBKEA8RmJxG0kTXSbEumwQC4ysf/xdySqe4xzkqLPCg3RgD/GKOScgpveNC2T5DTukbx4Xgp8JXYQyrCnf/ALMKt6gL4hrTkHNmuTzCI24OxM8YibFpAR16wvVe/IKhGBvoQYtO8Iqzv+cDV2Jcd8ku6NEbMi63Y9gAszI1yuM33WgAAAAASUVORK5CYII=" class="float-left" style="margin-top: 10px; margin-left: 6px;">关注
         </div></span></button></div></div></div> <span data-v-ab6113be="" title="七日直播热度"><b data-v-ab6113be=""><img data-v-ab6113be="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAOCAYAAAArMezNAAABqUlEQVQ4jaXTvWuTYRQF8F+eUomktjURKiLV1qKuwl0chY6lm07dFMVBHET/CMVBXFQEFx10U5yKu8sLrir90A5iwcS2NhAoTRzalLehr0U947nnnOde7nNL/oAsyyZwHdOY2Kbn8BqPImKuyFsqCBzBPcwUadDGC9yOiOV9g7Msm8FDDHe5vr4+5XIZtFotm5ubecsKbkTE8z2Dsywr4wGudrmUkpGRow5Xq0qlLWmn0/Gz0bC8/F273c5nPcHNiGjtBGdZdgRvcD6vHB094dDgoI2NDaurK2BoaFh/f79fa2uWlr72Dvwe0xHxo5Rl2XG8w5m8olKpODk2rtVqWVyY3+kupWRs/JRyuezL4oJms9kb/gmTCbO9oVAZGACNen3XyO12W6Ne36XpwRnMJhzYq/qfOJgwifneSnN9HVRrNSmlHT6lpFqr7dL0YB4Xuss7hrc4l1f8w/I+YCoivuW/WwXPcDHf3V98t5e4HBFN9j6Qa7iPSpfb50CauBURj/Nk0UmP4i4uFWnQwSvciYil3mKRqfvAWVzBFE5v059t7eNpRHws8v4G8BqlotuhjXIAAAAASUVORK5CYII=" style="display: inline-block; margin-right: 5px;">41992</b></span> <span data-v-ab6113be="" title="已直播场次"><b data-v-ab6113be="" style="margin-right: 10px; margin-left: 10px;"><img data-v-ab6113be="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAAt0lEQVQokZ2SQQqDMBBFX2IFlxoLbj2Ax+kVXPREvVTOoQuNdSOIoHZRLG1CrelbDcN/8BlGaK0vwA04c5wWuAqt9R2IPcSNXv4pAsTS3gghUEoRRdFP+2QvlFLkeQ6AMYaqqpim6ZgcBMFrTtOUJElomoa6rpnn+SPr1LaRUpJlGUVREIahn7yHU9tmWZavtR35PeB9sK7rABiGgXEc/Wqv64oxZlfakEB/KOnSS6Dk+eg+tED5AAlnRfxo031PAAAAAElFTkSuQmCC" style="display: inline-block; margin-right: 5px;">64</b></span> <span data-v-ab6113be="" title="粉丝数"><b data-v-ab6113be=""><img data-v-ab6113be="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAABS0lEQVQ4jZ3TMWtVQRAF4O/dSELSmWChxOJVUQTTTK3Y+DeerfAgIkoa00a0CBGs9B8Ef4EKYilOEQwiqZJoKiVaB0Rt9sFyve8inmr3nDmHmWV2oAeZeQVbuFGoN7gbER+neQY9YRexi8WW9AOrEfGly9f0NHi7IwzOFq0TfYHne7QL04Qzk0NmDrGK/Yj4hPe4NcX3rngu4xJ2I+KA8oaZOcaTquNtrOMlrrfC3uImHuFO4X5hLSKeDjJzAd8x1zIu4xs+YKVw+7iKczhu1Z9iscF8R9gIX0sHw4ofYq1oo5ZnDvNNRJxgpxKe4wVelbFmK20Wj/G61DyrtJ2IOGkycwZHhfyNTTzw99vVuIYNPCwe+JyZM00R7hdyLyIOO8bpwqjU7pX7PWw0GFdFk+2fumcVJnta/5hxg6WK+PkPQW3UnqW+n/Jf+AM0cVBBMQ1s4QAAAABJRU5ErkJggg==" style="display: inline-block; margin-right: 5px;">122</b></span></div></div> <a data-v-ab6113be="" class="avatar1" style="float: right; margin-right: 5px; margin-top: 5px; display: block;"><img data-v-ab6113be="" src="http://163.romaway.com/QRCode/312.jpeg" style="width: 100px; height: 100px;"></a></div>`
+
+export const b=`
+  <div class="div">
+    <p>ppppppppppppp</p>
+    <a>baidu </a>
+  </div>
+  
+`
+
+export const style=`
+<style>
+.div{
+  color:red
+}
+a{
+  color:green
+}
+</style>
+`

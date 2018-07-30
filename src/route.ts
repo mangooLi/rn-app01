@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation';
 import HomePage from './Pages/Home';
 import Main from './Main';
 import ArticleDetail from './Pages/ArticleDetail';
+import Comment from './Pages/Comment'
 
 // route
 import ListRoute from './Pages/ListRoute';
@@ -19,6 +20,7 @@ const Route = createStackNavigator({
     HomePage:HomePage,
     ListRoute:ListRoute,
     ArticleDetail:ArticleDetail,
+    Comment:Comment,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute

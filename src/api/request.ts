@@ -63,6 +63,15 @@ export default function request<T>(options: Options<any>):Promise<Response<T>> {
       }
     }).then(resp => {
       console.log('resp',resp)
+
+      if(resp.error){
+        return {
+          success:false,
+          data:resp,
+          message:resp.error
+        }
+      }
+
       return {
         success: true,
         data: resp,

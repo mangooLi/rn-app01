@@ -7,7 +7,7 @@ import {getSize } from '../utils';
 export const demoStyle = StyleSheet.create({
     con:{
         width:getSize(375),
-        height:getSize(400)
+        height:getSize(600),
     },
     view:{
         width: getSize(375),
@@ -43,7 +43,11 @@ export const demoStyle = StyleSheet.create({
     },
     img:{
         marginLeft:getSize(50),
-        width:getSize(683/3),
+        width:getSize(683/6),
         height:getSize(1024/3)
+    },
+    txt:{
+        width:getSize(375),
+        flexGrow:2
     }
 })

@@ -13,7 +13,6 @@ interface Props{
 }
 
 
-
 export default class TagBar extends Component<Props>{
     handlePress(){
         alert('跳转到数据侠')

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableOpacity,TextInput,Button} from 'react-native';
+import {View,Text,Image,TouchableOpacity,TextInput,Button,Dimensions} from 'react-native';
 import {commentStyle,inputBarStyle} from './style'
 import {observer} from 'mobx-react'
 import CommentModel from './model'
@@ -9,9 +9,10 @@ export default class InputBar extends Component<{store:CommentModel}> {
 
     handleChangetext(value:string){
         console.log(value)
-        this.props.store.updateComment(value)
+        // this.props.store.updateComment(value)
+        console.log(Dimensions.get('window'))
     }
-    
+
     render(){
         const {comment} =this.props.store;
         return (

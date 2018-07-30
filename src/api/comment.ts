@@ -22,7 +22,7 @@ export interface CommentItem{
  * @param pageToLoad 分页
  */
 export function getInformationComments(information_id:number, pageToLoad:number=1){
-    return fetch<{data:CommentItem,meta:Meta}>({url:`api/v1/informations/${information_id}/comments`,data:{page:pageToLoad,per:3}})
+    return fetch<{data:CommentItem,meta:Meta}>({url:`api/v1/informations/${information_id}/comments`,data:{page:pageToLoad,per:10}})
 }
 
 

@@ -1,12 +1,19 @@
 
 
-import {StyleSheet,ViewStyle,TextStyle} from 'react-native';
+import {StyleSheet,ViewStyle,TextStyle,Dimensions} from 'react-native';
 import {getSize} from '../../utils';
 
 export const commentStyle = StyleSheet.create({
     container:{
         // flexDirection:'column',
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        height: Dimensions.get('window').height
+    },
+    scroll_container:{
+        flexShrink:1,
+
+        // height:Dimensions.get('window').height-getSize(55)
+
     },
     tabBar:{
         height:getSize(40),
@@ -14,13 +21,14 @@ export const commentStyle = StyleSheet.create({
     },
     inputBar:{
 
-        height:getSize(44),
+        height:getSize(64),
         width:getSize(375),
         paddingTop:getSize(8),
         backgroundColor:'#f8f8f8',
         paddingLeft:getSize(16),
         paddingRight:getSize(16),
         flexDirection:'row',
+        
         // justifyContent:'space-between'
     }
 })

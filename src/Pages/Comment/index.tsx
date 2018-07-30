@@ -27,7 +27,6 @@ export default class Commment extends Component<NavigationInjectedProps> {
 
     onSroll(e:NativeScrollEvent |undefined){
         if(!e){return}
-        console.log('comment scroll',e, )
         const offsetY = e.contentOffset.y; //滑动距离
         const contentSizeHeight = e.contentSize.height; //scrollView contentSize高度
         const oriageScrollHeight = e.layoutMeasurement.height; //scrollView高度
@@ -41,16 +40,19 @@ export default class Commment extends Component<NavigationInjectedProps> {
         const {commentList} =this.store;
         return (
         <View style={commentStyle.container}>
-            <ScrollView onScroll={e=>{this.handleScrolle(e&&e.nativeEvent)} }>
-                <TabBar />
-                <FlatList
-                    data={commentList}
-                    renderItem={({item})=>{
-                        return <CommentCard {...item}/>
-                    }}
-                    keyExtractor={(index) => String(index)+Math.random()}
-                />
-            </ScrollView>
+            <View style={commentStyle.scroll_container}>
+                <ScrollView onScroll={e=>{this.handleScrolle(e&&e.nativeEvent)} }>
+                    <TabBar />
+                    <FlatList
+                        data={commentList}
+                        renderItem={({item})=>{
+                            return <CommentCard {...item}/>
+                        }}
+                        keyExtractor={(index) => String(index)+Math.random()}
+                    />
+                    {/* <View style={{height:44}}/> */}
+                </ScrollView>
+            </View>
             <InputBar store={this.store}/>
         </View>
         )

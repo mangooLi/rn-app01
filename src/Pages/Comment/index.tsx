@@ -1,7 +1,7 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,FlatList,ScrollView,NativeSyntheticEvent,NativeScrollEvent} from 'react-native';
+import {View,Text,FlatList,ScrollView,NativeScrollEvent,KeyboardAvoidingView} from 'react-native';
 import {NavigationInjectedProps} from 'react-navigation';
 import {observer} from 'mobx-react';
 import CommentCard from './CommentCard';
@@ -39,14 +39,15 @@ export default class Commment extends Component<NavigationInjectedProps> {
     render (){
         const {commentList} =this.store;
         return (
-        <View style={commentStyle.container}>
+        <KeyboardAvoidingView style={commentStyle.container} behavior="padding">
+
             <View style={commentStyle.scroll_container}>
                 <ScrollView onScroll={e=>{this.handleScrolle(e&&e.nativeEvent)} }>
                     <TabBar />
                     <FlatList
                         data={commentList}
                         renderItem={({item})=>{
-                            return <CommentCard {...item}/>
+                            return <CommentCard {...item} store={this.store}/>
                         }}
                         keyExtractor={(index) => String(index)+Math.random()}
                     />
@@ -54,7 +55,8 @@ export default class Commment extends Component<NavigationInjectedProps> {
                 </ScrollView>
             </View>
             <InputBar store={this.store}/>
-        </View>
+
+        </KeyboardAvoidingView>
         )
     }
 }

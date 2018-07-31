@@ -39,3 +39,11 @@ export function addCommentToInformation(information_id:number,content:string){
     }
     return fetch<{data:CommentItem}>(options)
 }
+
+export function toogleCommentLike(information_id:number,comment_id:number){
+    const options={
+        url:`api/v1/informations/${information_id}/comments/${comment_id}/toggle_like`,
+        method:'post'
+    }
+    return fetch<{data:CommentItem}>(options)
+}

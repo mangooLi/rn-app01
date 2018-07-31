@@ -16,3 +16,4 @@ export * from './common'
 export * from './home';
 export * from './information';
 export * from './comment';
+export * from './data_discover';

@@ -8,7 +8,7 @@ import HomePage from './Pages/Home';
 import Main from './Main';
 import ArticleDetail from './Pages/ArticleDetail';
 import Comment from './Pages/Comment'
-
+import Topic from './Pages/Topic';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -21,6 +21,7 @@ const Route = createStackNavigator({
     ListRoute:ListRoute,
     ArticleDetail:ArticleDetail,
     Comment:Comment,
+    Topic:Topic,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute

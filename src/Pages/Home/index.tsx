@@ -94,7 +94,7 @@ export default class HomePage extends React.Component<NavigationInjectedProps>{
     render(){
         const {banners, information,report_product}=this.state;
         return (
-            <View style={styles.container}>
+            <View>
             <ScrollView  
                 onScroll={(e)=>this.handleScroll(e)}
                 testID='homePage'>

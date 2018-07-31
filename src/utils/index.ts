@@ -10,7 +10,7 @@ import 'moment/locale/zh-cn';
 moment.locale('zh-cn')
 
 
-import {getSize} from './size';
+import {getSize,WindowHeight} from './size';
 
 export {
     assign,
@@ -21,6 +21,8 @@ export {
     noop,
     
     moment,
+
+    WindowHeight
 }
 
 

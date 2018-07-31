@@ -65,9 +65,7 @@ export default function request<T>(options: Options<any>):Promise<Response<T>> {
       console.log('resp',resp)
 
       if(resp.error){
-        return {
-          success:false,
-          data:resp,
+        throw {
           message:resp.error
         }
       }
@@ -82,7 +80,7 @@ export default function request<T>(options: Options<any>):Promise<Response<T>> {
         success: false,
         data: null,
         message: error.message || error.stack || 'request error',
-      };
+      }
     });
 
 }

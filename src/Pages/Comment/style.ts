@@ -5,19 +5,17 @@ import {getSize} from '../../utils';
 
 export const commentStyle = StyleSheet.create({
     container:{
-        // flexDirection:'column',
         backgroundColor:'#fff',
         height: Dimensions.get('window').height
     },
     scroll_container:{
         flexShrink:1,
-
-        // height:Dimensions.get('window').height-getSize(55)
-
     },
     tabBar:{
         height:getSize(40),
         flexDirection:'row',
+        borderBottomWidth:getSize(1/3.5),
+        borderBottomColor:'rgba(0,0,0,0.2)'
     },
     inputBar:{
 
@@ -28,8 +26,7 @@ export const commentStyle = StyleSheet.create({
         paddingLeft:getSize(16),
         paddingRight:getSize(16),
         flexDirection:'row',
-        
-        // justifyContent:'space-between'
+
     }
 })
 
@@ -98,7 +95,7 @@ export const cardStyle=StyleSheet.create({
         borderTopRightRadius: getSize(20),
     },
     content:{
-        marginTop:getSize(8),
+        marginTop:getSize(4),
         marginLeft:getSize(40+8),
         marginRight:getSize(16),
         // width:getSize(200)

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableOpacity,TextInput,Button,Dimensions} from 'react-native';
+import {View,Text,Image,TouchableOpacity,TextInput,KeyboardAvoidingView,Dimensions} from 'react-native';
 import {commentStyle,inputBarStyle} from './style'
 import {observer} from 'mobx-react'
 import CommentModel from './model'
@@ -28,6 +28,7 @@ export default class InputBar extends Component<{store:CommentModel}> {
                     <Text style={inputBarStyle.text}>发表</Text>
                 </TouchableOpacity>
             </View>
+
         )
     }
 }

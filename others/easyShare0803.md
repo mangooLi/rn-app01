@@ -142,3 +142,36 @@ console.log(e.nativeEvent)
     this.store.loadRecommendations();
 }
 ```
+#### 5 WebView 
+```
+WebView 创建一个原生的 WebView，可以用于访问一个网页。
+```
+webView最常用的属性是source。通过这个属性，可以在 WebView 中载入一段静态的 html 代码或是一个 url（还可以附带一些 header 选项）。
+结合这几天的使用体验，笔者发现WebView有以下几个坑。
+
+1. 当一个webView组件占一个页面时候，样式表现没有问题,与用手机浏览器打开没有大的区别。
+2. 当一个WebView 的父组件是View，且这个View没有设置宽度或者高度，那么这个View将不显示，WebView也不会显示。
+3. 如果WebView的父组件是View，且View设置了宽度和高度，那么WebView会填充满View，超过的部分可以滑动显示。
+4. 如果WebView的父组件是View,且View设置了宽高，且View中有其他元素，那么WebView的样式表现为{flexGrow:1}。这意味着如果其他兄弟组件的宽高事确定的，那么WebView会占据父组件中剩下的区域，超出的内容可以滚动。如果有兄弟与组件设置了flexGrow，那么View会和其他设置了flexGrow的元素一起瓜分剩下的区域。如果设置了宽高的兄弟元素的高度加起来超过了父组件的高度，那么WebView将不会显示。
+5. 那么现在问题来了，如果我的页面有一张头图和一个WebView，并且希望这两个作为一个整体进行滚动，那么怎么办呢？笔者自然而然想到把这两个组件放到ScrollView里。但是遗憾的事，WebView放到ScrollView后，就不显示了。
+6. 为了解决上述问题，笔者找到了一个WebView的替代品：[react-native-autoheight-webview](https://www.npmjs.com/package/react-native-autoheight-webview)。这个组件可以代替WebView，应用在ScrollView中。同时，还支持通过customStyle属性，设置WebView中的样式。
+7. 在WebView中，source传入的是html代码字符串时候，如果想设置样式，可以在原来的html字符串中增加style标签，将样式添加在style标签中。
+
+#### 6 TouchableOpacity
+
+```
+本组件用于封装视图，使其可以正确响应触摸操作。当按下的时候，封装的视图的不透明度会降低。
+```
+前面的介绍中，提到View 和Text组件不会响应触摸事件。但是有很多时候，我们需要组件响应我们的触摸操作。这时候，就需要使用该组件封装其他不支持触摸的组件。
+
+该组件常用的属性有以下两个：
+
+1. onPress。该属性接受一个回调方法，在组件被触摸的时候调用。
+2. activeOpacity 组件被触摸时候的不透明度。接收一个0-1之间的number，默认值是0.2。
+
+#### 7 KeyboardAvoidingView
+```
+本组件用于解决一个常见的尴尬问题：手机上弹出的键盘常常会挡住当前的视图。本组件可以自动根据键盘的位置，调整自身的 position 或底部的 padding，以避免被遮挡。
+```
+
+该组件的作用如官方文档所言，使用也很简单，只要将KeyboardAvoidingView代替最外层的View就好了。但是这个组件在安卓中有一个坑。在安卓中使用该组件之前，需要先在AndroidManifest.xml中添加android:windowSoftInputMode="adjustResize"，否则不起作用。

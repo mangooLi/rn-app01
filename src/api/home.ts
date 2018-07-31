@@ -32,6 +32,11 @@ export interface DataDiscoverItem{
     summary: string,
     date: string
     thumbnail_url: string,
+    author: string,
+      topic: [{
+        id: number,
+        name: string,
+      }],
     tags: [
       {
         id: number,

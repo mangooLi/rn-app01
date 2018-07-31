@@ -5,7 +5,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation';
 import {getSize} from '../utils';
 
 import HomePage from './Home';
-import DataInsight from './DataInsight';
+import DataDiscover from './DataDiscover/index';
 import DataReport from './DataReport';
 
 const ListRoute=createMaterialTopTabNavigator({
@@ -15,8 +15,8 @@ const ListRoute=createMaterialTopTabNavigator({
             tabBarLabel:'全部'
         }
     },
-    DataInsight:{
-        screen:DataInsight,
+    DataDiscover:{
+        screen:DataDiscover,
         navigationOptions:{
             tabBarLabel:'数据洞察'
         }

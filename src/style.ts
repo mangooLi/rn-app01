@@ -4,6 +4,10 @@
 import { StyleSheet} from 'react-native';
 
 const  styles = StyleSheet.create({
+
+    main:{
+      backgroundColor: '#fff',
+    },
     container: {
       flex: 1,
       justifyContent: 'space-around',

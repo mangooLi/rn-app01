@@ -5,8 +5,9 @@ import {createMaterialTopTabNavigator} from 'react-navigation';
 import {getSize} from '../utils';
 
 import HomePage from './Home';
-import DataDiscover from './DataDiscover/index';
-import DataReport from './DataReport';
+import DataDiscover from './DataDiscover';
+import ReportProducts from './ReportProducts';
+
 
 const ListRoute=createMaterialTopTabNavigator({
     Home:{
@@ -21,8 +22,8 @@ const ListRoute=createMaterialTopTabNavigator({
             tabBarLabel:'数据洞察'
         }
     },
-    DataReport:{
-        screen:DataReport,
+    ReportProducts:{
+        screen:ReportProducts,
         navigationOptions:{
             tabBarLabel:'数据报告'
         }

@@ -35,7 +35,7 @@ export default class Topic extends Component<NavigationInjectedProps>{
         return (
             <View style={topicStyle.container}>
                 <TabBar   store={this.store}/>
-                <View >
+
                 <FlatList 
                     data={informations}
                     renderItem={({item})=>{
@@ -50,7 +50,7 @@ export default class Topic extends Component<NavigationInjectedProps>{
                         </View>
                     }
                 />
-                </View>
+
                 
             </View>
         )

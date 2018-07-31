@@ -88,6 +88,10 @@ export interface ReportProductItem{
     date: string
     thumbnail_url: string,
     price_category: string,
+    original_price: string,
+    enable_discount: boolean,
+    discount_price: string,
+    report_images_count: number
     tags: [
       {
         id: number,

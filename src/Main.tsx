@@ -44,6 +44,11 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='topic '
                     onPress={()=>{this.props.navigation.navigate('Topic',{id:3,name:'地铁一公里'})}}
                 ></Button>
+
+                <Button
+                    title='数据报告 '
+                    onPress={()=>{this.props.navigation.navigate('ReportProducts')}}
+                ></Button>
             </View>
         )
     }

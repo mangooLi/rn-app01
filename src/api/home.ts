@@ -158,6 +158,13 @@ export interface ReportProductItem{
         name: string,
       }
     ],
+  
+    original_price: string,
+    enable_discount: boolean,
+    discount_price: string,
+    report_images_count: number
+   
+    
 }
 
 /**

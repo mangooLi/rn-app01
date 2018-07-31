@@ -22,7 +22,7 @@ import {cardStyle} from './style';
         // console.log(e.nativeEvent)
         // console.log(e.target)
 
-        navigation.push('ArticleDetail',{id})
+        navigation.push('ReportDetail',{id})
     }
 
     render(){

@@ -9,9 +9,10 @@ export const reportDetailStyle=StyleSheet.create({
         flexDirection:'row'
     },
     pdf:{
+        flex:1,
         width:WindowWidth,
         height:WindowHeight-getSize(40),
-        padding:getSize(8)
+        // padding:getSize(8)
     }
 })
 
@@ -19,8 +20,6 @@ export const reportDetailStyle=StyleSheet.create({
 
 
 export const tabBarStyle=StyleSheet.create({
-    
-
     img:{
         marginTop:getSize(10),
         marginLeft:getSize(10),

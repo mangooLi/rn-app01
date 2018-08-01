@@ -15,8 +15,6 @@ export const reportDetailStyle=StyleSheet.create({
 })
 
 
-
-
 export const tabBarStyle=StyleSheet.create({
     img:{
         marginTop:getSize(10),

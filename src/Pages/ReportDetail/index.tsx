@@ -28,11 +28,9 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
         this.store.init(id);
     }
 
-    handlePress(){
-        console.log(Dimensions.get('window'))
-        // this.forceUpdate()
-    }
+  
     handleLayout(e:LayoutChangeEvent){
+        
         const preVertial = this.vertial;
         const {width,height}=Dimensions.get('window');
 

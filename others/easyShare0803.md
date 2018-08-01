@@ -1,6 +1,36 @@
-## RN的组件、事件与导航
+## RN的几个组件
 
-### 一、组件
+
+#### 0 宽度和高度
+```
+React Native 中的尺寸都是无单位的，表示的是与设备像素密度无关的逻辑像素点。
+```
+
+RN提供了Dimensions模块供我们获取设备屏幕的宽高。通过`Dimensions.get('window')`和`Dimensions.get('screen')`方法，可以获取当前设备窗口和屏幕的宽高。我们将其打印出来看一下。
+![image](./img/000.png)
+可以看到screen高度比window的高度多了48，这是上面信息栏和下面虚拟按钮的高度。这里的width和height就是上面说的，与设备像素密度无关的逻辑像素点。width*scale=设备实际像素值。截图的手机是nexus6,分辨率是1440*2560,在RN中的宽度就是1440/3.5=411.42857142857144。
+
+知道了设备的宽度和高度，那么怎么由设计稿的尺寸获取RN代码中的尺寸呢？笔者这里采取的是等比例放大的方法。设计稿的总宽度是375pt，映射到手机屏幕上就是`Dimensions.get('window')`。那么就有下面的方法：
+```
+// 设计稿总宽度
+const DESIGNWIDTH = 375;
+// 屏幕宽度
+const WindowWidth = Dimensions.get('window').width;
+
+/**
+ * 获取设计稿中的尺寸在RN代码中的尺寸
+ * @param designedSize 设计稿中的尺寸
+ */
+function getSize(designedSize:number){
+    return PixelRatio.roundToNearestPixel(designedSize*WindowWidth/DESIGNWIDTH)
+}
+```
+
+PixelRatio.roundToNearestPixel方法将一个布局尺寸近似到最接近的、能转换为整数像素数的布局尺寸。比如设计尺寸为10.3，在nexus6中，scale为3.5，那么10.3对于的像素是36.050000000000004。那么这个数字会被近似变成10.285714285714286，对于36像素。就是说
+```PixelRatio.roundToNearestPixel(10.3)=10.285714285714286```
+
+
+
 #### 1   View
 ```
 作为创建 UI 时最基础的组件，View 是一个支持 Flexbox 布局、样式、一些触摸处理、和一些无障碍功能的容器，并且它可以放到其它的视图里，也可以有任意多个任意类型的子视图。不论在什么平台上，View 都会直接对应一个平台的原生视图，无论它是 UIView、还是 android.view.View。
@@ -175,3 +205,57 @@ webView最常用的属性是source。通过这个属性，可以在 WebView 中�
 ```
 
 该组件的作用如官方文档所言，使用也很简单，只要将KeyboardAvoidingView代替最外层的View就好了。但是这个组件在安卓中有一个坑。在安卓中使用该组件之前，需要先在AndroidManifest.xml中添加android:windowSoftInputMode="adjustResize"，否则不起作用。
+
+####  8 监听手机横屏
+笔者开发过程中，由于业务业务需要，某个场景需要监听手机横屏事件，并做出相应反应。当时找了几个解决方案：
+1. RCTDeviceEventEmitter。
+```
+RCTDeviceEventEmitter.addListener('orientationDidChange,(dimension)=>{
+    // 处理业务逻辑
+})
+```
+但是RCTDeviceEventEmitter模块好像废弃了。
+
+2. 使用第三方库react-native-orientation。使用这个库，不仅需要`react-native link react-native-orientation`，还需要在MainActivity.java中实现 onConfigurationChanged 方法：
+```
+import android.content.Intent; // <--- import 
+    import android.content.res.Configuration; // <--- import 
+ 
+    public class MainActivity extends ReactActivity {
+      ......
+      @Override
+      public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent intent = new Intent("onConfigurationChanged");
+        intent.putExtra("newConfig", newConfig);
+        this.sendBroadcast(intent);
+    }
+ 
+      ......
+ 
+    }
+```
+然后调用`Orientation.addOrientationListener`设置监听，在横屏的时候触发回调。然而，折腾了半天，不知道什么原因，最后也没监听到。
+
+最后，找到了一个简单的方法：在页面的根View组件里设置onLayout回调。这个回调会在当组件挂载或者布局变化的时候调用，当然，横屏的时候是会触发的。但是触发它的并不一定是横屏操作，因此，需要在回调方法里做一些判断：
+```
+    handleLayout(e:LayoutChangeEvent){
+        
+        const preVertial = this.vertial;
+        const {width,height}=Dimensions.get('window');
+
+        if(height>width){  
+            this.vertial = true
+        }else{
+            this.vertial = false;
+        }
+        if(this.vertial !== preVertial){
+            console.log('orietation change');
+            this.forceUpdate()
+        }
+    }
+```
+可以在回调里判断窗口的高度和宽度。如果宽度大于高度，那么就能确认屏幕此时是横置的。
+
+
+

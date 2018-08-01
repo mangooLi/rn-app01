@@ -4,16 +4,14 @@ import {getSize,WindowHeight,WindowWidth} from '../../utils'
 
 export const reportDetailStyle=StyleSheet.create({
 
+    container:{
+        backgroundColor:'#fff',
+        height:WindowHeight
+    },
     tabBar:{
         height:getSize(40),
         flexDirection:'row'
     },
-    pdf:{
-        flex:1,
-        width:WindowWidth,
-        height:WindowHeight-getSize(40),
-        // padding:getSize(8)
-    }
 })
 
 

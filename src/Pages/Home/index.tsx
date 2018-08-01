@@ -5,8 +5,10 @@ import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent} from
 import { getInformationFlow,getBanners,getRandomReportProduct,BannerItem,DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,ReportProductItem,InformationFlowType} from '../../api'
 import ArticleBrief from './ArticleBrief';
 import Banner from './Banner';
-import DataLabCard from './DataLabCard';
+// import DataLabCard from './DataLabCard';
+import DataLabCardContainer from './DataLabContainer';
 import styles from '../../style';
+// import {homeStyle, dataLabStyle} from './style'
 import { debounce } from '../../utils';
 import Report, {ReportProps} from './Report'
 import { NavigationInjectedProps } from 'react-navigation';
@@ -102,7 +104,7 @@ export default class HomePage extends React.Component<NavigationInjectedProps>{
 
                 <View>
                     {this.preInfo?this.preInfo.map(item=>{
-                        return (item._type===InformationFlowType.data_lab_information?<DataLabCard key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
+                        return (item._type===InformationFlowType.data_lab_information?<DataLabCardContainer key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
                     }):null}
                 </View>
                 <Report {...{list:report_product}}/>
@@ -110,7 +112,9 @@ export default class HomePage extends React.Component<NavigationInjectedProps>{
                 <FlatList
                     data={information}
                     renderItem={({item})=>{
-                        return (item._type===InformationFlowType.data_lab_information?<DataLabCard {...item as DataLabItem}/>:<ArticleBrief {...item}/>)
+                        return (item._type===InformationFlowType.data_lab_information
+                            ?( <DataLabCardContainer {...item as DataLabItem}/>)
+                            :<ArticleBrief {...item}/>)
                     }}
                     keyExtractor={(index) => String(index)+String(Math.random())}
                 />

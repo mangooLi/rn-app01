@@ -4,10 +4,17 @@ import {StyleSheet } from 'react-native';
 
 
 export const homeStyle=StyleSheet.create({
-    
         container:{
             flexDirection:'row',
-            paddingTop:getSize(24)
+            marginTop:getSize(12),
+            marginBottom:getSize(12)
+        },
+        head:{
+            height:getSize(28),
+            fontSize:getSize(20),
+            color:'#333',
+            width:getSize(375),
+            paddingLeft:getSize(16)
         },
         img_container:{
             width:getSize(164),
@@ -91,20 +98,19 @@ export const bannerStyle=StyleSheet.create({
 export const dataLabStyle=StyleSheet.create({
     
     container:{
-        height:getSize(347+23),
+        height:getSize(192+4+52+20),
         width:getSize(343),
         paddingLeft:getSize(16),
-        paddingTop:getSize(44)
     },
-    head:{
-        height:getSize(28),
-        fontSize:getSize(20),
-        color:'#333'
-    },
+    // head:{
+    //     height:getSize(28),
+    //     fontSize:getSize(20),
+    //     color:'#333'
+    // },
     img:{
         width:getSize(343),
         height:getSize(192),
-        marginTop:getSize(12)
+        // marginTop:getSize(12)
     },
     detail:{
         width:getSize(343),
@@ -194,4 +200,20 @@ export const reportStyle=StyleSheet.create({
         color:'#999'
     }
 
+})
+
+export const dataLabContainerStyle = StyleSheet.create({
+    container:{
+        height:getSize(32+28+12+ 192+4+52+1+20+35),
+        
+        paddingTop:getSize(32)
+    },
+    head:{
+        height:getSize(28),
+        fontSize:getSize(20),
+        color:'#333',
+        width:getSize(375),
+        paddingLeft:getSize(16),
+        marginBottom:getSize(12)
+    },
 })

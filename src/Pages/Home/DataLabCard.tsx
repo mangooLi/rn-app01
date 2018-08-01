@@ -9,7 +9,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
 
- class DataLabCard extends Component<DataLabItem & NavigationInjectedProps>{
+ class DataLabCard extends Component<DataLabItem   & NavigationInjectedProps>{
 
 
 
@@ -23,7 +23,6 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
         return (
             <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
             <View style={dataLabStyle.container}>
-                <Text style={dataLabStyle.head}>数据侠实验室</Text>
                 <Image style={dataLabStyle.img} source={{uri:thumbnail_url}}/>
                 <View style={dataLabStyle.detail}>
                     <View style={dataLabStyle.detail_left}>
@@ -44,4 +43,4 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
     }
 }
 
-export default withNavigation<DataLabItem>(DataLabCard)
+export default withNavigation<DataLabItem >(DataLabCard)

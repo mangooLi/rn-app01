@@ -11,6 +11,8 @@ import ArticleBrief from '../Home/ArticleBrief';
 import DataLabCard from '../Home/DataLabCard'
 
 import CardHead from './CardHead';
+import DataFifty from './DataFifty';
+import TabBar from './TabBar';
 import {dataPlanstyle} from './style';
 
 
@@ -28,12 +30,12 @@ export default class DataPlan extends React.Component{
         const {data_hero_informations,data_lab_informations,data_fifty_informations,headList} =this.store;
         return (
             <View style={dataPlanstyle.container}>
+            <TabBar />
             <ScrollView>
-
                 <View style={dataPlanstyle.card}>
                     <CardHead {...headList[0]}/>
                     {map(data_hero_informations,info=>(
-                        <ArticleBrief {...info}/>
+                        <ArticleBrief key={info.id} {...info}/>
                     ))}
                 </View>
 
@@ -49,13 +51,20 @@ export default class DataPlan extends React.Component{
 
 
                 </View>:<View/>}
+                
+                {data_fifty_informations && data_fifty_informations.length 
+                ?<View style={dataPlanstyle.card}>
+                    <CardHead {...headList[2]}/>
+                    {map(data_fifty_informations,info=>(
+                        <View key={info.id} style={dataPlanstyle.fiftyContainer}>
+                            <DataFifty {...info}/>
+                        </View>
+                    ))}
+                </View>:<View/>
+
+                }
 
 
-
-                <Text>数据线计划</Text>
-                {map(headList,head=>(
-                    <CardHead {...head} />
-                ))}
             </ScrollView>
             </View>
         )

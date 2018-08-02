@@ -5,16 +5,29 @@ import { getSize } from '../../utils';
 
 export const dataPlanstyle=StyleSheet.create({
     container:{
-        backgroundColor:'#fff'
+        backgroundColor:'#f8f6f6',
+        paddingBottom:getSize(40)
     },
     card:{
-        paddingBottom:getSize(35)
+        paddingBottom:getSize(35),
+        marginBottom:getSize(12),
+        backgroundColor:'#fff',
+        borderRadius:getSize(8)
     },
     dataLabContainer0:{
         marginTop:getSize(17)
     },
     dataLabContainer1:{
         marginTop:getSize(31)
+    },
+    fiftyContainer:{
+        marginTop:getSize(28)
+    },
+    tabBar:{
+        height:getSize(40),
+        backgroundColor:'#f6f4f4',
+        flexDirection:'row',
+        paddingTop:getSize(10)
     }
 })
 
@@ -52,5 +65,53 @@ export const cardHeadStyle=StyleSheet.create({
         width:getSize(17),
         height:getSize(17),
         marginTop:getSize(27)
+    }
+})
+
+
+export const fiftyStyle=StyleSheet.create({
+    container:{
+        width:getSize(375-32),
+        height:getSize(132+3),
+        marginLeft:getSize(16),
+        flexDirection:'row',
+
+    },
+    img:{
+        width:getSize(99),
+        height:getSize(132),
+        marginTop:getSize(3),
+        borderRadius:getSize(8)
+    },
+    person:{
+        width:getSize(375-32-99),
+        paddingLeft:getSize(16)
+    },
+    name:{
+        height:getSize(25),
+        fontSize:getSize(18),
+        color:'#333'
+    },
+    introduction:{
+        marginTop:getSize(3),
+        fontSize:getSize(13),
+    }
+})
+
+export const tabBarStyle=StyleSheet.create({
+    title:{
+        fontSize:getSize(17),
+        color:'#131313',
+        width:'100%',
+        textAlign:'center'
+    },
+    nav:{
+        position:'absolute',
+        right:0,
+        marginRight:getSize(8),
+        top:getSize(10),
+        fontSize:getSize(17),
+        color:'#666',
+        
     }
 })

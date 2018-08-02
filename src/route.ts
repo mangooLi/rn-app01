@@ -10,7 +10,8 @@ import ArticleDetail from './Pages/ArticleDetail';
 import Comment from './Pages/Comment'
 import Topic from './Pages/Topic';
 import ReportDetail from './Pages/ReportDetail';
-import DataPlan from './Pages/DataPlan'
+import DataPlan from './Pages/DataPlan';
+import DataHeroIntroduction from './Pages/DataHeroIntroduction';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -27,6 +28,7 @@ const Route = createStackNavigator({
     Topic:Topic,
     ReportDetail:ReportDetail,
     DataPlan:DataPlan,
+    Introduction:DataHeroIntroduction,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute

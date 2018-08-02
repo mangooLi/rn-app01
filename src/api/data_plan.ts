@@ -4,7 +4,8 @@
 
 import fetch from './request';
 
-import {DataHeroItem,DataLabItem,DataFiftyItem} from './home'
+import {DataHeroItem,DataLabItem,DataFiftyItem} from './home';
+import {Meta} from './common'
 
 
 // interface Tag{
@@ -63,7 +64,26 @@ export interface DataPlan{
 }
 
 
-
+/**
+ * 获取数据侠计划首页列表
+ */
 export function getDataPlanList(){
   return fetch<DataPlan>({url:'api/v1/data_plan'})
+}
+
+
+/**
+ * 获取数据科学50人列表
+ */
+export function getDataFiftyList (page:number){
+
+  const options={
+    url:'api/v1/data_fifty_informations',
+    data:{
+      page,
+      sort:'latest'
+    }
+  }
+
+  return fetch <{data:DataFiftyItem[],meta:Meta}>(options)
 }

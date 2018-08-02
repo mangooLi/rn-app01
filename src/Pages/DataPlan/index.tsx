@@ -11,7 +11,7 @@ import ArticleBrief from '../Home/ArticleBrief';
 import DataLabCard from '../Home/DataLabCard'
 
 import CardHead from './CardHead';
-import DataFifty from './DataFifty';
+import DataFifty from './DataFiftyCard';
 import TabBar from './TabBar';
 import {dataPlanstyle} from './style';
 
@@ -51,7 +51,7 @@ export default class DataPlan extends React.Component{
 
 
                 </View>:<View/>}
-                
+
                 {data_fifty_informations && data_fifty_informations.length 
                 ?<View style={dataPlanstyle.card}>
                     <CardHead {...headList[2]}/>

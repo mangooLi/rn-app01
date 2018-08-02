@@ -20,7 +20,6 @@ export default class DataHeroIntroduction extends React.Component {
     ];
 
     render(){
-
         return (
             <View>
                 <TabBar/>

@@ -44,7 +44,7 @@ function getConfig(options: Options<any>) {
 
 }
 
-interface Response<T>{
+export interface Response<T>{
     success:boolean;
     data:T|null;
     message:string|number|null;

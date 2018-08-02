@@ -7,7 +7,7 @@ import { View ,Image, Text,ImageSourcePropType,ScrollView,NativeScrollEvent} fro
 import {DataFiftyItem} from '../../api';
 import {fiftyStyle} from './style';
 
-export default class DataFifty extends React.Component<DataFiftyItem>{
+export default class DataFiftyCard extends React.Component<DataFiftyItem>{
 
 
     render(){

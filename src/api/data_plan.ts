@@ -87,3 +87,38 @@ export function getDataFiftyList (page:number){
 
   return fetch <{data:DataFiftyItem[],meta:Meta}>(options)
 }
+
+
+/**
+ * 数据侠专栏子栏目
+ */
+export interface DataHeroTopic{
+
+    id: number,
+    name: string,
+    introduction: string,
+    logo_url: string,
+    informations_count: number, // 文章数量
+
+}
+
+/**
+ * 获取数据侠专栏子栏目列表
+ */
+export function getDataHeroTopics(){
+  return fetch<{data:DataHeroTopic[]}>({url:'api/v1/data_hero_topics'})
+}
+
+
+/**
+ * 获取数据侠专栏列表
+ * @param topic_id 子栏目ID
+ * @param pageToLoad 分页参数
+ */
+export function getDataHeroInformations(topic_id:number|null,page:number){
+  let data:any = {sort:'latest',page,per:20}
+  if(topic_id){
+    data.topic_id = topic_id;
+  }
+  return fetch<{data:DataHeroItem[],meta:Meta}>({url:'api/v1/data_hero_informations',data})
+}

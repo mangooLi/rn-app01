@@ -32,7 +32,7 @@ export default class HomePage extends React.Component<NavigationInjectedProps>{
 
     static navigationOptions={
         // tabBarVisible:false,
-        // header:null    //隐藏顶部导航栏
+        header:null    //隐藏顶部导航栏
     }
 
    

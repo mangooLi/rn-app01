@@ -14,6 +14,10 @@ import {dataFiftyStyle} from './style'
 class DataFifty extends Component {
 
 
+    static navigationOptions={
+        // tabBarVisible:false,
+        header:null    //隐藏顶部导航栏
+    }
     store  = new Model()
    
     componentWillMount(){

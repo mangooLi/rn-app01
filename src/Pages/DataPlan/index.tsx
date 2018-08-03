@@ -19,6 +19,11 @@ import {dataPlanstyle} from './style';
 @observer
 export default class DataPlan extends React.Component{
 
+    static navigationOptions={
+        // tabBarVisible:false,
+        header:null    //隐藏顶部导航栏
+    }
+
     store = new DataPlanModel();
 
     componentWillMount(){

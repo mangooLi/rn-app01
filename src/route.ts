@@ -13,11 +13,13 @@ import ReportDetail from './Pages/ReportDetail';
 import DataPlan from './Pages/DataPlan';
 import DataHeroIntroduction from './Pages/DataHeroIntroduction';
 import DataFifty from './Pages/DataFifty';
+import DataHeroColumn from './Pages/DataHeroColumn';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
 import DemoMain from './DemoPage/DemoMain';
 import DemoRoute from './DemoPage/DemoRoute';
+
 
 
 const Route = createStackNavigator({
@@ -31,6 +33,7 @@ const Route = createStackNavigator({
     DataPlan:DataPlan,
     Introduction:DataHeroIntroduction,
     DataFifty:DataFifty,
+    DataHeroColumn:DataHeroColumn,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute
@@ -40,7 +43,7 @@ const Route = createStackNavigator({
         
         initialRouteName: 'Main',
         mode: 'modal',
-        headerMode: 'none',
+        // headerMode: 'none',
           
     })
 

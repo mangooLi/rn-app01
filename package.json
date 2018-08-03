@@ -15,6 +15,7 @@
     "@types/lodash.filter": "^4.6.4",
     "@types/lodash.map": "^4.6.12",
     "@types/lodash.noop": "^3.0.4",
+    "antd-mobile-rn": "^2.2.1",
     "buffer": "^5.1.0",
     "lodash.assign": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",

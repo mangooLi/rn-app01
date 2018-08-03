@@ -16,7 +16,8 @@ export const dataDiscoverStyle=StyleSheet.create({
     tags:{
         height:getSize(44+12),
         flexDirection:'row',
-        width:getSize(375)
+        width:getSize(375),
+        
     }
 })
 
@@ -27,9 +28,10 @@ export const tagsStyle=StyleSheet.create({
         backgroundColor:'#fff'
     },
     topic:{
-        marginLeft:getSize(20),
+        marginLeft:getSize(16),
         height:getSize(22),
-        flexDirection:'row'
+        flexDirection:'row',
+        marginRight:getSize(16)
     },
     image:{
         width:getSize(20),

@@ -1,7 +1,8 @@
 
 
 import {observable,action,extendObservable, toJS } from 'mobx';
-import {DataLabItem,DataHeroItem,DataFiftyItem,getDataPlanList} from '../../api';
+import {DataLabItem,DataHeroItem,DataFiftyItem,getDataPlanList,getDataHeroTopics} from '../../api';
+import {DataHeroTopicStorage} from '../../utils/store';
 
 export default class DataPlanModel{
     @observable  data_hero_informations:DataHeroItem[] = []
@@ -24,6 +25,12 @@ export default class DataPlanModel{
                 this.data_hero_informations = observable(data_hero_informations);
                 this.data_lab_informations=observable(data_lab_informations);
                 this.data_fifty_informations=observable(data_fifty_informations);
+            }
+        })
+        getDataHeroTopics().then(res=>{
+            if(res.data){
+                console.log(`setItem('topics'`,res.data.data)
+                DataHeroTopicStorage.setItem('topics',res.data.data)
             }
         })
     }

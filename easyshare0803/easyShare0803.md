@@ -199,6 +199,14 @@ webView最常用的属性是source。通过这个属性，可以在 WebView 中�
 1. onPress。该属性接受一个回调方法，在组件被触摸的时候调用。
 2. activeOpacity 组件被触摸时候的不透明度。接收一个0-1之间的number，默认值是0.2。
 
+TouchableOpacity Touchable家族的一员，同家族还有
+```
+TouchableWithoutFeedback：响应用户的点击事件，如果你想在处理点击事件的同时不显示任何视觉反馈，使用它是个不错的选择。
+TouchableHighlight：在TouchableWithoutFeedback的基础上添加了当按下时背景会变暗的效果。
+TouchableOpacity：相比TouchableHighlight在按下去会使背景变暗的效果，TouchableOpacity会在用户手指按下时降低按钮的透明度，而不会改变背景的颜色。
+TouchableNativeFeedback：在Android上还可以使用TouchableNativeFeedback，它会在用户手指按下时形成类似水波纹的视觉效果。注意，此组件只支持Android。
+```
+
 #### 7 KeyboardAvoidingView
 ```
 本组件用于解决一个常见的尴尬问题：手机上弹出的键盘常常会挡住当前的视图。本组件可以自动根据键盘的位置，调整自身的 position 或底部的 padding，以避免被遮挡。

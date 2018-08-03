@@ -11,6 +11,11 @@ import {introductionStyle} from './style';
 
 export default class DataHeroIntroduction extends React.Component {
 
+    static navigationOptions={
+        // tabBarVisible:false,
+        header:null    //隐藏顶部导航栏
+    }
+
     imgs=[
         require('../../assets/img//data_hero_introduction1.png'),
         require('../../assets/img//data_hero_introduction2.png'),

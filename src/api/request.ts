@@ -11,10 +11,6 @@ export interface Options<T> {
 
 function addParamsToUrl(url: string, data: any) {
   let linkStr = url.indexOf('?') !== -1 ? '&' : '?';
-  
-  // for (let key in data) {
-  //   paramStr = `${paramStr}&${key}=${data[key]}`;
-  // }
 
   let  paramStr = Object.keys(data).map(key=>`${key}=${data[key]}`).join('&')
 
@@ -27,6 +23,7 @@ function getConfig(options: Options<any>) {
     const config: any = {
       headers: {
         'content-type': 'application/json',
+        // 'Accept': 'application/json',
         // Authorization: `Basic ${token}`,
         ...options.headers,
       },
@@ -62,8 +59,6 @@ export default function request<T>(options: Options<any>):Promise<Response<T>> {
         return response.text();
       }
     }).then(resp => {
-      console.log('resp',resp)
-
       if(resp.error){
         throw {
           message:resp.error

@@ -35,8 +35,9 @@ export default abstract class  List<T> {
         if( (this.pageToLoad>this.total_page)|| this.loadding )return;
         this.loadding = true;
         this.apiFn(this.pageToLoad).then(res=>{
+            if(this.loadding === false)return; // 表示已经有地方提前结束了loading，此时不需要作任何处理。
             this.loadding = false;
-            if(res.data){
+            if(res.data  ){
                 this.addInfo(res.data.data);
                 this.pageToLoad = this.pageToLoad +1;
                 this.total_page = res.data.meta.total_page;
@@ -44,6 +45,12 @@ export default abstract class  List<T> {
         }).catch(()=>{
             this.loadding = false;
         })
-        
+    }
+    @action
+    reset (){
+        this.informations = observable([]);
+        this.pageToLoad = 1;
+        this.total_page =1;
+        this.loadding = false;
     }
 }

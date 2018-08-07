@@ -15,6 +15,7 @@ import DataHeroIntroduction from './Pages/DataHeroIntroduction';
 import DataFifty from './Pages/DataFifty';
 import DataHeroColumn from './Pages/DataHeroColumn';
 import DataLab from './Pages/DataLab';
+import SearchPage from './Pages/SearchPage';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -36,6 +37,7 @@ const Route = createStackNavigator({
     DataFifty:DataFifty,
     DataHeroColumn:DataHeroColumn,
     DataLab:DataLab,
+    SearchPage:SearchPage,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute

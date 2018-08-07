@@ -174,3 +174,27 @@ export interface ReportProductItem{
 export function getRandomReportProduct(){
     return fetch<{data:ReportProductItem[]}>({url:'api/v1/home_page/random_report_product '})
 }
+
+
+// 搜索结果
+export interface SearchInformation{
+    id: number,
+    _type: string, // 资讯类型  data_discover_information:数据洞察 data_fifty_information:数据科学50人 data_hero_information:数据侠专栏 data_lab_information:数据侠实验室 data_visualization_information:数据可视化
+    title: string,
+    summary: string,
+    date: string,
+    thumbnail_url: string,
+    tags: [
+    {
+        id: number,
+        name: string,
+    }]
+}
+
+export function getSearchInformations (query:string,page:number){
+    const data:any ={
+        platform:'app',query,page,per:10
+    }
+
+    return fetch<{data:SearchInformation[],meta:Meta}>({url:'api/v1/search/information',data})
+}   

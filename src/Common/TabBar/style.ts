@@ -11,14 +11,11 @@ export const tabBarStyle=StyleSheet.create({
     },
     imgContainer:{
         position:'absolute',
-        // position:'relative',
         left:getSize(10),
         top:getSize(10),
         zIndex:1000,
     },
     img:{
-        // marginTop:getSize(10),
-        // marginLeft:getSize(10),
         width:getSize(20),
         height:getSize(20),
        
@@ -26,11 +23,9 @@ export const tabBarStyle=StyleSheet.create({
     text:{
         marginTop:getSize(8),
         height:getSize(24),
-        // width:getSize(70),
         flexGrow:1,
         fontSize:getSize(17),
         textAlign:'center',
         zIndex:100
     },
-
 })

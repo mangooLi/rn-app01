@@ -134,7 +134,7 @@ export const informationCardStyle=StyleSheet.create({
         marginTop:getSize(44)
     },
     content:{
-
+        width:getSize(375-32),
         marginTop:getSize(16),
         marginBottom:getSize(16)
     },
@@ -149,5 +149,18 @@ export const informationCardStyle=StyleSheet.create({
     img:{
         width:getSize(111),
         height:getSize(111)
+    },
+    link:{
+        fontSize:getSize(14),
+        lineHeight:getSize(30),
+        color:'#fd5c3a',
+        marginBottom:getSize(12)
+    },
+    video:{
+        width:getSize(343),
+        height:getSize(193),
+        marginTop:getSize(20),
+        marginBottom:getSize(20)
     }
 })
+

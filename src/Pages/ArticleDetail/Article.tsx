@@ -1,12 +1,13 @@
 import React ,{Component} from 'react';
-import {View,Text,Image,WebView} from 'react-native';
+import {View,Text,Image,WebView,TouchableWithoutFeedback} from 'react-native';
+import Video from 'react-native-video';
 import {observer} from 'mobx-react'
 import AutoHeightWebView from 'react-native-autoheight-webview'
 
 
 import DetailModel from './model';
 import {map, getSize, moment} from '../../utils';
-import {detailStyle,articleStyle} from './style';
+import {detailStyle,articleStyle, informationCardStyle} from './style';
 // import {getInformaatinDetail} from '../../api'
 import InformationCard from './InformationCard';
 
@@ -17,12 +18,17 @@ interface Props{
 @observer
 class Article extends Component<Props> {
 
-    state:any = {};
+    state:any = {
+        paused:true
+    };
 
+    pause(){
+        this.setState({paused:!this.state.paused})
+    }
 
     render (){
         const {tags,title,author,content,thumbnail_url,date}=this.props.store.article;
-        const {_type,laboIndex,informationCards}=this.props.store;
+        const {_type,laboIndex,informationCards,video}=this.props.store;
 
 
         return (
@@ -54,6 +60,19 @@ class Article extends Component<Props> {
                     </View>
                     :<View/>
 
+                }
+                {
+                    video?
+                    <View style={informationCardStyle.container}>
+                        <Text style={informationCardStyle.title}>{video.title}</Text>
+                        <TouchableWithoutFeedback onPress={()=>this.pause()}>
+                        <Video 
+                            style={informationCardStyle.video}
+                            source={{uri:video.source_url}}
+                            paused = {this.state.paused}
+                        />
+                        </TouchableWithoutFeedback>
+                    </View>:<View/>
                 }
 
             </View>):<View/>

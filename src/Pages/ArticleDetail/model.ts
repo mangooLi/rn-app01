@@ -1,7 +1,7 @@
-import {observable,action,extendObservable, toJS } from 'mobx';
+import {observable,action, toJS } from 'mobx';
 
 
-import {getInformaatinDetail,getRecommendations,RecommendationDetail,DataLabInformations,InformationCardItem} from '../../api';
+import {getInformaatinDetail,getRecommendations,RecommendationDetail,DataLabInformations,InformationCardItem,Video} from '../../api';
 import { assign } from '../../utils';
 
 
@@ -15,7 +15,7 @@ export default class DetailModel{
     @observable article:any = {}    ;
     @observable recommendations:RecommendationDetail[] = [];
     @observable informationCards :InformationCardItem[] = []
-
+    @observable video :Video;
     @observable number = 0;
 
     hasLoadRecommend:boolean = false;
@@ -44,6 +44,9 @@ export default class DetailModel{
                 this._type = res.data.data._type;
                 if(content.length<300){ // 如果正文字数太少，直接加载推荐文章
                     this.loadRecommendations()
+                }
+                if(res.data.data.video){
+                    this.video = observable(res.data.data.video)
                 }
 
                 if(this._type === 'data_lab_information' && (res.data.data as DataLabInformations).category==='for_review'){

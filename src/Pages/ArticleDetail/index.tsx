@@ -55,7 +55,7 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
                 <View style={detailStyle.container}>
                     <ScrollView onScroll={(e)=>this.handleScroll(e)} ref={c=>this.scroll =c}>
                         <Article  store={this.store}/>
-                        <TagBar tags={this.store.article.tags}/>
+                        {this.store._type!=='data_lab_information' ?<TagBar tags={this.store.article.tags}/>:<View/>}
                         {/* <Text ></Text> */}
                         
                         <Recommendations store={this.store}/>

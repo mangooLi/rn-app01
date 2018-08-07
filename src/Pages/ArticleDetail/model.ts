@@ -1,7 +1,7 @@
 import {observable,action,extendObservable, toJS } from 'mobx';
 
 
-import {getInformaatinDetail,getRecommendations,RecommendationDetail} from '../../api';
+import {getInformaatinDetail,getRecommendations,RecommendationDetail,DataLabInformations,InformationCardItem} from '../../api';
 import { assign } from '../../utils';
 
 
@@ -9,10 +9,12 @@ import { assign } from '../../utils';
 export default class DetailModel{
 
 
-
+    @observable _type:string;
+    @observable laboIndex:number ;
     @observable id:number;
     @observable article:any = {}    ;
-    @observable recommendations:RecommendationDetail[] = []
+    @observable recommendations:RecommendationDetail[] = [];
+    @observable informationCards :InformationCardItem[] = []
 
     @observable number = 0;
 
@@ -38,10 +40,18 @@ export default class DetailModel{
         getInformaatinDetail(this.id).then(res=>{
             if(res.data){
                 this.updateArticle(res.data.data);
-                const {content} = this.article;
-
+                const {content} = this.article; 
+                this._type = res.data.data._type;
                 if(content.length<300){ // 如果正文字数太少，直接加载推荐文章
                     this.loadRecommendations()
+                }
+
+                if(this._type === 'data_lab_information' && (res.data.data as DataLabInformations).category==='for_review'){
+                    this.informationCards = observable((res.data.data as DataLabInformations).information_cards)
+                    let tag = res.data.data.tags[0];
+                    if(tag && tag.name.includes('dt-labo-')){
+                        this.laboIndex = Number(tag.name.replace('dt-labo-',''))
+                    }
                 }
             }
         })

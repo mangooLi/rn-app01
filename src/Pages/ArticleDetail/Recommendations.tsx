@@ -24,7 +24,7 @@ class Recommendations extends Component<Props> {
 
         const {recommendations} =this.props.store
         return recommendations.length ?(
-            <View >
+            <View style={recommendationStyle.container}>
                 <Text style={recommendationStyle.title}>更多推荐</Text>
                 {
                 map(recommendations,rmd=>(

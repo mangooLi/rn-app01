@@ -1,5 +1,6 @@
 import {StyleSheet,ViewStyle} from 'react-native'
 import { getSize } from '../../utils';
+import { WindowWidth } from '../../constant';
 
 const common={
     width:getSize(375-32),
@@ -12,7 +13,7 @@ export const detailStyle=StyleSheet.create({
     pageContainer:{
         flex:1,
         flexDirection:'column',
-        backgroundColor:'#fff'
+        backgroundColor:'#f8f6f6'
     },
 
     tabBar:{
@@ -34,8 +35,8 @@ export const detailStyle=StyleSheet.create({
     },
     none:{
         width:getSize(375),
-        height:getSize(100),
-        backgroundColor:'#0dbc79'
+        height:getSize(40+8),
+        backgroundColor:'#f8f6f6'
     },
 })
 
@@ -72,9 +73,10 @@ export const articleStyle=StyleSheet.create({
     },
     title:{
         width:getSize(375-32),
-        marginLeft:getSize(8),
-        marginTop:getSize(8)
-
+        marginLeft:getSize(16),
+        marginTop:getSize(8),
+        fontSize:getSize(22),
+        lineHeight:getSize(30)
     },
     author:{
         ...common,
@@ -88,13 +90,64 @@ export const articleStyle=StyleSheet.create({
         ...common,
 
     },
+    laboindex:{
+        ...common,
+        fontSize:getSize(18),
+        lineHeight:getSize(30),
+        color:'#999',
+        marginTop:getSize(24),
+        marginBottom:getSize(28)
+    }
     
 })
 
 export const recommendationStyle=StyleSheet.create({
+    container:{
+        backgroundColor:'#fff',
+        borderRadius:getSize(10),
+        marginTop:getSize(8),
+        marginBottom:getSize(8)
+    },
     title:{
-        height:getSize(100),
-        fontSize:getSize(60),
-        textAlign:'center'
+        height:getSize(28),
+        fontSize:getSize(20),
+        textAlign:'center',
+        color:'#333',
+        marginTop:getSize(33)
+    }
+})
+
+export const informationCardStyle=StyleSheet.create({
+    container:{
+        // ...common,
+        borderRadius:getSize(10),
+        width:WindowWidth,
+        paddingLeft:getSize(16),
+        paddingRight:getSize(16),
+        marginTop:getSize(8),
+        backgroundColor:'#fff'
+    },
+    title:{
+        fontSize:getSize(20),
+        lineHeight:getSize(28),
+        color:'#333',
+        marginTop:getSize(44)
+    },
+    content:{
+
+        marginTop:getSize(16),
+        marginBottom:getSize(16)
+    },
+    imgContainer:{
+        // ...common,
+        marginTop:getSize(20),
+        marginBottom:getSize(20),
+        flexDirection:'row',
+        flexWrap:'wrap',
+        justifyContent:'space-between'
+    },
+    img:{
+        width:getSize(111),
+        height:getSize(111)
     }
 })

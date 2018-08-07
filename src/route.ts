@@ -47,7 +47,7 @@ const Route = createStackNavigator({
         
         initialRouteName: 'Main',
         mode: 'modal',
-        // headerMode: 'none',
+        headerMode: 'none',
           
     })
 

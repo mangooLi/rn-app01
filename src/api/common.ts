@@ -116,6 +116,19 @@ export interface DataHeroInformations{
     video: Video
 }
 
+export interface InformationCardItem{
+  
+    id: number,
+    // (:id, :category, :title, :content, :link_title, :link_url, :images) }
+    category: string, // 卡片分类 text_card: 普通卡片  image_card: 图片卡片
+    title: string,
+    content: string, // 普通卡片 使用
+    link_title: string,
+    link_url: string,
+    images: string[] // 图片卡片 使用
+   
+}
+
 /**
  * 数据侠实验室(活动)详情
  */
@@ -138,18 +151,7 @@ export interface DataLabInformations{
     comments_count: number, // 评论数量
     share_url: string, // 分享链接
     state: 'to_begin', // to_begin living ended
-    information_cards: [ // 精彩回顾 使用
-      {
-        id: number,
-        // (:id, :category, :title, :content, :link_title, :link_url, :images) }
-        category: string, // 卡片分类 text_card: 普通卡片  image_card: 图片卡片
-        title: string,
-        content: string, // 普通卡片 使用
-        link_title: string,
-        link_url: string,
-        images: string[] // 图片卡片 使用
-       }
-    ]
+    information_cards: InformationCardItem[] // 精彩回顾 使用
     tags: [
       {
         id: number,

@@ -33,7 +33,7 @@ export default class Main extends React.Component<NavigationInjectedProps>{
 
                 <Button
                     title='article detail '
-                    onPress={()=>{this.props.navigation.navigate('ArticleDetail',{id:57})}}
+                    onPress={()=>{this.props.navigation.navigate('ArticleDetail',{id:95})}}
                 ></Button>
                 <Button
                     title='comment '

@@ -31,10 +31,11 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
                     </View>
                     <View style={dataLabStyle.detail_right}>
                             <Text style={dataLabStyle.detail_title} numberOfLines={2}>{title}</Text>
-                            <Text style={dataLabStyle.detail_tagAndAddress} numberOfLines={2}>
+                            <View style={dataLabStyle.detail_tagAndAddress}>
+
                                 <Text style={dataLabStyle.detail_tag}>{tags.map(tag=>tag.name).join('・')}</Text>
                                 <Text style={dataLabStyle.detail_address}>&nbsp;活动地点：{address}</Text>
-                            </Text>
+                            </View>
                     </View>
                 </View>
             </View>

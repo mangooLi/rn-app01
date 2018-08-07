@@ -7,7 +7,7 @@ export const tabBarStyle=StyleSheet.create({
         height:getSize(40),
         flexDirection:'row',
         borderBottomWidth:getSize(1/3.5),
-        borderBottomColor:'rgba(0,0,0,0.2)'
+        borderBottomColor:'#f8f8f8'
     },
     imgContainer:{
         position:'absolute',

@@ -75,6 +75,13 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('DataHeroColumn')}}
                 ></Button>
 
+                 <Button
+                    title='数据侠实验室'
+                    onPress={()=>{this.props.navigation.navigate('DataLab')}}
+                ></Button>
+
+
+                
                 
                 
                 

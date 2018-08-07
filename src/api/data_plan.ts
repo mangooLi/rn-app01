@@ -5,7 +5,7 @@
 import fetch from './request';
 
 import {DataHeroItem,DataLabItem,DataFiftyItem} from './home';
-import {Meta} from './common'
+import {Meta, DataLabInformations} from './common'
 
 
 // interface Tag{
@@ -121,4 +121,37 @@ export function getDataHeroInformations(topic_id:number|null,page:number){
     data.topic_id = topic_id;
   }
   return fetch<{data:DataHeroItem[],meta:Meta}>({url:'api/v1/data_hero_informations',data})
+}
+
+/**
+ * 数据侠实验室活动类型
+ */
+export enum DataLabItemCategory{
+  // 全部
+  all='all',
+  // 活动报名
+  for_register='for_register',
+  // 精彩回顾
+  for_review='for_review'
+}
+
+/**
+ * 获取数据侠实验室列表
+ * @param category 活动类型
+ * @param page 分页参数
+ */
+export function getDataLabInformations(category:DataLabItemCategory,page:number){
+
+    let data :any = {category,sort:'latest',page,per:20}
+
+    return fetch<{data:DataLabItem[],meta:Meta}>({url:'api/v1/data_lab_informations',data})
+}
+
+
+/**
+ * 获取数据侠实验室详情
+ * @param id 活动id
+ */
+export function getDataLabInformationDetail(id:number){
+  return fetch<{data:DataLabInformations}>({url:`api/v1/data_lab_informations/${id}`})
 }

@@ -140,19 +140,25 @@ export const dataLabStyle=StyleSheet.create({
 
     },
     detail_title:{
-        height:getSize(40),
+        // height:getSize(40),
         fontSize:getSize(14),
+        width:getSize(269),
         color:'#333',
     },
     detail_tagAndAddress:{
+        flexDirection:'row',
         marginTop:getSize(2),
         height:getSize(17)
     },
     detail_tag:{
+        // width:getSize(100),
+        flex:7,
         fontSize:getSize(12),
         color:'#ee5e2b'
     },
     detail_address:{
+        // width:getSize(169),
+        flex:20,
         paddingLeft:getSize(11),
         fontSize:getSize(11),
         color:'#333'

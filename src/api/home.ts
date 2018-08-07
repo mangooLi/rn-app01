@@ -60,6 +60,7 @@ export interface DataLabItem{
     date: string, // 显示时间
     start_at: string, // 活动开始时间
     end_at: string, // 活动结束时间
+    author: string
     state: string, // to_begin living ended
     tags: [
         {

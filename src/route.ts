@@ -21,6 +21,7 @@ import ListRoute from './Pages/ListRoute';
 // Demo page
 import DemoMain from './DemoPage/DemoMain';
 import DemoRoute from './DemoPage/DemoRoute';
+import Animate from './DemoPage/Animate';
 
 
 
@@ -40,7 +41,8 @@ const Route = createStackNavigator({
     SearchPage:SearchPage,
     // demo
     Demo:DemoMain,
-    DemoRoute:DemoRoute
+    DemoRoute:DemoRoute,
+    Animate:Animate
 
 
     },{

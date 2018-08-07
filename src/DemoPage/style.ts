@@ -2,7 +2,7 @@
 
 import {StyleSheet,ViewStyle} from 'react-native';
 
-import {getSize } from '../utils';
+import {getSize, WindowWidth, WindowHeight } from '../utils';
 
 export const demoStyle = StyleSheet.create({
     con:{
@@ -49,5 +49,31 @@ export const demoStyle = StyleSheet.create({
     txt:{
         width:getSize(375),
         flexGrow:2
+    }
+})
+
+
+export const animateStyle =StyleSheet.create({
+    one:{
+        backgroundColor:'#fa9842',
+        width:WindowWidth,
+        height:WindowHeight*0.75,
+        zIndex:11,
+        justifyContent:'space-around',
+        alignContent:'center'
+    },
+    two:{
+        backgroundColor:'#369af5',
+        width:WindowWidth,
+        height:WindowHeight,
+        position:'absolute',
+        left:0,
+        top:0,
+        zIndex:10
+    },
+    text:{
+        width:WindowHeight/2,
+        height:getSize(100),
+        backgroundColor:'#36fff5'
     }
 })

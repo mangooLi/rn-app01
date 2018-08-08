@@ -9,7 +9,7 @@ import {observer} from 'mobx-react'
 
 import List from '../../Common/List';
 import {DataHeroItem,getDataHeroInformations,DataHeroTopic} from '../../api';
-import ArticleBrief from '../Home/ArticleBrief';
+import ArticleBrief from '../All/ArticleBrief';
 
 import {columnStyle} from './style'
 import { toJS } from '../../../node_modules/mobx';

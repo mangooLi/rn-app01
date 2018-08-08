@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {getSize} from '../../utils'
+import {getSize, WindowWidth} from '../../utils'
 
 export const reportProductsStyle=StyleSheet.create({
     container:{
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        width:WindowWidth
     },
     tabBar:{
         height:getSize(40),

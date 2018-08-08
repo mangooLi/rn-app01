@@ -4,14 +4,14 @@
 import {createMaterialTopTabNavigator} from 'react-navigation';
 import {getSize} from '../utils';
 
-import HomePage from './Home';
+import AllPage from './All';
 import DataDiscover from './DataDiscover';
 import ReportProducts from './ReportProducts';
 
 
 const ListRoute=createMaterialTopTabNavigator({
     Home:{
-        screen:HomePage,
+        screen:AllPage,
         navigationOptions:{
             tabBarLabel:'全部'
         }

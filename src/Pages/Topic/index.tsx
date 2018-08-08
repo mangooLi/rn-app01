@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 import {View ,Text,FlatList,ScrollView} from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import {observer} from 'mobx-react'
-import ArticleBrief from '../Home/ArticleBrief'
+import ArticleBrief from '../All/ArticleBrief'
 
 import TabBar from './TabBar';
 import TopicModel from './model';

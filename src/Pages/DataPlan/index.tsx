@@ -7,8 +7,8 @@ import {observer} from 'mobx-react'
 
 import DataPlanModel from './model'
 import {map} from '../../utils';
-import ArticleBrief from '../Home/ArticleBrief';
-import DataLabCard from '../Home/DataLabCard'
+import ArticleBrief from '../All/ArticleBrief';
+import DataLabCard from '../All/DataLabCard'
 
 import CardHead from './CardHead';
 import DataFifty from './DataFiftyCard';

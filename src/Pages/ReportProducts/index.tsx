@@ -21,7 +21,7 @@ class ReportProducts  extends React.Component{
     render(){
         const {informations} =this.store
         return (
-            <View>
+            <View style={reportProductsStyle.container}>
                 <FlatList 
                     data={informations}
                     renderItem={({item})=>{

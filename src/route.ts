@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 
 
 // pages
-import HomePage from './Pages/Home';
+import AllPage from './Pages/All';
 import Main from './Main';
 import ArticleDetail from './Pages/ArticleDetail';
 import Comment from './Pages/Comment'
@@ -16,6 +16,7 @@ import DataFifty from './Pages/DataFifty';
 import DataHeroColumn from './Pages/DataHeroColumn';
 import DataLab from './Pages/DataLab';
 import SearchPage from './Pages/SearchPage';
+import HomePage from './Pages/Home';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -26,8 +27,9 @@ import Animate from './DemoPage/Animate';
 
 
 const Route = createStackNavigator({
-    Main:Main,
     HomePage:HomePage,
+    Main:Main,
+    AllPage:AllPage,
     ListRoute:ListRoute,
     ArticleDetail:ArticleDetail,
     Comment:Comment,

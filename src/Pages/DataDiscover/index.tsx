@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { View ,Text,FlatList,ScrollView,NativeScrollEvent} from 'react-native';
 import DataDiscoverModel from './model';
-import ArticleBrief from '../Home/ArticleBrief';
+import ArticleBrief from '../All/ArticleBrief';
 
-import { NavigationInjectedProps } from 'react-navigation';
+import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import {observer} from 'mobx-react';
 import {dataDiscoverStyle} from './style';
 import Tags from './Tags';
@@ -56,4 +56,4 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
     }
 }
 
-export default  DataDiscover
+export default  withNavigation<{}>(DataDiscover)

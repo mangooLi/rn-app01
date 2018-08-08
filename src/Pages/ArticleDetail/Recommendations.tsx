@@ -3,7 +3,7 @@ import {View,Text} from 'react-native';
 import DetailModel from './model';
 import {observer} from 'mobx-react';
 import {map} from '../../utils';
-import ArticleBrief from '../Home/ArticleBrief';
+import ArticleBrief from '../All/ArticleBrief';
 
 import {detailStyle,recommendationStyle, articleStyle} from './style'
 

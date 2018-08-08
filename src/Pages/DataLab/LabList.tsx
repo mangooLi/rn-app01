@@ -10,7 +10,7 @@ import {observer} from 'mobx-react'
 import List from '../../Common/List';
 import {DataHeroItem,getDataLabInformations ,DataLabItemCategory,DataLabItem} from '../../api';
 
-import  DataLabCard from '../Home/DataLabCard';
+import  DataLabCard from '../All/DataLabCard';
 
 import {listStyle} from './style'
 import {DataLabTopics} from './model';

@@ -1,6 +1,6 @@
 
 
-import {StyleSheet,ViewStyle} from 'react-native';
+import {StyleSheet,ViewStyle,Animated} from 'react-native';
 
 import {getSize, WindowWidth, WindowHeight } from '../utils';
 
@@ -53,22 +53,27 @@ export const demoStyle = StyleSheet.create({
 })
 
 
-export const animateStyle =StyleSheet.create({
+
+let position_left =new Animated.Value(0)
+
+export const animateStyle ={
     one:{
         backgroundColor:'#fa9842',
         width:WindowWidth,
-        height:WindowHeight*0.75,
+        height:WindowHeight,
         zIndex:11,
         justifyContent:'space-around',
-        alignContent:'center'
+        alignContent:'center',
+        position:'absolute',
+        left:position_left,
+        // left:0,
+        // top:0,
+        
     },
     two:{
         backgroundColor:'#369af5',
         width:WindowWidth,
         height:WindowHeight,
-        position:'absolute',
-        left:0,
-        top:0,
         zIndex:10
     },
     text:{
@@ -76,4 +81,4 @@ export const animateStyle =StyleSheet.create({
         height:getSize(100),
         backgroundColor:'#36fff5'
     }
-})
+}

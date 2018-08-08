@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image} from'react-native';
+import {View,Text,Image,TouchableWithoutFeedback} from'react-native';
 import {barStyle} from './style';
 
 const searchIcon = require('../../assets/img/ic_search_24px.png');
@@ -8,6 +8,7 @@ const shapeIcon = require('../../assets/img/icAccountCircle24Px/icAccountCircle2
 
 interface Prop{
     toPage:(page:number)=>void;
+    toggle:()=>void;
 }
 export default class HomeBar extends Component<Prop> {
 
@@ -22,7 +23,9 @@ export default class HomeBar extends Component<Prop> {
                 <Text onPress={()=>this.toPage(2)} style={barStyle.text}>数据洞察</Text>
                 <Text onPress={()=>this.toPage(3)} style={barStyle.report}>数据报告</Text>
                 <Image source={searchIcon}/>
-                <Image style={barStyle.img_account} source={shapeIcon}/>
+                <TouchableWithoutFeedback onPress={()=>this.props.toggle()}>
+                    <Image  style={barStyle.img_account} source={shapeIcon}/>
+                </TouchableWithoutFeedback>
             </View>
         )
     }

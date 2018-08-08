@@ -1,5 +1,5 @@
 import {StyleSheet,FlexStyle} from 'react-native';
-import {getSize, WindowWidth} from '../../utils';
+import {getSize, WindowWidth,WindowHeight} from '../../utils';
 
 
 export const pageStyle=StyleSheet.create({
@@ -39,3 +39,30 @@ export const barStyle=StyleSheet.create({
         marginRight:getSize(12)
     }
 })
+
+export const animateStyle ={
+    one:{
+        backgroundColor:'#fa9842',
+        width:WindowWidth,
+        height:WindowHeight,
+        zIndex:11,
+        justifyContent:'space-around',
+        alignContent:'center',
+        position:'absolute',
+        // left:position_left,
+        // left:0,
+        // top:0,
+        
+    },
+    two:{
+        backgroundColor:'#369af5',
+        width:WindowWidth,
+        height:WindowHeight,
+        zIndex:10
+    },
+    text:{
+        width:WindowHeight/2,
+        height:getSize(100),
+        backgroundColor:'#36fff5'
+    }
+}

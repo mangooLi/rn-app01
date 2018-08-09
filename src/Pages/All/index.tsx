@@ -100,6 +100,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
             <ScrollView  
                 onScroll={(e)=>this.handleScroll(e)}
                 testID='homePage'>
+                
                 <Banner banners={banners}/>
 
                 <View style={homeStyle.preInfo}>

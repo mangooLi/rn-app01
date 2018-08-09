@@ -22,3 +22,12 @@ declare const AutoHeightWebView:any;
 declare module 'react-native-autoheight-webview'{
     export default AutoHeightWebView;
 }
+
+declare const NestedScrollView:any
+// declare module 'react-native-nested-scrollview'{
+//     export default NestedScrollView
+// }
+
+declare module 'react-native-nested-scroll-view'{
+    export default NestedScrollView
+}

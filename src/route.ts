@@ -24,6 +24,7 @@ import ListRoute from './Pages/ListRoute';
 import DemoMain from './DemoPage/DemoMain';
 import DemoRoute from './DemoPage/DemoRoute';
 import Animate from './DemoPage/Animate';
+import Scroll from './DemoPage/Scroll';
 
 
 
@@ -46,7 +47,8 @@ const Route = createStackNavigator({
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,
-    Animate:Animate
+    Animate:Animate,
+    Scroll:Scroll
 
 
     },{

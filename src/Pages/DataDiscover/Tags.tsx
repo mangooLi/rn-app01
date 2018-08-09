@@ -33,7 +33,7 @@ class Tags extends Component<NavigationInjectedProps & Props>{
             <View style={dataDiscoverStyle.tags}>
                 <ScrollView horizontal={true} style={tagsStyle.topic_container}>
                     {map(topics,topic=>(
-                        <TouchableWithoutFeedback onPress={()=>this.handlePress(topic)}>
+                        <TouchableWithoutFeedback key={topic.id} onPress={()=>this.handlePress(topic)}>
                         <View style={tagsStyle.topic}>
                             <Image style={tagsStyle.image} source={{uri:topic.logo_url}}/>
                             <Text style={tagsStyle.text}>{topic.name}</Text>

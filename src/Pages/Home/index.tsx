@@ -1,8 +1,8 @@
 
 
 import React,{Component} from 'react';
-import {View,Text, ScrollView,NativeSyntheticEvent,NativeScrollEvent,Animated} from'react-native';
-import {WindowWidth,WindowHeight} from '../../utils';
+import {View,Text,TouchableWithoutFeedback, ScrollView,NativeSyntheticEvent,NativeScrollEvent,Animated,GestureResponderEvent} from'react-native';
+import {WindowWidth,WindowHeight,getSize} from '../../utils';
 
 import HomeBar from './HomeBar';
 
@@ -24,10 +24,14 @@ export default class Home extends Component {
     folded:boolean = false
 
     endDrag(e:NativeSyntheticEvent<NativeScrollEvent> | undefined){
-        if(!e)return;
-        const x = e.nativeEvent.contentOffset.x;
-        let position_x = this.getRoundx(x);
-        this.sc.scrollTo({x:position_x,y:0,animated:true})
+        console.log(e && e.nativeEvent);
+        console.log(e && e.currentTarget);
+        console.log(e && e.target);
+        console.log(e );
+        // if(!e)return;
+        // const x = e.nativeEvent.contentOffset.x;
+        // let position_x = this.getRoundx(x);
+        // this.sc.scrollTo({x:position_x,y:0,animated:true})
     }
 
 
@@ -52,6 +56,7 @@ export default class Home extends Component {
     }
 
     toggle(){
+        // console.log('togg',e)
         if(this.folded){
             this.expand();
         }else{
@@ -78,26 +83,50 @@ export default class Home extends Component {
         ]).start()
     }
 
+    shouldCapture(){
+        // 折叠状态下，拦截事件，让外层响应。非折叠状态下，不拦截，让内层响应
+        return this.folded;
+    }
+
+    /**
+     * 处理首页touch事件
+     */
+    handleTouch(){
+        if(this.folded){ // 折叠状态下，点击主页展开
+            this.expand()
+        }
+    }
+
     render (){
         const {x,y,scaleY,scaleX}=this.state;
         return (
 
-            <View>
-                <Animated.View style={{...animateStyle.one,left:x,top:y,scaleY,scaleX}}>
+            <View  >
+                <TouchableWithoutFeedback onPress={(e:GestureResponderEvent)=>this.handleTouch()} >
+                <Animated.View 
+                    
+                    onStartShouldSetResponderCapture={() =>this.shouldCapture()} // 折叠状态下，不往下面传递事件，阻止子组件捕获事件
+                    style={{...animateStyle.one,left:x,top:y,scaleY,scaleX}} >
+                    
+                    
                     <HomeBar toPage={(page)=>this.toPage(page)} toggle={()=>this.toggle()}/>
+
                     <ScrollView 
+                        // locked
+                        // scrollEnabled = {false}
+                        
                         ref = {c=>this.sc = c}
                         horizontal = {true}
                         onScrollEndDrag = {(e)=>this.endDrag(e)}
                         style={pageStyle.scroll}
                     >
+
                         <AllPage />
                         <DataDiscover />
                         <DataReport />
-
-
                     </ScrollView>
                 </Animated.View>
+                </TouchableWithoutFeedback>
                 <View style={animateStyle.two}>
                     <PersonCenter />
                 </View>

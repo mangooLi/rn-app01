@@ -19,6 +19,10 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('HomePage')}}
                 ></Button>
                 <Button
+                    title='Scroll'
+                    onPress={()=>{this.props.navigation.navigate('Scroll')}}
+                ></Button>
+                <Button
                     title='个人中心'
                     onPress={()=>{this.props.navigation.navigate('PersonalCenter')}}
                 ></Button>

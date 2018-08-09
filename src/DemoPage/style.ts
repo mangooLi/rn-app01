@@ -82,3 +82,5 @@ export const animateStyle ={
         backgroundColor:'#36fff5'
     }
 }
+
+

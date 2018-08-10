@@ -22,16 +22,17 @@ export const detailStyle=StyleSheet.create({
 
     },
     container:{
-        flexGrow:1
-
+        flexGrow:1,
+        backgroundColor:'#fff'
     },
     tagBar:{
-        height:getSize(30),
+        height:getSize(40),
         width:getSize(375),
         borderTopWidth:getSize(0.3),
         borderTopColor:'#333',
         borderBottomWidth:getSize(0.3),
-        borderBottomColor:'#333'
+        borderBottomColor:'#333',
+        flexDirection:'row'
     },
     none:{
         width:getSize(375),
@@ -164,3 +165,25 @@ export const informationCardStyle=StyleSheet.create({
     }
 })
 
+export const tagBarStyle = StyleSheet.create({
+    img:{
+        width:getSize(24),
+        height:getSize(24),
+        marginLeft:getSize(15),
+        marginTop:getSize(9.5)
+    },
+    text:{
+        flex:1,
+        fontSize:getSize(16),
+        height:getSize(22),
+        lineHeight:getSize(22),
+        marginTop:getSize(10.5),
+        marginLeft:getSize(7)
+    },
+    right:{
+        width:getSize(8),
+        height:getSize(13),
+        marginTop:getSize(15),
+        marginRight:getSize(15)
+    }
+})

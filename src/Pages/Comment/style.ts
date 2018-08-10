@@ -9,7 +9,8 @@ export const commentStyle = StyleSheet.create({
         height: Dimensions.get('window').height
     },
     scroll_container:{
-        flexShrink:1,
+        // flexShrink:1,
+        flex:1
     },
     tabBar:{
         height:getSize(40),
@@ -26,7 +27,6 @@ export const commentStyle = StyleSheet.create({
         paddingLeft:getSize(16),
         paddingRight:getSize(16),
         flexDirection:'row',
-
     }
 })
 

@@ -1,7 +1,7 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,ScrollView ,StyleSheet,PanResponder} from 'react-native';
+import {View,Text,ScrollView ,StyleSheet,PanResponder,Button,TouchableWithoutFeedback} from 'react-native';
 import {WindowHeight,WindowWidth} from '../utils';
 // import NestedScrollView from 'react-native-nested-scroll-view';
 
@@ -95,34 +95,51 @@ const pressStyle = StyleSheet.create({
     }
 })
 const MyPress = ()=>(
-    <View 
-        style={pressStyle.one} 
-        onResponderStart={e=>{console.log('one')}}
-        onStartShouldSetResponder={e=>true} 
-        onStartShouldSetResponderCapture={()=>false}>
+    <View  style={pressStyle.one}  onResponderStart={e=>console.log('view 0')} >
 
-        <View 
-            style={pressStyle.two}
-            onResponderStart={e=>{console.log('two')}}
-        onStartShouldSetResponder={e=>true} 
-        onStartShouldSetResponderCapture={()=>true}>
+        <View style={pressStyle.two} onStartShouldSetResponder={e=>true}   onResponderStart={e=>console.log('view 1')} >
+            <View style={pressStyle.three}  onStartShouldSetResponder={e=>false}  onResponderStart={e=>console.log('view 2')} >
+                <Button title={'btn'}  onPress={()=>console.log('btn')}>hehe</Button>
+            </View>
 
-            <View style={pressStyle.three}
-                onResponderStart={e=>{console.log('three')}}
-                onStartShouldSetResponder={e=>true} 
-                onStartShouldSetResponderCapture={()=>false}
-            ></View>
         </View>
+
     </View>
 )
+
+
+
+const style2=StyleSheet.create({
+    page:{
+        width:WindowWidth,
+        height:WindowHeight/2,
+        backgroundColor:'#f0f9c8'
+    }
+})
+const NativePress = ()=>{
+
+    return (
+        <TouchableWithoutFeedback 
+            onPressIn={e=>console.log('press in')}
+            onPressOut={e=>console.log('press out')}
+            onLongPress={e=>console.log('long press')}
+        >
+        <View style={style2.page}>
+
+        </View>
+        </TouchableWithoutFeedback>
+    )
+}
+
 
 export default class Scroll extends Component {
 
     render() {
         return (
             <View >
-                <MyScroll/>
+                {/* <MyScroll/> */}
                 {/* <MyPress/> */}
+                <NativePress />
             </View>
         );
     }

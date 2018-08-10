@@ -9,11 +9,13 @@ import  {
     TouchableOpacity
 } from 'react-native';
 import moment from 'moment';
-import Banner,{IndicaterType,IndicaterAlign} from 'react-native-whc-banner';
+import Banner,{IndicaterType,IndicaterAlign} from '../../vendor/react-native-whc-banner';
 import {BannerItem} from '../../api';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { bannerStyle } from './style';
+import homeModel from '../Home/model';
+import { getSize } from '../../utils';
 
 
 
@@ -30,11 +32,11 @@ interface Props{
         navigation.navigate('ArticleDetail',{id:item.id})
     }
 
-    renderImg(){
-        const {banners}=this.props;
+    renderImg(bn:BannerItem,id?:string|number){
+        // const {banners}=this.props;
 
-        return banners.map(bn=>
-            <TouchableOpacity key={bn.id} onPress={()=>this.handlePress(bn)} activeOpacity={1}>
+        return (
+            <TouchableOpacity key={id|| bn.id} onPress={()=>this.handlePress(bn)} activeOpacity={1}>
             <View  style={bannerStyle.banner}>
                 <Image style={bannerStyle.image} key={bn.id} source={{uri:bn.thumbnail_url}}/>
                 <View style={bannerStyle.detail}>
@@ -48,14 +50,21 @@ interface Props{
         )
     }
 
+
     render(){
+        const {banners}=this.props;
         return (
-            <Banner style={bannerStyle.banner}
+            banners.length? <Banner style={bannerStyle.banner}
+                store = {homeModel}
+                top ={getSize(212.5)-45}
                 indicaterType = {IndicaterType.circle}
                 indicaterAlign={IndicaterAlign.right}
+                firstChild = {this.renderImg(banners[0],'first')}
+                lastChild = {this.renderImg(banners[banners.length-1],'last')}
             >
-                {this.renderImg()}
-            </Banner>
+                {/* {this.renderImg()} */}
+                {banners.map(bn=>this.renderImg(bn))}
+            </Banner>:<View/>
         )
     }
 }

@@ -2,6 +2,7 @@
 
 import React,{Component} from 'react';
 import {View,Text,TouchableWithoutFeedback, ScrollView,NativeSyntheticEvent,NativeScrollEvent,Animated,GestureResponderEvent} from'react-native';
+import {observer} from 'mobx-react';
 import {WindowWidth,WindowHeight,getSize} from '../../utils';
 
 import HomeBar from './HomeBar';
@@ -11,7 +12,13 @@ import DataDiscover from '../DataDiscover';
 import DataReport from '../ReportProducts';
 import {pageStyle,animateStyle} from './style';
 import PersonCenter from './PersonalCenter';
+import homeModel from './model';
+
+
+@observer
 export default class Home extends Component {
+
+    store = homeModel;
 
     state={
         x:new Animated.Value(0),
@@ -24,14 +31,14 @@ export default class Home extends Component {
     folded:boolean = false
 
     endDrag(e:NativeSyntheticEvent<NativeScrollEvent> | undefined){
-        console.log(e && e.nativeEvent);
-        console.log(e && e.currentTarget);
-        console.log(e && e.target);
-        console.log(e );
-        // if(!e)return;
-        // const x = e.nativeEvent.contentOffset.x;
-        // let position_x = this.getRoundx(x);
-        // this.sc.scrollTo({x:position_x,y:0,animated:true})
+        // console.log(e && e.nativeEvent);
+        // console.log(e && e.currentTarget);
+        // console.log(e && e.target);
+        // console.log(e );
+        if(!e)return;
+        const x = e.nativeEvent.contentOffset.x;
+        let position_x = this.getRoundx(x);
+        this.sc.scrollTo({x:position_x,y:0,animated:true})
     }
 
 
@@ -99,6 +106,7 @@ export default class Home extends Component {
 
     render (){
         const {x,y,scaleY,scaleX}=this.state;
+        const {outScroll} = this.store;
         return (
 
             <View  >
@@ -106,14 +114,15 @@ export default class Home extends Component {
                 <Animated.View 
                     
                     onStartShouldSetResponderCapture={() =>this.shouldCapture()} // 折叠状态下，不往下面传递事件，阻止子组件捕获事件
-                    style={{...animateStyle.one,left:x,top:y,scaleY,scaleX}} >
+                    // style={{...animateStyle.one,left:x,top:y,scaleY,scaleX}} >
+                    style={[animateStyle.one,{left:x,transform:[{scaleX},{scaleY}]}]} >
                     
                     
                     <HomeBar toPage={(page)=>this.toPage(page)} toggle={()=>this.toggle()}/>
 
                     <ScrollView 
                         // locked
-                        // scrollEnabled = {false}
+                        scrollEnabled = {outScroll}
                         
                         ref = {c=>this.sc = c}
                         horizontal = {true}

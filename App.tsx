@@ -7,11 +7,9 @@
  */
 
 import React, {Component} from 'react';
-
-import {Props} from 'src/globalInterface';
-
-
 import Route from './src/route';
+import Storage from 'react-native-storage';
+import { AsyncStorage } from 'react-native';
 
 declare const global: any;
 if (__DEV__) {
@@ -27,7 +25,15 @@ if (__DEV__) {
     (window as any).__FETCH_SUPPORT__.blob = false
   }
 }
-export default class App extends Component<Props> {
+
+
+global.storage = new Storage({
+    storageBackend: AsyncStorage,
+})
+
+
+
+export default class App extends Component<{}> {
   
   render() {
     return (

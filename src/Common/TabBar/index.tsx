@@ -8,7 +8,7 @@ const leftIcon = require('../../assets/img/left.png');
 
 
 
-class TabBar extends Component<NavigationInjectedProps &{title:string}>{
+class TabBar extends Component<NavigationInjectedProps &{title?:string,style?:any}>{
 
     back(){
         this.props.navigation.goBack()
@@ -16,7 +16,7 @@ class TabBar extends Component<NavigationInjectedProps &{title:string}>{
     render(){
 
         return (
-            <View style={tabBarStyle.tabBar}>
+            <View style={[tabBarStyle.tabBar,this.props.style]}>
                 <TouchableOpacity style={tabBarStyle.imgContainer} onPress={()=>this.back()} activeOpacity={1}>
                     <Image style={tabBarStyle.img} source={leftIcon}/>
                 </TouchableOpacity>
@@ -27,4 +27,4 @@ class TabBar extends Component<NavigationInjectedProps &{title:string}>{
 }
 
 
-export default withNavigation<{title:string}>(TabBar)
+export default withNavigation<{title?:string,style?:any}>(TabBar)

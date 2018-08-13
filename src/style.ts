@@ -2,11 +2,14 @@
 
 
 import { StyleSheet} from 'react-native';
+import {getSize,WindowWidth} from './utils';
 
 const  styles = StyleSheet.create({
 
     main:{
       backgroundColor: '#fff',
+      // flexDirection:'row',
+      // wrap:'wrap'
     },
     container: {
       flex: 1,
@@ -25,6 +28,9 @@ const  styles = StyleSheet.create({
       color: '#333333',
       marginBottom: 5,
     },
+    btn:{
+      width:WindowWidth/2.5
+    }
   });
 
   export default styles;

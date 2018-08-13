@@ -9,7 +9,7 @@ export default class InputBar extends Component<{store:CommentModel}> {
 
     handleChangetext(value:string){
         console.log(value)
-        // this.props.store.updateComment(value)
+        this.props.store.updateComment(value)
         console.log(Dimensions.get('window'))
     }
 

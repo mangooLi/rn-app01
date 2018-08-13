@@ -8,6 +8,7 @@ import { NavigationInjectedProps } from 'react-navigation';
 import style from './style'
 
 
+
 export default class Main extends React.Component<NavigationInjectedProps>{
 
     render(){
@@ -88,6 +89,18 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='搜索'
                     onPress={()=>{this.props.navigation.navigate('SearchPage')}}
                 ></Button>
+
+                <Button
+                    title='登陆'
+                    onPress={()=>{this.props.navigation.navigate('LoginPage')}}
+                ></Button>
+
+                 <Button
+                    title='注册'
+                    onPress={()=>{this.props.navigation.navigate('RegisterPage')}}
+                ></Button>
+
+                
 
 
                 

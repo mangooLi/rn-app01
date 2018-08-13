@@ -31,3 +31,33 @@ declare const NestedScrollView:any
 declare module 'react-native-nested-scroll-view'{
     export default NestedScrollView
 }
+
+
+declare var RNStorage:{
+    prototype:Storage,
+    new(config:any):Storage
+}
+declare module 'react-native-storage'{
+    export default RNStorage
+}
+
+
+
+declare var storage:{
+    save(config:{
+        key:string,
+        data:any,
+        expires:number|null
+    }):void,
+    load(config:{
+        key:string,
+        autoSync?:boolean,
+        syncInBackground?: true,
+        syncParams?:any
+    }):Promise<any>
+}
+
+declare var CheckBox:any
+declare module 'react-native-checkbox'{
+    export default CheckBox
+}

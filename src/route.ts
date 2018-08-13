@@ -18,6 +18,8 @@ import DataLab from './Pages/DataLab';
 import SearchPage from './Pages/SearchPage';
 import HomePage from './Pages/Home';
 import PersonalCenter from './Pages/Home/PersonalCenter';
+import LoginPage from './Pages/Login';
+import RegisterPage from './Pages/Register'
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -44,6 +46,8 @@ const Route = createStackNavigator({
     DataLab:DataLab,
     SearchPage:SearchPage,
     PersonalCenter:PersonalCenter,
+    LoginPage:LoginPage,
+    RegisterPage:RegisterPage,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,

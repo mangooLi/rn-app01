@@ -19,7 +19,8 @@ import SearchPage from './Pages/SearchPage';
 import HomePage from './Pages/Home';
 import PersonalCenter from './Pages/Home/PersonalCenter';
 import LoginPage from './Pages/Login';
-import RegisterPage from './Pages/Register'
+import RegisterPage from './Pages/Register';
+import MyCollection from './Pages/MyCollection';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -48,6 +49,7 @@ const Route = createStackNavigator({
     PersonalCenter:PersonalCenter,
     LoginPage:LoginPage,
     RegisterPage:RegisterPage,
+    MyCollection:MyCollection,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,

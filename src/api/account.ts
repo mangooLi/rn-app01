@@ -1,8 +1,9 @@
 
 import fetch  from './request'
 
-
-
+import {InformationFlow} from './home';
+import {CommentItem} from './comment';
+import {Meta} from './common';
 // 用户信息
 export interface AcountInfo {
     id: number,
@@ -47,4 +48,49 @@ export function getSms (phone:string){
  */
 export function register(phone:string,code:string,password:string){
     return fetch<{data:Account}>({url:'api/v1/user',method:'post',data:{phone,password,phone_code:code}})
+}
+
+/**
+ * 获取收藏文章列表
+ * @param page 
+ */
+export function getAccountCollection(page:number){
+    return fetch<InformationFlow>({url:'api/v1/mine/star_informations',data:{page}})
+}
+
+
+/**
+ * 删除收藏文章
+ * @param information_ids 被删除收藏的id数组
+ */
+export function deleteStarInformation(information_ids:number[]){
+    const options = {
+        method:'post',
+        url:'api/v1/mine/star_informations/batch_delete',
+        data:{
+            information_ids
+        }
+    }
+    return fetch<{}>(options)
+}
+
+
+/**
+ * 获取我的评论
+ * @param page 
+ */
+export function   getAccountComment(page:number){
+    return fetch<{data:CommentItem[],meta:Meta}>({url:'api/v1/mine/comments'})
+}
+
+/**
+ * 
+ * @param comment_id 评论ID
+ */
+export function toggleMineLike(comment_id:number){
+    const options = {
+        url:`api/v1/mine/comments/${comment_id}/toggle_like`,
+        method:'post'
+    }
+    return fetch<{}>(options)
 }

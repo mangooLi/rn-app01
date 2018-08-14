@@ -61,3 +61,5 @@ declare var CheckBox:any
 declare module 'react-native-checkbox'{
     export default CheckBox
 }
+
+declare const global:any

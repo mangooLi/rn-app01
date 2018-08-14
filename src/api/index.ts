@@ -20,5 +20,6 @@ export * from './data_discover';
 export * from './report_products';
 export * from './data_plan';
 export * from './account';
+export * from './request';
 // export Response;
 

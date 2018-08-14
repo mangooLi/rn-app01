@@ -20,11 +20,12 @@ function addParamsToUrl(url: string, data: any) {
 
 function getConfig(options: Options<any>) {
 
+    
     const config: any = {
       headers: {
         'content-type': 'application/json',
         // 'Accept': 'application/json',
-        // Authorization: `Basic ${token}`,
+        Authorization: global.token,
         ...options.headers,
       },
       method: options.method || 'GET',

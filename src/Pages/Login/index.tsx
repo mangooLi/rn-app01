@@ -30,7 +30,7 @@ export default class LoginPage extends Component {
             this.fetching = false;
             if(res.data){
                 storage.save({key:'user',data:res.data.data,expires:null});
-                
+                global.token = res.data.data.token;
             }
 
         }).catch(()=>this.fetching= false)

@@ -8,12 +8,13 @@ const  styles = StyleSheet.create({
 
     main:{
       backgroundColor: '#fff',
-      // flexDirection:'row',
-      // wrap:'wrap'
+      flexDirection:'row',
+      flexWrap:'wrap',
+      justifyContent: 'space-around',
     },
     container: {
       flex: 1,
-      justifyContent: 'space-around',
+      
       alignItems: 'center',
       backgroundColor: '#fff',
     },
@@ -29,7 +30,8 @@ const  styles = StyleSheet.create({
       marginBottom: 5,
     },
     btn:{
-      width:WindowWidth/2.5
+      width:WindowWidth/2.5,
+      marginTop:getSize(10)
     }
   });
 

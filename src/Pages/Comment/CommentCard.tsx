@@ -3,13 +3,15 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableOpacity} from 'react-native';
 
-import {CommentItem} from '../../api';
+import {CommentItem,Response,toggleMineLike} from '../../api';
 import {moment} from '../../utils';
 import {cardStyle} from './style';
 import CommentDetail from './model';
 
 interface Props{
-    store:CommentDetail
+    store?:{
+        toggleLike(comment_id:number): Promise<Response<{data:CommentItem}>>
+    }
 }
 
 export default class CommentCard extends Component<CommentItem & Props> {
@@ -20,14 +22,21 @@ export default class CommentCard extends Component<CommentItem & Props> {
     }
 
     toggleLike(comment_id:number){
-        this.props.store.toggleLike(comment_id).then(res=>{
-            // this.setState({like:true});
-            if(res.data){
-                this.setState({like:res.data.data.has_like,like_count:res.data.data.like_items_count});
-            }
-        }).catch(e=>{
-            console.log(e)
-        })
+        if(this.props.store){
+
+            this.props.store.toggleLike(comment_id).then(res=>{
+                if(res.data){
+                    this.setState({like:res.data.data.has_like,like_count:res.data.data.like_items_count});
+                }
+            }).catch(e=>{
+                console.log(e)
+            })
+        }else{
+            toggleMineLike(comment_id).then(res=>{
+                const {like,like_count}=this.state;
+                this.setState({like:!like,like_count:like?like_count-1:like_count+1})
+            })
+        }
     }
 
 

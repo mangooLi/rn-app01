@@ -28,4 +28,7 @@ export const tabBarStyle=StyleSheet.create({
         textAlign:'center',
         zIndex:100
     },
+    right:{
+        
+    }
 })

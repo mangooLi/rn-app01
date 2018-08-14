@@ -1,11 +1,12 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableOpacity} from 'react-native';
+import {View,Text,Image,TouchableWithoutFeedback} from 'react-native';
 import {detailStyle,tabBarStyle} from './style';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import DetailModel from './model'
+import {startInformation} from '../../api';
 
 const leftIcon = require('../../assets/img/left.png');
 const heart = require('../../assets/img/heart.png');
@@ -18,16 +19,22 @@ class TabBar extends Component<NavigationInjectedProps & {store:DetailModel}>{
     navToComment(){
         this.props.navigation.navigate('Comment',{id:this.props.store.id})
     }
+
+    collect(){
+        startInformation(this.props.store.id);
+    }
     render(){
 
         return (
             <View style={detailStyle.tabBar}>
                 <Image style={tabBarStyle.img} source={leftIcon}/>
                 <View style={tabBarStyle.none}/>
-                <Image style={tabBarStyle.img} source={heart}/>
-                <TouchableOpacity onPress={()=>this.navToComment()}>
+                <TouchableWithoutFeedback onPress={()=>this.collect()}>
+                    <Image style={tabBarStyle.img} source={heart}/>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={()=>this.navToComment()}>
                     <Image style={tabBarStyle.img} source={message}/>
-                </TouchableOpacity>
+                </TouchableWithoutFeedback>
                 <Image style={{...tabBarStyle.img,...tabBarStyle.share}} source={share}/>
             </View>
         )

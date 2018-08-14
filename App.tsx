@@ -10,8 +10,9 @@ import React, {Component} from 'react';
 import Route from './src/route';
 import Storage from 'react-native-storage';
 import { AsyncStorage } from 'react-native';
+import {login} from './src/api';
 
-declare const global: any;
+// declare const global: any;
 if (__DEV__) {
   global.XMLHttpRequest = global.originalXMLHttpRequest || global.XMLHttpRequest;
   global.FormData = global.originalFormData || global.FormData;
@@ -26,10 +27,20 @@ if (__DEV__) {
   }
 }
 
-
 global.storage = new Storage({
-    storageBackend: AsyncStorage,
+  storageBackend: AsyncStorage,
 })
+
+login('19951579217','123456').then(res=>{
+  this.fetching = false;
+  if(res.data){
+      storage.save({key:'user',data:res.data.data,expires:null});
+      global.token = res.data.data.token;
+  }
+
+})
+
+
 
 
 

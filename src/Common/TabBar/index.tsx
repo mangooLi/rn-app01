@@ -7,24 +7,31 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 const leftIcon = require('../../assets/img/left.png');
 
 
+interface Prop {
+    title?:string,
+    style?:any,
+    rightIcon?:any
+}
 
-class TabBar extends Component<NavigationInjectedProps &{title?:string,style?:any}>{
+
+class TabBar extends Component<NavigationInjectedProps &Prop>{
 
     back(){
         this.props.navigation.goBack()
     }
     render(){
-
+        const {title,style,rightIcon}=this.props;
         return (
-            <View style={[tabBarStyle.tabBar,this.props.style]}>
+            <View style={[tabBarStyle.tabBar,style]}>
                 <TouchableOpacity style={tabBarStyle.imgContainer} onPress={()=>this.back()} activeOpacity={1}>
                     <Image style={tabBarStyle.img} source={leftIcon}/>
                 </TouchableOpacity>
-                <Text style={tabBarStyle.text}>{this.props.title}</Text>
+                <Text style={tabBarStyle.text}>{title}</Text>
+                {rightIcon ?<View style={tabBarStyle.right}>{rightIcon}</View>:<View/>}
             </View>
         )
     }
 }
 
 
-export default withNavigation<{title?:string,style?:any}>(TabBar)
+export default withNavigation<Prop>(TabBar)

@@ -5,6 +5,7 @@ import filter from 'lodash.filter';
 import map from 'lodash.map'
 import debounce from 'lodash.debounce';
 import noop from 'lodash.noop';
+import remove from 'lodash.remove';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 moment.locale('zh-cn')
@@ -23,7 +24,8 @@ export {
     moment,
 
     WindowHeight,
-    WindowWidth
+    WindowWidth,
+    remove
 }
 
 

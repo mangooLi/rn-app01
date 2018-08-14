@@ -25,3 +25,19 @@ export function getInformaatinDetail(id:number){
 export function getRecommendations(id:number|string, limit:number =4){
     return fetch<Recommendations>({url:`api/v1/informations/${id}/recommendations`,data:{limit}})
 }
+
+
+/**
+ * 收藏文章
+ * @param information_id 文章ID
+ */
+export function startInformation(information_id:number){
+    const options = {
+        url:'api/v1/mine/star_informations',
+        method:'post',
+        data:{
+            information_id
+        }
+    }
+    return fetch<{}>(options)
+}

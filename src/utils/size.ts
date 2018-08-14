@@ -1,7 +1,7 @@
 
 
 import {RATIO ,FITRADIO}from '../constant';
-import {PixelRatio, Dimensions} from 'react-native';
+import {PixelRatio, Dimensions,StatusBar} from 'react-native';
 
 
 
@@ -15,6 +15,7 @@ export const getFitSize = (designedSize:number):number=>{
 
 
 
-export const WindowHeight = Dimensions.get('window').height;
+export const WindowHeight = Dimensions.get('window').height-(Boolean(StatusBar.currentHeight)?StatusBar.currentHeight as number:0) ;
 
 export const WindowWidth = Dimensions.get('window').width;
+

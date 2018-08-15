@@ -21,6 +21,8 @@ import PersonalCenter from './Pages/Home/PersonalCenter';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import MyCollection from './Pages/MyCollection';
+import SettingPage from './Pages/Setting';
+import AccountCenter from './Pages/AccountCenter';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -50,6 +52,8 @@ const Route = createStackNavigator({
     LoginPage:LoginPage,
     RegisterPage:RegisterPage,
     MyCollection:MyCollection,
+    SettingPage:SettingPage,
+    AccountCenter:AccountCenter,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,

@@ -111,9 +111,17 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='我的评论'
                     onPress={()=>{this.props.navigation.navigate('MyCollection',{type:'comment'})}}
                 ></Button></View>
+                <View style={style.btn}><Button
+                    title='设置'
+                    onPress={()=>{this.props.navigation.navigate('SettingPage')}}
+                ></Button></View>
 
+                 <View style={style.btn}><Button
+                    title='个人中心'
+                    onPress={()=>{this.props.navigation.navigate('AccountCenter')}}
+                ></Button></View>
                 
-
+                
 
                 
                 

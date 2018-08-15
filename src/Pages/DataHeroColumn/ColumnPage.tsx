@@ -12,7 +12,7 @@ import {DataHeroItem,getDataHeroInformations,DataHeroTopic} from '../../api';
 import ArticleBrief from '../All/ArticleBrief';
 
 import {columnStyle} from './style'
-import { toJS } from '../../../node_modules/mobx';
+import { toJS } from 'mobx';
 
 
 class Model extends List<DataHeroItem> {

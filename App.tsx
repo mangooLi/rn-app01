@@ -36,6 +36,7 @@ login('19951579217','123456').then(res=>{
   if(res.data){
       storage.save({key:'user',data:res.data.data,expires:null});
       global.token = res.data.data.token;
+      global.user = res.data.data;
   }
 
 })

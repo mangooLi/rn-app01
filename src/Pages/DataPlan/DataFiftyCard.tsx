@@ -3,16 +3,18 @@
 
 
 import * as React from 'react';
-import { View ,Image, Text,ImageSourcePropType,ScrollView,NativeScrollEvent} from 'react-native';
+import { View ,Image, Text,TouchableWithoutFeedback,ScrollView,NativeScrollEvent} from 'react-native';
 import {DataFiftyItem} from '../../api';
 import {fiftyStyle} from './style';
+import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 
-export default class DataFiftyCard extends React.Component<DataFiftyItem>{
+class DataFiftyCard extends React.Component<DataFiftyItem & NavigationInjectedProps>{
 
 
     render(){
-        const {data_scientist_app_avatar_url,data_scientist_avatar_url,data_scientist_name,data_scientist_introduction}=this.props;
+        const {data_scientist_app_avatar_url,id, data_scientist_avatar_url,data_scientist_name,data_scientist_introduction}=this.props;
         return (
+        <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('ArticleDetail',{id})}>
             <View style={fiftyStyle.container}>
                 <Image style={fiftyStyle.img} source={{uri:data_scientist_app_avatar_url||data_scientist_avatar_url}}/>
                 <View style={fiftyStyle.person}>
@@ -20,6 +22,9 @@ export default class DataFiftyCard extends React.Component<DataFiftyItem>{
                     <Text numberOfLines={7} style={fiftyStyle.introduction}>{data_scientist_introduction}</Text>
                 </View>
             </View>
+        </TouchableWithoutFeedback>
         )
     }
 }
+
+export default withNavigation<DataFiftyItem>(DataFiftyCard)

@@ -6,7 +6,6 @@ import {observer} from 'mobx-react';
 import {WindowWidth,WindowHeight,getSize} from '../../utils';
 
 import HomeBar from './HomeBar';
-
 import AllPage from '../All';
 import DataDiscover from '../DataDiscover';
 import DataReport from '../ReportProducts';
@@ -14,9 +13,15 @@ import {pageStyle,animateStyle} from './style';
 import PersonCenter from './PersonalCenter';
 import homeModel from './model';
 
+import BottomBar from '../../Common/Bottombar';
 
 @observer
 export default class Home extends Component {
+
+    static navigationOptions={
+        // tabBarVisible:false,
+        header:null    //隐藏顶部导航栏
+    }
 
     store = homeModel;
 
@@ -134,6 +139,7 @@ export default class Home extends Component {
                         <DataDiscover />
                         <DataReport />
                     </ScrollView>
+                    <BottomBar />
                 </Animated.View>
                 </TouchableWithoutFeedback>
                 <View style={animateStyle.two}>

@@ -11,9 +11,9 @@ export default class DataPlanModel{
 
 
     headList =[
-        {source:require('../../assets/img/data_hero/ic.jpg') ,title:'数据侠专栏'},
-        {source:require('../../assets/img/data_lab/ic.jpg'),title:'数据侠实验室'},
-        {source:require('../../assets/img/data_fifty/ic50.jpg'),title:'数据科学50人'},
+        {source:require('../../assets/img/data_hero/ic.jpg') ,title:'数据侠专栏',navTo:'DataHeroColumn'},
+        {source:require('../../assets/img/data_lab/ic.jpg'),title:'数据侠实验室',navTo:'DataLab'},
+        {source:require('../../assets/img/data_fifty/ic50.jpg'),title:'数据科学50人',navTo:'DataFifty'},
     ]
 
 

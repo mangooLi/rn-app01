@@ -125,6 +125,11 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='修改密码'
                     onPress={()=>{this.props.navigation.navigate('UpdatePassword')}}
                 ></Button></View>
+
+                <View style={style.btn}><Button
+                    title='我的报告'
+                    onPress={()=>{this.props.navigation.navigate('MyReport')}}
+                ></Button></View>
                 
                 
 

@@ -8,7 +8,7 @@ export const pageStyle = StyleSheet.create({
         // backgroundColor:'linearGradient(red,blue)'
     },
 
-    avater:{
+    avater_container:{
         width:getSize(88+8),
         height:getSize(88+8),
         borderRadius:getSize(44+4),
@@ -16,6 +16,14 @@ export const pageStyle = StyleSheet.create({
         borderColor:'#fff',
         marginTop:getSize(50-24),
         backgroundColor:'#fff'
+    },
+    avater:{
+        width:getSize(88),
+        height:getSize(88),
+        borderRadius:getSize(44),
+        position:'relative',
+        // top:getSize(4),
+        // left:getSize(4)
     },
     key:{
         width:getSize(30),

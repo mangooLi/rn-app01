@@ -1,7 +1,7 @@
 
 import fetch  from './request'
 
-import {InformationFlow} from './home';
+import {InformationFlow, ReportProductItem} from './home';
 import {CommentItem} from './comment';
 import {Meta} from './common';
 // 用户信息
@@ -103,7 +103,7 @@ export function toggleMineLike(comment_id:number){
  */
 export function modifyUserInfo(nickname?:string,avatar_url?:string){
     const options = {
-        method:'post',
+        method:'put',
         url:'api/v1/user',
         data:{user:{nickname,avatar_url}}
     }
@@ -129,4 +129,15 @@ export function updatePassword(password:string,new_password:string){
         }
     }
     return fetch<{data:AcountInfo}>(options)
+}
+
+
+
+
+
+/**
+ * 获取我的报告
+ */
+export function getMyReport (){
+    return fetch<{data:ReportProductItem[],meta:Meta}>({url:'api/v1/mine/products/report'})
 }

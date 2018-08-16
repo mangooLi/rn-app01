@@ -47,7 +47,6 @@ export default class UpdatePassword extends Component {
                     this.ipt1.clear();
                     this.ipt2.clear();
                     this.ipt3.clear()
-
                 }
             })
         }

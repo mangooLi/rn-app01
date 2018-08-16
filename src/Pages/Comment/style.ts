@@ -13,7 +13,7 @@ export const commentStyle = StyleSheet.create({
         flex:1
     },
     tabBar:{
-        height:getSize(40),
+        height:getSize(44),
         flexDirection:'row',
         borderBottomWidth:getSize(1/3.5),
         borderBottomColor:'rgba(0,0,0,0.2)'

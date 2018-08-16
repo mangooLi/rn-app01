@@ -24,6 +24,7 @@ import MyCollection from './Pages/MyCollection';
 import SettingPage from './Pages/Setting';
 import AccountCenter from './Pages/AccountCenter';
 import UpdatePassword from './Pages/UpdatePassword';
+import MyReport from './Pages/MyReport';
 // route
 import ListRoute from './Pages/ListRoute';
 // Demo page
@@ -56,6 +57,7 @@ const Route = createStackNavigator({
     SettingPage:SettingPage,
     AccountCenter:AccountCenter,
     UpdatePassword:UpdatePassword,
+    MyReport:MyReport,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,

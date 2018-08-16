@@ -4,39 +4,48 @@
 
 import React,{Component} from 'react';
 
-import {View,Text, Image,NativeSyntheticEvent,NativeScrollEvent, Linking} from'react-native';
+import {View,Text, Image,TouchableWithoutFeedback,NativeScrollEvent, Linking} from'react-native';
+import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
-import {pageStyle} from './style'
+import {pageStyle} from './style';
+
 
 const key = require('../../../assets/img/Keys.png')
 const favor_disable = require('../../../assets/img/icFavoriteDisable/icFavoriteDisable.png')
 const comment_disable = require ('../../../assets/img/icForumDisable/icForumDisable.png');
 const reports_disable = require('../../../assets/img/icReportDisable/icReportDisable.png');
-
 const setting = require('../../../assets/img/icSettingsActive/icSettingsActive.png');
+import {AcountInfo} from '../../../api';
 
-export default class PersonalCenter extends Component {
-
+class PersonalCenter extends Component<NavigationInjectedProps> {
 
     render (){
+        const user:AcountInfo=global.user;
 
         return (
             <LinearGradient colors={['#F09819','#FF5858']} style={pageStyle.container}>
-                <View style={pageStyle.avater}>
-
-                    <Image style={pageStyle.key} source={key}/>
-                    {/* <Text>UserName</Text> */}
+                <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('AccountCenter')}>
+                <View>
+                    <View style={pageStyle.avater_container}>
+                        {user && user.avatar_url
+                            ?<Image style={pageStyle.avater} source={ {uri:user.avatar_url} }/>
+                            :<Image style={pageStyle.key} source={ key }/>}
+                        
+                    </View>
+                    <Text style={pageStyle.userName}>{user.nickname || '点击登陆'}</Text>
                 </View>
-                <Text style={pageStyle.userName}>点击登陆</Text>
+                </TouchableWithoutFeedback>
 
                 <View style={pageStyle.link}>
                     <Image style={pageStyle.link_img} source={favor_disable}/>
-                    <Text style={pageStyle.link_text}>我的收藏</Text>
+                    <Text 
+                        onPress={()=>this.props.navigation.navigate('MyCollection')}
+                        style={pageStyle.link_text}>我的收藏</Text>
                 </View>
 
                 <View style={pageStyle.link}>
                     <Image style={pageStyle.link_img} source={comment_disable}/>
-                    <Text style={pageStyle.link_text}>我的评论</Text>
+                    <Text style={pageStyle.link_text} onPress={()=>this.props.navigation.navigate('MyCollection',{type:'comment'})}>我的评论</Text>
                 </View>
                 <View style={pageStyle.link}>
                     <Image style={pageStyle.link_img} source={reports_disable}/>
@@ -44,9 +53,13 @@ export default class PersonalCenter extends Component {
                 </View>
                 <View style={pageStyle.link}>
                     <Image  style={pageStyle.link_img} source={setting}/>
-                    <Text style={pageStyle.link_text}>设置</Text>
+                    <Text 
+                        onPress={()=>this.props.navigation.navigate('SettingPage',{type:'comment'})}
+                        style={pageStyle.link_text} >设置</Text>
                 </View>
             </LinearGradient>
         )
     }
 }
+
+export default withNavigation<{}>(PersonalCenter)

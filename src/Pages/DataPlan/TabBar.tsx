@@ -19,9 +19,7 @@ class TabBar extends React.Component<NavigationInjectedProps> {
         return (
             <View style={dataPlanstyle.tabBar}>
                 <Text style={tabBarStyle.title}>数据侠计划</Text>
-                <TouchableWithoutFeedback onPress={()=>this.handlePress()}>
-                    <Text style={tabBarStyle.nav}>简介</Text>
-                </TouchableWithoutFeedback>
+                <Text style={tabBarStyle.nav} onPress={()=>this.handlePress()}>简介</Text>
             </View>
         )
     }

@@ -27,7 +27,9 @@ class TabBar extends Component<NavigationInjectedProps & {store:DetailModel}>{
 
         return (
             <View style={detailStyle.tabBar}>
-                <Image style={tabBarStyle.img} source={leftIcon}/>
+                <TouchableWithoutFeedback onPress={()=>this.props.navigation.goBack()}>
+                    <Image style={tabBarStyle.img} source={leftIcon}/>
+                </TouchableWithoutFeedback>
                 <View style={tabBarStyle.none}/>
                 <TouchableWithoutFeedback onPress={()=>this.collect()}>
                     <Image style={tabBarStyle.img} source={heart}/>

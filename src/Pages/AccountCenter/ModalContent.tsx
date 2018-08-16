@@ -13,12 +13,21 @@ import {modalStyle,modalStyle02} from './style';
 
 interface Props{
     cancel():void;
+    type:string;
+    select(info:string,type:string):void;
 }
 
 export default class ModalContent extends Component<Props> {
 
-    camera:any;
+    ipt:any;
 
+    handleIpt(){
+        if(this.ipt){
+            const value = this.ipt._lastNativeText;
+            this.props.select(value,'text');
+            this.props.cancel()
+        }
+    }
 
     selectImgModal(){
         return (
@@ -39,12 +48,16 @@ export default class ModalContent extends Component<Props> {
         return (<View style={modalStyle02.container}>
             <Text style={modalStyle02.text}>要叫什么新名字呢</Text>
             <TextInput 
+                ref = {c=>this.ipt=c}
                 style={modalStyle02.ipt}
                 underlineColorAndroid="transparent"
+                placeholder="请输入用户名"
+                autoFocus
+                onSubmitEditing={()=>this.handleIpt()}
             />
             <View style={modalStyle02.btn_container}>
                 <Text style={modalStyle02.btn_left} onPress={()=>this.props.cancel()}>取消</Text>
-                <Text style={modalStyle02.btn_right}>确认</Text>
+                <Text style={modalStyle02.btn_right} onPress={()=>this.handleIpt()}>确认</Text>
             </View>
         </View>)
     }
@@ -68,7 +81,7 @@ export default class ModalContent extends Component<Props> {
     }
     render (){
         return (<View style={modalStyle.container}>
-            {this.changeNameModal()}
+            {this.props.type ==='text'? this.changeNameModal():this.selectImgModal()}
         </View>)
     }
 }

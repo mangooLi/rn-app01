@@ -108,8 +108,10 @@ export const modalStyle02=StyleSheet.create({
         marginTop:getSize(18.5),
         alignItems:'center',
         marginLeft:getSize(16.5),
+        fontSize:getSize(13),
         // marginLeft:'auto',
-        marginBottom:getSize(12)
+        marginBottom:getSize(12),
+        padding:0,
     },
     btn_container:{
         borderTopWidth:getSize(0.5),

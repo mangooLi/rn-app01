@@ -10,19 +10,36 @@ import {AcountInfo} from '../../api';
 const right = require('../../assets/img/right0.png');
 import {pageStyle,modalStyle} from './style'
 import ModalContent from './ModalContent';
+import {modifyUserInfo} from '../../api';
 
 export default class AccountCenter extends Component {
 
 
     state={
-        modalVisible:false
+        modalVisible:false,
+        type:''
     }
     changeAvatar(){
-        // alert('heihei')
-        this.setState({modalVisible:true})
+        this.setState({modalVisible:true,type:'img'})
     }
     handleRequestClose(){
         this.setState({modalVisible:false})
+    }
+
+    handleNameChange(name:string){
+        console.log(name)
+    }
+
+    handleSelect(info:string,type:string){
+        // console.log(info,type)
+        if(type==='text'){
+            modifyUserInfo(info).then(res=>{
+                if(res.data){
+                    global.token = res.data.data.token;
+                    global.user = res.data.data;
+                }
+            })
+        }
     }
 
     render (){
@@ -36,7 +53,7 @@ export default class AccountCenter extends Component {
                 <Text style={pageStyle.head_name}>{user.nickname}</Text>
             </View>
             <View style={pageStyle.line}>
-                <Text style={pageStyle.line_text}>修改用户名</Text>
+                <Text style={pageStyle.line_text} onPress={()=>this.setState({modalVisible:true,type:'text'})}>修改用户名</Text>
                 <Image style={pageStyle.line_img} source={right}/>
             </View>
             <View style={pageStyle.line}>
@@ -48,7 +65,10 @@ export default class AccountCenter extends Component {
                 transparent={true}
                 onRequestClose={()=>this.handleRequestClose()}
                 visible={this.state.modalVisible}>
-                <ModalContent cancel={()=>this.setState({modalVisible:false})}/>
+                <ModalContent 
+                    cancel={()=>this.setState({modalVisible:false})} 
+                    select={(info,type)=>this.handleSelect(info,type)}
+                    type={this.state.type} />
 
             </Modal>
         </View>)

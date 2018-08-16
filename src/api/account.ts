@@ -94,3 +94,19 @@ export function toggleMineLike(comment_id:number){
     }
     return fetch<{}>(options)
 }
+
+
+/**
+ * 修改用户信息
+ * @param nickname 用户名
+ * @param avatar_url 头像路径
+ */
+export function modifyUserInfo(nickname?:string,avatar_url?:string){
+    const options = {
+        method:'post',
+        url:'api/v1/user',
+        data:{user:{nickname,avatar_url}}
+    }
+
+    return fetch<{data:AcountInfo}>(options)
+}

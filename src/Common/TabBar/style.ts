@@ -21,7 +21,7 @@ export const tabBarStyle=StyleSheet.create({
        
     },
     text:{
-        marginTop:getSize(8),
+        marginTop:getSize(10),
         height:getSize(24),
         flexGrow:1,
         fontSize:getSize(17),

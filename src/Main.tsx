@@ -120,6 +120,11 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='个人中心'
                     onPress={()=>{this.props.navigation.navigate('AccountCenter')}}
                 ></Button></View>
+
+                <View style={style.btn}><Button
+                    title='修改密码'
+                    onPress={()=>{this.props.navigation.navigate('UpdatePassword')}}
+                ></Button></View>
                 
                 
 

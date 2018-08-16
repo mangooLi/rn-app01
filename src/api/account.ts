@@ -110,3 +110,23 @@ export function modifyUserInfo(nickname?:string,avatar_url?:string){
 
     return fetch<{data:AcountInfo}>(options)
 }
+
+
+
+/**
+ * 更新密码
+ * @param password 原密码
+ * @param new_password 新密码
+ */
+export function updatePassword(password:string,new_password:string){
+    const options ={
+        method:'post',
+        url:'api/v1/user/update_password',
+        data:{
+            user:{
+                password,new_password
+            }
+        }
+    }
+    return fetch<{data:AcountInfo}>(options)
+}

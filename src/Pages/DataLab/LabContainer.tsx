@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {View} from 'react-native';
-import  DataLabCard from '../All/DataLabCard';
+import  DataLabCard from '../../Common/DataLabCard';
 
 import {DataLabItem} from '../../api';
 import {cardContainerStyle} from './style';

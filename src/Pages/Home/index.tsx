@@ -1,9 +1,9 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,TouchableWithoutFeedback, ScrollView,NativeSyntheticEvent,NativeScrollEvent,Animated,GestureResponderEvent} from'react-native';
+import {View,TouchableWithoutFeedback, ScrollView,NativeSyntheticEvent,NativeScrollEvent,Animated} from'react-native';
 import {observer} from 'mobx-react';
-import {WindowWidth,WindowHeight,getSize} from '../../utils';
+import {WindowWidth,} from '../../utils';
 
 import HomeBar from './HomeBar';
 import AllPage from '../All';
@@ -36,10 +36,10 @@ export default class Home extends Component {
     folded:boolean = false
 
     endDrag(e:NativeSyntheticEvent<NativeScrollEvent> | undefined){
-        // console.log(e && e.nativeEvent);
-        // console.log(e && e.currentTarget);
-        // console.log(e && e.target);
-        // console.log(e );
+        //;
+        //;
+        //;
+        //;
         if(!e)return;
         const x = e.nativeEvent.contentOffset.x;
         let position_x = this.getRoundx(x);
@@ -68,7 +68,7 @@ export default class Home extends Component {
     }
 
     toggle(){
-        // console.log('togg',e)
+        //
         if(this.folded){
             this.expand();
         }else{
@@ -110,12 +110,12 @@ export default class Home extends Component {
     }
 
     render (){
-        const {x,y,scaleY,scaleX}=this.state;
+        const {x,scaleY,scaleX}=this.state;
         const {outScroll} = this.store;
         return (
 
             <View  >
-                <TouchableWithoutFeedback onPress={(e:GestureResponderEvent)=>this.handleTouch()} >
+                <TouchableWithoutFeedback onPress={()=>this.handleTouch()} >
                 <Animated.View 
                     
                     onStartShouldSetResponderCapture={() =>this.shouldCapture()} // 折叠状态下，不往下面传递事件，阻止子组件捕获事件

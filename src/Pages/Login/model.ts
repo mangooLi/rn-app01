@@ -1,5 +1,5 @@
 
-import {observable,action,extendObservable,set} from 'mobx';
+import {observable,action,set} from 'mobx';
 
 
 export default class LoginModel {

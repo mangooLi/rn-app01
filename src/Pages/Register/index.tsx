@@ -46,7 +46,7 @@ export default class RegisterPage extends Component {
     fetching:boolean = false;
 
     handleRegister(){
-        const {phone,code,password,pahoneMatch}=this.state;
+        const {phone,code,password}=this.state;
         register(phone,code,password).then(res=>{
             if(res.data){
                 storage.save({key:'user',data:res.data.data,expires:null});
@@ -71,7 +71,7 @@ export default class RegisterPage extends Component {
 
         this.setState({counting:true,count:60});
         let interval =  setInterval(()=>{
-            console.log('counting',this.state.count)
+           
             this.setState({count:this.state.count -1});
             if(this.state.count ===0){
                 clearInterval(interval);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View ,Text,FlatList,ScrollView,NativeScrollEvent} from 'react-native';
 import DataDiscoverModel from './model';
-import ArticleBrief from '../All/ArticleBrief';
+import ArticleBrief from '../../Common/ArticleBrief';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import {observer} from 'mobx-react';

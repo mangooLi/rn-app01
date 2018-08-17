@@ -1,7 +1,7 @@
 
 
 import * as React from 'react';
-import { View ,Text,FlatList,ScrollView,NativeScrollEvent} from 'react-native';
+import { View ,FlatList} from 'react-native';
 import {observer} from 'mobx-react'
 
 import ReportProductsModel from './model';

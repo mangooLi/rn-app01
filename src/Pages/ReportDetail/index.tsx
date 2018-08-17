@@ -40,7 +40,7 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
             this.vertial = false;
         }
         if(this.vertial !== preVertial){
-            console.log('orietation change');
+           ;
             this.forceUpdate()
         }
     }

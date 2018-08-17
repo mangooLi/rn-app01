@@ -29,7 +29,7 @@ export default class CommentCard extends Component<CommentItem & Props> {
                     this.setState({like:res.data.data.has_like,like_count:res.data.data.like_items_count});
                 }
             }).catch(e=>{
-                console.log(e)
+               
             })
         }else{
             toggleMineLike(comment_id).then(res=>{

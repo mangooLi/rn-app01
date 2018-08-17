@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableOpacity, Dimensions} from 'react-native';
+import {View,Text,Image,TouchableOpacity} from 'react-native';
 import {observer} from 'mobx-react'
 
 import {reportDetailStyle,tabBarStyle} from './style';
@@ -13,9 +13,7 @@ const leftIcon = require('../../assets/img/left.png');
 class TabBar extends Component<NavigationInjectedProps &{store:ReportDetailModel}>{
 
     back(){
-        // this.props.navigation.goBack()
-        console.log('screen', Dimensions.get('screen'))
-        console.log('window',Dimensions.get('window'))
+        this.props.navigation.goBack()
     }
     render(){
 

@@ -4,8 +4,8 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableWithoutFeedback} from 'react-native';
 import {observer} from 'mobx-react';
-import ArticleBrief from '../All/ArticleBrief';
-import {DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,CommentItem , getAccountCollection} from '../../api';
+import ArticleBrief from '../../Common/ArticleBrief';
+import {DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,CommentItem } from '../../api';
 import CollectionModel from './model';
 import {cardStyle} from './style';
 import CommentCard from '../Comment/CommentCard';

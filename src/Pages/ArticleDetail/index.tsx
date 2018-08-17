@@ -33,15 +33,14 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
     }
 
     handleScroll(e:NativeSyntheticEvent<NativeScrollEvent> | undefined){
-        console.log('scroll ing')
         
         if(!(e && !this.store. hasLoadRecommend) )return;
-        console.log(e.nativeEvent)
+
         const offset = e.nativeEvent.contentOffset.y;
         const scrollViewHeight = e.nativeEvent.layoutMeasurement.height;
         const totalHeight = e.nativeEvent.contentSize.height;
         if(offset+scrollViewHeight > totalHeight-300){
-            console.log(e.nativeEvent)
+
             this.store.loadRecommendations();
         }
 

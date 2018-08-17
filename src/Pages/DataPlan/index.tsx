@@ -1,19 +1,19 @@
 
 
 import * as React from 'react';
-import { View ,Text,FlatList,ScrollView,NativeScrollEvent} from 'react-native';
+import { View ,Text,ScrollView} from 'react-native';
 import {observer} from 'mobx-react'
 import {NavigationInjectedProps,} from 'react-navigation';
 
 import DataPlanModel from './model'
 import {map} from '../../utils';
-import ArticleBrief from '../All/ArticleBrief';
-import DataLabCard from '../All/DataLabCard'
+import ArticleBrief from '../../Common/ArticleBrief';
+import DataLabCard from '../../Common/DataLabCard'
 
 import CardHead from './CardHead';
 import DataFifty from './DataFiftyCard';
 // import TabBar from './TabBar';
-import TabBar from './../../Common/TabBar';
+import TabBar from '../../Common/TabBar';
 import {dataPlanstyle,tabBarStyle} from './style';
 import BottomBar from '../../Common/Bottombar';
 

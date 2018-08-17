@@ -1,6 +1,6 @@
 
 
-import {observable,action,extendObservable, toJS } from 'mobx';
+import {observable, } from 'mobx';
 import {DataLabItem,DataHeroItem,DataFiftyItem,getDataPlanList,getDataHeroTopics} from '../../api';
 import {DataHeroTopicStorage} from '../../utils/store';
 
@@ -29,7 +29,7 @@ export default class DataPlanModel{
         })
         getDataHeroTopics().then(res=>{
             if(res.data){
-                console.log(`setItem('topics'`,res.data.data)
+               
                 DataHeroTopicStorage.setItem('topics',res.data.data)
             }
         })

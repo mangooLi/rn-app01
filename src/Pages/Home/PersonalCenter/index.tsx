@@ -4,7 +4,7 @@
 
 import React,{Component} from 'react';
 
-import {View,Text, Image,TouchableWithoutFeedback,NativeScrollEvent, Linking} from'react-native';
+import {View,Text, Image,TouchableWithoutFeedback,} from'react-native';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
 import {pageStyle} from './style';

@@ -27,11 +27,11 @@ export default class AccountCenter extends Component {
     }
 
     handleNameChange(name:string){
-        console.log(name)
+       
     }
 
     handleSelect(info:string,type:string){
-        // console.log(info,type)
+
         if(type==='text'){
             modifyUserInfo(info).then(res=>{
                 if(res.data){

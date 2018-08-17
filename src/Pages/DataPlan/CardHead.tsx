@@ -2,7 +2,7 @@
 
 
 import * as React from 'react';
-import { View ,Image, Text,ImageSourcePropType,ScrollView,NativeScrollEvent} from 'react-native';
+import { View ,Image, Text,ImageSourcePropType,} from 'react-native';
 
 import {cardHeadStyle} from './style';
 import {withNavigation,NavigationInjectedProps} from 'react-navigation';
@@ -20,7 +20,7 @@ class CardHead extends React.Component<Props & NavigationInjectedProps>{
 
     render(){
         const {imgPath,title,source,navigation,navTo}=this.props;
-        console.log(imgPath)
+       
         return (
             <View style={cardHeadStyle.container} >
                 <Image style={cardHeadStyle.logo} source={source}/>

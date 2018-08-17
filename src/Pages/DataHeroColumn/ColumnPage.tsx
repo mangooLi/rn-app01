@@ -9,10 +9,10 @@ import {observer} from 'mobx-react'
 
 import List from '../../Common/List';
 import {DataHeroItem,getDataHeroInformations,DataHeroTopic} from '../../api';
-import ArticleBrief from '../All/ArticleBrief';
+import ArticleBrief from '../../Common/ArticleBrief';
 
 import {columnStyle} from './style'
-import { toJS } from 'mobx';
+
 
 
 class Model extends List<DataHeroItem> {
@@ -46,7 +46,7 @@ export default class ColumnPage extends Component<DataHeroTopic> {
 
     componentWillReceiveProps(next:DataHeroTopic){
         if(this.props.id!==next.id){
-            console.log('next',next)
+
             this.store.changeApi(next.id);
             this.store.reset();
             this.store.loadData();
@@ -56,7 +56,6 @@ export default class ColumnPage extends Component<DataHeroTopic> {
     render (){
         const {informations}=this.store;
 
-        console.log('infor',toJS(informations))
         return (
             <View>
                 <FlatList 

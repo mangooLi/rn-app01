@@ -1,7 +1,7 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,FlatList,Animated} from 'react-native';
+import {View,FlatList} from 'react-native';
 import {observer} from 'mobx-react'
 import TabBar from '../../Common/TabBar';
 import Model from './model';

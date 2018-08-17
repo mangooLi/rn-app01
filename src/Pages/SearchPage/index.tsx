@@ -1,7 +1,7 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,TextInput,FlatList} from 'react-native';
+import {View,FlatList} from 'react-native';
 import {observer} from 'mobx-react'
 import SearchBar from './SearchBar';
 

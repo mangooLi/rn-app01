@@ -3,7 +3,7 @@ import {View,Text} from 'react-native';
 import DetailModel from './model';
 import {observer} from 'mobx-react';
 import {map} from '../../utils';
-import ArticleBrief from '../All/ArticleBrief';
+import ArticleBrief from '../../Common/ArticleBrief';
 
 import {detailStyle,recommendationStyle, articleStyle} from './style'
 
@@ -16,9 +16,6 @@ interface Props{
 class Recommendations extends Component<Props> {
 
 
-    componentWillMount(){
-        console.log('geng duo tuijian ')
-    }
 
     render(){
 

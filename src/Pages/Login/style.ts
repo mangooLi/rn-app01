@@ -1,7 +1,7 @@
 
 
 import {StyleSheet} from 'react-native'
-import {getSize,WindowWidth, WindowHeight} from '../../utils';
+import {getSize,} from '../../utils';
 
 
 export const pageStyle = StyleSheet.create({

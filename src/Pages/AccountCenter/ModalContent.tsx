@@ -68,7 +68,7 @@ export default class ModalContent extends Component<Props> {
             height: 400,
             cropping: true
           }).then(image => {
-            console.log( image);
+            //;
           });
     }
     getFromRolll(){
@@ -76,7 +76,7 @@ export default class ModalContent extends Component<Props> {
             height: 400,
             cropping: true
           }).then(image => {
-            console.log(image);
+            //;
           });
     }
     render (){

@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 import {View ,Text,FlatList,ScrollView} from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import {observer} from 'mobx-react'
-import ArticleBrief from '../All/ArticleBrief'
+import ArticleBrief from '../../Common/ArticleBrief'
 
 import TabBar from '../../Common/TabBar';
 import TopicModel from './model';
@@ -29,7 +29,7 @@ export default class Topic extends Component<NavigationInjectedProps>{
         }
     }
 
-    
+
     render(){
         const {informations}=this.store;
         return (
@@ -50,8 +50,6 @@ export default class Topic extends Component<NavigationInjectedProps>{
                         </View>
                     }
                 />
-
-                
             </View>
         )
     }

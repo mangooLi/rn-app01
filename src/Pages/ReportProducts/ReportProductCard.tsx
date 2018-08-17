@@ -17,10 +17,10 @@ import {cardStyle} from './style';
     
     handlePress(e:GestureResponderEvent){
         const {navigation,id} =this.props
-        // console.log('article brief pressed')
+        //
         // console.log (e)
-        // console.log(e.nativeEvent)
-        // console.log(e.target)
+        //
+        //
 
         navigation.push('ReportDetail',{id})
     }

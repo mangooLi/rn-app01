@@ -27,7 +27,7 @@ interface Props{
  class HomeBanner extends Component<Props & NavigationInjectedProps>{
 
     handlePress(item:BannerItem){
-        // console.log(item)
+        //
         const {navigation} =this.props
         navigation.navigate('ArticleDetail',{id:item.id})
     }

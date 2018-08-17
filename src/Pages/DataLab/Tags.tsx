@@ -1,9 +1,9 @@
 
 import React,{Component} from 'react';
-import {View,ScrollView,TouchableWithoutFeedback,Image,Text} from 'react-native';
+import {View,ScrollView,TouchableWithoutFeedback,Text} from 'react-native';
 import {map} from '../../utils';
 import {tagsStyle} from './style';
-import Model ,{DataLabTopics}from './model'
+import Model from './model'
 
 
 export default class Tags extends Component<{store:Model}> {

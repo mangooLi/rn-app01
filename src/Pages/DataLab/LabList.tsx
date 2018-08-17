@@ -4,13 +4,13 @@
 import React,{Component} from 'react';
 
 
-import {View,Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {observer} from 'mobx-react'
 
 import List from '../../Common/List';
-import {DataHeroItem,getDataLabInformations ,DataLabItemCategory,DataLabItem} from '../../api';
+import {getDataLabInformations ,DataLabItemCategory,DataLabItem} from '../../api';
 
-import  DataLabCard from '../All/DataLabCard';
+
 
 import {listStyle} from './style'
 import {DataLabTopics} from './model';
@@ -45,7 +45,7 @@ export default class LabList extends Component<DataLabTopics> {
 
     componentWillReceiveProps(next:DataLabTopics){
         if(this.props.category!==next.category){
-            console.log('next',next)
+
             this.store.changeApi(next.category);
             this.store.reset();
             this.store.loadData();

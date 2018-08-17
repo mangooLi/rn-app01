@@ -20,7 +20,7 @@ export default class SearchModel extends List<SearchInformation> {
     @action
     changeSearch(text:string){
         this.search = text;
-        // console.log('change seatch',this.search)
+        //
         
     }
 

@@ -4,7 +4,7 @@ import  React ,{Component}from 'react';
 import {View,Text,Image,TouchableOpacity} from 'react-native';
 import {DataLabItem} from '../../api';
 
-import DataLabCard from './DataLabCard';
+import DataLabCard from '../../Common/DataLabCard';
 
 
 import {dataLabContainerStyle} from './style'

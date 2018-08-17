@@ -406,7 +406,7 @@ export default class Banner extends Component {
                 this.pageindex = 0;
             }
             const now = (this.pageindex-1) % (this.elementCount)+1
-            // console.log('now is ',now,this.pageindex)
+            //
 
             // this._goIndex(now, true); //1 2 
 

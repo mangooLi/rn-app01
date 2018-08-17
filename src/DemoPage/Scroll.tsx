@@ -35,7 +35,7 @@ class MyScroll extends Component<any>{
     }
 
     callback(enable:boolean){
-        console.log('heihie')
+       
         this.setState({enable})
     }
 

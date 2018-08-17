@@ -14,7 +14,7 @@ export default class Animate extends Component {
     }
     toogle:boolean = false;
     handlePress(){
-        console.log('press')
+
         if(this.toogle){
            this.expand();
            this.toogle = false;

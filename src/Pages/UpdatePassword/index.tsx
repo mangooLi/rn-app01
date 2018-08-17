@@ -5,7 +5,8 @@
 
 
 import React,{Component} from 'react';
-import {View ,Text,FlatList,ScrollView} from 'react-native';
+
+import {View,Text} from 'react-native';
 
 import TabBar from '../../Common/TabBar';
 import {pageStyle}  from './style';

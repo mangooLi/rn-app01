@@ -1,6 +1,6 @@
 
 
-import {observable} from 'mobx';
+
 import List from  '../../Common/List';
 import {ReportProductItem,getMyReport} from '../../api';
 

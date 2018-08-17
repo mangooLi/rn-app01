@@ -3,14 +3,14 @@
 import * as React from 'react';
 import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent} from 'react-native';
 import { getInformationFlow,getBanners,getRandomReportProduct,BannerItem,DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,ReportProductItem,InformationFlowType} from '../../api'
-import ArticleBrief from './ArticleBrief';
+import ArticleBrief from '../../Common/ArticleBrief';
 import Banner from './Banner';
-// import DataLabCard from './DataLabCard';
+
 import DataLabCardContainer from './DataLabContainer';
 import {homeStyle} from './style';
-// import {homeStyle, dataLabStyle} from './style'
+
 import { debounce } from '../../utils';
-import Report, {ReportProps} from './Report'
+import Report, {ReportProps} from '../../Common/Report'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
@@ -43,7 +43,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
    }
 
    _loadinfo():Promise<any>{
-       console.log('loading info')
+
        if( this.pageToLoad>this.totalPage)return Promise.resolve([]);
        return getInformationFlow({page:this.pageToLoad,per:this.per}).then(res=>{
            if(res.data){

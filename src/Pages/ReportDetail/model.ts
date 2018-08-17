@@ -22,7 +22,7 @@ export default class ReportDetailModel {
     @action
     loadData(){
         getReportProductsDetail(this.id).then(res=>{
-            // console.log(res.data && res.data.data)
+            //
             if(res.data){
                 this.pdf_url=res.data.data.report.pdf_url;
                 this.title=res.data.data.report.title;

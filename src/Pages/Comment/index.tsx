@@ -20,7 +20,7 @@ export default class Commment extends Component<NavigationInjectedProps> {
 
     componentWillMount(){
         const id=this.props.navigation.getParam('id');
-        console.log('comment id',id)
+
         this.store.setId(id);
         this.handleScrolle = debounce((e)=>this.onSroll(e),500)
     }

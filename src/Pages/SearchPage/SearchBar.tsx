@@ -44,6 +44,7 @@ class SearchBar extends Component<NavigationInjectedProps & {store:SearchModel}>
                     underlineColorAndroid="transparent"
                     placeholder="搜索DT・一财"
                     value={search}
+                    autoFocus
                     onChangeText={value=>this.handleChangetext(value)}
                     onEndEditing={()=>this.endInput()}
                 />

@@ -6,7 +6,7 @@ import { NavigationInjectedProps } from 'react-navigation';
 import {observer} from 'mobx-react'
 import ArticleBrief from '../All/ArticleBrief'
 
-import TabBar from './TabBar';
+import TabBar from '../../Common/TabBar';
 import TopicModel from './model';
 import { topicStyle } from './style';
 
@@ -34,7 +34,7 @@ export default class Topic extends Component<NavigationInjectedProps>{
         const {informations}=this.store;
         return (
             <View style={topicStyle.container}>
-                <TabBar   store={this.store}/>
+                <TabBar   title={this.store.name}/>
 
                 <FlatList 
                     data={informations}

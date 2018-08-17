@@ -5,7 +5,7 @@ import React,{Component} from 'react';
 import {View,Text, FlatList} from 'react-native';
 import {observer} from 'mobx-react'
 
-import TabBar from './TabBar';
+import TabBar from '../../Common/TabBar';
 import Model from './model';
 import CardContainer from './CardContainer';
 import {dataFiftyStyle} from './style'
@@ -28,7 +28,7 @@ class DataFifty extends Component {
         const {informations}=this.store;
         return (
             <View>
-                <TabBar />
+                <TabBar title="数据科学50人"/>
                 <FlatList 
                     style={dataFiftyStyle.flatList}
                     data={informations}

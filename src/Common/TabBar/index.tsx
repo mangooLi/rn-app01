@@ -10,7 +10,8 @@ const leftIcon = require('../../assets/img/left.png');
 interface Prop {
     title?:string,
     style?:any,
-    rightIcon?:any
+    rightIcon?:any,
+    withoutLeftIcon?:boolean
 }
 
 
@@ -20,12 +21,13 @@ class TabBar extends Component<NavigationInjectedProps &Prop>{
         this.props.navigation.goBack()
     }
     render(){
-        const {title,style,rightIcon}=this.props;
+        const {title,style,rightIcon,withoutLeftIcon}=this.props;
         return (
             <View style={[tabBarStyle.tabBar,style]}>
-                <TouchableOpacity style={tabBarStyle.imgContainer} onPress={()=>this.back()} activeOpacity={1}>
+
+                {withoutLeftIcon?<View/>: <TouchableOpacity style={tabBarStyle.imgContainer} onPress={()=>this.back()} activeOpacity={1}>
                     <Image style={tabBarStyle.img} source={leftIcon}/>
-                </TouchableOpacity>
+                </TouchableOpacity>}
                 <Text style={tabBarStyle.text}>{title}</Text>
                 {rightIcon ?<View style={tabBarStyle.right}>{rightIcon}</View>:<View/>}
             </View>

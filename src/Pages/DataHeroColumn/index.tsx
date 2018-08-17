@@ -26,14 +26,14 @@ export default class DataHeroColumn extends Component {
         const { topics, selectedTopic} = this.store;
 
         return (
-            <View style={tabstyle.tabContainer}>
+        <View style={tabstyle.tabContainer}>
             <TabBar title="数据侠专栏"/>
-                <Tags store={this.store}/>
-                {topics && topics.length && selectedTopic ?
-                    
-                    <ColumnPage {...selectedTopic}/>
-                    : <View />}
-            </View>
+            <Tags store={this.store}/>
+            {topics && topics.length && selectedTopic ?
+                
+                <ColumnPage {...selectedTopic}/>
+                : <View />}
+        </View>
         )
     }
 }

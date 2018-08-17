@@ -31,9 +31,7 @@ class ReportProducts  extends React.Component{
                     onEndReached={()=>this.store.loadData()}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent={
-                        <View style={reportProductsStyle.footer}>
-                            <Text></Text>
-                        </View>
+                        <View style={reportProductsStyle.footer}/>
                     }
                 />
             </View>

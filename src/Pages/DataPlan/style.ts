@@ -113,6 +113,6 @@ export const tabBarStyle=StyleSheet.create({
         top:getSize(10),
         fontSize:getSize(17),
         color:'#666',
-        
+        zIndex:100
     }
 })

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View ,Text,FlatList,ScrollView,NativeScrollEvent} from 'react-native';
 import {observer} from 'mobx-react'
-
+import {NavigationInjectedProps,} from 'react-navigation';
 
 import DataPlanModel from './model'
 import {map} from '../../utils';
@@ -12,13 +12,14 @@ import DataLabCard from '../All/DataLabCard'
 
 import CardHead from './CardHead';
 import DataFifty from './DataFiftyCard';
-import TabBar from './TabBar';
-import {dataPlanstyle} from './style';
+// import TabBar from './TabBar';
+import TabBar from './../../Common/TabBar';
+import {dataPlanstyle,tabBarStyle} from './style';
 import BottomBar from '../../Common/Bottombar';
 
 
 @observer
-export default class DataPlan extends React.Component{
+export default class DataPlan extends React.Component<NavigationInjectedProps>{
 
     static navigationOptions={
         // tabBarVisible:false,
@@ -34,9 +35,14 @@ export default class DataPlan extends React.Component{
 
     render (){
         const {data_hero_informations,data_lab_informations,data_fifty_informations,headList} =this.store;
+        const {navigation}=this.props;
         return (
         <View style={dataPlanstyle.container}>
-            <TabBar />
+            <TabBar  
+            
+                title="数据侠计划" 
+                rightIcon={<Text style={tabBarStyle.nav} onPress={()=>{console.log('introduction');navigation.navigate('Introduction')}}>简介</Text>}
+                withoutLeftIcon />
 
             <ScrollView >
                 <View style={dataPlanstyle.card}>

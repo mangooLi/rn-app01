@@ -39,17 +39,19 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
         const {informations} =this.store;
         return (
             <View style={dataDiscoverStyle.container}>
-            <ScrollView onScroll={(e)=>this.handleScroll(e&&e.nativeEvent)}>
-                <Tags store={this.store}/>
-                 <FlatList 
-                    style={dataDiscoverStyle.flat_list}
-                    data={informations}
-                    renderItem={({item})=>{
-                        return <ArticleBrief {...item}  />
-                    }}
-                    keyExtractor={(index) => String(index)+String(Math.random())}
-                />
-            </ScrollView>
+
+            <Tags store={this.store}/>
+            <FlatList 
+                style={dataDiscoverStyle.flat_list}
+                data={informations}
+                renderItem={({item})=>{
+                    return <ArticleBrief {...item}  />
+                }}
+                onEndReached={()=>this.store.loadData()}
+                onEndReachedThreshold={0.1}
+                keyExtractor={(index) => String(index)+String(Math.random())}
+            />
+
             {/* <Text>hehe</Text> */}
             </View>
         )

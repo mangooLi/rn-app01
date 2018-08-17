@@ -6,7 +6,7 @@ import {NavigationInjectedProps} from 'react-navigation';
 import {observer} from 'mobx-react';
 import CommentCard from './CommentCard';
 import CommentModel from './model';
-import TabBar from './TabBar';
+import TabBar from '../../Common/TabBar';
 import InputBar from './InputBar';
 import {commentStyle} from './style'
 import {debounce} from '../../utils';
@@ -43,7 +43,7 @@ export default class Commment extends Component<NavigationInjectedProps> {
 
             <View style={commentStyle.scroll_container}>
                 <ScrollView onScroll={e=>{this.handleScrolle(e&&e.nativeEvent)} }>
-                    <TabBar />
+                    <TabBar title="全部评论"/>
                     <FlatList
                         data={commentList}
                         renderItem={({item})=>{

@@ -3,7 +3,7 @@
 
 
 import React,{Component} from 'react';
-import {View,ScrollView,TouchableWithoutFeedback,Image,Text} from 'react-native';
+import {View,ScrollView,TouchableWithoutFeedback,FlatList,Text} from 'react-native';
 import {map} from '../../utils';
 import {tagsStyle} from './style';
 import Model from './model'
@@ -28,12 +28,27 @@ export default class Tags extends Component<{store:Model}> {
                     {map(topics,(topic,index)=>(
                         <TouchableWithoutFeedback key={index} onPress={()=>this.handlePress(index)}>
                         <View style={tagsStyle.topic}>
-                            {/* <Image style={tagsStyle.image} source={{uri:topic.logo_url}}/> */}
+
                             <Text style={tagsStyle.text}>{topic.name}</Text>
                         </View>
                         </TouchableWithoutFeedback>
                     ))}
                 </ScrollView>
+                
+                {/* <FlatList
+                    data={topics}
+                    horizontal
+                    bounces
+                    renderItem={({item,index})=>(<TouchableWithoutFeedback key={item.id} onPress={()=>this.handlePress(index)}>
+                    <View style={tagsStyle.topic}>
+
+                        <Text style={tagsStyle.text}>{item.name}</Text>
+                    </View>
+                    </TouchableWithoutFeedback>)}
+                ></FlatList> */}
+
+
+
             </View>
         )
     }

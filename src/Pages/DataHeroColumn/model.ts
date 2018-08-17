@@ -9,13 +9,14 @@ export default class Model {
     @observable topics: DataHeroTopic[] =[] ;
     
     @observable selectedTopic : DataHeroTopic;
- 
+    default = { title: '全部', id: 0, name: '全部', introduction: '', logo_url: '', informations_count: 0 };
 
     @action 
     loadTopics (){
         getDataHeroTopics().then(res=>{
             if(res.data){
-                const topics = res.data.data;                
+                const topics = res.data.data;  
+                topics.unshift(this.default)              
                 this.topics = observable(topics );
                 this.selectedTopic = this.topics[0];
             }

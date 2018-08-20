@@ -7,10 +7,18 @@ import {getSize,WindowWidth} from './utils';
 const  styles = StyleSheet.create({
 
     main:{
-      backgroundColor: '#fff',
+      backgroundColor: '#9f0',
       flexDirection:'row',
       flexWrap:'wrap',
       justifyContent: 'space-around',
+
+    },
+    main2:{
+      flexDirection:'row',
+      flexWrap:'wrap',
+      justifyContent: 'space-around',
+      backgroundColor:'#93c',
+      flex:1
     },
     container: {
       flex: 1,

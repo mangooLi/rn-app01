@@ -14,16 +14,37 @@ export default class Main extends React.Component<NavigationInjectedProps>{
     render(){
 
         return (
+        <View style={{flex:1}}>
             <View style={style.main}>
+
+
+                <View style={style.btn}><Button
+                    title='Pan'
+                    onPress={()=>{this.props.navigation.navigate('Pan')}}
+                ></Button></View>
+
+                 <View style={style.btn}><Button
+                    title='Scroll'
+                    onPress={()=>{this.props.navigation.navigate('Scroll')}}
+                ></Button></View>
+
+                <View style={style.btn}><Button
+                    title='Scroll'
+                    onPress={()=>{this.props.navigation.navigate('PullDemo')}}
+                ></Button></View>
+
+
+                
+
+            </View>
+            <View style={style.main2}>
+
                 <View style={style.btn}><Button
                     title='Home'
                     onPress={()=>{this.props.navigation.navigate('HomePage')}}
                 ></Button></View>
 
-                <View style={style.btn}><Button
-                    title='Scroll'
-                    onPress={()=>{this.props.navigation.navigate('Scroll')}}
-                ></Button></View>
+               
                 
                 <View style={style.btn}><Button
                     title='个人中心'
@@ -138,6 +159,7 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                 
                 
             </View>
+        </View>
         )
     }
 }

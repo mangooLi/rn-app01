@@ -32,6 +32,8 @@ import DemoMain from './DemoPage/DemoMain';
 import DemoRoute from './DemoPage/DemoRoute';
 import Animate from './DemoPage/Animate';
 import Scroll from './DemoPage/Scroll';
+import Pan from './DemoPage/Pan';
+import PullDemo from './DemoPage/PullDemo';
 
 
 
@@ -62,7 +64,9 @@ const Route = createStackNavigator({
     Demo:DemoMain,
     DemoRoute:DemoRoute,
     Animate:Animate,
-    Scroll:Scroll
+    Scroll:Scroll,
+    Pan:Pan,
+    PullDemo:PullDemo
 
 
     },{

@@ -28,7 +28,7 @@ const style=StyleSheet.create({
     }
 })
 
-class MyScroll extends Component<any>{
+export  class MyScroll extends Component<any>{
 
     state={
         enable:true

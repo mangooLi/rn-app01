@@ -1,8 +1,9 @@
 
 
 import * as React from 'react';
-import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent} from 'react-native';
+import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent,RefreshControl} from 'react-native';
 import { getInformationFlow,getBanners,getRandomReportProduct,BannerItem,DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,ReportProductItem,InformationFlowType} from '../../api'
+
 import ArticleBrief from '../../Common/ArticleBrief';
 import Banner from './Banner';
 
@@ -20,7 +21,8 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 interface HomeState{
     banners:BannerItem[],
     report_product:ReportProductItem[],
-    information:DataDiscoverItem[]|DataLabItem[]|DataHeroItem[]|DataFiftyItem[]
+    information:DataDiscoverItem[]|DataLabItem[]|DataHeroItem[]|DataFiftyItem[],
+    refreshing:boolean
 }
 
 class AllPage extends React.Component<NavigationInjectedProps>{
@@ -29,7 +31,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
     pageToLoad:number=1;
     totalPage:number =1;
     per:number=20;
-
+    cn:any;
     static navigationOptions={
         // tabBarVisible:false,
         header:null    //隐藏顶部导航栏
@@ -39,7 +41,8 @@ class AllPage extends React.Component<NavigationInjectedProps>{
    state:HomeState={
        banners:[],
        report_product:[],
-       information:[]
+       information:[],
+       refreshing:false
    }
 
    _loadinfo():Promise<any>{
@@ -59,13 +62,9 @@ class AllPage extends React.Component<NavigationInjectedProps>{
     componentWillMount(){
         this.loadInfo=debounce(this._loadinfo,1000)
         this._loadinfo().then(()=>{
-
-
             let information=this.state.information;
             this.preInfo= information.splice(0,7)
             this.setState({information})
-
-
         });
         getBanners().then(res=>{
             if(res.data){
@@ -91,13 +90,42 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
     }
 
+    _onRefresh=()=>{
+        this.setState({refreshing:true});
+        console.log('refrehing');
+        this.cn.setNativeProps({
+            style:{
+                marginTop:80
+            }
+        })
+        setTimeout(()=>{
+            this.setState({refreshing:false});
+            this.cn.setNativeProps({
+                style:{
+                    marginTop:0
+                }
+            })
+        },3000)
+    }
     
 
     render(){
         const {banners, information,report_product}=this.state;
         return (
-            <View style={homeStyle.page_container}>
+            <View style={homeStyle.page_container} ref={c=>this.cn=c}>
             <ScrollView  
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={this._onRefresh}
+                        colors={['#f00','#0f0','#00f']}
+                        // progressBackgroundColor='#f0f'
+                        enabled={true}
+                        progressViewOffset={20}
+                        tintColor='#0ff'    
+                        title='下拉刷新'
+                    />
+                }
                 onScroll={(e)=>this.handleScroll(e)}
                 testID='homePage'>
                 <Banner banners={banners}/>

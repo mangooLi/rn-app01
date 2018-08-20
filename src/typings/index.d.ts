@@ -63,3 +63,9 @@ declare module 'react-native-checkbox'{
 }
 
 declare const global:any
+
+declare var PTRView:any;
+declare module 'react-native-pull-to-refresh'{
+    export default PTRView
+}
+

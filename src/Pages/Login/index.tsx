@@ -5,7 +5,7 @@ import {View,Text,TextInput,Image,TouchableWithoutFeedback} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {observer} from 'mobx-react';
 import {login} from '../../api'
-
+import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import TabBar from '../../Common/TabBar';
 
 import {pageStyle} from './style';
@@ -14,7 +14,7 @@ const arrowRight = require('../../assets/img/arrow_right.png');
 import LoginModel from './model';
 
 @observer
-export default class LoginPage extends Component {
+class LoginPage extends Component<NavigationInjectedProps> {
 
     store :LoginModel = new LoginModel();
 
@@ -61,8 +61,14 @@ export default class LoginPage extends Component {
                         underlineColorAndroid="transparent"/>
                 </View>
                 <View style={pageStyle.text_notice}>
-                    <Text style={pageStyle.text_forget}>忘记密码</Text>
-                    <Text style={pageStyle.text_new}>注册新账号</Text>
+                    <Text 
+                        style={pageStyle.text_forget}
+                        onPress={()=>this.props.navigation.navigate('UpdatePassword')}
+                    >忘记密码</Text>
+                    <Text 
+                        style={pageStyle.text_new} 
+                        onPress={()=>this.props.navigation.navigate('RegisterPage')}
+                    >注册新账号</Text>
                 </View>
                 <TouchableWithoutFeedback onPress={()=>this.handleLogin()}>
                     <View style={pageStyle.img_container}>
@@ -73,3 +79,6 @@ export default class LoginPage extends Component {
         )
     }
 }
+
+
+export default withNavigation<{}>(LoginPage) 

@@ -12,4 +12,4 @@ const screenHeight = Dimensions.get('screen').height
 
 export const RATIO=((WindowWidth<WindowHeight?WindowWidth:WindowHeight)/DESIGN_WIDTH);
 export const FITRADIO = WindowWidth/DESIGN_WIDTH;
-
+global.Dimensions = Dimensions

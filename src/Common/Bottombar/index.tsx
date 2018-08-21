@@ -14,7 +14,7 @@ class BottomBar extends Component<NavigationInjectedProps> {
     render() {
         return (
             <View style={cmpStyle.container}>
-                <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('HomePage')}>
+                <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('ListRoute')}>
                     <View style={cmpStyle.part}>
                         <Image style={cmpStyle.icon} source={homeIcon}/>
                         <Text style={cmpStyle.text}>首页</Text>

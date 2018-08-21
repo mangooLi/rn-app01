@@ -25,8 +25,10 @@ import SettingPage from './Pages/Setting';
 import AccountCenter from './Pages/AccountCenter';
 import UpdatePassword from './Pages/UpdatePassword';
 import MyReport from './Pages/MyReport';
+
 // route
 import ListRoute from './Pages/ListRoute';
+import BottomRoute from './Pages/BottomRoute';
 // Demo page
 import DemoMain from './DemoPage/DemoMain';
 import DemoRoute from './DemoPage/DemoRoute';
@@ -34,6 +36,7 @@ import Animate from './DemoPage/Animate';
 import Scroll from './DemoPage/Scroll';
 import Pan from './DemoPage/Pan';
 import PullDemo from './DemoPage/PullDemo';
+import IconPage from './DemoPage/Icon';
 
 
 
@@ -60,13 +63,15 @@ const Route = createStackNavigator({
     AccountCenter:AccountCenter,
     UpdatePassword:UpdatePassword,
     MyReport:MyReport,
+    BottomRoute:BottomRoute,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,
     Animate:Animate,
     Scroll:Scroll,
     Pan:Pan,
-    PullDemo:PullDemo
+    PullDemo:PullDemo,
+    IconPage:IconPage
 
 
     },{

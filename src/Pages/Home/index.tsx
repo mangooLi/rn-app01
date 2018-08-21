@@ -5,7 +5,7 @@ import {View,TouchableWithoutFeedback, ScrollView,NativeSyntheticEvent,NativeScr
 import {observer} from 'mobx-react';
 import {WindowWidth,} from '../../utils';
 
-import HomeBar from './HomeBar';
+import HomeBar from '../HomeBar';
 import AllPage from '../All';
 import DataDiscover from '../DataDiscover';
 import DataReport from '../ReportProducts';

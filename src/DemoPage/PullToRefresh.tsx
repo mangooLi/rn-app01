@@ -39,7 +39,7 @@ export default class PullToRefresh extends React.Component<Props>{
             onPanResponderMove: (evt, gestureState) => {
              
               
-                const {dy}=gestureState;
+            const {dy}=gestureState;
                 
             this.preTop = (dy+this.preTop)>0?0:(dy+this.preTop)
             console.log('move', gestureState.dy,this.preTop);

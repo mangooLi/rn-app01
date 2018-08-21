@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableWithoutFeedback} from'react-native';
-import {barStyle} from './style';
+import {barStyle} from './Home/style';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 
-const searchIcon = require('../../assets/img/ic_search_24px.png');
-const shapeIcon = require('../../assets/img/icAccountCircle24Px/icAccountCircle24Px.png');
+const searchIcon = require('../assets/img/ic_search_24px.png');
+const shapeIcon = require('../assets/img/icAccountCircle24Px/icAccountCircle24Px.png');
 
 
 
@@ -14,8 +14,22 @@ interface Prop{
 }
 class HomeBar extends Component<Prop & NavigationInjectedProps> {
 
+    routes=[
+        'Home','DataDiscover','ReportProducts'
+    ]
+
     toPage(page:number){
-        this.props.toPage(page)
+        // this.props.toPage(page)
+        this.props.navigation.navigate(this.routes[page-1])
+    }
+    toggle(){
+        if(this.props.toggle){
+            this.props.toggle()
+        }else{
+            this.props.navigation.navigate('HomePage')
+        }
+
+        
     }
     render(){
 
@@ -27,7 +41,7 @@ class HomeBar extends Component<Prop & NavigationInjectedProps> {
                 <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('SearchPage')}>
                     <Image source={searchIcon}/>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback onPress={()=>this.props.toggle()}>
+                <TouchableWithoutFeedback onPress={()=>this.toggle()}>
                     <Image  style={barStyle.img_account} source={shapeIcon}/>
                 </TouchableWithoutFeedback>
             </View>

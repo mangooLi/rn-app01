@@ -1,12 +1,14 @@
 
 
 
-import {createMaterialTopTabNavigator} from 'react-navigation';
-import {getSize} from '../utils';
+import {createMaterialTopTabNavigator,TabNavigatorConfig} from 'react-navigation';
+
 
 import AllPage from './All';
 import DataDiscover from './DataDiscover';
 import ReportProducts from './ReportProducts';
+
+import HomeBar from './HomeBar';
 
 
 const ListRoute=createMaterialTopTabNavigator({
@@ -29,13 +31,16 @@ const ListRoute=createMaterialTopTabNavigator({
         }
     }
 },{
-    tabBarOptions:{
-        style:{
-            height:getSize(46),
-            paddingBottom:getSize(12),
-            paddingTop:0
-        },
-    }
+    // tabBarOptions:{
+    //     style:{
+    //         height:getSize(46),
+    //         paddingBottom:getSize(12),
+    //         paddingTop:0
+    //     },
+    // },
+    tabBarComponent:HomeBar
+
+    
 
 })
 

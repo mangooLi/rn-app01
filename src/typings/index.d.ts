@@ -69,3 +69,12 @@ declare module 'react-native-pull-to-refresh'{
     export default PTRView
 }
 
+declare var Icon:any;
+declare module 'react-native-vector-icons/FontAwesome'{
+    
+    export default Icon
+}
+
+declare module 'react-native-vector-icons/Feather'{
+    export default Icon;
+}

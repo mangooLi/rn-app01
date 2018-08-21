@@ -15,25 +15,13 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
 
 
     store = new DataDiscoverModel();
-    handleScroll:(e:NativeScrollEvent|undefined)=>void
+
 
     componentWillMount(){
-        this.handleScroll = debounce(this.onScroll,1000)
+
         this.store.loadData();
     }
 
-    
-
-    onScroll(e:NativeScrollEvent |undefined){
-        if(!e){return}
-        const offsetY = e.contentOffset.y; //滑动距离
-        const contentSizeHeight = e.contentSize.height; //scrollView contentSize高度
-        const oriageScrollHeight = e.layoutMeasurement.height; //scrollView高度
-        if (offsetY + oriageScrollHeight >= contentSizeHeight-20){
-            // 滑动到底部
-            this.store.loadData()
-        }
-    }
 
     render(){
         const {informations} =this.store;

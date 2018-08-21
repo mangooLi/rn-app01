@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View,ScrollView,StyleSheet,PanResponder,PanResponderInstance} from 'react-native';
+import { View,StyleSheet,PanResponder,PanResponderInstance} from 'react-native';
 import {WindowHeight} from '../utils';
 
 
@@ -59,12 +59,12 @@ export default class Pan extends React.Component{
             this.preTop = (dy+this.preTop)>0?0:(dy+this.preTop)
             console.log('move', gestureState.dy,this.preTop);
             
-              _this.sr.setNativeProps({
+            
+            _this.sr.setNativeProps({
                   style:{
                       top:this.preTop
                   }
               })
-              
             },
 
             onPanResponderTerminationRequest: (evt, gestureState) => true,

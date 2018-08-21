@@ -33,6 +33,17 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('PullDemo')}}
                 ></Button></View>
 
+                 <View style={style.btn}><Button
+                    title='动画'
+                    onPress={()=>{this.props.navigation.navigate('Animate')}}
+                ></Button></View>
+
+                <View style={style.btn}><Button
+                    title='icon'
+                    onPress={()=>{this.props.navigation.navigate('IconPage')}}
+                ></Button></View>
+
+                
 
                 
 
@@ -44,20 +55,27 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('HomePage')}}
                 ></Button></View>
 
+                
+
                
                 
                 <View style={style.btn}><Button
                     title='个人中心'
                     onPress={()=>{this.props.navigation.navigate('PersonalCenter')}}
                 ></Button></View>
-                 <View style={style.btn}><Button
-                    title='动画'
-                    onPress={()=>{this.props.navigation.navigate('Animate')}}
-                ></Button></View>
+                
                 <View style={style.btn}><Button
                     title='ListRoute'
                     onPress={()=>{this.props.navigation.navigate('ListRoute')}}
                 ></Button></View>
+
+                 <View style={style.btn}><Button
+                    title='BottomRoute'
+                    onPress={()=>{this.props.navigation.navigate('BottomRoute')}}
+                ></Button></View>
+
+
+                
 
                 <View style={style.btn}><Button
                     title='article detail '

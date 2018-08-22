@@ -1,6 +1,8 @@
 
 
 import { createStackNavigator } from 'react-navigation';
+// import CardStackStyleInterpolator from 'react-navigation/src/views/'
+import StackViewStyleInterpolator from 'react-navigation/src/views/StackView/StackViewStyleInterpolator';
 
 
 // pages
@@ -79,7 +81,16 @@ const Route = createStackNavigator({
         initialRouteName: 'Main',
         mode: 'modal',
         headerMode: 'none',
-          
+        // transitionConfig:()=>({
+        //     screenInterpolator: (sceneProps) => {
+        //         const routeName = sceneProps.scene.route.routeName;
+        //         // Disable the transition animation when resetting to the home screen.
+        //         if (routeName === 'HomePage') return null;
+                
+            
+        //         return StackViewStyleInterpolator.forFadeFromBottomAndroid(sceneProps)
+        //       },
+        // })
     })
 
 export default Route;

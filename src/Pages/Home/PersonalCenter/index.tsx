@@ -45,11 +45,13 @@ class PersonalCenter extends Component<NavigationInjectedProps> {
 
                 <View style={pageStyle.link}>
                     <Image style={pageStyle.link_img} source={comment_disable}/>
-                    <Text style={pageStyle.link_text} onPress={()=>this.props.navigation.navigate('MyCollection',{type:'comment'})}>我的评论</Text>
+                    <Text style={pageStyle.link_text} 
+                        onPress={()=>this.props.navigation.navigate('MyCollection',{type:'comment'})}>我的评论</Text>
                 </View>
                 <View style={pageStyle.link}>
-                    <Image style={pageStyle.link_img} source={reports_disable}/>
-                    <Text style={pageStyle.link_text}>我的报告</Text>
+                    <Image style={pageStyle.link_img} source={reports_disable} />
+                    <Text style={pageStyle.link_text} 
+                        onPress={()=>this.props.navigation.navigate('MyReport')}>我的报告</Text>
                 </View>
                 <View style={pageStyle.link}>
                     <Image  style={pageStyle.link_img} source={setting}/>

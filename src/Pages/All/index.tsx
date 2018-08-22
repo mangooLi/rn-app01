@@ -14,6 +14,7 @@ import { debounce } from '../../utils';
 import Report, {ReportProps} from '../../Common/Report'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
+import HomeContainer from '../Home/HomeContainer';
 
 
 
@@ -152,4 +153,18 @@ class AllPage extends React.Component<NavigationInjectedProps>{
     }
 }
 
-export default withNavigation<{}>(AllPage)
+const ExportAllPage = withNavigation<{}>(AllPage)
+export default ExportAllPage;
+
+
+export class AllPageWithAnimate extends React.Component {
+
+    render (){
+
+        return (<HomeContainer>
+            <ExportAllPage />
+        </HomeContainer>)
+    }
+}
+
+

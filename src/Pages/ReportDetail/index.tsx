@@ -1,16 +1,18 @@
 
 import React,{Component} from 'react';
-import {View ,Text,FlatList,ScrollView,StyleSheet, Dimensions, LayoutChangeEvent} from 'react-native';
+import {View ,Text,ProgressBarAndroid,ScrollView,StyleSheet, Dimensions, LayoutChangeEvent} from 'react-native';
 
 import { NavigationInjectedProps } from 'react-navigation';
 import {observer} from 'mobx-react'
 import Pdf from 'react-native-pdf';
 
-import TabBar from './TabBar';
+// import TabBar from './TabBar';
+import TabBar from '../../Common/TabBar';
 
 import  ReportDetailModel from './model';
 import {reportDetailStyle} from './style';
 import { getSize } from '../../utils';
+
 
 
 
@@ -40,7 +42,6 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
             this.vertial = false;
         }
         if(this.vertial !== preVertial){
-           ;
             this.forceUpdate()
         }
     }
@@ -50,18 +51,28 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
     }
 
     render(){
-        const {pdf_url,page}=this.store;
+        const {pdf_url,page,percent,title}=this.store;
 
-        const pdfStyle={
-           width:Dimensions.get('window').width,
-           height:Dimensions.get('window').height-getSize(40),
+        const pdfStyle= {
+           width: Dimensions.get('window').width,
+           height:Dimensions.get('window').height-getSize(40)
+
        }
 
         return (
             <View onLayout={(e)=>this.handleLayout(e)}   style={reportDetailStyle.container}>
-                <TabBar store={this.store} />
-                {pdf_url
-                    ?<Pdf style={pdfStyle} fitPolicy={0} source={{uri:pdf_url}} page={page} />
+                <TabBar title={title} />
+                {percent<1 && <ProgressBarAndroid progress={percent} color='#f80' styleAttr="Horizontal"/>}
+
+                {pdf_url 
+                    ?<Pdf 
+                        style={pdfStyle} 
+                        fitPolicy={0} 
+                        onLoadProgress={percent=>this.store.setProgress(percent)}
+                        onLoadComplete={()=>this.store.setProgress(1)}
+                        source={{uri:pdf_url}} 
+                        activityIndicator={<View/>}
+                        page={page} />
                     :<View style={pdfStyle}/>} 
             </View>
         )

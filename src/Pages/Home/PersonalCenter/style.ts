@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
-import { getSize } from '../../../utils';
+import { getSize, WindowHeight } from '../../../utils';
 
 export const pageStyle = StyleSheet.create({
     container:{
-        flex:1,
+        // flex:1,
         paddingLeft:getSize(214),
+        height:WindowHeight
         // backgroundColor:'linearGradient(red,blue)'
     },
 
@@ -14,7 +15,7 @@ export const pageStyle = StyleSheet.create({
         borderRadius:getSize(44+4),
         borderWidth:getSize(4),
         borderColor:'#fff',
-        marginTop:getSize(50-24),
+        marginTop:getSize(50-24+40),
         backgroundColor:'#fff'
     },
     avater:{

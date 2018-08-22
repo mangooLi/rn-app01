@@ -37,6 +37,7 @@ export default class AccountCenter extends Component {
                 if(res.data){
                     global.token = res.data.data.token;
                     global.user = res.data.data;
+                    this.forceUpdate()
                 }
             })
         }

@@ -78,3 +78,14 @@ declare module 'react-native-vector-icons/FontAwesome'{
 declare module 'react-native-vector-icons/Feather'{
     export default Icon;
 }
+
+
+declare var StackViewStyleInterpolator :{
+    forHorizontal:(prop:any)=>any,
+  forVertical:(prop:any)=>any,
+  forFadeFromBottomAndroid:(prop:any)=>any,
+  forFade:(prop:any)=>any,
+}
+declare module 'react-navigation/src/views/StackView/StackViewStyleInterpolator'{
+    export default StackViewStyleInterpolator
+}

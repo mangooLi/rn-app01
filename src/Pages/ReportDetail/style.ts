@@ -12,6 +12,12 @@ export const reportDetailStyle=StyleSheet.create({
         height:getSize(40),
         flexDirection:'row'
     },
+    pdf: {
+        width: WindowWidth,
+        height:WindowHeight-getSize(40),
+
+    }
+
 })
 
 

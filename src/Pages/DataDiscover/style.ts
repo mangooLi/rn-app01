@@ -7,8 +7,11 @@ export const dataDiscoverStyle=StyleSheet.create({
     container:{
         backgroundColor:'#f8f6f6',
         // paddingTop:getSize(20)
+        // position:'absolute',
+        // top:getSize(44)
     },
     flat_list:{
+        // flex:1,
         borderTopLeftRadius: getSize(4),
         borderTopRightRadius: getSize(4),
         backgroundColor:'#fff'
@@ -17,9 +20,9 @@ export const dataDiscoverStyle=StyleSheet.create({
         height:getSize(44+12),
         flexDirection:'row',
         width:getSize(375),
-        
     }
 })
+
 
 export const tagsStyle=StyleSheet.create({
     topic_container:{

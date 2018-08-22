@@ -12,11 +12,17 @@ export default class ReportDetailModel {
     @observable pdf_url:string = '';
     @observable title:string = ''
     @observable page:number ;
+    @observable percent :number = 0;
 
     @action
     init (id:number){
         this.id=id;
         this.loadData()
+    }
+
+    @action
+    setProgress(percent:number){
+        this.percent=percent;
     }
 
     @action

@@ -3,7 +3,7 @@
 
 
 import * as React from 'react';
-import { View,Button} from 'react-native';
+import { View,Button,ScrollView} from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import style from './style'
 
@@ -43,6 +43,14 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('IconPage')}}
                 ></Button></View>
 
+                <View style={style.btn}><Button
+                    title='DemoRoute'
+                    onPress={()=>{this.props.navigation.navigate('DemoRoute')}}
+                ></Button></View>
+
+
+                
+
                 
 
                 
@@ -55,9 +63,6 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('HomePage')}}
                 ></Button></View>
 
-                
-
-               
                 
                 <View style={style.btn}><Button
                     title='个人中心'
@@ -169,11 +174,6 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='我的报告'
                     onPress={()=>{this.props.navigation.navigate('MyReport')}}
                 ></Button></View>
-                
-                
-
-                
-                
                 
                 
             </View>

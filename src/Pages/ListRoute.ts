@@ -4,28 +4,33 @@
 import {createMaterialTopTabNavigator,TabNavigatorConfig} from 'react-navigation';
 
 
-import AllPage from './All';
-import DataDiscover from './DataDiscover';
-import ReportProducts from './ReportProducts';
+import AllPage,{AllPageWithAnimate} from './All';
+import DataDiscover,{DataDiscoverWithAnimate} from './DataDiscover';
+import ReportProducts,{ReportProductsWithAnimate} from './ReportProducts';
+import HomeContainer from './Home/HomeContainer';
 
 import HomeBar from './HomeBar';
 
 
 const ListRoute=createMaterialTopTabNavigator({
     Home:{
-        screen:AllPage,
+        // screen:AllPage,
+        screen:AllPageWithAnimate,
+
         navigationOptions:{
             tabBarLabel:'全部'
         }
     },
     DataDiscover:{
-        screen:DataDiscover,
+        // screen:DataDiscover,
+        screen:DataDiscoverWithAnimate,
         navigationOptions:{
             tabBarLabel:'数据洞察'
         }
     },
     ReportProducts:{
-        screen:ReportProducts,
+        // screen:ReportProducts,
+        screen:ReportProductsWithAnimate,
         navigationOptions:{
             tabBarLabel:'数据报告'
         }

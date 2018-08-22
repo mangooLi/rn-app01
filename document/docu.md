@@ -91,7 +91,6 @@ export default abstract class  List<T> {
 
 2. 列表页的ListItem,其他页面会有复用。因此可以将组件封装成公共组件，供多个页面复用。封装时候，不要定义margin，或者可以通过传入参数，来设置margin值，以满足组件在不同页面中样式需求。封装的组件如果需要用到页面Store的方法，不要图方便将整个store穿进去，而是只传需要的方法。
 
-
 ### 首页
 1. 首页轮播图，用的ScrollView实现的。首页tab页，也是用的Scroll。RN原生不支持ScrollView嵌套。为了解决这个问题，在轮播图onTouchStart 的回调里，禁用外层Scroll的scrollEnabled属性，在onScrollEndDrag回调中开启外层ScrollView的属性。这个方法性能损耗比较大，目前初步解决里ScrollView嵌套的问题。后期有机会再多尝试其他方法。
 2. 轮播图用的react-native-whc-banner插件。该插件原生有一些bug，为了满足需求，修改里部分源码。修改后的组件放在项目Vendor文件夹下。
@@ -116,3 +115,40 @@ export default abstract class  List<T> {
 4. 评论页点赞的icon，有两种解决方法。
    1. 准备两张不同颜色的图片，在已点赞/未点赞的时候，显示不同的图片。
    2. 引入Icon。笔者这里用的是react-native-vector-icons。npm install 该包后，运行npm link react-native-vector-icons,并在android/app/build.gradle文件中加入`apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"`，重新react-native run-android，就能使用Icon。具体安装和使用见[github](https://github.com/oblador/react-native-vector-icons/tree/12ac7ecd9f3d353c43569c018af7ac31ae224d0a)
+
+
+### 五 报告详情页
+1. 报告页详情需要展示PDF，用的[react-native-pef](https://www.npmjs.com/package/react-native-pdf)插件。传入PDF的路径，组件回自己解析PDF。
+2. 通过 ProgressBarAndroid 组件，在页面显示进度条。
+3. 在react-native-pdf组件的onLoadProgress回调里，获取组件解析PDF的进度，并修改 ProgressBarAndroid 的进度。
+4. 在react-native-pdf组件的onLoadComplete回调里，将ProgressBarAndroid 的进度设为1，并隐藏进度条。
+5. react-native-pdf组件自带一个进度提示。通过设置`activityIndicator={<View/>}`，将其进度提示组件隐藏。
+6. 设计需要感知横屏事件。RN不提供该事件，可以在页面根View组件的onLayout事件中，根据屏幕高宽，来判断是否横屏。
+7. 判断横屏幕后，在RN组件内部调用this.forceUpdate()方法，可以强制render组件。
+
+### 六 用户中心页
+1. Modal 。RN提供了自带的Modal组件，通过visible属性控制modal的显示和隐藏。弹窗的内容可以包裹在Modal标签内。
+2. 获取图片。用户中心有更换用户头像的功能，可以通过拍照或从手机相册选取图片。图片的获取用的是[react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker#readme)组件。这个组件既能通过拍照获取图片，也能从相册读取图片。获取到的图片还能裁剪。在使用该组件前，需要给APP配置拍照和读取本地相册的权限。
+3. 当TextInput设置autoFocus为true的时候，键盘会自动弹出。
+
+### 七 首页
+#### 首页结构
+1. 首页主要由三个列表页（全部、数据洞察、数据报告）组成，三个列表之间可以左右滑动切换。
+2. 顶部tabbar右侧点击后，首页向左边折叠，现实出右侧的用户中心信息。
+#### 解决方法
+最先采用的解决方案如下：
+1. 首页和用户中心页面放在一个组件里，两者通过zIndex上下层叠。
+2. 首页三个列表页面布置在一个水平放心的ScrollView里，左右滑动到不同页面。
+3. 点击顶部TabBar最右侧按钮后，首页向右边折叠。
+这个方案存下如下问题：
+1. ScrollView会一次加载所有的子组件。这意味着首页会一次加载三个列表页，非常影响性能和体验。
+2. 首页第一个列表页最上方是一个轮播图，也是用ScrollView实现的。ScrollView不支持嵌套。因此在轮播图滑动前，要禁用外层ScrollView的滑动。轮播图一次滑动结束后，重启外层ScrollView的滑动。
+3. 首页下方的TabBar是一个只存在于首页组件内部的子组件，不是 首页-数据侠页 这个路由的公共tabbar。从首页跳转到数据侠计划页的时候，该组件会销毁，并重新加载数据侠页面的该类组件。
+
+经过不断研究，采取改进版本的解决方法如下：
+1. 三个列表页面分为两层，上层是列表，下层是用户中心。
+2. 三个列表页通过一个路由createMaterialTopTabNavigator组织起来。
+3. 这个路由组件的tabBarComponent设为之前的tabbar。
+4. 当列表页向左边动画缩进的时候，顶部和底部的tabBarComponent并不会跟着动。因此，需要将这两个TabBar设置为绝对定位，并给起设置响应的动画效果。
+
+

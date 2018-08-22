@@ -7,6 +7,7 @@ import {observer} from 'mobx-react'
 import ReportProductsModel from './model';
 import ReportProductItem from './ReportProductCard'
 import {reportProductsStyle } from './style';
+import HomeContainer from '../Home/HomeContainer';
 
 @observer
 class ReportProducts  extends React.Component{
@@ -39,4 +40,15 @@ class ReportProducts  extends React.Component{
     }
 }
 
-export default ReportProducts
+export default ReportProducts;
+
+
+export class ReportProductsWithAnimate extends React.Component {
+
+    render (){
+
+        return <HomeContainer>
+            <ReportProducts/>
+        </HomeContainer>
+    }
+}

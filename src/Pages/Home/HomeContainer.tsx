@@ -1,80 +1,69 @@
 
 
 import React,{Component} from 'react';
-import {View,TouchableWithoutFeedback, ScrollView,NativeSyntheticEvent,NativeScrollEvent,Animated} from'react-native';
+import {View,TouchableWithoutFeedback,Animated} from'react-native';
 import {observer} from 'mobx-react';
-import {WindowWidth,} from '../../utils';
+import {WindowWidth, WindowHeight, getSize,} from '../../utils';
+import {autorun } from 'mobx';
 
-import HomeBar from '../HomeBar';
-import AllPage from '../All';
-import DataDiscover from '../DataDiscover';
-import DataReport from '../ReportProducts';
-import {pageStyle,animateStyle} from './style';
+import {animateStyle} from './style';
 import PersonCenter from './PersonalCenter';
-import homeModel from './model';
 
-import BottomBar from '../../Common/Bottombar';
+import listStore from '../ListModel';
+
 
 @observer
-export default class Home extends Component {
+export default class HomeContainer extends Component {
 
     static navigationOptions={
         // tabBarVisible:false,
         header:null    //隐藏顶部导航栏
     }
+    // store = new ListModel();
 
-    store = homeModel;
+
+    constructor(props:any){
+        super(props)
+        autorun(()=>{
+            if(listStore.fold){
+                this.fold();
+
+            }else{
+                this.expand()
+            }
+        })
+    }
+
 
     state={
         x:new Animated.Value(0),
-        y:new Animated.Value(0),
         scaleY:new Animated.Value(1),
         scaleX:new Animated.Value(1),
     }
 
     sc:any;
-    folded:boolean = false
+    folded:boolean = false;
 
-    endDrag(e:NativeSyntheticEvent<NativeScrollEvent> | undefined){
-
-        if(!e)return;
-        const x = e.nativeEvent.contentOffset.x;
-        let position_x = this.getRoundx(x);
-        this.sc.scrollTo({x:position_x,y:0,animated:true})
+    componentWillUnmount(){
+        this.expand()
     }
 
 
-    getRoundx(x:number){
-        let result = 0;
-        if(x<WindowWidth/2){
-            result =0;
-        }else if(x < WindowWidth * 1.5){
-            result = WindowWidth;
-        }else if(x<WindowWidth * 2.5){
-            result = 2*WindowWidth;
-        }else {
-            result = 3 * WindowWidth
-        }
-
-        return result;
-    }
-
-    toPage(page:number){
-        const position_x = (page-1)*WindowWidth;
-        this.sc.scrollTo({x:position_x,y:0,animated:true})
-    }
 
     toggle(){
         //
         if(this.folded){
-            this.expand();
+            // this.expand();
+            listStore.expandPage()
         }else{
-            this.fold()
+            // this.fold()
+            listStore.foldPage()
         }
     }
 
     expand(){
         this.folded = false;
+        listStore.expandPage()
         Animated.parallel([
             Animated.timing(this.state.x,{toValue:0,duration:1000}),
             // Animated.timing(this.state.y,{toValue:0,duration:1000}),
@@ -103,45 +92,41 @@ export default class Home extends Component {
     handleTouch(){
         if(this.folded){ // 折叠状态下，点击主页展开
             this.expand()
+            
         }
     }
 
+
+
     render (){
         const {x,scaleY,scaleX}=this.state;
-        const {outScroll} = this.store;
+
         return (
 
-            <View  >
+            <View  style={{backgroundColor:'#f00'}}>
                 <TouchableWithoutFeedback onPress={()=>this.handleTouch()} >
                 <Animated.View 
                     
                     onStartShouldSetResponderCapture={() =>this.shouldCapture()} // 折叠状态下，不往下面传递事件，阻止子组件捕获事件
-                    // style={{...animateStyle.one,left:x,top:y,scaleY,scaleX}} >
+
                     style={[animateStyle.one,{left:x,transform:[{scaleX},{scaleY}]}]} >
-                    
-                    
-                    <HomeBar toPage={(page)=>this.toPage(page)} toggle={()=>this.toggle()}/>
+                   
 
-                    <ScrollView 
-                        // locked
-                        scrollEnabled = {outScroll}
-                        
-                        ref = {c=>this.sc = c}
-                        horizontal = {true}
-                        onScrollEndDrag = {(e)=>this.endDrag(e)}
-                        style={pageStyle.scroll}
-                    >
+                    <View style={{height:WindowHeight-getSize(80)}}>
 
-                        <AllPage />
-                        <DataDiscover />
-                        <DataReport />
-                    </ScrollView>
-                    <BottomBar />
+                        {this.props.children}
+                    </View>
+
+
                 </Animated.View>
                 </TouchableWithoutFeedback>
+
                 <View style={animateStyle.two}>
                     <PersonCenter />
                 </View>
+
+                <View style={{height:getSize(40),position:"absolute",top:0,backgroundColor:'#f00'}}/>
+                <View style={{height:getSize(40),position:"absolute",bottom:0,backgroundColor:'#0f0'}}/>
             </View>
 
         )

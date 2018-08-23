@@ -1,6 +1,6 @@
 
 
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator,NavigationContainer } from 'react-navigation';
 // import CardStackStyleInterpolator from 'react-navigation/src/views/'
 import StackViewStyleInterpolator from 'react-navigation/src/views/StackView/StackViewStyleInterpolator';
 
@@ -39,7 +39,7 @@ import Scroll from './DemoPage/Scroll';
 import Pan from './DemoPage/Pan';
 import PullDemo from './DemoPage/PullDemo';
 import IconPage from './DemoPage/Icon';
-
+import Refresh from './DemoPage/Refresh';
 
 
 const Route = createStackNavigator({
@@ -73,11 +73,10 @@ const Route = createStackNavigator({
     Scroll:Scroll,
     Pan:Pan,
     PullDemo:PullDemo,
-    IconPage:IconPage
-
+    IconPage:IconPage,
+    Refresh:Refresh
 
     },{
-        
         initialRouteName: 'Main',
         mode: 'modal',
         headerMode: 'none',

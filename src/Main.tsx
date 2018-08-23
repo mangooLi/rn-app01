@@ -29,7 +29,7 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                 ></Button></View>
 
                 <View style={style.btn}><Button
-                    title='Scroll'
+                    title='PullDemo'
                     onPress={()=>{this.props.navigation.navigate('PullDemo')}}
                 ></Button></View>
 
@@ -46,6 +46,11 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                 <View style={style.btn}><Button
                     title='DemoRoute'
                     onPress={()=>{this.props.navigation.navigate('DemoRoute')}}
+                ></Button></View>
+
+                <View style={style.btn}><Button
+                    title='Refresh'
+                    onPress={()=>{this.props.navigation.navigate('Refresh')}}
                 ></Button></View>
 
 

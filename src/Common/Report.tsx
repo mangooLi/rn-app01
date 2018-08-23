@@ -39,7 +39,7 @@ class Report extends Component<ReportProps & NavigationInjectedProps> {
             <View style={reportStyle.container}>
             <Text style={reportStyle.head}>数据报告</Text>
             <View style={reportStyle.cardContainer}>
-                <ScrollView horizontal>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     {map(list,report=>this.ReportItmm(report))}
                 </ScrollView>
             </View>

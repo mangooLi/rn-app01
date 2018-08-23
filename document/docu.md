@@ -1,12 +1,32 @@
 
 
 ## RN 开发小结
-笔者上个月开始接触RN开发，并参照IOS版DT·一财APP和设计稿，尝试开发了安卓版本。现将开发过程中碰到的问题和解决方法记录如下。
-
-<!-- 项目使用mobx做状态管理。 -->
+笔者上个月开始接触RN开发，并参照IOS版DT·一财APP和设计稿，结合MobX做状态管理，尝试开发了安卓版本。现将开发过程中碰到的问题和解决方法记录如下。
 
 
-### 一、 登录注册
+### 一 首页
+#### 首页结构
+1. 首页主要由三个列表页（全部、数据洞察、数据报告）组成，三个列表之间可以左右滑动切换。
+2. 顶部tabbar右侧点击后，首页向左边折叠，现实出右侧的用户中心信息。
+#### 解决方法
+最先采用的解决方案如下：
+1. 首页和用户中心页面放在一个组件里，两者通过zIndex上下层叠。
+2. 首页三个列表页面布置在一个水平放心的ScrollView里，左右滑动到不同页面。
+3. 点击顶部TabBar最右侧按钮后，首页向右边折叠。
+这个方案存下如下问题：
+1. ScrollView会一次加载所有的子组件。这意味着首页会一次加载三个列表页，非常影响性能和体验。
+2. 首页第一个列表页最上方是一个轮播图，也是用ScrollView实现的。ScrollView不支持嵌套。因此在轮播图滑动前，要禁用外层ScrollView的滑动。轮播图一次滑动结束后，重启外层ScrollView的滑动。
+3. 首页下方的TabBar是一个只存在于首页组件内部的子组件，不是 首页-数据侠页 这个路由的公共tabbar。从首页跳转到数据侠计划页的时候，该组件会销毁，并重新加载数据侠页面的该类组件。
+
+经过不断研究，采取改进版本的解决方法如下：
+1. 三个列表页面分为两层，上层是列表，下层是用户中心。
+2. 三个列表页通过一个路由createMaterialTopTabNavigator组织起来。
+3. 这个路由组件的tabBarComponent设为之前的tabbar。
+4. 当列表页向左边动画缩进的时候，顶部和底部的tabBarComponent并不会跟着动。因此，需要将这两个TabBar设置为绝对定位，并给起设置响应的动画效果。注意，不要设置相对定位。相对定位虽然也能让tabBar移动，但是原来的地方会被一个空白View占据。
+5. 由于上下两个tabBar和列表页需要对同一个事件作出响应，因此需要新建一个全局的store，记录列表页的展开或者折叠状态。这三个组件监听该状态，当状态变化时，自动执行动画操作。
+6. tabbar点击不同区域时，会跳转到对应的路由组件。在页面折叠状态下，需要对这个操作进行屏蔽，阻止路由跳转。
+
+### 二、 登录注册
 
 后台提供了根据账号/密码和手机/验证码登陆的接口，但是APP只需要根据账号密码登陆即可。登录页面注意以下几点。
 
@@ -21,7 +41,7 @@
 
 
 
-### 二、列表页
+### 三、列表页
 
 列表页列表的渲染，推荐使用FlatList。FlatList是一个高性能的简单列表组件，支持以下常用功能：
 
@@ -34,14 +54,6 @@
 + 列表为空时的提示组件`(ListEmptyComponent)`
 
 + 支持自定义行间分隔组件`(ItemSeparatorComponent)`
-
-+ 支持下拉刷新
->onRefresh 下拉刷新功能。注意，该方法不支持自定义刷新提示。
-
-+ 支持上拉加载
-
->`onEndReached 该回调在组件上拉到当前列表页最底下的时候触发。一般配合onEndReachedThreshold 属性，决定当距离内容最底部还有多远时触发onEndReached回调`。
-
 
 列表页面的开发，有以下需要注意的：
 1. 该项目用mobx做状态管理，绝大部分逻辑都写在Model中，ReactNative只负责视图的渲染。 APP内部有多个列表页。列表页有部分逻辑是相同的，因此可以把这部分逻辑抽象出来，设计成一个抽象类，每个列表页的Model继承该类。以该APP为例，设计的抽象如下：
@@ -90,13 +102,10 @@ export default abstract class  List<T> {
 从上面的代码可以看出，每个列表页只是通过API从后台获取数据的方法不同，其他参数和方法都差不多。我们在这几抽象类的时候，将从后台获取参数的方法定义为抽象类，每个列表只需要根据需求实现该抽象方法，列表页的model就完成了。
 
 2. 列表页的ListItem,其他页面会有复用。因此可以将组件封装成公共组件，供多个页面复用。封装时候，不要定义margin，或者可以通过传入参数，来设置margin值，以满足组件在不同页面中样式需求。封装的组件如果需要用到页面Store的方法，不要图方便将整个store穿进去，而是只传需要的方法。
-
-### 首页
-1. 首页轮播图，用的ScrollView实现的。首页tab页，也是用的Scroll。RN原生不支持ScrollView嵌套。为了解决这个问题，在轮播图onTouchStart 的回调里，禁用外层Scroll的scrollEnabled属性，在onScrollEndDrag回调中开启外层ScrollView的属性。这个方法性能损耗比较大，目前初步解决里ScrollView嵌套的问题。后期有机会再多尝试其他方法。
-2. 轮播图用的react-native-whc-banner插件。该插件原生有一些bug，为了满足需求，修改里部分源码。修改后的组件放在项目Vendor文件夹下。
+3. 列表页面的下拉刷新，通过`onEndReached`实现。该回调在组件上拉到当前列表页最底下的时候触发。一般配合`onEndReachedThreshold` 属性，决定当距离内容最底部还有多远时触发onEndReached回调。
 
 
-### 三 文章详情页
+### 四 文章详情页
 1. 后台返回的文字详情是一段html代码，需要用webView解析渲染。由于webView奇怪的样式表现:
    1. 当一个webView组件占一个页面时候，样式表现没有问题,与用手机浏览器打开没有大的区别。
    2. 当一个WebView 的父组件是View，且这个View没有设置宽度或者高度，那么这个View将不显示，WebView也不会显示。
@@ -108,7 +117,7 @@ export default abstract class  List<T> {
 
 3. 详情页有的需要播放视频。播放视频用的是react-native-video组件，通过组件的paused属性控制视频的播放与暂停。更多配置信息参考[文档](https://github.com/react-native-community/react-native-video#readme)
 
-### 四 评论页
+### 五 评论页
 1. 评论页也是列表页，Store也可以继承列表页的抽象类。
 2. 按照设计要求，评论输入框应该固定在屏幕最下方。用`position:absolute;bottom:0`定位即可。
 3. 为了避免键盘弹出后遮住输入框，需要把随键盘上移的部分（这里为整个页面的根元素）用KeyboardAvoidingView组件包裹。在安卓中使用该组件之前，需要先在AndroidManifest.xml中添加android:windowSoftInputMode="adjustResize"，否则不起作用。
@@ -117,7 +126,7 @@ export default abstract class  List<T> {
    2. 引入Icon。笔者这里用的是react-native-vector-icons。npm install 该包后，运行npm link react-native-vector-icons,并在android/app/build.gradle文件中加入`apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"`，重新react-native run-android，就能使用Icon。具体安装和使用见[github](https://github.com/oblador/react-native-vector-icons/tree/12ac7ecd9f3d353c43569c018af7ac31ae224d0a)
 
 
-### 五 报告详情页
+### 六 报告详情页
 1. 报告页详情需要展示PDF，用的[react-native-pef](https://www.npmjs.com/package/react-native-pdf)插件。传入PDF的路径，组件回自己解析PDF。
 2. 通过 ProgressBarAndroid 组件，在页面显示进度条。
 3. 在react-native-pdf组件的onLoadProgress回调里，获取组件解析PDF的进度，并修改 ProgressBarAndroid 的进度。
@@ -126,29 +135,25 @@ export default abstract class  List<T> {
 6. 设计需要感知横屏事件。RN不提供该事件，可以在页面根View组件的onLayout事件中，根据屏幕高宽，来判断是否横屏。
 7. 判断横屏幕后，在RN组件内部调用this.forceUpdate()方法，可以强制render组件。
 
-### 六 用户中心页
+### 七 用户中心页
 1. Modal 。RN提供了自带的Modal组件，通过visible属性控制modal的显示和隐藏。弹窗的内容可以包裹在Modal标签内。
 2. 获取图片。用户中心有更换用户头像的功能，可以通过拍照或从手机相册选取图片。图片的获取用的是[react-native-image-crop-picker](https://github.com/ivpusic/react-native-image-crop-picker#readme)组件。这个组件既能通过拍照获取图片，也能从相册读取图片。获取到的图片还能裁剪。在使用该组件前，需要给APP配置拍照和读取本地相册的权限。
 3. 当TextInput设置autoFocus为true的时候，键盘会自动弹出。
 
-### 七 首页
-#### 首页结构
-1. 首页主要由三个列表页（全部、数据洞察、数据报告）组成，三个列表之间可以左右滑动切换。
-2. 顶部tabbar右侧点击后，首页向左边折叠，现实出右侧的用户中心信息。
-#### 解决方法
-最先采用的解决方案如下：
-1. 首页和用户中心页面放在一个组件里，两者通过zIndex上下层叠。
-2. 首页三个列表页面布置在一个水平放心的ScrollView里，左右滑动到不同页面。
-3. 点击顶部TabBar最右侧按钮后，首页向右边折叠。
-这个方案存下如下问题：
-1. ScrollView会一次加载所有的子组件。这意味着首页会一次加载三个列表页，非常影响性能和体验。
-2. 首页第一个列表页最上方是一个轮播图，也是用ScrollView实现的。ScrollView不支持嵌套。因此在轮播图滑动前，要禁用外层ScrollView的滑动。轮播图一次滑动结束后，重启外层ScrollView的滑动。
-3. 首页下方的TabBar是一个只存在于首页组件内部的子组件，不是 首页-数据侠页 这个路由的公共tabbar。从首页跳转到数据侠计划页的时候，该组件会销毁，并重新加载数据侠页面的该类组件。
-
-经过不断研究，采取改进版本的解决方法如下：
-1. 三个列表页面分为两层，上层是列表，下层是用户中心。
-2. 三个列表页通过一个路由createMaterialTopTabNavigator组织起来。
-3. 这个路由组件的tabBarComponent设为之前的tabbar。
-4. 当列表页向左边动画缩进的时候，顶部和底部的tabBarComponent并不会跟着动。因此，需要将这两个TabBar设置为绝对定位，并给起设置响应的动画效果。
 
 
+### 八 路由(react-navigation)
+
+1. 创建路由最基础的方法是`createStackNavigator`，它返回一个react组件。创建路由的配置并不复杂，可以直接查阅[文档](https://reactnavigation.org/docs/en/getting-started.html)。
+2. 很多时候，笔者更推荐`createMaterialTopTabNavigator`和`createBottomTabNavigator`，结合路由配置的`tabBarComponent`参数，可以非常方便地自定义顶部或者底部TabBar。
+3. createStackNavigator 返回的是一个react组件，所以你可以把它包含进另一个路由里，实现路由的嵌套。
+4. createStackNavigator 方法返回的虽然是以一个react组件，但是如果你把它当子组件插在页面中的某个角落，这时候页面是不会渲染的。它只能当作某个页面的跟组件。如果你想实现web端很多单页面APP那样的布局，多个路由页面复用一个导航栏，可以采用上面那种方式。`tabBarComponent`传入的组件可以高度自定义，并且可以通过`position:relative|absolute`定位在任意地方。
+5. 只要知道路由的名称，就能很方便地跳转到任意路由。不管这两个路由在嵌套路由中的层级如何。
+
+
+### 九 下拉刷新
+ScrollView和FlatList支持refreshControl属性，通过该属性指定RefreshControl组件，当ScrollView或者FlatList处于竖直方向的起点位置（scrollY: 0），此时下拉会触发一个onRefresh事件。但是遗憾的是，这种方式暂时不支持自定义loading指示器。
+
+
+### 十 存储
+react-native 提供了AsyncStorage，可以代替localStorage。但是一般不推荐直接使用AsyncStorage，而是对其做一层封装。 社区一般推荐[react-native-storage](https://github.com/sunnylqm/react-native-storage/blob/master/README-CHN.md)。由于AsyncStorage的读取是异步的，因此对于一些常用的全局信息或者不方便异步读取的信息，可以挂载在global对象上。

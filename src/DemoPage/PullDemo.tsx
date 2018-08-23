@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View,Text, ScrollView,StyleSheet,PanResponder,PanResponderInstance} from 'react-native';
 import PullToRefresh from './PullToRefresh';
 import {getSize,} from '../utils';
-
+import PRF from './PRF';
 
 
 const style = StyleSheet.create({
@@ -37,10 +37,13 @@ export default class PullDemo extends React.Component {
     render (){
         return (
 
-            <PullToRefresh refreshElement={this.refresh()} refreshElementHeight={getSize(50)}>
-                <View style={style.view}>
+            <PullToRefresh refreshElement={this.refresh()} refreshElementHeight={80}>
 
-                </View>
+                    <View style={{height:300,backgroundColor:'#246'}}/>
+                    <View style={{height:300,backgroundColor:'#a15'}}/>
+                    <View style={{height:300,backgroundColor:'#68a'}}/>
+
+                <View style={style.view}/>
             </PullToRefresh>
         )
     }

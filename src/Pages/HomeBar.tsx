@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableWithoutFeedback,StyleSheet,Animated} from'react-native';
+import {View,Text,Image,TouchableWithoutFeedback,StyleSheet,Animated,} from'react-native';
 import {WindowWidth,WindowHeight,getSize} from '../utils'
 // import {barStyle} from './Home/style';
-import {NavigationInjectedProps,withNavigation} from 'react-navigation';
+import {NavigationInjectedProps,withNavigation,NavigationScreenProp} from 'react-navigation';
 
 import listStore from './ListModel';
 import { autorun } from 'mobx';

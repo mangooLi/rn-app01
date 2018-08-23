@@ -31,7 +31,7 @@ class Tags extends Component<NavigationInjectedProps & Props>{
         const {topics}=this.props.store;
         return (
             <View style={dataDiscoverStyle.tags}>
-                <ScrollView horizontal={true} style={tagsStyle.topic_container}>
+                <ScrollView horizontal={true} style={tagsStyle.topic_container} showsHorizontalScrollIndicator={false}>
                     {map(topics,topic=>(
                         <TouchableWithoutFeedback key={topic.id} onPress={()=>this.handlePress(topic)}>
                         <View style={tagsStyle.topic}>

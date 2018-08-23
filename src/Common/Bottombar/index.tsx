@@ -4,6 +4,8 @@ import React,{Component} from 'react';
 import {View,Text,Image,TouchableWithoutFeedback,StyleSheet,Animated} from 'react-native';
 import {getSize,WindowHeight,WindowWidth} from '../../utils';
 import listStore from '../../Pages/ListModel';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 // import {cmpStyle} from './style';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
@@ -59,7 +61,8 @@ class BottomBar extends Component<NavigationInjectedProps> {
             <Animated.View style={[cmpStyle.container,{left:x,bottom:y,transform:[{scaleX},{scaleY}]}]}>
                 <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('ListRoute')}>
                     <View style={cmpStyle.part}>
-                        <Image style={cmpStyle.icon} source={homeIcon}/>
+                        {/* <Image style={cmpStyle.icon} source={homeIcon}/> */}
+                        <Icon name="home" size={24} color='red'/>
                         <Text style={cmpStyle.text}>首页</Text>
                     </View>
                 </TouchableWithoutFeedback>

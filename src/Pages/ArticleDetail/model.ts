@@ -1,7 +1,7 @@
 import {observable,action, toJS } from 'mobx';
 
 
-import {getInformaatinDetail,getRecommendations,RecommendationDetail,DataLabInformations,InformationCardItem,Video} from '../../api';
+import {getInformaatinDetail,getRecommendations,} from '../../api';
 import { assign } from '../../utils';
 
 

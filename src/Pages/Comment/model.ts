@@ -1,5 +1,5 @@
 import {observable,action,extendObservable, toJS } from 'mobx';
-import {CommentItem,getInformationComments,addCommentToInformation,toogleCommentLike} from '../../api';
+import {getInformationComments,addCommentToInformation,toogleCommentLike} from '../../api';
 
 
 export default class CommentModel {

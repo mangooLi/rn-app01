@@ -8,7 +8,7 @@ import {dataDiscoverStyle,tagsStyle} from './style'
 import {observer} from 'mobx-react'
 import DataDiscoverModel from './model';
 import {map} from '../../utils';
-import {DataDiscoverTopic} from '../../api';
+
 
 interface Props{
     store:DataDiscoverModel

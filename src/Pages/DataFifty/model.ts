@@ -3,7 +3,7 @@
 
 
 
-import {DataFiftyItem,getDataFiftyList} from '../../api';
+import {getDataFiftyList} from '../../api';
 
 import List from '../../Common/List';
 

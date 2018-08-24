@@ -2,7 +2,7 @@
 
 import {observable,action,extendObservable, toJS } from 'mobx';
 
-import {DataDiscoverItem,getDataDiscoverInformations,getDataDiscoverTopic,DataDiscoverTopic} from '../../api'
+import {getDataDiscoverInformations,getDataDiscoverTopic} from '../../api'
 
 export default class DataDiscoverModel{
 

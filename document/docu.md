@@ -157,3 +157,6 @@ ScrollView和FlatList支持refreshControl属性，通过该属性指定RefreshCo
 
 ### 十 存储
 react-native 提供了AsyncStorage，可以代替localStorage。但是一般不推荐直接使用AsyncStorage，而是对其做一层封装。 社区一般推荐[react-native-storage](https://github.com/sunnylqm/react-native-storage/blob/master/README-CHN.md)。由于AsyncStorage的读取是异步的，因此对于一些常用的全局信息或者不方便异步读取的信息，可以挂载在global对象上。
+
+### 十一 其他
+1. interface的处理。定义的interface，有两种处理方法，一种是定义在模块中，然后在需要的地方import进来。一种是定义在非模块的TS文件中，然后在tsconfig.json中配置include字段。经过对比判断，定义在非模块化文件中更方便。值得注意的是，枚举值只能定义在模块化文件中然后export出去。如果定义在非模块化文件中，运行的时候枚举值会找不到。如果非模块化TS文件中的interface也需要用到该枚举值怎么办？只能定

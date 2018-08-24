@@ -15,7 +15,7 @@ const favor_disable = require('../../../assets/img/icFavoriteDisable/icFavoriteD
 const comment_disable = require ('../../../assets/img/icForumDisable/icForumDisable.png');
 const reports_disable = require('../../../assets/img/icReportDisable/icReportDisable.png');
 const setting = require('../../../assets/img/icSettingsActive/icSettingsActive.png');
-import {AcountInfo} from '../../../api';
+;
 
 class PersonalCenter extends Component<NavigationInjectedProps> {
 
@@ -32,7 +32,7 @@ class PersonalCenter extends Component<NavigationInjectedProps> {
                             :<Image style={pageStyle.key} source={ key }/>}
                         
                     </View>
-                    <Text style={pageStyle.userName}>{user.nickname || '点击登陆'}</Text>
+                    <Text style={pageStyle.userName}>{user &&  user.nickname || '点击登陆'}</Text>
                 </View>
                 </TouchableWithoutFeedback>
 

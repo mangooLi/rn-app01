@@ -8,7 +8,7 @@ import {View,Text, FlatList} from 'react-native';
 import {observer} from 'mobx-react'
 
 import List from '../../Common/List';
-import {DataHeroItem,getDataHeroInformations,DataHeroTopic} from '../../api';
+import {getDataHeroInformations} from '../../api';
 import ArticleBrief from '../../Common/ArticleBrief';
 
 import {columnStyle} from './style'

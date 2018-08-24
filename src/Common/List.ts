@@ -3,7 +3,6 @@
 
 import {observable,action} from 'mobx';
 
-import {Meta} from '../api';
 import {Response} from '../api/request';
 
 export default abstract class  List<T> {

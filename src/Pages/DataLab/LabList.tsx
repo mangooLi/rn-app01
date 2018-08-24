@@ -8,7 +8,7 @@ import {View, FlatList} from 'react-native';
 import {observer} from 'mobx-react'
 
 import List from '../../Common/List';
-import {getDataLabInformations ,DataLabItemCategory,DataLabItem} from '../../api';
+import {getDataLabInformations ,DataLabItemCategory} from '../../api';
 
 
 

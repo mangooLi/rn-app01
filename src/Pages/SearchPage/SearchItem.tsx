@@ -2,7 +2,7 @@
 import React,{Component} from 'react';
 import {View,Text,TouchableWithoutFeedback} from 'react-native';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
-import {SearchInformation} from '../../api';
+
 import {moment} from '../../utils';
 
 import {listStyle} from './style';

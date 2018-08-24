@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import { View ,Image, Text,TouchableWithoutFeedback} from 'react-native';
-import {DataFiftyItem} from '../../api';
+
 import {fiftyStyle} from './style';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 

@@ -1,5 +1,5 @@
-import {observable,action, toJS} from 'mobx';
-import {DataHeroTopic,getDataHeroTopics,DataLabItemCategory} from '../../api';
+import {observable,action,} from 'mobx';
+import {DataLabItemCategory} from '../../api';
 
 
 export interface DataLabTopics {

@@ -1,26 +1,5 @@
 
 import fetch from './request';
-import {DataDiscoverItem } from './home';
-import {Meta,DataDiscoverInformations} from './common';
-
-
-export interface DataDiscoverTopic{
-    id: number,
-    name: string,
-    introduction: string,
-    logo_url: string,
-    web_logo_url: string,
-    thumbnail_url: string,
-    tag_ids: [1, 2],
-    tags: [
-    {
-        id: number,
-        name: string,
-    }
-    ],
-}
-
-
 /**
  * 获取 数据洞察子栏目列表
  */

@@ -6,6 +6,8 @@ import {getSize,WindowWidth} from './utils';
 
 const  styles = StyleSheet.create({
 
+  
+
     main:{
       backgroundColor: '#9f0',
       flexDirection:'row',

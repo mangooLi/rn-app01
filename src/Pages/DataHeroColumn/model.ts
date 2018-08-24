@@ -1,7 +1,7 @@
 
 
-import {observable,action, toJS} from 'mobx';
-import {DataHeroTopic,getDataHeroTopics} from '../../api';
+import {observable,action,} from 'mobx';
+import {getDataHeroTopics} from '../../api';
 
 
 

@@ -2,7 +2,7 @@
 
 
 import List from  '../../Common/List';
-import {ReportProductItem,getMyReport} from '../../api';
+import {getMyReport} from '../../api';
 
 export default class Model extends List<ReportProductItem> {
 

@@ -2,7 +2,7 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableWithoutFeedback} from 'react-native';
+import {View,Text,} from 'react-native';
 import {bottomStyle} from './style';
 import CollectionModel from './model';
 import {observer} from 'mobx-react';

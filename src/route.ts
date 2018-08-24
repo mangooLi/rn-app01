@@ -77,7 +77,7 @@ const Route = createStackNavigator({
     Refresh:Refresh
 
     },{
-        initialRouteName: 'Main',
+        initialRouteName: 'BottomRoute',
         mode: 'modal',
         headerMode: 'none',
         // transitionConfig:()=>({

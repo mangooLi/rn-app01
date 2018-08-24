@@ -4,8 +4,7 @@ import {observable, action,} from 'mobx';
 import List from '../../Common/List';
 import {remove, getSize} from '../../utils';
 import {Animated} from 'react-native';
-import {DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,getAccountComment,
-        getAccountCollection,deleteStarInformation,CommentItem} from '../../api';
+import {getAccountComment,getAccountCollection,deleteStarInformation} from '../../api';
 
 export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|DataHeroItem|DataFiftyItem|CommentItem> {
 

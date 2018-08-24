@@ -20,6 +20,10 @@ export const dataDiscoverStyle=StyleSheet.create({
         height:getSize(44+12),
         flexDirection:'row',
         width:getSize(375),
+    },
+    footer:{
+        height:getSize(44+12+29),
+        width:200
     }
 })
 

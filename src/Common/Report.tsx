@@ -2,7 +2,6 @@
 
 import React,{Component} from 'react';
 import {View,Text,Image,ScrollView,TouchableOpacity} from 'react-native';
-import {ReportProductItem} from '../api';
 import {moment,map} from '../utils';
 import  {reportStyle} from '../Pages/All/style'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';

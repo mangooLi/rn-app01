@@ -1,19 +1,6 @@
 
 import fetch  from './request'
 
-import {InformationFlow, ReportProductItem} from './home';
-import {CommentItem} from './comment';
-import {Meta} from './common';
-// 用户信息
-export interface AcountInfo {
-    id: number,
-    nickname: string,
-    phone: string,
-    avatar_url: string,
-    created_at: string,
-    updated_at: string,
-    token: string,
-}
 
 
 /**

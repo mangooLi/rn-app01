@@ -6,7 +6,6 @@ import  {
     TouchableWithoutFeedback,Modal
 } from 'react-native';
 import TabBar from '../../Common/TabBar';
-import {AcountInfo} from '../../api';
 const right = require('../../assets/img/right0.png');
 import {pageStyle,modalStyle} from './style'
 import ModalContent from './ModalContent';
@@ -51,7 +50,7 @@ export default class AccountCenter extends Component {
                 <TouchableWithoutFeedback onPress={()=>this.changeAvatar()}>
                     <Image style={pageStyle.head_img} source={{uri:user.avatar_url}}/>
                 </TouchableWithoutFeedback>
-                <Text style={pageStyle.head_name}>{user.nickname}</Text>
+                <Text style={pageStyle.head_name}>{user &&  user.nickname || 'userName'}</Text>
             </View>
             <View style={pageStyle.line}>
                 <Text style={pageStyle.line_text} onPress={()=>this.setState({modalVisible:true,type:'text'})}>修改用户名</Text>

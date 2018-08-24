@@ -2,7 +2,7 @@
 
 
 import {observable,action,extendObservable, toJS } from 'mobx';
-import {getReportProductsDetail ,DataDiscoverItem, } from '../../api'
+import {getReportProductsDetail , } from '../../api'
 
 
 export default class ReportDetailModel {

@@ -3,7 +3,7 @@
 import React,{Component} from 'react';
 import {View,Text,Image,Linking} from 'react-native';
 import AutoHeightWebView from 'react-native-autoheight-webview'
-import {InformationCardItem} from '../../api';
+
 import {informationCardStyle} from './style';
 import {map} from '../../utils';
 

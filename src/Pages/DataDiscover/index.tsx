@@ -41,6 +41,7 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
                 onEndReached={()=>this.store.loadData()}
                 onEndReachedThreshold={0.1}
                 keyExtractor={(index) => String(index)+String(Math.random())}
+                ListFooterComponent={<View style={dataDiscoverStyle.footer}/>}
             />
 
             {/* <Text>hehe</Text> */}

@@ -1,4 +1,4 @@
-import {StyleSheet,FlexStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {getSize, WindowWidth,WindowHeight} from '../../utils';
 
 

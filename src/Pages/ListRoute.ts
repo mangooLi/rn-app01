@@ -1,13 +1,13 @@
 
 
 
-import {createMaterialTopTabNavigator,TabNavigatorConfig} from 'react-navigation';
+import {createMaterialTopTabNavigator} from 'react-navigation';
 
 
-import AllPage,{AllPageWithAnimate} from './All';
-import DataDiscover,{DataDiscoverWithAnimate} from './DataDiscover';
-import ReportProducts,{ReportProductsWithAnimate} from './ReportProducts';
-import HomeContainer from './Home/HomeContainer';
+import {AllPageWithAnimate} from './All';
+import {DataDiscoverWithAnimate} from './DataDiscover';
+import {ReportProductsWithAnimate} from './ReportProducts';
+
 
 import HomeBar from './HomeBar';
 

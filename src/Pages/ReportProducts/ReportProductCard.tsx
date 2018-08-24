@@ -5,7 +5,7 @@ import { View,Image, Text ,TouchableOpacity,GestureResponderEvent} from 'react-n
 import moment from 'moment';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
-import {ReportProductItem} from '../../api'
+
 import {cardStyle} from './style';
 
 

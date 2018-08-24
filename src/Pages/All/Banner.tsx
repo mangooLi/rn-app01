@@ -10,7 +10,7 @@ import  {
 } from 'react-native';
 import moment from 'moment';
 import Banner,{IndicaterType,IndicaterAlign} from '../../vendor/react-native-whc-banner';
-import {BannerItem} from '../../api';
+
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { bannerStyle } from './style';

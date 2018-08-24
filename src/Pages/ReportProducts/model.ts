@@ -1,7 +1,7 @@
 
 
 import {observable,action, toJS} from 'mobx'
-import {ReportProductItem,getReportProducts} from '../../api';
+import {getReportProducts} from '../../api';
 
 export default class ReportProductsModel{
 

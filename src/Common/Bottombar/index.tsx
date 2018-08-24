@@ -82,9 +82,6 @@ export default withNavigation<{}>(BottomBar)
 
 
 
-
-
-
 export const cmpStyle = StyleSheet.create({
     container:{
         flexDirection:'row',

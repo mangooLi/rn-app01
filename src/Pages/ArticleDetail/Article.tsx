@@ -8,7 +8,7 @@ import AutoHeightWebView from 'react-native-autoheight-webview'
 import DetailModel from './model';
 import {map, getSize, moment} from '../../utils';
 import {detailStyle,articleStyle, informationCardStyle} from './style';
-// import {getInformaatinDetail} from '../../api'
+
 import InformationCard from './InformationCard';
 
 interface Props{

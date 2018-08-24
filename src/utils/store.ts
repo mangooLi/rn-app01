@@ -1,8 +1,6 @@
 
 
 
-import {DataHeroTopic} from '../api';
-
 class StorageService<T> {
 
     data:any;

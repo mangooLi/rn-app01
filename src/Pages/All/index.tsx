@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent,RefreshControl} from 'react-native';
-import { getInformationFlow,getBanners,getRandomReportProduct,BannerItem,DataDiscoverItem,DataLabItem,DataHeroItem,DataFiftyItem,ReportProductItem,InformationFlowType} from '../../api'
+import { getInformationFlow,getBanners,getRandomReportProduct,InformationFlowType} from '../../api'
 
 import ArticleBrief from '../../Common/ArticleBrief';
 import Banner from './Banner';
@@ -123,7 +123,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                         // progressBackgroundColor='#f0f'
                         enabled={true}
                         progressViewOffset={20}
-                        tintColor='#0ff'    
+                        // tintColor='#0ff'    
                         title='下拉刷新'
                     />
                 }

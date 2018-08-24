@@ -1,8 +1,6 @@
 
 
 import { createStackNavigator,NavigationContainer } from 'react-navigation';
-// import CardStackStyleInterpolator from 'react-navigation/src/views/'
-import StackViewStyleInterpolator from 'react-navigation/src/views/StackView/StackViewStyleInterpolator';
 
 
 // pages

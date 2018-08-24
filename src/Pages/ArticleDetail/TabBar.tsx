@@ -9,10 +9,10 @@ import DetailModel from './model'
 import {startInformation} from '../../api';
 
 const leftIcon = require('../../assets/img/left.png');
-const heart = require('../../assets/img/heart.png');
+const heart = require('../../assets/img/heart/heart.png');
 
-const message = require('../../assets/img/message.png');
-const share = require('../../assets/img/share.png');
+const message = require('../../assets/img/message/message.png');
+const share = require('../../assets/img/share/share.png');
 
 class TabBar extends Component<NavigationInjectedProps & {store:DetailModel}>{
 

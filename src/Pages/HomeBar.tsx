@@ -6,7 +6,7 @@ import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 
 import listStore from './ListModel';
 import { autorun } from 'mobx';
-const searchIcon = require('../assets/img/ic_search_24px.png');
+const searchIcon = require('../assets/img/ic_search_24px/ic_search_24px.png');
 const shapeIcon = require('../assets/img/icAccountCircle24Px/icAccountCircle24Px.png');
 
 
@@ -40,6 +40,10 @@ export const barStyle=StyleSheet.create({
         lineHeight:getSize(22),
         marginLeft:getSize(20),
         flex:1
+    },
+    img_search:{
+        width:getSize(24),
+        height:getSize(24)
     },
     img_account:{
         marginLeft:getSize(16),
@@ -120,7 +124,7 @@ class HomeBar extends Component<Prop & NavigationInjectedProps> {
                 <Text onPress={()=>this.toPage(2)} style={barStyle.text}>数据洞察</Text>
                 <Text onPress={()=>this.toPage(3)} style={barStyle.report}>数据报告</Text>
                 <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('SearchPage')}>
-                    <Image source={searchIcon}/>
+                    <Image source={searchIcon} style={barStyle.img_search}/>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback onPress={()=>this.toggle()}>
                     <Image  style={barStyle.img_account} source={shapeIcon}/>

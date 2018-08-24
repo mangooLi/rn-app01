@@ -48,7 +48,7 @@ export default class AccountCenter extends Component {
         <TabBar title = "我" style={{backgroundColor:'#f8f8f8',borderBottomColor:'#c8c7cc',}}/>
             <View style={pageStyle.head_container}>
                 <TouchableWithoutFeedback onPress={()=>this.changeAvatar()}>
-                    <Image style={pageStyle.head_img} source={{uri:user.avatar_url}}/>
+                    {user &&  user.avatar_url ?<Image style={pageStyle.head_img} source={{ uri:user &&  user.avatar_url}}/> :<View style={pageStyle.head_img}/>}
                 </TouchableWithoutFeedback>
                 <Text style={pageStyle.head_name}>{user &&  user.nickname || 'userName'}</Text>
             </View>

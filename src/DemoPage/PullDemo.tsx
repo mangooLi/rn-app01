@@ -8,12 +8,12 @@ import PRF from './PRF';
 
 
 const style = StyleSheet.create({
-    loadding:{
+    loading:{
         height:getSize(50),
         backgroundColor:'#f00',
 
     },
-    loaddingText:{
+    loadingText:{
         color:'#9f0',
         fontSize:getSize(20),
         textAlign:'center'
@@ -28,8 +28,8 @@ export default class PullDemo extends React.Component {
 
 
     refresh(){
-        return (<View style={style.loadding}>
-            <Text style={style.loaddingText}>loadding</Text>
+        return (<View style={style.loading}>
+            <Text style={style.loadingText}>loading</Text>
         </View>)
     }
 

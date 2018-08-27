@@ -11,7 +11,7 @@ export default class TopicModel {
     @observable informations:DataDiscoverItem[]=[];
     pageToLoad:number =1;
     total_page:number =1;
-    loadding :boolean = false;
+    loading :boolean = false;
 
     @action
     init (id:number,name:string){
@@ -30,10 +30,10 @@ export default class TopicModel {
 
     @action
     loadData(){
-        if( (this.pageToLoad>this.total_page) || this.loadding)return
-        this.loadding = true;
+        if( (this.pageToLoad>this.total_page) || this.loading)return
+        this.loading = true;
         getDataDiscoverInformations(this.id,this.pageToLoad).then(res=>{
-            this.loadding = false;
+            this.loading = false;
             if(res.data){
                 this.addInfo(res.data.data);
                 if(this.pageToLoad<=res.data.meta.total_page){
@@ -42,7 +42,7 @@ export default class TopicModel {
                 }
             }
         }).catch(()=>{
-            this.loadding = false;
+            this.loading = false;
         })
     }
 }

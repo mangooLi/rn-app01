@@ -4,6 +4,8 @@ import DataDiscoverModel from './model';
 import ArticleBrief from '../../Common/ArticleBrief';
 
 import HomeContainer from '../Home/HomeContainer';
+import NetError from '../../Common/NetError';
+import Loading from '../../Common/Loading';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import {observer} from 'mobx-react';
@@ -26,9 +28,10 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
 
 
     render(){
-        const {informations} =this.store;
+        const {informations,loading,netError} =this.store;
         return (
-        <View style={dataDiscoverStyle.container}>
+        <View>
+        {(!loading && !netError)? <View style={dataDiscoverStyle.container}>
 
             <Tags store={this.store}/>
             <FlatList 
@@ -37,14 +40,14 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
                 renderItem={({item})=>{
                     return <ArticleBrief {...item}  />
                 }}
-                // ListHeaderComponent={<Tags store={this.store}/>}
                 onEndReached={()=>this.store.loadData()}
                 onEndReachedThreshold={0.1}
                 keyExtractor={(index) => String(index)+String(Math.random())}
                 ListFooterComponent={<View style={dataDiscoverStyle.footer}/>}
             />
 
-            {/* <Text>hehe</Text> */}
+
+        </View>:netError?<NetError />:<Loading/>}
         </View>
         )
     }

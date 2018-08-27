@@ -37,9 +37,9 @@ export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|D
         this.onSetting = !this.onSetting;
 
         if(this.onSetting){
-            Animated.timing(this.position_left,{toValue:0,duration:1000}).start()
+            Animated.timing(this.position_left,{toValue:0,duration:500}).start()
         }else{
-            Animated.timing(this.position_left,{toValue:-getSize(36),duration:1000}).start()
+            Animated.timing(this.position_left,{toValue:-getSize(36),duration:500}).start()
 
         }
 

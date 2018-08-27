@@ -15,15 +15,17 @@ import Report, {ReportProps} from '../../Common/Report'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import HomeContainer from '../Home/HomeContainer';
-
-
+import NetError from '../../Common/NetError';
+import Loading from '../../Common/Loading';
 
 
 interface HomeState{
     banners:BannerItem[],
     report_product:ReportProductItem[],
     information:DataDiscoverItem[]|DataLabItem[]|DataHeroItem[]|DataFiftyItem[],
-    refreshing:boolean
+    refreshing:boolean,
+    loading:boolean,
+    netError:boolean
 }
 
 class AllPage extends React.Component<NavigationInjectedProps>{
@@ -43,9 +45,29 @@ class AllPage extends React.Component<NavigationInjectedProps>{
        banners:[],
        report_product:[],
        information:[],
-       refreshing:false
-   }
+       refreshing:false,
+       loading:false,
+       netError:false
 
+   }
+   handleLoadError=()=>{
+       this.setState({
+           loading:false,
+           netError:true
+       })
+   }
+   beforeLoad(){
+       this.setState({
+        loading:true,
+        netError:false
+       })
+   }
+   handleLoadDone(){
+       this.setState({
+           loading:false,
+           netError:false
+       })
+   }
    _loadinfo():Promise<any>{
 
        if( this.pageToLoad>this.totalPage)return Promise.resolve([]);
@@ -62,21 +84,39 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
     componentWillMount(){
         this.loadInfo=debounce(this._loadinfo,1000)
-        this._loadinfo().then(()=>{
+        this.beforeLoad()
+
+        Promise.all([this._loadinfo(),getBanners(),getRandomReportProduct()]).then(values=>{
+            this.handleLoadDone()
+            // handle load info 
             let information=this.state.information;
             this.preInfo= information.splice(0,7)
-            this.setState({information})
-        });
-        getBanners().then(res=>{
-            if(res.data){
-                this.setState({banners:res.data.data})
+            this.setState({information});
+            // handle get banner
+            if(values[1].data){
+                this.setState({banners:(values[1].data as {data:BannerItem[]}).data})
             }
-        })
-        getRandomReportProduct().then(res=>{
-            if(res.data){
-                this.setState({report_product:res.data.data})
+
+            // handle getRandomReportProduct
+            if(values[2].data){
+                this.setState({report_product:(values[2].data as {data:ReportProductItem[]}).data})
             }
-        })
+        }).catch(this.handleLoadError)
+        // this._loadinfo().then(()=>{
+        //     let information=this.state.information;
+        //     this.preInfo= information.splice(0,7)
+        //     this.setState({information})
+        // }).catch(this.handleLoadError)
+        // getBanners().then(res=>{
+        //     if(res.data){
+        //         this.setState({banners:res.data.data})
+        //     }
+        // }).catch(this.handleLoadError)
+        // getRandomReportProduct().then(res=>{
+        //     if(res.data){
+        //         this.setState({report_product:res.data.data})
+        //     }
+        // }).then(this.handleLoadError)
     }
 
     handleScroll(e:NativeSyntheticEvent<NativeScrollEvent> |undefined){
@@ -93,7 +133,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
     _onRefresh=()=>{
         this.setState({refreshing:true});
-        console.log('refrehing');
+        // console.log('refrehing');
         this.cn.setNativeProps({
             style:{
                 marginTop:80
@@ -111,10 +151,11 @@ class AllPage extends React.Component<NavigationInjectedProps>{
     
 
     render(){
-        const {banners, information,report_product}=this.state;
+        const {banners, information,report_product,loading,netError}=this.state;
+        
         return (
             <View style={homeStyle.page_container} ref={c=>this.cn=c}>
-            <ScrollView  
+            {(!loading && !netError)? <ScrollView  
                 refreshControl={
                     <RefreshControl
                         refreshing={false}
@@ -147,7 +188,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                     }}
                     keyExtractor={(index) => String(index)+String(Math.random())}
                 />
-            </ScrollView>
+            </ScrollView>:netError?<NetError />:<Loading/> }
             </View>
         )
     }

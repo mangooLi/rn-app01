@@ -149,6 +149,7 @@ export default abstract class  List<T> {
 3. createStackNavigator 返回的是一个react组件，所以你可以把它包含进另一个路由里，实现路由的嵌套。
 4. createStackNavigator 方法返回的虽然是以一个react组件，但是如果你把它当子组件插在页面中的某个角落，这时候页面是不会渲染的。它只能当作某个页面的跟组件。如果你想实现web端很多单页面APP那样的布局，多个路由页面复用一个导航栏，可以采用上面那种方式。`tabBarComponent`传入的组件可以高度自定义，并且可以通过`position:relative|absolute`定位在任意地方。
 5. 只要知道路由的名称，就能很方便地跳转到任意路由。不管这两个路由在嵌套路由中的层级如何。
+6. 创建路由的时候需要注意，`createBottomTabNavigator`和`createMaterialBottomTabNavigator`的路由是懒加载的，但是`createMaterialTopTabNavigator`的不是。如果需要懒加载，可以在`TabNavigatorConfig`选项里配置`lazy:true`
 
 
 ### 九 下拉刷新
@@ -159,4 +160,30 @@ ScrollView和FlatList支持refreshControl属性，通过该属性指定RefreshCo
 react-native 提供了AsyncStorage，可以代替localStorage。但是一般不推荐直接使用AsyncStorage，而是对其做一层封装。 社区一般推荐[react-native-storage](https://github.com/sunnylqm/react-native-storage/blob/master/README-CHN.md)。由于AsyncStorage的读取是异步的，因此对于一些常用的全局信息或者不方便异步读取的信息，可以挂载在global对象上。
 
 ### 十一 其他
-1. interface的处理。定义的interface，有两种处理方法，一种是定义在模块中，然后在需要的地方import进来。一种是定义在非模块的TS文件中，然后在tsconfig.json中配置include字段。经过对比判断，定义在非模块化文件中更方便。值得注意的是，枚举值只能定义在模块化文件中然后export出去。如果定义在非模块化文件中，运行的时候枚举值会找不到。如果非模块化TS文件中的interface也需要用到该枚举值怎么办？只能定
+1. interface的处理。定义的interface，有两种处理方法，一种是定义在模块中，然后在需要的地方import进来。一种是定义在非模块的TS文件中，然后在tsconfig.json中配置include字段。经过对比判断，定义在非模块化文件中更方便。值得注意的是，枚举值只能定义在模块化文件中然后export出去。如果定义在非模块化文件中，运行的时候枚举值会找不到。如果非模块化TS文件中的interface也需要用到该枚举值怎么办？只能分别在两个文件里定义两个一样的interface了。
+2. 获取网络状态。有时候，APP需要获取网络状态，在无网络或者网络状态不佳的时候提示。react-native提供了NetInfo模块，供APP访问网络状态。在`getConnectionInfo`方法的回调里，提供了`ConnectionType`和`EffectiveConnectionType`信息。这两个枚举可选值如下：
+
+&nbsp|ConnectionType|ConnectionType
+:---:|:---:|:---:
+值|none - 设备处于离线状态<br/>wifi - 设备通过wifi联网，或者设备是iOS模拟器<br/>cellular - 设备通过蜂窝数据流量联网<br/>unknown - 联网状态异常|2g<br/>3g<br/>4g<br/>unknown
+值（仅安卓）|bluetooth - 设备通过蓝牙协议联网<br/>ethernet - 设备通过以太网协议联网<br/>wimax - 设备通过WiMAX协议联网|
+
+3. react-native在安卓端默认是不支持GIF动图的，根据文档提示，需要在android/app/build.gradle文件中根据需要手动添加以下模块：
+
+```
+dependencies {
+  // If your app supports Android versions before Ice Cream Sandwich (API level 14)
+  compile 'com.facebook.fresco:animated-base-support:1.9.0'
+
+  // For animated GIF support
+  compile 'com.facebook.fresco:animated-gif:1.9.0'
+
+  // For WebP support, including animated WebP
+  compile 'com.facebook.fresco:animated-webp:1.9.0'
+  compile 'com.facebook.fresco:webpsupport:1.9.0'
+
+  // For WebP support, without animations
+  compile 'com.facebook.fresco:webpsupport:1.9.0'
+}
+```
+但是这里还是可能会有坑。笔者按照文档提示，加了上述模块后，运行r`react-native run-android`，有时候编译不过去，有时候编译成功，但是APP闪退。经过查找资料，发现是`react-native`与`com.facebook.fresco`版本号匹配的问题。最新的文档是0.56的，项目是0.55的。查找0.55的文档，把`com.facebook.fresco`的版本换成1.3.0，就OK了。

@@ -23,6 +23,7 @@ export default class ReportDetailModel {
     @action
     setProgress(percent:number){
         this.percent=percent;
+        console.log(percent)
     }
 
     @action

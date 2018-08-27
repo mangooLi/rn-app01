@@ -2,41 +2,23 @@
 
 import {observable,action,extendObservable, toJS } from 'mobx';
 
-import {getDataDiscoverInformations,getDataDiscoverTopic} from '../../api'
+import {getDataDiscoverInformations,getDataDiscoverTopic} from '../../api';
+import List from '../../Common/List';
 
-export default class DataDiscoverModel{
+export default class DataDiscoverModel extends List<DataDiscoverItem>{
 
 
-    @observable informations:DataDiscoverItem[] = [];
+
 
     @observable topics:DataDiscoverTopic[] = [];
 
-    pageToLoad :number  =1;
-    total_page:number = 1;
-    loadding:boolean = false
-
-    @action
-    loadData(){
-        if(this.pageToLoad>this.total_page)return
-        getDataDiscoverInformations(null, this.pageToLoad).then(res=>{
-            if(res.data){
-                this.addInformations(res.data.data);
-                if(this.pageToLoad<=res.data.meta.total_page){
-                    this.pageToLoad=this.pageToLoad+1;
-                    this.total_page=res.data.meta.total_page;
-                }
-            }
-        })
+    apiFn = (page:number)=>{
+        return getDataDiscoverInformations(null,page)
     }
 
+    
 
 
-    @action
-    addInformations(list:DataDiscoverItem[]){
-        let pre = toJS(this.informations);
-        pre=pre.concat(list);
-        this.informations = observable(pre)
-    }
 
     @action
     loadTags(){

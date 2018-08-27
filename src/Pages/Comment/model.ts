@@ -8,7 +8,7 @@ export default class CommentModel {
     @observable comment:string = '';
     pageToLoad :number = 1;
     total_page:number = 1;
-    loadding = false;
+    loading = false;
 
 
     @action setId (id:number){
@@ -31,10 +31,10 @@ export default class CommentModel {
 
     @action 
     getCommentsList(pageToLoad:number){
-        if((this.pageToLoad>this.total_page)|| this.loadding ){return };
-        this.loadding = true;
+        if((this.pageToLoad>this.total_page)|| this.loading ){return };
+        this.loading = true;
         getInformationComments(this.id, pageToLoad).then(res=>{
-            this.loadding = false;
+            this.loading = false;
             if(res.data){
                 let pre=this.commentList;
                 pre = pre.concat(res.data.data);
@@ -45,7 +45,7 @@ export default class CommentModel {
                 }
             }
         }).catch(e=>{
-            this.loadding = false;
+            this.loading = false;
         })
     }
 

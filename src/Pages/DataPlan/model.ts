@@ -7,7 +7,10 @@ import {DataHeroTopicStorage} from '../../utils/store';
 export default class DataPlanModel{
     @observable  data_hero_informations:DataHeroItem[] = []
     @observable data_lab_informations:DataLabItem[] =[]
-    @observable data_fifty_informations:DataFiftyItem[] =[]
+    @observable data_fifty_informations:DataFiftyItem[] =[];
+    @observable loading :boolean = false;
+    @observable netError:boolean = false
+
 
 
     headList =[
@@ -18,20 +21,41 @@ export default class DataPlanModel{
 
 
     init (){
-        getDataPlanList().then(res=>{
-            if(res.data){
+        this.loading = true;
+        // getDataPlanList().then(res=>{
+        //     this.loading = false;
+        //     if(res.data){
 
-                const {data_hero_informations,data_lab_informations,data_fifty_informations} =res.data.data
+        //         const {data_hero_informations,data_lab_informations,data_fifty_informations} =res.data.data
+        //         this.data_hero_informations = observable(data_hero_informations);
+        //         this.data_lab_informations=observable(data_lab_informations);
+        //         this.data_fifty_informations=observable(data_fifty_informations);
+        //     }
+        // })
+        // getDataHeroTopics().then(res=>{
+        //     if(res.data){
+               
+        //         DataHeroTopicStorage.setItem('topics',res.data.data)
+        //     }
+        // })
+
+        Promise.all([getDataPlanList(),getDataHeroTopics()]).then(values=>{
+            this.loading = false
+            if(values[0] && values[0].data){
+
+                const {data_hero_informations,data_lab_informations,data_fifty_informations} =(values[0].data as DataPlan).data
                 this.data_hero_informations = observable(data_hero_informations);
                 this.data_lab_informations=observable(data_lab_informations);
                 this.data_fifty_informations=observable(data_fifty_informations);
             }
-        })
-        getDataHeroTopics().then(res=>{
-            if(res.data){
+
+            if(values[1].data){
                
-                DataHeroTopicStorage.setItem('topics',res.data.data)
+                DataHeroTopicStorage.setItem('topics',(values[1].data as {data:DataHeroTopic[]}).data)
             }
+        }).catch(()=>{
+            this.loading=false;
+            this.netError=true
         })
     }
 }

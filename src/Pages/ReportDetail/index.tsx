@@ -55,7 +55,7 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
 
         const pdfStyle= {
            width: Dimensions.get('window').width,
-           height:Dimensions.get('window').height-getSize(40)
+           height:percent===1? Dimensions.get('window').height-getSize(40):0
 
        }
 

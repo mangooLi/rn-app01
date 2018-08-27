@@ -17,10 +17,6 @@ import {cardStyle} from './style';
     
     handlePress(e:GestureResponderEvent){
         const {navigation,id} =this.props
-        //
-        // console.log (e)
-        //
-        //
 
         navigation.push('ReportDetail',{id})
     }

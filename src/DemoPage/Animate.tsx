@@ -28,16 +28,16 @@ export default class Animate extends Component {
 
     expand(){
         Animated.parallel([
-            Animated.timing(this.state.position_left,{toValue:0,duration:1000}),
-            // Animated.timing(this.state.position_top,{toValue:0,duration:1000}),
-            Animated.timing(this.state.scaleY,{toValue:1,duration:1000})
+            Animated.timing(this.state.position_left,{toValue:0,duration:500}),
+            // Animated.timing(this.state.position_top,{toValue:0,duration:500}),
+            Animated.timing(this.state.scaleY,{toValue:1,duration:500})
         ]).start()
     }
     fold(){
         Animated.parallel([
-            Animated.timing(this.state.position_left,{toValue:-WindowWidth/2,duration:1000}),
-            // Animated.timing(this.state.position_top,{toValue:WindowHeight*0.1,duration:1000}),
-            Animated.timing(this.state.scaleY,{toValue:0.8,duration:1000})
+            Animated.timing(this.state.position_left,{toValue:-WindowWidth/2,duration:500}),
+            // Animated.timing(this.state.position_top,{toValue:WindowHeight*0.1,duration:500}),
+            Animated.timing(this.state.scaleY,{toValue:0.8,duration:500})
         ]).start()
     }
 

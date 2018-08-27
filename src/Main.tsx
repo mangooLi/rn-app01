@@ -179,6 +179,19 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='我的报告'
                     onPress={()=>{this.props.navigation.navigate('MyReport')}}
                 ></Button></View>
+
+                <View style={style.btn}><Button
+                    title='网络错误提示'
+                    onPress={()=>{this.props.navigation.navigate('NetError')}}
+                ></Button></View>
+
+                 <View style={style.btn}><Button
+                    title='加载中'
+                    onPress={()=>{this.props.navigation.navigate('Loading')}}
+                ></Button></View>
+
+
+                
                 
                 
             </View>

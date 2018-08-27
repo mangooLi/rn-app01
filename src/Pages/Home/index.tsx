@@ -13,7 +13,7 @@ import {pageStyle,animateStyle} from './style';
 import PersonCenter from './PersonalCenter';
 import homeModel from './model';
 
-import BottomBar from '../../Common/Bottombar';
+import BottomBar from '../../Common/BottomBar';
 
 @observer
 export default class Home extends Component {
@@ -76,19 +76,19 @@ export default class Home extends Component {
     expand(){
         this.folded = false;
         Animated.parallel([
-            Animated.timing(this.state.x,{toValue:0,duration:1000}),
-            // Animated.timing(this.state.y,{toValue:0,duration:1000}),
-            Animated.timing(this.state.scaleY,{toValue:1,duration:1000}),
-            Animated.timing(this.state.scaleX,{toValue:1,duration:1000})
+            Animated.timing(this.state.x,{toValue:0,duration:500}),
+            // Animated.timing(this.state.y,{toValue:0,duration:500}),
+            Animated.timing(this.state.scaleY,{toValue:1,duration:500}),
+            Animated.timing(this.state.scaleX,{toValue:1,duration:500})
         ]).start()
     }
     fold(){
         this.folded = true;
         Animated.parallel([
-            Animated.timing(this.state.x,{toValue:-WindowWidth/2,duration:1000}),
-            // Animated.timing(this.state.y,{toValue:WindowHeight*0.1,duration:1000}),
-            Animated.timing(this.state.scaleY,{toValue:0.8,duration:1000}),
-            Animated.timing(this.state.scaleX,{toValue:0.8,duration:1000}),
+            Animated.timing(this.state.x,{toValue:-WindowWidth/2,duration:500}),
+            // Animated.timing(this.state.y,{toValue:WindowHeight*0.1,duration:500}),
+            Animated.timing(this.state.scaleY,{toValue:0.8,duration:500}),
+            Animated.timing(this.state.scaleX,{toValue:0.8,duration:500}),
         ]).start()
     }
 

@@ -8,22 +8,23 @@ import ReportProductsModel from './model';
 import ReportProductItem from './ReportProductCard'
 import {reportProductsStyle } from './style';
 import HomeContainer from '../Home/HomeContainer';
+import NetError from '../../Common/NetError';
+import Loading from '../../Common/Loading';
 
 @observer
 class ReportProducts  extends React.Component{
 
     store = new ReportProductsModel();
 
-
     componentWillMount(){
         this.store.loadData()
     }
 
     render(){
-        const {informations} =this.store
+        const {informations,loading,netError} =this.store
         return (
             <View style={reportProductsStyle.container}>
-                <FlatList 
+                {(!loading && !netError)? <FlatList 
                     data={informations}
                     renderItem={({item})=>{
                         return <ReportProductItem {...item}  />
@@ -34,7 +35,7 @@ class ReportProducts  extends React.Component{
                     ListFooterComponent={
                         <View style={reportProductsStyle.footer}/>
                     }
-                />
+                />:netError?<NetError />:<Loading/>}
             </View>
         )
     }

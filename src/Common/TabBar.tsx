@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableOpacity} from 'react-native';
-import {tabBarStyle} from './style';
+import { StyleSheet} from 'react-native'
+import {getSize} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
-const leftIcon = require('../../assets/img/left.png');
+const leftIcon = require('../assets/img/left.png');
 
 
 interface Prop {
@@ -37,3 +38,36 @@ class TabBar extends Component<NavigationInjectedProps &Prop>{
 
 
 export default withNavigation<Prop>(TabBar)
+
+
+
+const tabBarStyle=StyleSheet.create({
+    tabBar:{
+        height:getSize(40),
+        flexDirection:'row',
+        borderBottomWidth:getSize(0.5),
+        borderBottomColor:'#f8f8f8'
+    },
+    imgContainer:{
+        position:'absolute',
+        left:getSize(10),
+        top:getSize(10),
+        zIndex:1000,
+    },
+    img:{
+        width:getSize(20),
+        height:getSize(20),
+       
+    },
+    text:{
+        marginTop:getSize(10),
+        height:getSize(24),
+        flexGrow:1,
+        fontSize:getSize(17),
+        textAlign:'center',
+        zIndex:100
+    },
+    right:{
+        
+    }
+})

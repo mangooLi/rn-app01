@@ -7,7 +7,7 @@ import {createBottomTabNavigator,TabNavigatorConfig} from 'react-navigation';
 
 import ListRoute from './ListRoute';
 import DataPlan from './DataPlan';
-import BottomBar from '../Common/Bottombar';
+import BottomBar from '../Common/BottomBar';
 
 const  BottomRoute = createBottomTabNavigator(
     {

@@ -12,11 +12,9 @@ export const pageStyle=StyleSheet.create({
 
 export const animateStyle ={
     one:{
-        backgroundColor:'#fa9842',
+        backgroundColor:'#fff',
         width:WindowWidth,
         paddingTop:getSize(40),
-        // height:WindowHeight-getSize(80),
-
         zIndex:12,
         justifyContent:'space-around',
         alignContent:'center',
@@ -35,3 +33,10 @@ export const animateStyle ={
         backgroundColor:'#36fff5'
     }
 }
+
+export const homeContainerStyle=StyleSheet.create({
+    container:{
+        backgroundColor:'#000',
+        height:WindowHeight
+    }
+})

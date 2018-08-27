@@ -15,7 +15,8 @@ import DataFifty from './DataFiftyCard';
 // import TabBar from './TabBar';
 import TabBar from '../../Common/TabBar';
 import {dataPlanstyle,tabBarStyle} from './style';
-import BottomBar from '../../Common/Bottombar';
+import NetError from '../../Common/NetError';
+import Loading from '../../Common/Loading';
 
 
 @observer
@@ -34,17 +35,17 @@ export default class DataPlan extends React.Component<NavigationInjectedProps>{
 
 
     render (){
-        const {data_hero_informations,data_lab_informations,data_fifty_informations,headList} =this.store;
+        const {data_hero_informations,data_lab_informations,data_fifty_informations,headList,loading,netError} =this.store;
         const {navigation}=this.props;
         return (
         <View style={dataPlanstyle.container}>
             <TabBar  
             
                 title="数据侠计划" 
-                rightIcon={<Text style={tabBarStyle.nav} onPress={()=>{console.log('introduction');navigation.navigate('Introduction')}}>简介</Text>}
+                rightIcon={<Text style={tabBarStyle.nav} onPress={()=>navigation.navigate('Introduction')}>简介</Text>}
                 withoutLeftIcon />
 
-            <ScrollView >
+            { (!loading && !netError)? <ScrollView >
                 <View style={dataPlanstyle.card}>
                     <CardHead {...headList[0]} />
                     {map(data_hero_informations,info=>(
@@ -76,8 +77,8 @@ export default class DataPlan extends React.Component<NavigationInjectedProps>{
                 </View>:<View/>
 
                 }
-            </ScrollView>
-            <BottomBar />
+            </ScrollView>:netError?<NetError />:<Loading />}
+
         </View>
         )
     }

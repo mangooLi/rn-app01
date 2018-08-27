@@ -25,6 +25,8 @@ import SettingPage from './Pages/Setting';
 import AccountCenter from './Pages/AccountCenter';
 import UpdatePassword from './Pages/UpdatePassword';
 import MyReport from './Pages/MyReport';
+import NetError from './Common/NetError';
+import Loading from './Common/Loading';
 
 // route
 import ListRoute from './Pages/ListRoute';
@@ -64,6 +66,8 @@ const Route = createStackNavigator({
     UpdatePassword:UpdatePassword,
     MyReport:MyReport,
     BottomRoute:BottomRoute,
+    NetError:NetError,
+    Loading:Loading,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,
@@ -75,7 +79,7 @@ const Route = createStackNavigator({
     Refresh:Refresh
 
     },{
-        initialRouteName: 'BottomRoute',
+        initialRouteName: 'Main',
         mode: 'modal',
         headerMode: 'none',
         // transitionConfig:()=>({

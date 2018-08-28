@@ -10,7 +10,7 @@ import Banner from './Banner';
 import DataLabCardContainer from './DataLabContainer';
 import {homeStyle} from './style';
 
-import { debounce } from '../../utils';
+import { debounce ,MyStyleSheetCreate} from '../../utils';
 import Report, {ReportProps} from '../../Common/Report'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 

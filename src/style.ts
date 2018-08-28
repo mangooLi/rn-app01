@@ -2,9 +2,9 @@
 
 
 import { StyleSheet} from 'react-native';
-import {getSize,WindowWidth} from './utils';
+import {getSize,WindowWidth,MyStyleSheetCreate} from './utils';
 
-const  styles = StyleSheet.create({
+const  styles = MyStyleSheetCreate({
 
   
 
@@ -41,7 +41,7 @@ const  styles = StyleSheet.create({
     },
     btn:{
       width:WindowWidth/3.5,
-      marginTop:getSize(10)
+      marginTop:10
     }
   });
 

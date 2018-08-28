@@ -3,7 +3,7 @@
 import React,{Component} from 'react';
 import {View,Image,StyleSheet,} from 'react-native';
 
-import {getSize,WindowHeight,WindowWidth} from '../utils';
+import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 
 const loadingGif = require('../assets/img/loading.gif');
 
@@ -17,7 +17,7 @@ export default class Loading extends Component {
     }
 }
 
-const style=StyleSheet.create({
+const style=MyStyleSheetCreate({
     container:{
         height:WindowHeight,
         width:WindowWidth,

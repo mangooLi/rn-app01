@@ -1,43 +1,43 @@
 
 
 import {StyleSheet} from 'react-native';
-import {getSize} from '../../utils';
+import {getSize,MyStyleSheetCreate} from '../../utils';
 
 
-export const pageStyle = StyleSheet.create({
+export const pageStyle = MyStyleSheetCreate({
     container:{
         flex:1,
         backgroundColor:'#fafafa'
     },
     rightIcon:{
-        fontSize:getSize(17),
-        lineHeight:getSize(24),
-        height:getSize(24),
-        marginTop:getSize(10),
-        marginRight:getSize(8),
+        fontSize:17,
+        lineHeight:24,
+        height:24,
+        marginTop:10,
+        marginRight:8,
         color:'#ccc'
     }
 })
 
 
-export const cardStyle = StyleSheet.create({
+export const cardStyle = MyStyleSheetCreate({
     card:{
-        paddingLeft:getSize(16),
-        paddingRight:getSize(16),
-        marginTop:getSize(12)
+        paddingLeft:16,
+        paddingRight:16,
+        marginTop:12
     },
     label:{
-        marginLeft:getSize(16),
-        fontSize:getSize(14),
-        lineHeight:getSize(20),
-        height:getSize(20),
+        marginLeft:16,
+        fontSize:14,
+        lineHeight:20,
+        height:20,
     },
     ipt:{
-        marginTop:getSize(5),
-        height:getSize(52),
-        borderRadius:getSize(8),
-        paddingLeft:getSize(16),
-        borderWidth:getSize(0.5),
+        marginTop:5,
+        height:52,
+        borderRadius:8,
+        paddingLeft:16,
+        borderWidth:0.5,
         borderColor:'#d8d8d8',
         backgroundColor:'#fff'
     }

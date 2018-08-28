@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {View,Text,Animated} from 'react-native';
 import {animateStyle} from './style'
-import { WindowWidth, WindowHeight } from '../utils';
+import { WindowWidth, WindowHeight ,MyStyleSheetCreate} from '../utils';
 
 export default class Animate extends Component {
 

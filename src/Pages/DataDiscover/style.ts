@@ -1,51 +1,51 @@
-import {StyleSheet,ViewStyle} from 'react-native';
-import { getSize } from '../../utils';
+// import {StyleSheet,ViewStyle} from 'react-native';
+import { getSize ,MyStyleSheetCreate} from '../../utils';
 import styles from '../../style';
 
 
-export const dataDiscoverStyle=StyleSheet.create({
+export const dataDiscoverStyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#f8f6f6',
-        // paddingTop:getSize(20)
+        // paddingTop:20
         // position:'absolute',
-        // top:getSize(44)
+        // top:44
     },
     flat_list:{
         // flex:1,
-        borderTopLeftRadius: getSize(4),
-        borderTopRightRadius: getSize(4),
+        borderTopLeftRadius: 4,
+        borderTopRightRadius: 4,
         backgroundColor:'#fff'
     },
     tags:{
-        height:getSize(44+12),
+        height:44+12,
         flexDirection:'row',
-        width:getSize(375),
+        width:375,
     },
     footer:{
-        height:getSize(44+12+29),
+        height:44+12+29,
         width:200
     }
 })
 
 
-export const tagsStyle=StyleSheet.create({
+export const tagsStyle=MyStyleSheetCreate({
     topic_container:{
-        height:getSize(44),
-        paddingTop:getSize(11),
+        height:44,
+        paddingTop:11,
         backgroundColor:'#fff'
     },
     topic:{
-        marginLeft:getSize(16),
-        height:getSize(22),
+        marginLeft:16,
+        height:22,
         flexDirection:'row',
-        marginRight:getSize(16)
+        marginRight:16
     },
     image:{
-        width:getSize(20),
-        height:getSize(20)
+        width:20,
+        height:20
     },
     text:{
-        fontSize:getSize(15),
-        marginLeft:getSize(4)
+        fontSize:15,
+        marginLeft:4
     }
 })

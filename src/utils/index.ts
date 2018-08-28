@@ -7,11 +7,12 @@ import debounce from 'lodash.debounce';
 import noop from 'lodash.noop';
 import remove from 'lodash.remove';
 import moment from 'moment';
+
 import 'moment/locale/zh-cn';
 moment.locale('zh-cn')
 
 
-import {getSize,WindowHeight,WindowWidth} from './size';
+import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from './size';
 
 export {
     assign,
@@ -25,7 +26,8 @@ export {
 
     WindowHeight,
     WindowWidth,
-    remove
+    remove,
+    MyStyleSheetCreate
 }
 
 

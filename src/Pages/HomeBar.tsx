@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Text,Image,TouchableWithoutFeedback,StyleSheet,Animated,} from'react-native';
-import {WindowWidth,WindowHeight,getSize} from '../utils'
+import {WindowWidth,WindowHeight,getSize,MyStyleSheetCreate} from '../utils'
 // import {barStyle} from './Home/style';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 
@@ -12,9 +12,9 @@ const shapeIcon = require('../assets/img/icAccountCircle24Px/icAccountCircle24Px
 
 
 
-export const barStyle=StyleSheet.create({
+export const barStyle=MyStyleSheetCreate({
     bar:{
-        height:getSize(40),
+        height:40,
         flexDirection:'row',
         paddingTop:getSize(31-24),
         backgroundColor:'#fff',
@@ -25,29 +25,29 @@ export const barStyle=StyleSheet.create({
         zIndex:9
     },
     text:{
-        fontSize:getSize(16),
-        height:getSize(22),
-        lineHeight:getSize(22),
-        marginLeft:getSize(20),
-        marginRight:getSize(4)
+        fontSize:16,
+        height:22,
+        lineHeight:22,
+        marginLeft:20,
+        marginRight:4
     },
     all:{
         
     },
     report:{
-        fontSize:getSize(16),
-        height:getSize(22),
-        lineHeight:getSize(22),
-        marginLeft:getSize(20),
+        fontSize:16,
+        height:22,
+        lineHeight:22,
+        marginLeft:20,
         flex:1
     },
     img_search:{
-        width:getSize(24),
-        height:getSize(24)
+        width:24,
+        height:24
     },
     img_account:{
-        marginLeft:getSize(16),
-        marginRight:getSize(12)
+        marginLeft:16,
+        marginRight:12
     }
 })
 interface Prop{

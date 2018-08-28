@@ -2,40 +2,40 @@
 
 
 import {StyleSheet} from 'react-native';
-import {getSize} from '../../utils'
+import {getSize,MyStyleSheetCreate} from '../../utils'
 
-export const topicStyle=StyleSheet.create({
+export const topicStyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#fff'
     },
     tabBar:{
-        height:getSize(40),
+        height:40,
         flexDirection:'row',
         borderBottomWidth:getSize(1/3.5),
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
     footer:{
-        height:getSize(98),
-        width:getSize(300)
+        height:98,
+        width:300
     }
 })
 
 
-export const tabBarStyle=StyleSheet.create({
+export const tabBarStyle=MyStyleSheetCreate({
     
 
     img:{
-        marginTop:getSize(10),
-        marginLeft:getSize(10),
-        width:getSize(20),
-        height:getSize(20)
+        marginTop:10,
+        marginLeft:10,
+        width:20,
+        height:20
     },
     text:{
-        marginTop:getSize(8),
-        height:getSize(24),
-        // width:getSize(70),
+        marginTop:8,
+        height:24,
+        // width:70,
         flexGrow:1,
-        fontSize:getSize(17),
+        fontSize:17,
         textAlign:'center'
     }
 })

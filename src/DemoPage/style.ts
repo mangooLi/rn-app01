@@ -2,52 +2,52 @@
 
 import {StyleSheet,ViewStyle,Animated} from 'react-native';
 
-import {getSize, WindowWidth, WindowHeight } from '../utils';
+import {getSize, WindowWidth, WindowHeight ,MyStyleSheetCreate} from '../utils';
 
-export const demoStyle = StyleSheet.create({
+export const demoStyle = MyStyleSheetCreate({
     con:{
-        width:getSize(375),
-        height:getSize(600),
+        width:375,
+        height:600,
     },
     view:{
-        width: getSize(375),
-        borderWidth:getSize(0.5),
+        width: 375,
+        borderWidth:0.5,
         // borderColor:'red',
-        // paddingLeft:getSize(37.5),
+        // paddingLeft:37.5,
         flexDirection:'row',
-        height:getSize(200),
-        // fontSize:getSize(30)
+        height:200,
+        // fontSize:30
     },
     text:{
         color:'red',
-        fontSize:getSize(20),
+        fontSize:20,
         fontFamily:'宋体',
         fontStyle:'italic',
         fontWeight:'bold',
-        letterSpacing:getSize(2),
-        lineHeight:getSize(30),
-        width:getSize(200),
-        // marginLeft:getSize(30)
+        letterSpacing:2,
+        lineHeight:30,
+        width:200,
+        // marginLeft:30
         textDecorationLine:'underline',
         textDecorationStyle:'dotted',
         textDecorationColor:'blue',
         textShadowColor:'green',
-        textShadowOffset:{width:getSize(2),height:2},
+        textShadowOffset:{width:2,height:2},
         textShadowRadius:1
 
 
     },
     innerText:{
-        width:getSize(100),
-        marginLeft:getSize(30)
+        width:100,
+        marginLeft:30
     },
     img:{
-        marginLeft:getSize(50),
+        marginLeft:50,
         width:getSize(683/6),
         height:getSize(1024/3)
     },
     txt:{
-        width:getSize(375),
+        width:375,
         flexGrow:2
     }
 })
@@ -78,7 +78,7 @@ export const animateStyle ={
     },
     text:{
         width:WindowHeight/2,
-        height:getSize(100),
+        height:100,
         backgroundColor:'#36fff5'
     }
 }

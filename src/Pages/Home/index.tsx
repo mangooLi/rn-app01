@@ -3,7 +3,7 @@
 import React,{Component} from 'react';
 import {View,TouchableWithoutFeedback, ScrollView,NativeSyntheticEvent,NativeScrollEvent,Animated} from'react-native';
 import {observer} from 'mobx-react';
-import {WindowWidth,} from '../../utils';
+import {WindowWidth,MyStyleSheetCreate} from '../../utils';
 
 import HomeBar from '../HomeBar';
 import AllPage from '../All';

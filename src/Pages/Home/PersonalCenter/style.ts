@@ -1,60 +1,60 @@
 import {StyleSheet} from 'react-native';
-import { getSize, WindowHeight } from '../../../utils';
+import { getSize, WindowHeight ,MyStyleSheetCreate} from '../../../utils';
 
-export const pageStyle = StyleSheet.create({
+export const pageStyle = MyStyleSheetCreate({
     container:{
         // flex:1,
-        paddingLeft:getSize(214),
+        paddingLeft:214,
         height:WindowHeight
         // backgroundColor:'linearGradient(red,blue)'
     },
 
     avater_container:{
-        width:getSize(88+8),
-        height:getSize(88+8),
-        borderRadius:getSize(44+4),
-        borderWidth:getSize(4),
+        width:88+8,
+        height:88+8,
+        borderRadius:44+4,
+        borderWidth:4,
         borderColor:'#fff',
         marginTop:getSize(50-24+40),
         backgroundColor:'#fff'
     },
     avater:{
-        width:getSize(88),
-        height:getSize(88),
-        borderRadius:getSize(44),
+        width:88,
+        height:88,
+        borderRadius:44,
         position:'relative',
-        // top:getSize(4),
-        // left:getSize(4)
+        // top:4,
+        // left:4
     },
     key:{
-        width:getSize(30),
-        height:getSize(16),
+        width:30,
+        height:16,
         position:'relative',
-        left:getSize(29),
-        top:getSize(36)
+        left:29,
+        top:36
     },
     userName:{
-        width:getSize(88+8),
+        width:88+8,
         textAlign:'center',
-        fontSize:getSize(22),
-        lineHeight:getSize(30),
+        fontSize:22,
+        lineHeight:30,
         color:'#fff',
-        marginTop:getSize(4),
-        marginBottom:getSize(81)
+        marginTop:4,
+        marginBottom:81
     },
     link:{
-        height:getSize(22),
+        height:22,
         flexDirection:'row',
-        marginTop:getSize(36)
+        marginTop:36
     },
     link_img:{
-        width:getSize(22),
-        height:getSize(22),
-        marginRight:getSize(12)
+        width:22,
+        height:22,
+        marginRight:12
     },
     link_text:{
-        fontSize:getSize(16),
-        lineHeight:getSize(22),
+        fontSize:16,
+        lineHeight:22,
         color:'#fff'
     }
 })

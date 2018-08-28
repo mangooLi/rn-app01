@@ -11,7 +11,7 @@ import {View,Text} from 'react-native';
 import TabBar from '../../Common/TabBar';
 import {pageStyle}  from './style';
 import IptCrd from './IptCard';
-import { getSize } from '../../utils';
+
 import {updatePassword} from '../../api';
 
 export default class UpdatePassword extends Component {
@@ -66,7 +66,7 @@ export default class UpdatePassword extends Component {
 
             <IptCrd 
                 ref={c=>this.ipt1=c}
-                style={{marginTop:getSize(16)}}
+                style={{marginTop:16}}
                 label="为了保障你的账户安全，修改密码前请填写原密码"
                 placeholder="请输入原密码"
                 password
@@ -74,7 +74,7 @@ export default class UpdatePassword extends Component {
             />
             <IptCrd 
                 ref={c=>this.ipt2=c}
-                style={{marginTop:getSize(32)}}
+                style={{marginTop:32}}
                 label="新密码为不少于6位的数字或字母"
                 placeholder="请输入新密码"
                 password

@@ -3,7 +3,7 @@
 import React,{Component} from 'react';
 import {View,TouchableWithoutFeedback,Animated,NetInfo} from'react-native';
 import {observer} from 'mobx-react';
-import {WindowWidth, WindowHeight, getSize,} from '../../utils';
+import {WindowWidth, WindowHeight, getSize,MyStyleSheetCreate} from '../../utils';
 import {autorun } from 'mobx';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 
@@ -110,7 +110,7 @@ class HomeContainer extends Component<NavigationInjectedProps> {
 
                     style={[animateStyle.one,{left:x,transform:[{scaleX},{scaleY}]}]} >
 
-                    <View style={{height:WindowHeight-getSize(80)}}>
+                    <View style={{height:WindowHeight-80}}>
 
                         {this.props.children}
                     </View>

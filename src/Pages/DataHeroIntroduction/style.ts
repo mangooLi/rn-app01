@@ -1,21 +1,21 @@
 
 
 import {StyleSheet} from 'react-native';
-import {getSize} from '../../utils';
+import {getSize,MyStyleSheetCreate} from '../../utils';
 
-export const introductionStyle=StyleSheet.create({
+export const introductionStyle=MyStyleSheetCreate({
     imgContainer:{
         zIndex:100
     },
     img:{
-        width:getSize(375),
-        height:getSize(313),
+        width:375,
+        height:313,
         
     },
     tabBar:{
-        width:getSize(100),
-        height:getSize(40),
-        paddingTop:getSize(10),
+        width:100,
+        height:40,
+        paddingTop:10,
         position:'absolute',
         top:0,
         left:0,
@@ -23,8 +23,8 @@ export const introductionStyle=StyleSheet.create({
         zIndex:1000
     },
     icon:{
-        marginLeft:getSize(8),
-        width:getSize(20),
-        height:getSize(20)
+        marginLeft:8,
+        width:20,
+        height:20
     }
 })

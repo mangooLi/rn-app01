@@ -11,6 +11,7 @@ import {
     AsyncStorage,
     Image,PanResponderGestureState,PanResponderInstance
 } from 'react-native';
+import {MyStyleSheetCreate} from '../utils';
 
 let self:any;
 /**ref的引用*/
@@ -308,7 +309,7 @@ class PRF extends Component<Props>{
 
 export default PRF;
 
-var styles = StyleSheet.create({
+var styles = MyStyleSheetCreate({
     base: {
         flex: 1,
         position :'relative'

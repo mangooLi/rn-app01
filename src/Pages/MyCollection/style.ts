@@ -1,10 +1,10 @@
 
 
 import {StyleSheet} from 'react-native';
-import {getSize,WindowHeight,WindowWidth} from '../../utils';
+import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../../utils';
 
 
-export const pageStyle=StyleSheet.create({
+export const pageStyle=MyStyleSheetCreate({
 
     container:{
         // flex:1,
@@ -14,25 +14,25 @@ export const pageStyle=StyleSheet.create({
     },
     flatList:{
         position:'absolute',
-        width:getSize(36)+WindowWidth,
-        top:getSize(40),
-        height:WindowHeight-getSize(40),
+        width:36+WindowWidth,
+        top:40,
+        height:WindowHeight-40,
         backgroundColor:'#9c0'
     },
     footer:{
-        width:getSize(300),
-        height:getSize(40)
+        width:300,
+        height:40
     }
 })
 
 
-export const tabBarStyle=StyleSheet.create({
+export const tabBarStyle=MyStyleSheetCreate({
 
     right:{
-        marginTop:getSize(8),
-        height:getSize(24),
-        fontSize:getSize(17),
-        marginRight:getSize(8)
+        marginTop:8,
+        height:24,
+        fontSize:17,
+        marginRight:8
     },
     right_set:{
         color:'#666'
@@ -44,56 +44,56 @@ export const tabBarStyle=StyleSheet.create({
 
 })
 
-export const cardStyle=StyleSheet.create({
+export const cardStyle=MyStyleSheetCreate({
 
     card_container:{
         flexDirection:'row',
         alignItems:'center'
     },
     card_imgContainer:{
-        width:getSize(20),
-        height:getSize(20),
-        borderRadius:getSize(10),
-        marginLeft:getSize(16),
+        width:20,
+        height:20,
+        borderRadius:10,
+        marginLeft:16,
         backgroundColor:'#fff',
         borderColor:'#333',
         borderWidth:getSize(1/3.5)
         // marginTop:getSize()
     },
     img:{
-        width:getSize(20),
-        height:getSize(20)
+        width:20,
+        height:20
     }
 })
 
 
-export const bottomStyle = StyleSheet.create({
+export const bottomStyle = MyStyleSheetCreate({
     bottom:{
         position:'absolute',
         bottom:0,
         width:WindowWidth,
-        height:getSize(44),
+        height:44,
         flexDirection:'row',
-        paddingTop:getSize(10),
+        paddingTop:10,
     },
     text:{
-        fontSize:getSize(17),
-        lineHeight:getSize(24),
-        // marginTop:getSize(10)
+        fontSize:17,
+        lineHeight:24,
+        // marginTop:10
     },
     select:{
         // ...this.text,
-        fontSize:getSize(17),
-        lineHeight:getSize(24),
-        marginLeft:getSize(16),
+        fontSize:17,
+        lineHeight:24,
+        marginLeft:16,
         flex:1,
         color:'#666'
     },
     cancel:{
         // ...this.text,
-        fontSize:getSize(17),
-        lineHeight:getSize(24),
-        marginRight:getSize(16),
+        fontSize:17,
+        lineHeight:24,
+        marginRight:16,
         color:'#ccc'
     },
     cancel_all:{

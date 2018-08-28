@@ -3,49 +3,49 @@
 
 import {StyleSheet} from 'react-native';
 
-import { getSize } from '../../utils';
+import { getSize ,MyStyleSheetCreate} from '../../utils';
 
-export const pageStyle = StyleSheet.create({
+export const pageStyle = MyStyleSheetCreate({
     container:{
         backgroundColor:'#fff'
     },
     title:{
-        fontSize:getSize(13),
-        lineHeight:getSize(18),
-        height:getSize(40),
-        paddingTop:getSize(14),
-        borderBottomWidth:getSize(0.5),
+        fontSize:13,
+        lineHeight:18,
+        height:40,
+        paddingTop:14,
+        borderBottomWidth:0.5,
         borderBottomColor:'#c8c7cc',
-        paddingLeft:getSize(15)
+        paddingLeft:15
     },
     title_about_us:{
-        marginTop:getSize(15)
+        marginTop:15
     },
     line:{
-        paddingLeft:getSize(15),
-        paddingRight:getSize(14),
+        paddingLeft:15,
+        paddingRight:14,
         flexDirection:'row',
-        height:getSize(45),
-        paddingTop:getSize(10)
+        height:45,
+        paddingTop:10
     },
     line_text:{
-        fontSize:getSize(14),
-        lineHeight:getSize(24),
+        fontSize:14,
+        lineHeight:24,
     },
     line_left:{
-        fontSize:getSize(14),
-        lineHeight:getSize(24),
+        fontSize:14,
+        lineHeight:24,
         color:'#000',
         flex:1
     },
     line_right:{
-        fontSize:getSize(14),
-        lineHeight:getSize(24),
+        fontSize:14,
+        lineHeight:24,
         color:'#000'
     },
     line_img:{
-        width:getSize(8),
-        marginTop:getSize(6),
-        height:getSize(13)
+        width:8,
+        marginTop:6,
+        height:13
     }
 }) 

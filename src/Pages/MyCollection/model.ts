@@ -2,7 +2,7 @@
 
 import {observable, action,} from 'mobx';
 import List from '../../Common/List';
-import {remove, getSize} from '../../utils';
+import {remove, getSize,MyStyleSheetCreate} from '../../utils';
 import {Animated} from 'react-native';
 import {getAccountComment,getAccountCollection,deleteStarInformation} from '../../api';
 
@@ -22,7 +22,7 @@ export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|D
     onSetting:boolean = false;
 
     @observable
-    position_left = new Animated.Value(-getSize(36));
+    position_left = new Animated.Value(-36);
     @observable
     checkAll:boolean = false;
 
@@ -39,7 +39,7 @@ export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|D
         if(this.onSetting){
             Animated.timing(this.position_left,{toValue:0,duration:500}).start()
         }else{
-            Animated.timing(this.position_left,{toValue:-getSize(36),duration:500}).start()
+            Animated.timing(this.position_left,{toValue:-36,duration:500}).start()
 
         }
 

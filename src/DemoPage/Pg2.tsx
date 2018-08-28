@@ -3,16 +3,16 @@ import { View,Text,Image,WebView,ScrollView,StyleSheet} from 'react-native';
 import {demoStyle} from './style';
 
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import {WindowHeight,WindowWidth} from '../utils';
+import {WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 // import {a,b,style} from './constants'
-import { getSize } from '../utils';
 
 
 
-const styles=StyleSheet.create({
+
+const styles=MyStyleSheetCreate({
     container:{
         width:WindowWidth,
-        height:WindowHeight-getSize(100)
+        height:WindowHeight-100
     }
 })
 const FirstRoute = () => (

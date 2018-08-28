@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View,Image, Text,StyleSheet ,TouchableOpacity,GestureResponderEvent} from 'react-native';
 import moment from 'moment';
-import {getSize} from '../utils';
+import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
@@ -61,55 +61,55 @@ export default withNavigation<Props>(ArticleBrief);
 
 
 
-const cardStyle=StyleSheet.create({
+const cardStyle=MyStyleSheetCreate({
 
     container:{
         flexDirection:'row',
-        marginTop:getSize(12),
-        marginBottom:getSize(12)
+        marginTop:12,
+        marginBottom:12
     },
 
     img_container:{
-        width:getSize(164),
-        height:getSize(83),
-        paddingLeft:getSize(16) 
+        width:164,
+        height:83,
+        paddingLeft:16 
     },
     img:{
-        width:getSize(148),
-        height:getSize(83),
-        borderRadius:getSize(4)
+        width:148,
+        height:83,
+        borderRadius:4
     },
     detail_container:{
         flexGrow:1,
-        paddingLeft:getSize(12),
-        paddingRight:getSize(12),
+        paddingLeft:12,
+        paddingRight:12,
         // overflow:'hidden',
     },
     detail_author:{
-        height:getSize(17)
+        height:17
     },
     detail_author_text:{
-        fontSize:getSize(12),
+        fontSize:12,
         color:'#ff570c',
     },
     detail_title:{
         
-        width:getSize(187),
-        height:getSize(40),
-        marginTop:getSize(2)
+        width:187,
+        height:40,
+        marginTop:2
     },
     detail_title_text:{
-        fontSize:getSize(14),
+        fontSize:14,
         color:'#333333',
     },
     detail_date:{
-        height:getSize(14),
-        marginTop:getSize(4)
+        height:14,
+        marginTop:4
 
     },
     detail_date_text:{
         color:'#999',
-        fontSize:getSize(12),
+        fontSize:12,
     },
     
 })

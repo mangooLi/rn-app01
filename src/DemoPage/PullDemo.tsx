@@ -3,19 +3,19 @@
 import * as React from 'react';
 import { View,Text, ScrollView,StyleSheet,PanResponder,PanResponderInstance} from 'react-native';
 import PullToRefresh from './PullToRefresh';
-import {getSize,} from '../utils';
+import {getSize,MyStyleSheetCreate} from '../utils';
 import PRF from './PRF';
 
 
-const style = StyleSheet.create({
+const style = MyStyleSheetCreate({
     loading:{
-        height:getSize(50),
+        height:50,
         backgroundColor:'#f00',
 
     },
     loadingText:{
         color:'#9f0',
-        fontSize:getSize(20),
+        fontSize:20,
         textAlign:'center'
     },
     view:{

@@ -7,7 +7,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import {dataDiscoverStyle,tagsStyle} from './style'
 import {observer} from 'mobx-react'
 import DataDiscoverModel from './model';
-import {map} from '../../utils';
+import {map,MyStyleSheetCreate} from '../../utils';
 
 
 interface Props{

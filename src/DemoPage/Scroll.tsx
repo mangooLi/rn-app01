@@ -2,10 +2,10 @@
 
 import React,{Component} from 'react';
 import {View,Text,ScrollView ,StyleSheet,PanResponder,Button,TouchableWithoutFeedback} from 'react-native';
-import {WindowHeight,WindowWidth} from '../utils';
+import {WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 // import NestedScrollView from 'react-native-nested-scroll-view';
 
-const style=StyleSheet.create({
+const style=MyStyleSheetCreate({
     item1:{
         width:WindowWidth,
         height:WindowHeight/4,
@@ -73,7 +73,7 @@ export  class MyScroll extends Component<any>{
 
 
 
-const pressStyle = StyleSheet.create({
+const pressStyle = MyStyleSheetCreate({
     one:{
         backgroundColor:'#df9823',
         justifyContent:'center',
@@ -109,7 +109,7 @@ const MyPress = ()=>(
 
 
 
-const style2=StyleSheet.create({
+const style2=MyStyleSheetCreate({
     page:{
         width:WindowWidth,
         height:WindowHeight/2,

@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 import {View,Text,Image,TouchableOpacity} from 'react-native';
 
 import {Response,toggleMineLike} from '../../api';
-import {moment} from '../../utils';
+import {moment,MyStyleSheetCreate} from '../../utils';
 import {cardStyle} from './style';
 import CommentDetail from './model';
 

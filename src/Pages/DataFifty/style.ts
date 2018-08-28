@@ -1,43 +1,43 @@
 
 
-import {StyleSheet,ViewStyle,TextStyle,Dimensions} from 'react-native';
-import {getSize} from '../../utils';
+// import {StyleSheet,ViewStyle,TextStyle,Dimensions} from 'react-native';
+import {getSize,MyStyleSheetCreate} from '../../utils';
 
 
 
-export const dataFiftyStyle=StyleSheet.create({
+export const dataFiftyStyle=MyStyleSheetCreate({
     footer:{
-        width:getSize(300),
-        height:getSize(40+24)
+        width:300,
+        height:40+24
     },
     flatList:{
         backgroundColor:'#fff',
     },
     cardContainer:{
-        marginTop:getSize(24)
+        marginTop:24
     }
 })
 
-export const tabBarStyle=StyleSheet.create({
+export const tabBarStyle=MyStyleSheetCreate({
     tabBar:{
-        height:getSize(40),
+        height:40,
         flexDirection:'row',
         borderBottomWidth:getSize(1/3.5),
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
 
     img:{
-        marginTop:getSize(10),
-        marginLeft:getSize(10),
-        width:getSize(20),
-        height:getSize(20)
+        marginTop:10,
+        marginLeft:10,
+        width:20,
+        height:20
     },
     text:{
-        marginTop:getSize(8),
-        height:getSize(24),
-        // width:getSize(70),
+        marginTop:8,
+        height:24,
+        // width:70,
         flexGrow:1,
-        fontSize:getSize(17),
+        fontSize:17,
         textAlign:'center'
     },
 

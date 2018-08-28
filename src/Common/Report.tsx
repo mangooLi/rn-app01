@@ -2,7 +2,7 @@
 
 import React,{Component} from 'react';
 import {View,Text,Image,ScrollView,TouchableOpacity} from 'react-native';
-import {moment,map} from '../utils';
+import {moment,map,MyStyleSheetCreate} from '../utils';
 import  {reportStyle} from '../Pages/All/style'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 

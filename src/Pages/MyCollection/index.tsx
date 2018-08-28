@@ -9,8 +9,8 @@ import {NavigationFocusInjectedProps} from 'react-navigation';
 
 import {tabBarStyle,pageStyle} from './style';
 import CollectionCard from './CollectionCard';
-import { getSize } from '../../utils';
-import { WindowHeight } from '../../utils';
+
+import { WindowHeight ,MyStyleSheetCreate} from '../../utils';
 import BottomBar from './BottomBar';
 
 
@@ -20,7 +20,7 @@ export default class MyCollection extends Component<NavigationFocusInjectedProps
     store = new CollectionModel();
 
     // state={
-    //     position_left:new Animated.Value(-getSize(36))
+    //     position_left:new Animated.Value(-36)
     // }
 
     componentWillMount(){
@@ -52,7 +52,7 @@ export default class MyCollection extends Component<NavigationFocusInjectedProps
         return (<View style={pageStyle.container}>
             <TabBar title='我的收藏' rightIcon={<TabRight />}/>
 
-            <Animated.View style={[pageStyle.flatList,{left:this.store.position_left},onSetting?{height:WindowHeight-getSize(84)}:null]}>
+            <Animated.View style={[pageStyle.flatList,{left:this.store.position_left},onSetting?{height:WindowHeight-84}:null]}>
                 <FlatList 
                     data={informations}
                     renderItem={({item})=>{

@@ -11,7 +11,7 @@ import TabBar from '../../Common/TabBar';
 
 import  ReportDetailModel from './model';
 import {reportDetailStyle} from './style';
-import { getSize } from '../../utils';
+
 
 
 
@@ -55,7 +55,7 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
 
         const pdfStyle= {
            width: Dimensions.get('window').width,
-           height:percent===1? Dimensions.get('window').height-getSize(40):0
+           height:percent===1? Dimensions.get('window').height-40:0
 
        }
 

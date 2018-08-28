@@ -1,107 +1,107 @@
 import {StyleSheet} from 'react-native'
-import { getSize } from '../../utils';
+import { getSize ,MyStyleSheetCreate} from '../../utils';
 
 
 
-export const dataPlanstyle=StyleSheet.create({
+export const dataPlanstyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#f8f6f6',
-        // paddingBottom:getSize(40)
+        // paddingBottom:40
         flex:1
     },
     card:{
-        paddingBottom:getSize(35),
-        marginBottom:getSize(12),
+        paddingBottom:35,
+        marginBottom:12,
         backgroundColor:'#fff',
-        borderRadius:getSize(8)
+        borderRadius:8
     },
     dataLabContainer0:{
-        marginTop:getSize(17)
+        marginTop:17
     },
     dataLabContainer1:{
-        marginTop:getSize(31)
+        marginTop:31
     },
     fiftyContainer:{
-        marginTop:getSize(28)
+        marginTop:28
     },
     tabBar:{
-        height:getSize(40),
+        height:40,
         backgroundColor:'#f6f4f4',
         flexDirection:'row',
-        paddingTop:getSize(10)
+        paddingTop:10
     }
 })
 
 
 
 
-export const cardHeadStyle=StyleSheet.create({
+export const cardHeadStyle=MyStyleSheetCreate({
     container:{
         flexDirection:'row',
-        paddingLeft:getSize(16),
-        paddingRight:getSize(16),
-        marginBottom:getSize(5)
+        paddingLeft:16,
+        paddingRight:16,
+        marginBottom:5
     },
     logo:{
-        width:getSize(27),
-        height:getSize(27),
-        marginTop:getSize(20)
+        width:27,
+        height:27,
+        marginTop:20
     },
     title:{
         flex:1,
-        marginTop:getSize(25),
-        height:getSize(21),
-        fontSize:getSize(15),
+        marginTop:25,
+        height:21,
+        fontSize:15,
         color:`#fd5b3a`,
-        paddingLeft:getSize(4)
+        paddingLeft:4
     },
     text:{
-        width:getSize(70),
-        marginTop:getSize(25),
-        height:getSize(21),
-        fontSize:getSize(15),
+        width:70,
+        marginTop:25,
+        height:21,
+        fontSize:15,
         color:'#aaa'
     },
     right:{
-        width:getSize(17),
-        height:getSize(17),
-        marginTop:getSize(27)
+        width:17,
+        height:17,
+        marginTop:27
     }
 })
 
 
-export const fiftyStyle=StyleSheet.create({
+export const fiftyStyle=MyStyleSheetCreate({
     container:{
         width:getSize(375-32),
-        height:getSize(132+3),
-        marginLeft:getSize(16),
+        height:132+3,
+        marginLeft:16,
         flexDirection:'row',
 
     },
     img:{
-        width:getSize(99),
-        height:getSize(132),
-        marginTop:getSize(3),
-        borderRadius:getSize(8)
+        width:99,
+        height:132,
+        marginTop:3,
+        borderRadius:8
     },
     person:{
         width:getSize(375-32-99),
-        paddingLeft:getSize(16)
+        paddingLeft:16
     },
     name:{
-        height:getSize(25),
-        fontSize:getSize(18),
+        height:25,
+        fontSize:18,
         color:'#333'
     },
     introduction:{
-        marginTop:getSize(3),
-        fontSize:getSize(13),
+        marginTop:3,
+        fontSize:13,
     }
 })
 
-export const tabBarStyle=StyleSheet.create({
+export const tabBarStyle=MyStyleSheetCreate({
     title:{
-        fontSize:getSize(17),
+        fontSize:17,
         color:'#131313',
         width:'100%',
         textAlign:'center'
@@ -109,9 +109,9 @@ export const tabBarStyle=StyleSheet.create({
     nav:{
         position:'absolute',
         right:0,
-        marginRight:getSize(8),
-        top:getSize(10),
-        fontSize:getSize(17),
+        marginRight:8,
+        top:10,
+        fontSize:17,
         color:'#666',
         zIndex:100
     }

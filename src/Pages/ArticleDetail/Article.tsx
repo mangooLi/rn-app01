@@ -6,7 +6,7 @@ import AutoHeightWebView from 'react-native-autoheight-webview'
 
 
 import DetailModel from './model';
-import {map, getSize, moment} from '../../utils';
+import {map, getSize, moment,MyStyleSheetCreate} from '../../utils';
 import {detailStyle,articleStyle, informationCardStyle} from './style';
 
 import InformationCard from './InformationCard';
@@ -36,7 +36,7 @@ class Article extends Component<Props> {
                 <Text style={articleStyle.tag}>{map(tags,tag=>tag.name).join('・')}</Text>
                 {/* <AutoHeightWebView 
                     source={{html:`<div>${title}${title}${title}${title}${title}</div>`}}
-                    // heightOffset={getSize(5)}
+                    // heightOffset={5}
                     style={articleStyle.title}
                     customStyle={`div{font-size:22px;line-height:30px;}`}
                 /> */}
@@ -46,7 +46,7 @@ class Article extends Component<Props> {
 
                 {   _type !== 'data_lab_information' ? <AutoHeightWebView 
                     source={{html:content}}
-                    // heightOffset={getSize(5)}
+                    // heightOffset={5}
                     style={articleStyle.content}
                     customStyle={`img{max-width:100%}`}
                 />:<View/>}

@@ -3,10 +3,10 @@
 import {StyleSheet} from 'react-native';
 
 
-import {getSize} from '../../utils';
+import {getSize,MyStyleSheetCreate} from '../../utils';
 
-export const pageStyle = StyleSheet.create({
+export const pageStyle = MyStyleSheetCreate({
     footer:{
-        height:getSize(40+20)
+        height:40+20
     }
 })

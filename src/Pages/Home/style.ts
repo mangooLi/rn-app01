@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
-import {getSize, WindowWidth,WindowHeight} from '../../utils';
+import {getSize, WindowWidth,WindowHeight,MyStyleSheetCreate} from '../../utils';
 
 
-export const pageStyle=StyleSheet.create({
+export const pageStyle=MyStyleSheetCreate({
     scroll:{
         // width:WindowWidth*3
     }
@@ -14,7 +14,7 @@ export const animateStyle ={
     one:{
         backgroundColor:'#fff',
         width:WindowWidth,
-        paddingTop:getSize(40),
+        paddingTop:40,
         zIndex:12,
         justifyContent:'space-around',
         alignContent:'center',
@@ -29,12 +29,12 @@ export const animateStyle ={
     },
     text:{
         width:WindowHeight/2,
-        height:getSize(100),
+        height:100,
         backgroundColor:'#36fff5'
     }
 }
 
-export const homeContainerStyle=StyleSheet.create({
+export const homeContainerStyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#000',
         height:WindowHeight

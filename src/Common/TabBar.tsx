@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableOpacity} from 'react-native';
 import { StyleSheet} from 'react-native'
-import {getSize} from '../utils';
+import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
@@ -41,29 +41,29 @@ export default withNavigation<Prop>(TabBar)
 
 
 
-const tabBarStyle=StyleSheet.create({
+const tabBarStyle=MyStyleSheetCreate({
     tabBar:{
-        height:getSize(40),
+        height:40,
         flexDirection:'row',
-        borderBottomWidth:getSize(0.5),
+        borderBottomWidth:0.5,
         borderBottomColor:'#f8f8f8'
     },
     imgContainer:{
         position:'absolute',
-        left:getSize(10),
-        top:getSize(10),
+        left:10,
+        top:10,
         zIndex:1000,
     },
     img:{
-        width:getSize(20),
-        height:getSize(20),
+        width:20,
+        height:20,
        
     },
     text:{
-        marginTop:getSize(10),
-        height:getSize(24),
+        marginTop:10,
+        height:24,
         flexGrow:1,
-        fontSize:getSize(17),
+        fontSize:17,
         textAlign:'center',
         zIndex:100
     },

@@ -3,7 +3,7 @@
 import React,{Component} from 'react';
 import {View,Text,StyleSheet,} from 'react-native';
 
-import {getSize,WindowHeight,WindowWidth} from '../utils';
+import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 import HomeContainer from '../Pages/Home/HomeContainer'
 
 export default class NetError extends Component {
@@ -16,7 +16,7 @@ export default class NetError extends Component {
     }
 }
 
-const style=StyleSheet.create({
+const style=MyStyleSheetCreate({
     container:{
         height:WindowHeight,
         width:WindowWidth,
@@ -27,10 +27,10 @@ const style=StyleSheet.create({
         color:'#333',
         backgroundColor:'#ccc',
         width:0.50*WindowWidth,
-        height:getSize(30),
-        lineHeight:getSize(30),
-        fontSize:getSize(16),
-        borderRadius:getSize(4),
+        height:30,
+        lineHeight:30,
+        fontSize:16,
+        borderRadius:4,
         textAlign:'center'
     }
 })

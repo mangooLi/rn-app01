@@ -1,9 +1,9 @@
 
 
 import {StyleSheet,ViewStyle,TextStyle,Dimensions} from 'react-native';
-import {getSize} from '../../utils';
+import {getSize,MyStyleSheetCreate} from '../../utils';
 
-export const commentStyle = StyleSheet.create({
+export const commentStyle = MyStyleSheetCreate({
     container:{
         backgroundColor:'#fff',
         height: Dimensions.get('window').height
@@ -13,114 +13,114 @@ export const commentStyle = StyleSheet.create({
         flex:1
     },
     tabBar:{
-        height:getSize(44),
+        height:44,
         flexDirection:'row',
         borderBottomWidth:getSize(1/3.5),
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
     inputBar:{
 
-        height:getSize(64),
-        width:getSize(375),
-        paddingTop:getSize(8),
+        height:64,
+        width:375,
+        paddingTop:8,
         backgroundColor:'#f8f8f8',
-        paddingLeft:getSize(16),
-        paddingRight:getSize(16),
+        paddingLeft:16,
+        paddingRight:16,
         flexDirection:'row',
     }
 })
 
-export const tabBarStyle=StyleSheet.create({
+export const tabBarStyle=MyStyleSheetCreate({
 
     img:{
-        marginTop:getSize(10),
-        marginLeft:getSize(10),
-        width:getSize(20),
-        height:getSize(20)
+        marginTop:10,
+        marginLeft:10,
+        width:20,
+        height:20
     },
     text:{
-        marginTop:getSize(8),
-        height:getSize(24),
-        // width:getSize(70),
+        marginTop:8,
+        height:24,
+        // width:70,
         flexGrow:1,
-        fontSize:getSize(17),
+        fontSize:17,
         textAlign:'center'
     }
 })
 
-export const cardStyle=StyleSheet.create({
+export const cardStyle=MyStyleSheetCreate({
     container:{
         width:getSize(375-16),
-        marginLeft:getSize(16),
-        marginTop:getSize(16),
-        borderBottomWidth:getSize(0.4),
+        marginLeft:16,
+        marginTop:16,
+        borderBottomWidth:0.4,
         borderBottomColor:'#e3e3e3',
-        paddingRight:getSize(16),
-        paddingBottom:getSize(16)
+        paddingRight:16,
+        paddingBottom:16
     },
     info:{
         flexDirection:'row'
     },
     info_right:{
         flexGrow:1,
-        marginLeft:getSize(8)
+        marginLeft:8
     },
     info_up:{
         flexDirection:'row'
     },
     info_up_name:{
         flexGrow:1,
-        height:getSize(22),
-        fontSize:getSize(16)
+        height:22,
+        fontSize:16
     },
     info_up_like:{
-        fontSize:getSize(12),
-        width:getSize(20)
+        fontSize:12,
+        width:20
     },
     info_up_icon:{
-        width:getSize(16),
-        height:getSize(16)
+        width:16,
+        height:16
     },
     info_time:{
-        height:getSize(17),
-        fontSize:getSize(12),
+        height:17,
+        fontSize:12,
 
     },
     img:{
-        width:getSize(40),
-        height:getSize(40),
-        borderBottomLeftRadius: getSize(20),
-        borderBottomRightRadius: getSize(20),
-        borderTopLeftRadius: getSize(20),
-        borderTopRightRadius: getSize(20),
+        width:40,
+        height:40,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     },
     content:{
-        marginTop:getSize(4),
-        marginLeft:getSize(40+8),
-        marginRight:getSize(16),
-        // width:getSize(200)
+        marginTop:4,
+        marginLeft:40+8,
+        marginRight:16,
+        // width:200
     }
 })
 
-export const inputBarStyle=StyleSheet.create({
+export const inputBarStyle=MyStyleSheetCreate({
     input:{
-        width:getSize(293),
-        height:getSize(29),
+        width:293,
+        height:29,
         padding: 0,
-        borderRadius: getSize(5),
+        borderRadius: 5,
         
         backgroundColor:'#fff',
         borderColor:'#000',
-        borderWidth:getSize(0.5),
-        paddingLeft:getSize(8)
+        borderWidth:0.5,
+        paddingLeft:8
     },
     text_container:{
         
     },
     text:{
-        marginTop:getSize(2),
-        width:getSize(34),
-        fontSize:getSize(17),
-        marginLeft:getSize(8)
+        marginTop:2,
+        width:34,
+        fontSize:17,
+        marginLeft:8
     }
 })

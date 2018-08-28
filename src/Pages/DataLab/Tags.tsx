@@ -1,7 +1,7 @@
 
 import React,{Component} from 'react';
 import {View,ScrollView,TouchableWithoutFeedback,Text} from 'react-native';
-import {map} from '../../utils';
+import {map,MyStyleSheetCreate} from '../../utils';
 import {tagsStyle} from './style';
 import Model from './model'
 

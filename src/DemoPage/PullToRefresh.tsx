@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { View,ScrollView,StyleSheet,PanResponder,PanResponderInstance,NativeSyntheticEvent,NativeScrollEvent} from 'react-native';
-import {WindowHeight} from '../utils';
+import {WindowHeight,MyStyleSheetCreate} from '../utils';
 
 
-const style=StyleSheet.create({
+const style=MyStyleSheetCreate({
     main:{
        flex:1,
        position:'relative',

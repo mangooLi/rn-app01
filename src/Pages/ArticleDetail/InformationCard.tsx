@@ -5,7 +5,7 @@ import {View,Text,Image,Linking} from 'react-native';
 import AutoHeightWebView from 'react-native-autoheight-webview'
 
 import {informationCardStyle} from './style';
-import {map} from '../../utils';
+import {map,MyStyleSheetCreate} from '../../utils';
 
 
 export default class InformationCard extends Component<InformationCardItem>{

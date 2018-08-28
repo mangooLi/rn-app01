@@ -1,50 +1,50 @@
 
 import {StyleSheet} from 'react-native';
-import {getSize} from '../../utils';
-export const tagsStyle=StyleSheet.create({
+import {getSize,MyStyleSheetCreate} from '../../utils';
+export const tagsStyle=MyStyleSheetCreate({
     tags:{
-        height:getSize(44),
-        width:getSize(375),
+        height:44,
+        width:375,
 
 
     },
     topic_container:{
-        height:getSize(44),
-        paddingTop:getSize(11),
+        height:44,
+        paddingTop:11,
         backgroundColor:'#fff',
         borderBottomWidth:getSize(1/3.5),
         borderBottomColor:'#c8c7cc',
     },
     topic:{
-        marginLeft:getSize(16),
-        height:getSize(22),
+        marginLeft:16,
+        height:22,
         flexDirection:'row',
-        marginRight:getSize(16)
+        marginRight:16
     },
     image:{
-        width:getSize(20),
-        height:getSize(20)
+        width:20,
+        height:20
     },
     text:{
-        fontSize:getSize(15),
-        marginLeft:getSize(4)
+        fontSize:15,
+        marginLeft:4
     }
 })
 
-export const listStyle = StyleSheet.create({
+export const listStyle = MyStyleSheetCreate({
     flat_list:{
         backgroundColor:'#fff',
 
     },
     footer:{
-        width:getSize(300),
-        height:getSize(40+40)
+        width:300,
+        height:40+40
     }
 })
 
-export const cardContainerStyle=StyleSheet.create({
+export const cardContainerStyle=MyStyleSheetCreate({
     container:{
-        marginTop:getSize(24),
-        marginBottom:getSize(36)
+        marginTop:24,
+        marginBottom:36
     }
 })

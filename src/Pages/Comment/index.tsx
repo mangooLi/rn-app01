@@ -9,7 +9,7 @@ import CommentModel from './model';
 import TabBar from '../../Common/TabBar';
 import InputBar from './InputBar';
 import {commentStyle} from './style'
-import {debounce} from '../../utils';
+import {debounce,MyStyleSheetCreate} from '../../utils';
 
 @observer
 export default class Commment extends Component<NavigationInjectedProps> {

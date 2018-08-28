@@ -35,8 +35,8 @@ const ListRoute=createMaterialTopTabNavigator({
 },{
     // tabBarOptions:{
     //     style:{
-    //         height:getSize(46),
-    //         paddingBottom:getSize(12),
+    //         height:46,
+    //         paddingBottom:12,
     //         paddingTop:0
     //     },
     // },

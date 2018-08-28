@@ -2,12 +2,12 @@
 
 
 import {StyleSheet} from 'react-native';
-import {getSize} from '../../utils';
+import {getSize,MyStyleSheetCreate} from '../../utils';
 
 
 
 
-export const pageStyle=StyleSheet.create({
+export const pageStyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#fff',
         flex:1,
@@ -15,99 +15,99 @@ export const pageStyle=StyleSheet.create({
     }
 })
 
-export const tabBarStyle=StyleSheet.create({
+export const tabBarStyle=MyStyleSheetCreate({
     tabBar:{
-        height:getSize(40),
+        height:40,
         flexDirection:'row',
         borderBottomWidth:getSize(1/3.5),
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
     imgContainer:{
         position:'absolute',
-        left:getSize(10),
-        top:getSize(10),
+        left:10,
+        top:10,
         zIndex:1000,
     },
     img:{
-        width:getSize(20),
-        height:getSize(20),
+        width:20,
+        height:20,
     },
     text:{
-        marginTop:getSize(8),
-        height:getSize(24),
+        marginTop:8,
+        height:24,
         flexGrow:1,
-        fontSize:getSize(17),
+        fontSize:17,
         textAlign:'center',
         zIndex:100
     },
     search:{
-        width:getSize(20),
-        height:getSize(20),
+        width:20,
+        height:20,
         position:'absolute',
-        left:getSize(50+4),
-        top:getSize(8),
+        left:50+4,
+        top:8,
         zIndex:100
     }
 })
 
 
-export const inputBarStyle=StyleSheet.create({
+export const inputBarStyle=MyStyleSheetCreate({
     input:{
-        width:getSize(276),
-        height:getSize(30),
+        width:276,
+        height:30,
         padding: 0,
-        borderRadius: getSize(5),
-        marginLeft:getSize(46),
-        marginTop:getSize(4),
+        borderRadius: 5,
+        marginLeft:46,
+        marginTop:4,
         backgroundColor:'#fff',
         borderColor:'#000',
-        borderWidth:getSize(1),
-        paddingLeft:getSize(8+20),
+        borderWidth:1,
+        paddingLeft:8+20,
         zIndex:99,
 
     },
     text_container:{
     },
     text:{
-        marginTop:getSize(8),
-        width:getSize(34),
-        fontSize:getSize(17),
-        marginLeft:getSize(8)
+        marginTop:8,
+        width:34,
+        fontSize:17,
+        marginLeft:8
     }
 })
 
-export const listStyle=StyleSheet.create({
+export const listStyle=MyStyleSheetCreate({
     container:{
-        marginTop:getSize(16),
-        marginBottom:getSize(24)
+        marginTop:16,
+        marginBottom:24
     },
     item:{
-        width:getSize(343),
-        marginLeft:getSize(16)
+        width:343,
+        marginLeft:16
     },
     tags:{
         color:'#f85d1f',
-        height:getSize(17),
-        fontSize:getSize(12)
+        height:17,
+        fontSize:12
     },
     title:{
-        fontSize:getSize(16),
-        lineHeight:getSize(20),
+        fontSize:16,
+        lineHeight:20,
         color:'#333',
-        marginTop:getSize(2)
+        marginTop:2
     },
     summary:{
-        fontSize:getSize(13),
+        fontSize:13,
         color:'#999',
-        marginTop:getSize(2)
+        marginTop:2
     },
     date:{
-        fontSize:getSize(12),
-        marginTop:getSize(1),
+        fontSize:12,
+        marginTop:1,
         color:'#999'
     },
     footer:{
-        height:getSize(40),
-        width:getSize(300)
+        height:40,
+        width:300
     }
 })

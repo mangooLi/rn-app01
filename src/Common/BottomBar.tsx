@@ -2,7 +2,7 @@
 
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableWithoutFeedback,StyleSheet,Animated} from 'react-native';
-import {getSize,WindowHeight,WindowWidth} from '../utils';
+import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 import listStore from '../Pages/ListModel';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -51,7 +51,7 @@ class BottomBar extends Component<NavigationInjectedProps> {
         // this.folded = true;
         Animated.parallel([
             Animated.timing(this.state.x,{toValue:-WindowWidth/2,duration:500}),
-            Animated.timing(this.state.y,{toValue:WindowHeight*0.1-getSize(4),duration:500}),
+            Animated.timing(this.state.y,{toValue:WindowHeight*0.1-4,duration:500}),
             Animated.timing(this.state.scaleY,{toValue:0.8,duration:500}),
             Animated.timing(this.state.scaleX,{toValue:0.8,duration:500}),
         ]).start()
@@ -105,11 +105,11 @@ export default withNavigation<{}>(BottomBar)
 
 
 
-export const cmpStyle = StyleSheet.create({
+export const cmpStyle = MyStyleSheetCreate({
     container:{
         flexDirection:'row',
-        height:getSize(49),
-        borderTopWidth:getSize(0.5),
+        height:49,
+        borderTopWidth:0.5,
         borderTopColor:'#f8f8f8',
         backgroundColor:'#f8f8f8',
         position:'absolute',
@@ -121,15 +121,15 @@ export const cmpStyle = StyleSheet.create({
         alignItems:'center'
     },
     icon:{
-        width:getSize(24),
-        height:getSize(24),
-        marginTop:getSize(7),
+        width:24,
+        height:24,
+        marginTop:7,
     },
     text:{
-        fontSize:getSize(10),
-        height:getSize(14),
-        lineHeight:getSize(14),
+        fontSize:10,
+        height:14,
+        lineHeight:14,
         textAlign:'center',
-        marginTop:getSize(4)
+        marginTop:4
     }
 })

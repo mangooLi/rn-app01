@@ -1,7 +1,8 @@
 
 
 import {RATIO ,FITRADIO}from '../constant';
-import {PixelRatio, Dimensions,StatusBar} from 'react-native';
+import {PixelRatio, Dimensions,StatusBar,StyleSheet,ViewStyle , TextStyle , ImageStyle} from 'react-native';
+
 
 
 
@@ -19,3 +20,25 @@ export const WindowHeight = Dimensions.get('window').height-(Boolean(StatusBar.c
 
 export const WindowWidth = Dimensions.get('window').width;
 
+
+
+
+interface MyStyle{
+    [name:string]:ViewStyle | TextStyle | ImageStyle
+}
+
+
+export function MyStyleSheetCreate(configs:MyStyle){
+    Object.keys(configs).forEach(name=>{
+        Object.keys(configs[name]).forEach(key=>{
+            const value:any = (configs[name] as any)[key]
+
+            if(typeof value === 'number' && !['flex','flexGrow','zIndex','flexShrink'].includes(key)){
+                (configs[name] as any)[key] = getSize(value)
+            }
+
+        })
+    })
+
+    return StyleSheet.create(configs)
+}

@@ -2,7 +2,7 @@
 import  React ,{Component}from 'react';
 
 import {View,Text,Image,TouchableOpacity,StyleSheet} from 'react-native';
-import {getSize} from '../utils';
+import {getSize,MyStyleSheetCreate} from '../utils';
 // import {dataLabStyle} from './style';
 import moment from 'moment';
 import 'moment/locale/zh-cn' 
@@ -48,68 +48,68 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 export default withNavigation<DataLabItem >(DataLabCard);
 
 
-const dataLabStyle=StyleSheet.create({
+const dataLabStyle=MyStyleSheetCreate({
     
     container:{
-        height:getSize(192+4+52+20),
-        width:getSize(343),
-        paddingLeft:getSize(16),
+        height:192+4+52+20,
+        width:343,
+        paddingLeft:16,
     },
 
     img:{
-        width:getSize(343),
-        height:getSize(192),
-        // marginTop:getSize(12)
+        width:343,
+        height:192,
+        // marginTop:12
     },
     detail:{
-        width:getSize(343),
+        width:343,
         flexDirection:'row',
-        // paddingTop:getSize(12)
+        // paddingTop:12
     },
     detail_left:{
-        width:getSize(63),
-        paddingLeft:getSize(4)
+        width:63,
+        paddingLeft:4
     },
     detial_left_day:{
-        height:getSize(52),
-        fontSize:getSize(44),
+        height:52,
+        fontSize:44,
         color:'#333',
-        marginTop:getSize(4)
+        marginTop:4
 
     },
     detail_left_month:{
-        height:getSize(20),
-        fontSize:getSize(14),
+        height:20,
+        fontSize:14,
         color:'#000'
     },
     detail_right:{
         flexGrow:1,
-        paddingLeft:getSize(10),
-        marginTop:getSize(12)
+        paddingLeft:10,
+        marginTop:12
 
     },
     detail_title:{
-        // height:getSize(40),
-        fontSize:getSize(14),
-        width:getSize(269),
+        // height:40,
+        fontSize:14,
+        width:269,
         color:'#333',
     },
     detail_tagAndAddress:{
         flexDirection:'row',
-        marginTop:getSize(2),
-        height:getSize(17)
+        marginTop:2,
+        height:17
     },
     detail_tag:{
-        // width:getSize(100),
+        // width:100,
         flex:7,
-        fontSize:getSize(12),
+        fontSize:12,
         color:'#ee5e2b'
     },
     detail_address:{
-        // width:getSize(169),
+        // width:169,
         flex:20,
-        paddingLeft:getSize(11),
-        fontSize:getSize(11),
+        paddingLeft:11,
+        fontSize:11,
         color:'#333'
     }
 })

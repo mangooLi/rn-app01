@@ -1,39 +1,39 @@
 
 import {StyleSheet} from 'react-native';
-import {getSize,WindowHeight,WindowWidth} from '../../utils'
+import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../../utils'
 
-export const reportDetailStyle=StyleSheet.create({
+export const reportDetailStyle=MyStyleSheetCreate({
 
     container:{
         backgroundColor:'#fff',
         height:WindowHeight
     },
     tabBar:{
-        height:getSize(40),
+        height:40,
         flexDirection:'row'
     },
     pdf: {
         width: WindowWidth,
-        height:WindowHeight-getSize(40),
+        height:WindowHeight-40,
 
     }
 
 })
 
 
-export const tabBarStyle=StyleSheet.create({
+export const tabBarStyle=MyStyleSheetCreate({
     img:{
-        marginTop:getSize(10),
-        marginLeft:getSize(10),
-        width:getSize(20),
-        height:getSize(20)
+        marginTop:10,
+        marginLeft:10,
+        width:20,
+        height:20
     },
     text:{
-        width:getSize(175),
-        marginLeft:getSize(70),
-        marginTop:getSize(8),
-        height:getSize(24),
-        fontSize:getSize(17),
+        width:175,
+        marginLeft:70,
+        marginTop:8,
+        height:24,
+        fontSize:17,
 
     }
 })

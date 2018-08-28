@@ -1,14 +1,14 @@
-import {StyleSheet,ViewStyle} from 'react-native'
-import { getSize } from '../../utils';
+// import {StyleSheet,ViewStyle} from 'react-native'
+import { getSize ,MyStyleSheetCreate} from '../../utils';
 import { WindowWidth } from '../../constant';
 
 const common={
     width:getSize(375-32),
-    marginLeft:getSize(16)
+    marginLeft:16
 }
 
 
-export const detailStyle=StyleSheet.create({
+export const detailStyle=MyStyleSheetCreate({
 
     pageContainer:{
         flex:1,
@@ -17,7 +17,7 @@ export const detailStyle=StyleSheet.create({
     },
 
     tabBar:{
-        height:getSize(44),
+        height:44,
         flexDirection:'row'
 
     },
@@ -26,164 +26,164 @@ export const detailStyle=StyleSheet.create({
         backgroundColor:'#fff'
     },
     tagBar:{
-        height:getSize(40),
-        width:getSize(375),
-        borderTopWidth:getSize(0.3),
+        height:40,
+        width:375,
+        borderTopWidth:0.3,
         borderTopColor:'#333',
-        borderBottomWidth:getSize(0.3),
+        borderBottomWidth:0.3,
         borderBottomColor:'#333',
         flexDirection:'row'
     },
     none:{
-        width:getSize(375),
-        height:getSize(40+8),
+        width:375,
+        height:40+8,
         backgroundColor:'#f8f6f6'
     },
 })
 
 export const tabBarStyle=Object.create({
    img:{
-    marginTop:getSize(10),
-    marginLeft:getSize(10),
-    width:getSize(20),
-    height:getSize(20)
+    marginTop:10,
+    marginLeft:10,
+    width:20,
+    height:20
    },
    none:{
        flexGrow:1
    },
    share:{
-       marginRight:getSize(10)
+       marginRight:10
    }
 })
 
 
-export const articleStyle=StyleSheet.create({
+export const articleStyle=MyStyleSheetCreate({
     tag:{
        ...common,
-       height:getSize(17),
-       marginTop:getSize(20),
-       fontSize:getSize(12),
+       height:17,
+       marginTop:20,
+       fontSize:12,
        color:'#f55c39'
 
 
     },
     thumnb_nail:{
-        width:getSize(375),
-        height:getSize(211),
-        marginTop:getSize(24)
+        width:375,
+        height:211,
+        marginTop:24
     },
     title:{
         width:getSize(375-32),
-        marginLeft:getSize(16),
-        marginTop:getSize(8),
-        fontSize:getSize(22),
-        lineHeight:getSize(30)
+        marginLeft:16,
+        marginTop:8,
+        fontSize:22,
+        lineHeight:30
     },
     author:{
         ...common,
-        height:getSize(18),
-        fontSize:getSize(13),
-        marginTop:getSize(8),
+        height:18,
+        fontSize:13,
+        marginTop:8,
         color:'#999'
     },
     content:{
-        marginTop:getSize(24),
+        marginTop:24,
         ...common,
 
     },
     laboindex:{
         ...common,
-        fontSize:getSize(18),
-        lineHeight:getSize(30),
+        fontSize:18,
+        lineHeight:30,
         color:'#999',
-        marginTop:getSize(24),
-        marginBottom:getSize(28)
+        marginTop:24,
+        marginBottom:28
     }
     
 })
 
-export const recommendationStyle=StyleSheet.create({
+export const recommendationStyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#fff',
-        borderRadius:getSize(10),
-        marginTop:getSize(8),
-        marginBottom:getSize(8)
+        borderRadius:10,
+        marginTop:8,
+        marginBottom:8
     },
     title:{
-        height:getSize(28),
-        fontSize:getSize(20),
+        height:28,
+        fontSize:20,
         textAlign:'center',
         color:'#333',
-        marginTop:getSize(33)
+        marginTop:33
     }
 })
 
-export const informationCardStyle=StyleSheet.create({
+export const informationCardStyle=MyStyleSheetCreate({
     container:{
         // ...common,
-        borderRadius:getSize(10),
+        borderRadius:10,
         width:WindowWidth,
-        paddingLeft:getSize(16),
-        paddingRight:getSize(16),
-        marginTop:getSize(8),
+        paddingLeft:16,
+        paddingRight:16,
+        marginTop:8,
         backgroundColor:'#fff'
     },
     title:{
-        fontSize:getSize(20),
-        lineHeight:getSize(28),
+        fontSize:20,
+        lineHeight:28,
         color:'#333',
-        marginTop:getSize(44)
+        marginTop:44
     },
     content:{
         width:getSize(375-32),
-        marginTop:getSize(16),
-        marginBottom:getSize(16)
+        marginTop:16,
+        marginBottom:16
     },
     imgContainer:{
         // ...common,
-        marginTop:getSize(20),
-        marginBottom:getSize(20),
+        marginTop:20,
+        marginBottom:20,
         flexDirection:'row',
         flexWrap:'wrap',
         justifyContent:'space-between'
     },
     img:{
-        width:getSize(111),
-        height:getSize(111)
+        width:111,
+        height:111
     },
     link:{
-        fontSize:getSize(14),
-        lineHeight:getSize(30),
+        fontSize:14,
+        lineHeight:30,
         color:'#fd5c3a',
-        marginBottom:getSize(12)
+        marginBottom:12
     },
     video:{
-        width:getSize(343),
-        height:getSize(193),
-        marginTop:getSize(20),
-        marginBottom:getSize(20)
+        width:343,
+        height:193,
+        marginTop:20,
+        marginBottom:20
     }
 })
 
-export const tagBarStyle = StyleSheet.create({
+export const tagBarStyle = MyStyleSheetCreate({
     img:{
-        width:getSize(24),
-        height:getSize(24),
-        marginLeft:getSize(15),
-        marginTop:getSize(9.5)
+        width:24,
+        height:24,
+        marginLeft:15,
+        marginTop:9.5
     },
     text:{
         flex:1,
-        fontSize:getSize(16),
-        height:getSize(22),
-        lineHeight:getSize(22),
-        marginTop:getSize(10.5),
-        marginLeft:getSize(7)
+        fontSize:16,
+        height:22,
+        lineHeight:22,
+        marginTop:10.5,
+        marginLeft:7
     },
     right:{
-        width:getSize(8),
-        height:getSize(13),
-        marginTop:getSize(15),
-        marginRight:getSize(15)
+        width:8,
+        height:13,
+        marginTop:15,
+        marginRight:15
     }
 })

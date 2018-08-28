@@ -1,11 +1,11 @@
 
 
-import {StyleSheet,TextStyle} from 'react-native';
-import {getSize,} from '../../utils';
+// import {StyleSheet,TextStyle} from 'react-native';
+import {getSize,MyStyleSheetCreate} from '../../utils';
 
 
 
-export const pageStyle = StyleSheet.create({
+export const pageStyle = MyStyleSheetCreate({
     container:{
         backgroundColor:'#fff',
         flex:1
@@ -14,40 +14,40 @@ export const pageStyle = StyleSheet.create({
 
         alignItems:'center',
         height:getSize(88+110+106-64),
-        borderBottomWidth:getSize(0.5),
+        borderBottomWidth:0.5,
         borderBottomColor:'#c8c7cc'
     },
     head_img:{
-        width:getSize(110),
-        height:getSize(110),
-        borderRadius:getSize(55),
+        width:110,
+        height:110,
+        borderRadius:55,
         marginTop:getSize(106-64)
     },
     head_name:{
-        fontSize:getSize(20),
-        lineHeight:getSize(28),
-        marginTop:getSize(8)
+        fontSize:20,
+        lineHeight:28,
+        marginTop:8
     },
     line:{
-        height:getSize(44.5),
-        paddingLeft:getSize(15),
-        paddingRight:getSize(15),
-        paddingTop:getSize(9.5),
+        height:44.5,
+        paddingLeft:15,
+        paddingRight:15,
+        paddingTop:9.5,
         flexDirection:'row'
     },
     line_text:{
-        fontSize:getSize(17),
-        lineHeight:getSize(24),
+        fontSize:17,
+        lineHeight:24,
         flex:1
     },
     line_img:{
-        marginTop:getSize(6),
-        width:getSize(8),
-        height:getSize(13)
+        marginTop:6,
+        width:8,
+        height:13
     }
 })
 
-export const modalStyle = StyleSheet.create({
+export const modalStyle = MyStyleSheetCreate({
     container:{
 
         backgroundColor:'rgba(0,0,0,0.2)',
@@ -57,78 +57,78 @@ export const modalStyle = StyleSheet.create({
     },
     content:{
         position:'absolute',
-        bottom:getSize(8)
+        bottom:8
     },
     card:{
         backgroundColor:'#ececec',
-        borderRadius:getSize(20),
-        marginTop:getSize(8),
-        width:getSize(355)
+        borderRadius:20,
+        marginTop:8,
+        width:355
     },
     card01:{
         // marginTop:getSize(477-64)
     },
     
     card_text:{
-        fontSize:getSize(20),
-        lineHeight:getSize(28),
-        paddingTop:getSize(14.5),
-        height:getSize(57),
+        fontSize:20,
+        lineHeight:28,
+        paddingTop:14.5,
+        height:57,
         // verticalAlign:'center',
         color:'#0078fa',
         textAlign:'center'
     },
     card_text_border:{
-        borderBottomWidth:getSize(0.5),
+        borderBottomWidth:0.5,
         borderBottomColor:'rgba(0,0,0,0.5)'
     }
 })
 
 
-export const modalStyle02=StyleSheet.create({
+export const modalStyle02=MyStyleSheetCreate({
     container:{
         position:'absolute',
-        bottom:getSize(40),
-        borderRadius:getSize(20),
-        width:getSize(270),
+        bottom:40,
+        borderRadius:20,
+        width:270,
         backgroundColor:'#ececec'
     },
     text:{
         textAlign:'center',
-        fontSize:getSize(17),
-        lineHeight:getSize(24),
-        marginTop:getSize(20),
+        fontSize:17,
+        lineHeight:24,
+        marginTop:20,
         color:'#000'
 
     },
     ipt:{
-        width:getSize(237),
-        height:getSize(24),
+        width:237,
+        height:24,
         backgroundColor:'#fff',
-        marginTop:getSize(18.5),
+        marginTop:18.5,
         alignItems:'center',
-        marginLeft:getSize(16.5),
-        fontSize:getSize(13),
+        marginLeft:16.5,
+        fontSize:13,
         // marginLeft:'auto',
-        marginBottom:getSize(12),
+        marginBottom:12,
         padding:0,
     },
     btn_container:{
-        borderTopWidth:getSize(0.5),
-        height:getSize(44),
+        borderTopWidth:0.5,
+        height:44,
         flexDirection:'row',
     },
     btn_left:{
         flex:1,
         textAlign:'center',
-        fontSize:getSize(17),
-        lineHeight:getSize(44),
-        borderRightWidth:getSize(0.5),
+        fontSize:17,
+        lineHeight:44,
+        borderRightWidth:0.5,
     },
     btn_right:{
         flex:1,
         textAlign:'center',
-        fontSize:getSize(17),
-        lineHeight:getSize(44),
+        fontSize:17,
+        lineHeight:44,
     }
 })

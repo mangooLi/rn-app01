@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import { View ,Image,Text,ScrollView,NativeScrollEvent} from 'react-native';
-import { map } from '../../utils';
+import { map ,MyStyleSheetCreate} from '../../utils';
 
 import TabBar from './TabBar';
 import {introductionStyle} from './style';

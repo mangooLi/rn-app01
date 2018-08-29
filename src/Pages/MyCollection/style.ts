@@ -17,7 +17,7 @@ export const pageStyle=MyStyleSheetCreate({
         width:36+WindowWidth,
         top:40,
         height:WindowHeight-40,
-        backgroundColor:'#9c0'
+        backgroundColor:'#fff'
     },
     footer:{
         width:300,
@@ -57,8 +57,8 @@ export const cardStyle=MyStyleSheetCreate({
         marginLeft:16,
         backgroundColor:'#fff',
         borderColor:'#333',
-        borderWidth:getSize(1/3.5)
-        // marginTop:getSize()
+        borderWidth:1/3.5
+        // marginTop:
     },
     img:{
         width:20,

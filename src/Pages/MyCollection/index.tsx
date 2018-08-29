@@ -48,9 +48,9 @@ export default class MyCollection extends Component<NavigationFocusInjectedProps
 
     render(){
         const {TabRight}=this;
-        const {informations,onSetting} = this.store;
+        const {informations,onSetting,type} = this.store;
         return (<View style={pageStyle.container}>
-            <TabBar title='我的收藏' rightIcon={<TabRight />}/>
+            <TabBar title={type==='comment'?'我的评论':'我的收藏'} rightIcon={<TabRight />}/>
 
             <Animated.View style={[pageStyle.flatList,{left:this.store.position_left},onSetting?{height:WindowHeight-84}:null]}>
                 <FlatList 

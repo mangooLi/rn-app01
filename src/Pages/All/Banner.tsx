@@ -10,12 +10,12 @@ import  {
 } from 'react-native';
 import moment from 'moment';
 import Banner,{IndicaterType,IndicaterAlign} from '../../vendor/react-native-whc-banner';
-
+import FastImage from 'react-native-fast-image'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { bannerStyle } from './style';
 import homeModel from '../Home/model';
-import { getSize ,MyStyleSheetCreate} from '../../utils';
+
 
 
 
@@ -38,7 +38,7 @@ interface Props{
         return (
             <TouchableOpacity key={id|| bn.id} onPress={()=>this.handlePress(bn)} activeOpacity={1}>
             <View  style={bannerStyle.banner}>
-                <Image style={bannerStyle.image} key={bn.id} source={{uri:bn.thumbnail_url}}/>
+                <FastImage style={bannerStyle.image} key={bn.id}  source={{uri:bn.thumbnail_url}}/>
                 <View style={bannerStyle.detail}>
                     <Text style={bannerStyle.detail_prefix}>{bn.prefix}</Text>
                     <Text style={bannerStyle.detail_title} numberOfLines={2} >{bn.title}</Text>
@@ -56,7 +56,7 @@ interface Props{
         return (
             banners.length? <Banner style={bannerStyle.banner}
                 store = {homeModel}
-                top ={getSize(212.5-45)}
+                top ={212.5-45}
                 indicaterType = {IndicaterType.circle}
                 indicaterAlign={IndicaterAlign.right}
                 firstChild = {this.renderImg(banners[0],'first')}

@@ -150,6 +150,7 @@ export default abstract class  List<T> {
 4. createStackNavigator 方法返回的虽然是以一个react组件，但是如果你把它当子组件插在页面中的某个角落，这时候页面是不会渲染的。它只能当作某个页面的跟组件。如果你想实现web端很多单页面APP那样的布局，多个路由页面复用一个导航栏，可以采用上面那种方式。`tabBarComponent`传入的组件可以高度自定义，并且可以通过`position:relative|absolute`定位在任意地方。
 5. 只要知道路由的名称，就能很方便地跳转到任意路由。不管这两个路由在嵌套路由中的层级如何。
 6. 创建路由的时候需要注意，`createBottomTabNavigator`和`createMaterialBottomTabNavigator`的路由是懒加载的，但是`createMaterialTopTabNavigator`的不是。如果需要懒加载，可以在`TabNavigatorConfig`选项里配置`lazy:true`
+7. 很多页面需要左侧滑动返回上一个路由，可以通过`navigationOptions`的`gesturesEnabled`属性配置。该属性在IOS上默认维true，但是在安卓中默认是false。
 
 
 ### 九 下拉刷新
@@ -206,6 +207,7 @@ export function MyStyleSheetCreate(configs:MyStyle){
 
     return StyleSheet.create(configs)
 }
+注意，这种方法存在一个确定，如果设置的宽高不是根据设计稿确定的，而是从Dimensions里获得的实际尺寸，也会被getSize转换掉。
 ```
 
 
@@ -238,4 +240,7 @@ dependencies {
 }
 ```
 但是这里还是可能会有坑。笔者按照文档提示，加了上述模块后，运行r`react-native run-android`，有时候编译不过去，有时候编译成功，但是APP闪退。经过查找资料，发现是`react-native`与`com.facebook.fresco`版本号匹配的问题。最新的文档是0.56的，项目是0.55的。查找0.55的文档，把`com.facebook.fresco`的版本换成1.3.0，就OK了。
-4. yangs
+4. 打包安装后文件的图标，在AndroidManifest.xml文件的android:icon属性修改。把图标文件复制到对应的文件夹，并修改android:icon属性即可。
+5. 修改APP名称：进入android/app/src/main/res/valuse/strings.xml，修改`<string name="app_name">你的APP名称</string>`
+6. 网络图片资源，可以设置cache属性，来控制是否启用缓存。
+7. Image组件在安卓中有一个大坑，当页面图片比较多的时候，快速加载很多图片会导致内存爆炸，然后图片不显示。解决方法：用`react-native-fast-image`代替原生组件可以解决这个问题。

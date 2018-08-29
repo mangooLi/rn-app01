@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 import {View,Text,TextInput,Image,TouchableWithoutFeedback} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {observer} from 'mobx-react';
+import globalStore from '../GlobalModel';
 import {login} from '../../api'
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import TabBar from '../../Common/TabBar';
@@ -30,7 +31,10 @@ class LoginPage extends Component<NavigationInjectedProps> {
             this.fetching = false;
             if(res.data){
                 storage.save({key:'user',data:res.data.data,expires:null});
+                global.user = res.data.data;
                 global.token = res.data.data.token;
+                globalStore.setUser(res.data.data)
+                this.props.navigation.navigate('Home')
             }
 
         }).catch(()=>this.fetching= false)

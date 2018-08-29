@@ -53,12 +53,10 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('Refresh')}}
                 ></Button></View>
 
-
-                
-
-                
-
-                
+                 <View style={style.btn}><Button
+                    title='banner'
+                    onPress={()=>{this.props.navigation.navigate('Banner')}}
+                ></Button></View>
 
             </View>
             <View style={style.main2}>
@@ -189,6 +187,10 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     title='加载中'
                     onPress={()=>{this.props.navigation.navigate('Loading')}}
                 ></Button></View>
+
+               
+
+                
 
 
                 

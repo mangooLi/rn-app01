@@ -9,7 +9,7 @@ export const reportProductsStyle=MyStyleSheetCreate({
     tabBar:{
         height:40,
         flexDirection:'row',
-        borderBottomWidth:getSize(1/3.5),
+        borderBottomWidth:(1/3.5),
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
     footer:{
@@ -21,13 +21,13 @@ export const reportProductsStyle=MyStyleSheetCreate({
 
 export const cardStyle=MyStyleSheetCreate({
     container:{
-        width:getSize(375-32),
+        width:(375-32),
         paddingTop:28,
         height:28+193+8+22+1+17,
         marginLeft:16
     },
     img:{
-        width:getSize(375-32),
+        width:(375-32),
         height:193,
         borderRadius:4
     },

@@ -13,7 +13,7 @@ export const pageStyle = MyStyleSheetCreate({
     head_container:{
 
         alignItems:'center',
-        height:getSize(88+110+106-64),
+        height:88+110+106-64,
         borderBottomWidth:0.5,
         borderBottomColor:'#c8c7cc'
     },
@@ -21,7 +21,7 @@ export const pageStyle = MyStyleSheetCreate({
         width:110,
         height:110,
         borderRadius:55,
-        marginTop:getSize(106-64)
+        marginTop:106-64
     },
     head_name:{
         fontSize:20,
@@ -66,7 +66,7 @@ export const modalStyle = MyStyleSheetCreate({
         width:355
     },
     card01:{
-        // marginTop:getSize(477-64)
+        // marginTop:477-64
     },
     
     card_text:{

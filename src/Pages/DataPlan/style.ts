@@ -72,7 +72,7 @@ export const cardHeadStyle=MyStyleSheetCreate({
 
 export const fiftyStyle=MyStyleSheetCreate({
     container:{
-        width:getSize(375-32),
+        width:375-32,
         height:132+3,
         marginLeft:16,
         flexDirection:'row',
@@ -85,7 +85,7 @@ export const fiftyStyle=MyStyleSheetCreate({
         borderRadius:8
     },
     person:{
-        width:getSize(375-32-99),
+        width:375-32-99,
         paddingLeft:16
     },
     name:{

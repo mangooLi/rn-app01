@@ -20,7 +20,7 @@ class TagBar extends Component<NavigationInjectedProps & Props>{
     handlePress(){
         // alert('跳转到数据侠')
         const {id,name}=this.props.tags[0];
-        this.props.navigation.navigate('Topic',{id,name})
+        id && name &&  this.props.navigation.navigate('Topic',{id,name})
 
     }
     render(){

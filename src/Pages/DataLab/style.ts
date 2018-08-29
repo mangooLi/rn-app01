@@ -12,7 +12,7 @@ export const tagsStyle=MyStyleSheetCreate({
         height:44,
         paddingTop:11,
         backgroundColor:'#fff',
-        borderBottomWidth:getSize(1/3.5),
+        borderBottomWidth:1/3.5,
         borderBottomColor:'#c8c7cc',
     },
     topic:{

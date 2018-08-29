@@ -15,7 +15,7 @@ export const commentStyle = MyStyleSheetCreate({
     tabBar:{
         height:44,
         flexDirection:'row',
-        borderBottomWidth:getSize(1/3.5),
+        borderBottomWidth:1/3.5,
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
     inputBar:{
@@ -50,7 +50,7 @@ export const tabBarStyle=MyStyleSheetCreate({
 
 export const cardStyle=MyStyleSheetCreate({
     container:{
-        width:getSize(375-16),
+        width:375-16,
         marginLeft:16,
         marginTop:16,
         borderBottomWidth:0.4,

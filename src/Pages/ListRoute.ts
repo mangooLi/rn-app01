@@ -29,9 +29,9 @@ const ListRoute=createMaterialTopTabNavigator({
             tabBarLabel:'数据报告'
         }
     },
-    NetError:{
-        screen:NetErrorWithAnimate
-    }
+    // NetError:{
+    //     screen:NetErrorWithAnimate
+    // }
 },{
     // tabBarOptions:{
     //     style:{
@@ -42,9 +42,6 @@ const ListRoute=createMaterialTopTabNavigator({
     // },
     tabBarComponent:HomeBar,
     lazy:true
-
-    
-
 })
 
 

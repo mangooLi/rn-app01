@@ -24,7 +24,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
         return (
             <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
             <View style={dataLabStyle.container}>
-                <Image style={dataLabStyle.img} source={{uri:thumbnail_url}}/>
+                <Image style={dataLabStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
                 <View style={dataLabStyle.detail}>
                     <View style={dataLabStyle.detail_left}>
                         <Text style={dataLabStyle.detial_left_day}>{moment(date).format('DD')}</Text>

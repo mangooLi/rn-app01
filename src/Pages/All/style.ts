@@ -174,7 +174,7 @@ export const dataLabStyle=MyStyleSheetCreate({
 
 export const reportStyle=MyStyleSheetCreate({
     container:{
-        height:getSize(44+ 28+ 12+ 114+8+20+2+14),
+        height:44+ 28+ 12+ 114+8+20+2+14,
         paddingTop:44
     },
     head:{
@@ -186,7 +186,7 @@ export const reportStyle=MyStyleSheetCreate({
     },
     cardContainer:{
         width:375,
-        height:getSize(12+ 114+8+20+2+14),
+        height:12+ 114+8+20+2+14,
         paddingTop:12
     },
     card:{
@@ -217,7 +217,7 @@ export const reportStyle=MyStyleSheetCreate({
 
 export const dataLabContainerStyle = MyStyleSheetCreate({
     container:{
-        height:getSize(32+28+12+ 192+4+52+1+20+35),
+        height:32+28+12+ 192+4+52+1+20+35,
         
         paddingTop:32
     },

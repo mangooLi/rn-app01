@@ -3,7 +3,7 @@
 import {observable, action} from 'mobx';
 
 
-class  ListModel {
+class  GlobalModel {
     @observable 
     fold:boolean = false; // 是否折叠
 
@@ -16,6 +16,14 @@ class  ListModel {
     expandPage(){
         this.fold = false;
     }
+
+    @observable
+    user:AcountInfo
+
+    @action 
+    setUser (user:AcountInfo){
+        this.user = user;
+    }
 }
 
-export default new ListModel()
+export default new GlobalModel()

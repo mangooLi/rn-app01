@@ -456,11 +456,11 @@ export default class Banner extends Component {
         this.elementCount = length;
         let newChildren = [];
 
-        if(autoLoop && length > 0 && firstChild && lastChild ){
+        if(autoLoop && length > 0 && firstChild && lastChild ){ 
             newChildren.push(lastChild, ...children, firstChild);
 
         }else if (autoLoop && length > 0  ) {
-            newChildren.push(children[length - 1], ...children, children[0]);
+            newChildren.push(children[length - 1], ...children, children[0]); // 当子组件是通过array.map生成的时候，会需要给map返回的组件添加key。这时候会报错，两个组件有相同的key
         }else {
             newChildren.push(...children);
         }

@@ -23,7 +23,7 @@ class Report extends Component<ReportProps & NavigationInjectedProps> {
         return (
             <TouchableOpacity key={id} onPress={()=>this.handlePress(item)} activeOpacity={1}>
             <View  style={reportStyle.card}>
-                <Image style={reportStyle.img} source={{uri:thumbnail_url}}/>
+                <Image style={reportStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
                 <Text style={reportStyle.title} numberOfLines={1} >{title}</Text>
                 <Text style={reportStyle.date}>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
             </View>

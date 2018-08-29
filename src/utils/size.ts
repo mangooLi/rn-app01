@@ -33,7 +33,7 @@ export function MyStyleSheetCreate(configs:MyStyle){
         Object.keys(configs[name]).forEach(key=>{
             const value:any = (configs[name] as any)[key]
 
-            if(typeof value === 'number' && !['flex','flexGrow','zIndex','flexShrink'].includes(key)){
+            if(typeof value === 'number' && value !==WindowWidth && value!==WindowHeight && !['flex','flexGrow','zIndex','flexShrink'].includes(key)){
                 (configs[name] as any)[key] = getSize(value)
             }
 

@@ -10,7 +10,7 @@ import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import {animateStyle,homeContainerStyle} from './style';
 import PersonCenter from './PersonalCenter';
 
-import listStore from '../ListModel';
+import listStore from '../GlobalModel';
 
 
 @observer
@@ -46,6 +46,7 @@ class HomeContainer extends Component<NavigationInjectedProps> {
     folded:boolean = false;
 
     componentWillUnmount(){
+        console.log('home contaner unmount')
         this.expand()
     }
 
@@ -118,10 +119,8 @@ class HomeContainer extends Component<NavigationInjectedProps> {
                 </TouchableWithoutFeedback>
 
                 <View style={animateStyle.two}>
-                    <PersonCenter />
+                    <PersonCenter onleave={()=>this.expand()}/>
                 </View>
-
-
             </View>
 
         )

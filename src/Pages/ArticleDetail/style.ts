@@ -3,7 +3,7 @@ import { getSize ,MyStyleSheetCreate} from '../../utils';
 import { WindowWidth } from '../../constant';
 
 const common={
-    width:getSize(375-32),
+    width:375-32,
     marginLeft:16
 }
 
@@ -73,7 +73,7 @@ export const articleStyle=MyStyleSheetCreate({
         marginTop:24
     },
     title:{
-        width:getSize(375-32),
+        width:375-32,
         marginLeft:16,
         marginTop:8,
         fontSize:22,
@@ -135,7 +135,7 @@ export const informationCardStyle=MyStyleSheetCreate({
         marginTop:44
     },
     content:{
-        width:getSize(375-32),
+        width:375-32,
         marginTop:16,
         marginBottom:16
     },

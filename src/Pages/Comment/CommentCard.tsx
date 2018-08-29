@@ -46,7 +46,7 @@ export default class CommentCard extends Component<CommentItem & Props> {
         return (
             <View style={cardStyle.container}> 
                 <View style={cardStyle.info}>
-                    <Image style={cardStyle.img} source={{uri:user_avatar_url}} />
+                    <Image style={cardStyle.img} source={{uri:user_avatar_url,cache:'force-cache'}} />
                     <View style={cardStyle.info_right}>
                         <View style={cardStyle.info_up}> 
                             <Text style={cardStyle.info_up_name}>{user_nickname}</Text>

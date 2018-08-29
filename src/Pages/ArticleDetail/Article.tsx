@@ -42,7 +42,7 @@ class Article extends Component<Props> {
                 /> */}
                 <Text  style={articleStyle.title}>{title}</Text>
                 <Text style={articleStyle.author}>文/{author}&nbsp;&nbsp;&nbsp;{moment(date).format('MM-DD HH:mm')}</Text>
-                <Image style={articleStyle.thumnb_nail} source={{uri:thumbnail_url}} />
+                <Image style={articleStyle.thumnb_nail} source={{uri:thumbnail_url,cache:'force-cache'}} />
 
                 {   _type !== 'data_lab_information' ? <AutoHeightWebView 
                     source={{html:content}}

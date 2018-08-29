@@ -9,7 +9,7 @@ import { getSize,WindowHeight ,MyStyleSheetCreate} from '../../utils';
 export const tabstyle=MyStyleSheetCreate({
     tabContainer:{
         width:375,
-        height:getSize(WindowHeight-40),
+        // height:WindowHeight-40,
         backgroundColor:'#fff'
     },
     item:{

@@ -4,7 +4,7 @@ import {WindowWidth,WindowHeight,getSize,MyStyleSheetCreate} from '../utils'
 // import {barStyle} from './Home/style';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 
-import listStore from './ListModel';
+import listStore from './GlobalModel';
 import { autorun } from 'mobx';
 const searchIcon = require('../assets/img/ic_search_24px/ic_search_24px.png');
 const shapeIcon = require('../assets/img/icAccountCircle24Px/icAccountCircle24Px.png');
@@ -16,9 +16,9 @@ export const barStyle=MyStyleSheetCreate({
     bar:{
         height:40,
         flexDirection:'row',
-        paddingTop:getSize(31-24),
+        paddingTop:31-24,
         backgroundColor:'#fff',
-        borderBottomWidth:getSize(1/3.5),
+        borderBottomWidth:1/3.5,
         borderBottomColor:'#999',
         position:'absolute',
         width:WindowWidth,

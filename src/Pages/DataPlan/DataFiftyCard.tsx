@@ -16,7 +16,7 @@ class DataFiftyCard extends React.Component<DataFiftyItem & NavigationInjectedPr
         return (
         <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('ArticleDetail',{id})}>
             <View style={fiftyStyle.container}>
-                <Image style={fiftyStyle.img} source={{uri:data_scientist_app_avatar_url||data_scientist_avatar_url}}/>
+                <Image style={fiftyStyle.img} source={{uri:data_scientist_app_avatar_url||data_scientist_avatar_url,cache:'force-cache'}}/>
                 <View style={fiftyStyle.person}>
                     <Text style={fiftyStyle.name}>{data_scientist_name}</Text>
                     <Text numberOfLines={7} style={fiftyStyle.introduction}>{data_scientist_introduction}</Text>

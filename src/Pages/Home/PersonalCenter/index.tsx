@@ -7,8 +7,9 @@ import React,{Component} from 'react';
 import {View,Text, Image,TouchableWithoutFeedback,} from'react-native';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
+import {observer} from 'mobx-react';
 import {pageStyle} from './style';
-
+import globalStore from '../../GlobalModel';
 
 const key = require('../../../assets/img/Keys.png')
 const favor_disable = require('../../../assets/img/icFavoriteDisable/icFavoriteDisable.png')
@@ -17,18 +18,35 @@ const reports_disable = require('../../../assets/img/icReportDisable/icReportDis
 const setting = require('../../../assets/img/icSettingsActive/icSettingsActive.png');
 ;
 
-class PersonalCenter extends Component<NavigationInjectedProps> {
+interface Props{
+    onleave():void;
+}
+
+@observer
+class PersonalCenter extends Component<NavigationInjectedProps & Props> {
+
+
+
+
+    handlePress=()=>{
+        if(global.user){
+            this.props.navigation.navigate('AccountCenter')
+        }else{
+            this.props.navigation.navigate('LoginPage')
+        }
+        this.props.onleave();
+        this.forceUpdate()
+    }
 
     render (){
-        const user:AcountInfo=global.user;
-
+        const user:AcountInfo=globalStore.user;
         return (
             <LinearGradient colors={['#F09819','#FF5858']} style={pageStyle.container}>
-                <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('AccountCenter')}>
+                <TouchableWithoutFeedback onPress={this.handlePress}>
                 <View>
                     <View style={pageStyle.avater_container}>
                         {user && user.avatar_url
-                            ?<Image style={pageStyle.avater} source={ {uri:user.avatar_url} }/>
+                            ?<Image style={pageStyle.avater} source={ {uri:user.avatar_url,cache:'force-cache'} }/>
                             :<Image style={pageStyle.key} source={ key }/>}
                         
                     </View>
@@ -64,4 +82,4 @@ class PersonalCenter extends Component<NavigationInjectedProps> {
     }
 }
 
-export default withNavigation<{}>(PersonalCenter)
+export default withNavigation<Props>(PersonalCenter)

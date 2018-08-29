@@ -2,16 +2,17 @@
 
 
 import {StyleSheet} from 'react-native';
-import {getSize,MyStyleSheetCreate} from '../../utils'
+import {getSize,MyStyleSheetCreate, WindowHeight} from '../../utils'
 
 export const topicStyle=MyStyleSheetCreate({
     container:{
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        height:WindowHeight
     },
     tabBar:{
         height:40,
         flexDirection:'row',
-        borderBottomWidth:getSize(1/3.5),
+        borderBottomWidth:1/3.5,
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
     footer:{

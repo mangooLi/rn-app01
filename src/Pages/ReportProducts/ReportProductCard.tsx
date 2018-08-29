@@ -26,7 +26,7 @@ import {cardStyle} from './style';
         return (
             <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
             <View style={cardStyle.container} >
-                <Image style={cardStyle.img} source={{uri:thumbnail_url}}/>
+                <Image style={cardStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
                 <Text style={cardStyle.title} >{title}</Text>
                 <Text style={cardStyle.date} >{moment(date).format('YYYY-MM') }/{report_images_count}页</Text>
             </View>

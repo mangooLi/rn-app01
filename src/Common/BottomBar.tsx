@@ -3,7 +3,7 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableWithoutFeedback,StyleSheet,Animated} from 'react-native';
 import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
-import listStore from '../Pages/ListModel';
+import listStore from '../Pages/GlobalModel';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -25,6 +25,8 @@ class BottomBar extends Component<NavigationInjectedProps> {
         dataColor:'#333'
     }
 
+
+
     constructor(props:any){
         super(props);
 
@@ -37,6 +39,26 @@ class BottomBar extends Component<NavigationInjectedProps> {
         })
 
     }
+    
+
+    componentWillReceiveProps(nextProps:NavigationInjectedProps){
+        // console.log('nextProps.navigation', nextProps.navigation)
+        const {state} = nextProps.navigation;
+        if(state.index === 0){
+            this.setState({
+                homeColor:'#f00',
+                dataColor:'#333'
+            })
+        }else{
+            this.setState({
+                homeColor:'#333',
+                dataColor:'#f00'
+            })
+        }
+        // return true
+    }
+
+    
 
     expand(){
         // this.folded = false;

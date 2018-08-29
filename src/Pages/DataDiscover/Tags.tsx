@@ -35,7 +35,7 @@ class Tags extends Component<NavigationInjectedProps & Props>{
                     {map(topics,topic=>(
                         <TouchableWithoutFeedback key={topic.id} onPress={()=>this.handlePress(topic)}>
                         <View style={tagsStyle.topic}>
-                            <Image style={tagsStyle.image} source={{uri:topic.logo_url}}/>
+                            <Image style={tagsStyle.image} source={{uri:topic.logo_url,cache:'force-cache'}}/>
                             <Text style={tagsStyle.text}>{topic.name}</Text>
                         </View>
                         </TouchableWithoutFeedback>

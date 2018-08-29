@@ -16,6 +16,8 @@ export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|D
     @observable 
     type:string = 'article';
     @observable
+    title:string = '我的收藏'
+    @observable
     checkList:number[]  = [];
 
     @observable 
@@ -29,6 +31,10 @@ export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|D
     @action
     setType(type:string){
         this.type = type;
+        switch(type){
+            case 'comment':this.title='我的评论';
+            default :this.title = '我的收藏';
+        }
     }
 
 

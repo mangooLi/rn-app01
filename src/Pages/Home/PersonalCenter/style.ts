@@ -15,7 +15,7 @@ export const pageStyle = MyStyleSheetCreate({
         borderRadius:44+4,
         borderWidth:4,
         borderColor:'#fff',
-        marginTop:getSize(50-24+40),
+        marginTop:50-24+40,
         backgroundColor:'#fff'
     },
     avater:{

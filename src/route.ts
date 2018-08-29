@@ -1,6 +1,6 @@
 
 
-import { createStackNavigator,NavigationContainer } from 'react-navigation';
+import { createStackNavigator,NavigationContainer ,StackNavigatorConfig} from 'react-navigation';
 
 
 // pages
@@ -40,6 +40,7 @@ import Pan from './DemoPage/Pan';
 import PullDemo from './DemoPage/PullDemo';
 import IconPage from './DemoPage/Icon';
 import Refresh from './DemoPage/Refresh';
+import Banner from './DemoPage/Banner';
 
 
 const Route = createStackNavigator({
@@ -76,11 +77,12 @@ const Route = createStackNavigator({
     Pan:Pan,
     PullDemo:PullDemo,
     IconPage:IconPage,
-    Refresh:Refresh
+    Refresh:Refresh,
+    Banner:Banner
 
     },{
         initialRouteName: 'Main',
-        mode: 'modal',
+        mode: 'card',
         headerMode: 'none',
         // transitionConfig:()=>({
         //     screenInterpolator: (sceneProps) => {
@@ -92,6 +94,11 @@ const Route = createStackNavigator({
         //         return StackViewStyleInterpolator.forFadeFromBottomAndroid(sceneProps)
         //       },
         // })
+        // gesturesEnabled:true,
+
+        navigationOptions:{
+            gesturesEnabled:true,
+        }
     })
 
 export default Route;

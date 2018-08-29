@@ -26,7 +26,7 @@ export default class InformationCard extends Component<InformationCardItem>{
                 />
                 {images && images.length ?
                     <View style={informationCardStyle.imgContainer}>
-                        {map(images,src=><Image key={src} style={informationCardStyle.img} source={{uri:src}}/>)}
+                        {map(images,src=><Image key={src} style={informationCardStyle.img} source={{uri:src,cache:'force-cache'}}/>)}
                     </View>:<View/>
                 }
                 { link_title && link_url ? <Text onPress={()=> this.link(link_url)} style={informationCardStyle.link}>🔗{link_title}</Text>:<View/>}

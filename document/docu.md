@@ -159,7 +159,58 @@ ScrollView和FlatList支持refreshControl属性，通过该属性指定RefreshCo
 ### 十 存储
 react-native 提供了AsyncStorage，可以代替localStorage。但是一般不推荐直接使用AsyncStorage，而是对其做一层封装。 社区一般推荐[react-native-storage](https://github.com/sunnylqm/react-native-storage/blob/master/README-CHN.md)。由于AsyncStorage的读取是异步的，因此对于一些常用的全局信息或者不方便异步读取的信息，可以挂载在global对象上。
 
-### 十一 其他
+### 十一 宽高
+#### 0 宽度和高度
+```
+React Native 中的尺寸都是无单位的，表示的是与设备像素密度无关的逻辑像素点。
+```
+
+RN提供了Dimensions模块供我们获取设备屏幕的宽高。通过`Dimensions.get('window')`和`Dimensions.get('screen')`方法，可以获取当前设备窗口和屏幕的宽高。我们将其打印出来看一下。
+![image](./img/000.png)
+可以看到screen高度比window的高度多了48，这是上面信息栏和下面虚拟按钮的高度。这里的width和height就是上面说的，与设备像素密度无关的逻辑像素点。width*scale=设备实际像素值。截图的手机是nexus6,分辨率是1440*2560,在RN中的宽度就是1440/3.5=411.42857142857144。
+
+知道了设备的宽度和高度，那么怎么由设计稿的尺寸获取RN代码中的尺寸呢？笔者这里采取的是等比例放大的方法。设计稿的总宽度是375pt，映射到手机屏幕上就是`Dimensions.get('window')`。那么就有下面的方法：
+```
+// 设计稿总宽度
+const DESIGNWIDTH = 375;
+// 屏幕宽度
+const WindowWidth = Dimensions.get('window').width;
+
+/**
+ * 获取设计稿中的尺寸在RN代码中的尺寸
+ * @param designedSize 设计稿中的尺寸
+ */
+function getSize(designedSize:number){
+    return PixelRatio.roundToNearestPixel(designedSize*WindowWidth/DESIGNWIDTH)
+}
+```
+
+PixelRatio.roundToNearestPixel方法将一个布局尺寸近似到最接近的、能转换为整数像素数的布局尺寸。比如设计尺寸为10.3，在nexus6中，scale为3.5，那么10.3对于的像素是36.050000000000004。那么这个数字会被近似变成10.285714285714286，对于36像素。就是说
+```PixelRatio.roundToNearestPixel(10.3)=10.285714285714286```
+为了避免每次调用`StyleSheet.create`的时候都需要调用getSize方法，可以自定义一个方法，对`StyleSheet.create`进行包装。如下：
+```
+interface MyStyle{
+    [name:string]:ViewStyle | TextStyle | ImageStyle
+}
+export function MyStyleSheetCreate(configs:MyStyle){
+    Object.keys(configs).forEach(name=>{
+        Object.keys(configs[name]).forEach(key=>{
+            const value:any = (configs[name] as any)[key]
+
+            if(typeof value === 'number' && !['flex','flexGrow','zIndex','flexShrink'].includes(key)){
+                (configs[name] as any)[key] = getSize(value)
+            }
+
+        })
+    })
+
+    return StyleSheet.create(configs)
+}
+```
+
+
+
+### 十二 其他
 1. interface的处理。定义的interface，有两种处理方法，一种是定义在模块中，然后在需要的地方import进来。一种是定义在非模块的TS文件中，然后在tsconfig.json中配置include字段。经过对比判断，定义在非模块化文件中更方便。值得注意的是，枚举值只能定义在模块化文件中然后export出去。如果定义在非模块化文件中，运行的时候枚举值会找不到。如果非模块化TS文件中的interface也需要用到该枚举值怎么办？只能分别在两个文件里定义两个一样的interface了。
 2. 获取网络状态。有时候，APP需要获取网络状态，在无网络或者网络状态不佳的时候提示。react-native提供了NetInfo模块，供APP访问网络状态。在`getConnectionInfo`方法的回调里，提供了`ConnectionType`和`EffectiveConnectionType`信息。这两个枚举可选值如下：
 
@@ -187,3 +238,4 @@ dependencies {
 }
 ```
 但是这里还是可能会有坑。笔者按照文档提示，加了上述模块后，运行r`react-native run-android`，有时候编译不过去，有时候编译成功，但是APP闪退。经过查找资料，发现是`react-native`与`com.facebook.fresco`版本号匹配的问题。最新的文档是0.56的，项目是0.55的。查找0.55的文档，把`com.facebook.fresco`的版本换成1.3.0，就OK了。
+4. yangs

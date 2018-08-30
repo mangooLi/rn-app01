@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableOpacity} from 'react-native';
+import {View,Text,Image,TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
 import { StyleSheet} from 'react-native'
 import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const leftIcon = require('../assets/img/left.png');
@@ -12,7 +13,9 @@ interface Prop {
     title?:string,
     style?:any,
     rightIcon?:any,
-    withoutLeftIcon?:boolean
+    leftIcon?:any;
+    withoutLeftIcon?:boolean,
+    pressRight?:()=>void
 }
 
 
@@ -22,15 +25,22 @@ class TabBar extends Component<NavigationInjectedProps &Prop>{
         this.props.navigation.goBack()
     }
     render(){
-        const {title,style,rightIcon,withoutLeftIcon}=this.props;
+        const {title,style,rightIcon,withoutLeftIcon,leftIcon}=this.props;
         return (
             <View style={[tabBarStyle.tabBar,style]}>
 
                 {withoutLeftIcon?<View/>: <TouchableOpacity style={tabBarStyle.imgContainer} onPress={()=>this.back()} activeOpacity={1}>
-                    <Image style={tabBarStyle.img} source={leftIcon}/>
+                    {/* <Image style={tabBarStyle.img} source={leftIcon}/> */}
+                    <View style={tabBarStyle.img}><Icon size={getSize(20)} name="chevron-left"/></View> 
+                    <View style={{marginLeft:4}}>{leftIcon}</View>
                 </TouchableOpacity>}
                 <Text style={tabBarStyle.text}>{title}</Text>
-                {rightIcon ?<View style={tabBarStyle.right}>{rightIcon}</View>:<View/>}
+                {rightIcon ?<View style={tabBarStyle.right}>
+                    <TouchableWithoutFeedback onPress={()=>this.props.pressRight && this.props.pressRight()}>
+                        {rightIcon}
+                    </TouchableWithoutFeedback>
+                
+                </View>:<View/>}
             </View>
         )
     }
@@ -46,6 +56,7 @@ const tabBarStyle=MyStyleSheetCreate({
         height:40,
         flexDirection:'row',
         borderBottomWidth:0.5,
+        backgroundColor:'#f6f6f6',
         borderBottomColor:'#f8f8f8'
     },
     imgContainer:{
@@ -53,6 +64,7 @@ const tabBarStyle=MyStyleSheetCreate({
         left:10,
         top:10,
         zIndex:1000,
+        flexDirection:'row'
     },
     img:{
         width:20,

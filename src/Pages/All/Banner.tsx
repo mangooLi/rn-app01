@@ -15,6 +15,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { bannerStyle } from './style';
 import homeModel from '../Home/model';
+import { getSize } from '../../utils';
 
 
 
@@ -56,7 +57,7 @@ interface Props{
         return (
             banners.length? <Banner style={bannerStyle.banner}
                 store = {homeModel}
-                top ={212.5-45}
+                top ={getSize(212.5-45)}
                 indicaterType = {IndicaterType.circle}
                 indicaterAlign={IndicaterAlign.right}
                 firstChild = {this.renderImg(banners[0],'first')}

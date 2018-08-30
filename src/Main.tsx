@@ -188,6 +188,18 @@ export default class Main extends React.Component<NavigationInjectedProps>{
                     onPress={()=>{this.props.navigation.navigate('Loading')}}
                 ></Button></View>
 
+                <View style={style.btn}><Button
+                    title='意见反馈'
+                    onPress={()=>{this.props.navigation.navigate('Feedback')}}
+                ></Button></View>
+
+                <View style={style.btn}><Button
+                    title='WebPage'
+                    onPress={()=>{this.props.navigation.navigate('WebPage')}}
+                ></Button></View>
+
+
+                    
                
 
                 

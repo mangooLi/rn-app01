@@ -49,7 +49,7 @@ export function getRecommendations(id:number|string, limit:number =4){
  * 收藏文章
  * @param information_id 文章ID
  */
-export function startInformation(information_id:number){
+export function starInformation(information_id:number){
     const options = {
         url:'api/v1/mine/star_informations',
         method:'post',
@@ -59,3 +59,5 @@ export function startInformation(information_id:number){
     }
     return fetch<{}>(options)
 }
+
+

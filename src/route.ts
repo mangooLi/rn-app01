@@ -27,7 +27,8 @@ import UpdatePassword from './Pages/UpdatePassword';
 import MyReport from './Pages/MyReport';
 import NetError from './Common/NetError';
 import Loading from './Common/Loading';
-
+import Feedback from './Pages/Feedback';
+import WebPage from './Pages/WebPage';
 // route
 import ListRoute from './Pages/ListRoute';
 import BottomRoute from './Pages/BottomRoute';
@@ -69,6 +70,8 @@ const Route = createStackNavigator({
     BottomRoute:BottomRoute,
     NetError:NetError,
     Loading:Loading,
+    Feedback:Feedback,
+    WebPage:WebPage,
     // demo
     Demo:DemoMain,
     DemoRoute:DemoRoute,

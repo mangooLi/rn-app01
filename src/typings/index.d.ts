@@ -77,3 +77,8 @@ declare var StackViewStyleInterpolator :{
 declare module 'react-navigation/src/views/StackView/StackViewStyleInterpolator'{
     export default StackViewStyleInterpolator
 }
+
+declare var  Orientation :any;
+declare module 'react-native-orientation'{
+    export default Orientation
+}

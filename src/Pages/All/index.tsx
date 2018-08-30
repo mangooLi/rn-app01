@@ -156,18 +156,18 @@ class AllPage extends React.Component<NavigationInjectedProps>{
         return (
             <View style={homeStyle.page_container} ref={c=>this.cn=c}>
             {(!loading && !netError)? <ScrollView  
-                refreshControl={
-                    <RefreshControl
-                        refreshing={false}
-                        onRefresh={this._onRefresh}
-                        colors={['#f00','#0f0','#00f']}
-                        // progressBackgroundColor='#f0f'
-                        enabled={true}
-                        progressViewOffset={20}
-                        // tintColor='#0ff'    
-                        title='下拉刷新'
-                    />
-                }
+                // refreshControl={
+                //     <RefreshControl
+                //         refreshing={false}
+                //         onRefresh={this._onRefresh}
+                //         colors={['#f00','#0f0','#00f']}
+                //         // progressBackgroundColor='#f0f'
+                //         enabled={true}
+                //         progressViewOffset={20}
+                //         // tintColor='#0ff'    
+                //         title='下拉刷新'
+                //     />
+                // }
                 onScroll={(e)=>this.handleScroll(e)}
                 testID='homePage'>
                 <Banner banners={banners}/>

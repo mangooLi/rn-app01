@@ -50,7 +50,7 @@ export function getAccountCollection(page:number){
  * 删除收藏文章
  * @param information_ids 被删除收藏的id数组
  */
-export function deleteStarInformation(information_ids:number[]){
+export function deleteStarInformations(information_ids:number[]){
     const options = {
         method:'post',
         url:'api/v1/mine/star_informations/batch_delete',
@@ -79,9 +79,21 @@ export function toggleMineLike(comment_id:number){
         url:`api/v1/mine/comments/${comment_id}/toggle_like`,
         method:'post'
     }
-    return fetch<{}>(options)
+    return fetch<{data:CommentItem}>(options)
 }
 
+/**
+ * 批量删除评论
+ * @param comment_ids 评论ID数组
+ */
+export function deleteMineComment (comment_ids:number[]){
+    const options = {
+        url:'api/v1/mine/comments/batch_delete',
+        method:'post',
+        data:{comment_ids}
+    }
+    return fetch<{}>(options)
+}
 
 /**
  * 修改用户信息
@@ -127,4 +139,25 @@ export function updatePassword(password:string,new_password:string){
  */
 export function getMyReport (){
     return fetch<{data:ReportProductItem[],meta:Meta}>({url:'api/v1/mine/products/report'})
+}
+
+
+
+
+
+
+/**
+ * 
+ * @param content 反馈内容
+ * @param username 用户名
+ */
+export function feedback(content:string,username:string){
+    const options = {
+        url:'api/v1/global_feedbacks',
+        method:'post',
+        data:{
+            content,email:username
+        }
+    }
+    return fetch<{data:Feedback}>(options)
 }

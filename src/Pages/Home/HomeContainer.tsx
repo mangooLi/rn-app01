@@ -6,6 +6,7 @@ import {observer} from 'mobx-react';
 import {WindowWidth, WindowHeight, getSize,MyStyleSheetCreate} from '../../utils';
 import {autorun } from 'mobx';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
+import Orientation from 'react-native-orientation';
 
 import {animateStyle,homeContainerStyle} from './style';
 import PersonCenter from './PersonalCenter';
@@ -41,9 +42,13 @@ class HomeContainer extends Component<NavigationInjectedProps> {
         scaleY:new Animated.Value(1),
         scaleX:new Animated.Value(1),
     }
-
     sc:any;
     folded:boolean = false;
+
+    componentWillMount(){
+        Orientation.lockToPortrait()
+    }
+
 
     componentWillUnmount(){
         console.log('home contaner unmount')

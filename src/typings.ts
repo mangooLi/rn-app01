@@ -567,3 +567,14 @@ interface HomePageAll{
         report_product:ReportProductItem[]
 
 }
+
+/**
+ * 意见反馈的返回值
+ */
+interface Feedback{
+  id: string,
+  _type: string,
+  content: string,
+  email: string,
+  created_at: string,
+}

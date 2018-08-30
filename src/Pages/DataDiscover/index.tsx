@@ -24,7 +24,12 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
     componentWillMount(){
 
         this.store.loadData();
+
     }
+    componentWillUpdate(nextprop:any){
+        console.log('datadiscover', nextprop)
+    }
+
 
 
     render(){

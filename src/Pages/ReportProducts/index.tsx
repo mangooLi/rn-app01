@@ -19,6 +19,9 @@ class ReportProducts  extends React.Component{
     componentWillMount(){
         this.store.loadData()
     }
+    componentWillUpdate(nextProp:any){
+        console.log('report product',nextProp)
+    }
 
     render(){
         const {informations,loading,netError} =this.store

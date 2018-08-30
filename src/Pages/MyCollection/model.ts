@@ -4,7 +4,7 @@ import {observable, action,} from 'mobx';
 import List from '../../Common/List';
 import {remove, getSize,MyStyleSheetCreate} from '../../utils';
 import {Animated} from 'react-native';
-import {getAccountComment,getAccountCollection,deleteStarInformation} from '../../api';
+import {getAccountComment,getAccountCollection,deleteStarInformations,deleteMineComment} from '../../api';
 
 export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|DataHeroItem|DataFiftyItem|CommentItem> {
 
@@ -64,13 +64,14 @@ export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|D
         this.checkAll = true;
     }
 
+    @action
     handleDelete(){
         const ids = this.checkAll?this.informations.map(item=>item.id):this.checkList;
-        deleteStarInformation(ids).then(()=>{
+        (this.type==='comment'?deleteMineComment(ids): deleteStarInformations(ids)).then(()=>{
 
             remove(this.informations,info=>ids.includes(info.id));
             this.toggleSetting();
-
+            // this.loadData()
         })
     }
 

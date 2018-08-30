@@ -140,7 +140,7 @@ export default class Home extends Component {
                 </Animated.View>
                 </TouchableWithoutFeedback>
                 <View style={animateStyle.two}>
-                    <PersonCenter />
+                    <PersonCenter onleave={()=>this.expand()}/>
                 </View>
             </View>
 

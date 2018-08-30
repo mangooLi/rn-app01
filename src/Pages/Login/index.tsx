@@ -34,7 +34,7 @@ class LoginPage extends Component<NavigationInjectedProps> {
                 global.user = res.data.data;
                 global.token = res.data.data.token;
                 globalStore.setUser(res.data.data)
-                this.props.navigation.navigate('Home')
+                this.props.navigation.navigate('BottomRoute')
             }
 
         }).catch(()=>this.fetching= false)

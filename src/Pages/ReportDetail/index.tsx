@@ -1,7 +1,7 @@
 
 import React,{Component} from 'react';
 import {View ,Text,ProgressBarAndroid,ScrollView,StyleSheet, Dimensions, LayoutChangeEvent} from 'react-native';
-
+import Orientation from 'react-native-orientation';
 import { NavigationInjectedProps } from 'react-navigation';
 import {observer} from 'mobx-react'
 import Pdf from 'react-native-pdf';
@@ -28,6 +28,11 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
     componentWillMount(){
         const id = this.props.navigation.getParam('id');
         this.store.init(id);
+        Orientation.unlockAllOrientations()
+    }
+
+    componentWillUnmount(){
+        Orientation.lockToPortrait()
     }
 
   

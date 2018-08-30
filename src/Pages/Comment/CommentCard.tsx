@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 import {View,Text,Image,TouchableOpacity} from 'react-native';
 
 import {Response,toggleMineLike} from '../../api';
-import {moment,MyStyleSheetCreate} from '../../utils';
+import {moment,MyStyleSheetCreate, noop} from '../../utils';
 import {cardStyle} from './style';
 import CommentDetail from './model';
 
@@ -28,14 +28,15 @@ export default class CommentCard extends Component<CommentItem & Props> {
                 if(res.data){
                     this.setState({like:res.data.data.has_like,like_count:res.data.data.like_items_count});
                 }
-            }).catch(e=>{
-               
-            })
+            }).catch(noop)
         }else{
             toggleMineLike(comment_id).then(res=>{
-                const {like,like_count}=this.state;
-                this.setState({like:!like,like_count:like?like_count-1:like_count+1})
-            })
+                // const {like,like_count}=this.state;
+                if(res.data){
+                    // this.setState({like:res.data.data.has_like,like_count:res.data.data.like_items_count});
+                    this.setState({like:res.data.data.has_like,like_count:res.data.data.like_items_count})
+                }
+            }).catch(noop)
         }
     }
 

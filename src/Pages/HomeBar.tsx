@@ -87,7 +87,6 @@ class HomeBar extends Component<Prop & NavigationInjectedProps> {
         this.props.navigation.navigate(this.routes[page-1])
     }
     expand(){
-
         Animated.parallel([
             Animated.timing(this.state.x,{toValue:0,duration:500}),
             Animated.timing(this.state.y,{toValue:0,duration:500}),
@@ -121,6 +120,7 @@ class HomeBar extends Component<Prop & NavigationInjectedProps> {
         return (
             <Animated.View style={[barStyle.bar,{left:x,top:y,transform:[{scaleX},{scaleY}]}]}>
                 <Text onPress={()=>this.toPage(1)} style={barStyle.text}>全部</Text>
+
                 <Text onPress={()=>this.toPage(2)} style={barStyle.text}>数据洞察</Text>
                 <Text onPress={()=>this.toPage(3)} style={barStyle.report}>数据报告</Text>
                 <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('SearchPage')}>

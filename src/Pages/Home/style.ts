@@ -14,7 +14,8 @@ export const animateStyle ={
     one:{
         backgroundColor:'#fff',
         width:WindowWidth,
-        paddingTop:40,
+        height:WindowHeight,
+        // paddingTop:40,
         zIndex:12,
         justifyContent:'space-around',
         alignContent:'center',

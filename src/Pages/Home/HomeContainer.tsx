@@ -11,7 +11,10 @@ import Orientation from 'react-native-orientation';
 import {animateStyle,homeContainerStyle} from './style';
 import PersonCenter from './PersonalCenter';
 
+import HomeBar from '../HomeBar';
+
 import listStore from '../GlobalModel';
+import Bottombar from '../../Common/BottomBar';
 
 
 @observer
@@ -116,9 +119,12 @@ class HomeContainer extends Component<NavigationInjectedProps> {
 
                     style={[animateStyle.one,{left:x,transform:[{scaleX},{scaleY}]}]} >
 
-                    <View style={{height:WindowHeight-80}}>
-
-                        {this.props.children}
+                    <View style={{flex:1}}>
+                        <HomeBar noHide/>
+                        <View style={{flex:1}}>
+                            {this.props.children}
+                        </View>
+                        <Bottombar />
                     </View>
                 </Animated.View>
                 </TouchableWithoutFeedback>

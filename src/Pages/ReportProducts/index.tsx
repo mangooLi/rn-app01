@@ -1,8 +1,9 @@
 
 
 import * as React from 'react';
-import { View ,FlatList} from 'react-native';
-import {observer} from 'mobx-react'
+import { View ,FlatList,DeviceEventEmitter} from 'react-native';
+import {observer} from 'mobx-react';
+import {NavigationInjectedProps, withNavigation} from 'react-navigation';
 
 import ReportProductsModel from './model';
 import ReportProductItem from './ReportProductCard'
@@ -12,16 +13,17 @@ import NetError from '../../Common/NetError';
 import Loading from '../../Common/Loading';
 
 @observer
-class ReportProducts  extends React.Component{
+class ReportProducts  extends React.Component<NavigationInjectedProps>{
 
     store = new ReportProductsModel();
 
     componentWillMount(){
-        this.store.loadData()
+        this.store.loadData();
+        this.props.navigation.addListener('willFocus',()=>{
+            DeviceEventEmitter.emit('ListRouteSwipeTo',{page:2})
+        })
     }
-    componentWillUpdate(nextProp:any){
-        console.log('report product',nextProp)
-    }
+
 
     render(){
         const {informations,loading,netError} =this.store
@@ -44,7 +46,8 @@ class ReportProducts  extends React.Component{
     }
 }
 
-export default ReportProducts;
+const ReportWithNavigation =  withNavigation<{}>(ReportProducts);
+export default ReportWithNavigation;
 
 
 export class ReportProductsWithAnimate extends React.Component {
@@ -52,7 +55,7 @@ export class ReportProductsWithAnimate extends React.Component {
     render (){
 
         return <HomeContainer>
-            <ReportProducts/>
+            <ReportWithNavigation />
         </HomeContainer>
     }
 }

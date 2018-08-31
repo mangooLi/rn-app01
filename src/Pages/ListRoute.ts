@@ -1,7 +1,7 @@
 
 
 
-import {createMaterialTopTabNavigator} from 'react-navigation';
+import {createMaterialTopTabNavigator,TabNavigatorConfig} from 'react-navigation';
 import {AllPageWithAnimate} from './All';
 import {DataDiscoverWithAnimate} from './DataDiscover';
 import {ReportProductsWithAnimate} from './ReportProducts';
@@ -14,19 +14,34 @@ const ListRoute=createMaterialTopTabNavigator({
     Home:{
         screen:AllPageWithAnimate,
         navigationOptions:{
-            tabBarLabel:'全部'
+            tabBarLabel:'全部',
+            tabBarIcon:(options:any)=>{
+                if(options. focused){
+                    console.log('focus all')
+                }
+            }
         }
     },
     DataDiscover:{
         screen:DataDiscoverWithAnimate,
         navigationOptions:{
-            tabBarLabel:'数据洞察'
+            tabBarLabel:'数据洞察',
+            tabBarIcon:(options:any)=>{
+                if(options. focused){
+                    console.log('focus discover')
+                }
+            }
         }
     },
     ReportProducts:{
         screen:ReportProductsWithAnimate,
         navigationOptions:{
-            tabBarLabel:'数据报告'
+            tabBarLabel:'数据报告',
+            tabBarIcon:(options:any)=>{
+                if(options. focused){
+                    console.log('focus datareport')
+                }
+            }
         }
     },
     // NetError:{
@@ -41,7 +56,9 @@ const ListRoute=createMaterialTopTabNavigator({
     //     },
     // },
     tabBarComponent:HomeBar,
-    lazy:true
+    lazy:true,
+
+
 })
 
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View ,Text,FlatList,ScrollView,NativeScrollEvent} from 'react-native';
+import { View ,Text,FlatList,ScrollView,NativeScrollEvent,DeviceEventEmitter} from 'react-native';
 import DataDiscoverModel from './model';
 import ArticleBrief from '../../Common/ArticleBrief';
 
@@ -24,14 +24,15 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
     componentWillMount(){
 
         this.store.loadData();
+        this.props.navigation.addListener('willFocus',()=>{
+            DeviceEventEmitter.emit('ListRouteSwipeTo',{page:1})
+        })
 
     }
-    componentWillUpdate(nextprop:any){
-        console.log('datadiscover', nextprop)
+     componentWillReceiveProps(next:any){
+        console.log('datadiscover',next);
+
     }
-
-
-
     render(){
         const {informations,loading,netError} =this.store;
         return (

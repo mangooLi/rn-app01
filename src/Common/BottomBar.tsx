@@ -130,7 +130,7 @@ export default withNavigation<{}>(BottomBar)
 export const cmpStyle = MyStyleSheetCreate({
     container:{
         flexDirection:'row',
-        height:49,
+        height:0,
         borderTopWidth:0.5,
         borderTopColor:'#f8f8f8',
         backgroundColor:'#f8f8f8',

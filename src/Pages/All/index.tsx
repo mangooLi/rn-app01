@@ -1,7 +1,7 @@
 
 
 import * as React from 'react';
-import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent,RefreshControl} from 'react-native';
+import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent,DeviceEventEmitter} from 'react-native';
 import { getInformationFlow,getBanners,getRandomReportProduct,InformationFlowType} from '../../api'
 
 import ArticleBrief from '../../Common/ArticleBrief';
@@ -50,6 +50,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
        netError:false
 
    }
+   
    handleLoadError=()=>{
        this.setState({
            loading:false,
@@ -84,7 +85,12 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
     componentWillMount(){
         this.loadInfo=debounce(this._loadinfo,1000)
-        this.beforeLoad()
+        this.beforeLoad();
+
+        this.props.navigation.addListener('willFocus',()=>{
+            DeviceEventEmitter.emit('ListRouteSwipeTo',{page:0})
+        })
+        
 
         Promise.all([this._loadinfo(),getBanners(),getRandomReportProduct()]).then(values=>{
             this.handleLoadDone()

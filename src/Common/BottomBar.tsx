@@ -1,7 +1,7 @@
 
 
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableWithoutFeedback,StyleSheet,Animated} from 'react-native';
+import {View,Text,Image,TouchableWithoutFeedback,DeviceEventEmitter,Animated, ViewStyle} from 'react-native';
 import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 import listStore from '../Pages/GlobalModel';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -14,32 +14,54 @@ import { autorun } from 'mobx';
 const homeIcon = require('../assets/img/ic_home_24px/ic_home_24px.png')
 const heroIcon = require('../assets/img/ic_home_24px/ic_home_24px.png');
 
-class BottomBar extends Component<NavigationInjectedProps> {
+interface Prop{
+    noHide?:boolean
+}
 
-    state={
-        x:new Animated.Value(0),
-        y:new Animated.Value(0),
-        scaleY:new Animated.Value(1),
-        scaleX:new Animated.Value(1),
+interface State{
+    homeColor:string,
+    dataColor:string,
+    display:'flex'|'none',
+    visible:boolean
+}
+
+class BottomBar extends Component<NavigationInjectedProps & Prop> {
+
+    state:State={
+       
         homeColor:'#f00',
-        dataColor:'#333'
+        dataColor:'#333',
+        display:'flex',
+        visible:true
     }
 
 
 
     constructor(props:any){
         super(props);
-
-        autorun(()=>{
-            if(listStore.fold){
-                this.fold()
-            }else{
-                this.expand()
-            }
-        })
-
     }
-    
+
+
+    componentWillMount(){
+        const {noHide}=this.props;
+        if(noHide){
+            this.hide()
+        }
+        DeviceEventEmitter.addListener('PageExpand',()=>{
+            this.hide(noHide?true:false)
+        })
+        DeviceEventEmitter.addListener('HidePage',()=>{
+            console.log('receive hide page bottmbar')
+            if(noHide){
+                this.hide(false)
+            }else{
+                this.hide()
+            }
+
+        })
+        
+    }
+   
 
     componentWillReceiveProps(nextProps:NavigationInjectedProps){
         // console.log('nextProps.navigation', nextProps.navigation)
@@ -57,27 +79,14 @@ class BottomBar extends Component<NavigationInjectedProps> {
         }
         // return true
     }
-
+    hide(hide:boolean=true){
+        this.setState({display:hide?'none':'flex'});
+        this.setState({visible:!hide})
+        this.forceUpdate()
+    }
     
 
-    expand(){
-        // this.folded = false;
-        Animated.parallel([
-            Animated.timing(this.state.x,{toValue:0,duration:500}),
-            Animated.timing(this.state.y,{toValue:0,duration:500}),
-            Animated.timing(this.state.scaleY,{toValue:1,duration:500}),
-            Animated.timing(this.state.scaleX,{toValue:1,duration:500})
-        ]).start()
-    }
-    fold(){
-        // this.folded = true;
-        Animated.parallel([
-            Animated.timing(this.state.x,{toValue:-WindowWidth/2,duration:500}),
-            Animated.timing(this.state.y,{toValue:WindowHeight*0.1-4,duration:500}),
-            Animated.timing(this.state.scaleY,{toValue:0.8,duration:500}),
-            Animated.timing(this.state.scaleX,{toValue:0.8,duration:500}),
-        ]).start()
-    }
+   
 
     navHome=()=>{
 
@@ -96,46 +105,60 @@ class BottomBar extends Component<NavigationInjectedProps> {
     }
 
     render() {
-        const {x,y,scaleX,scaleY,homeColor,dataColor}=this.state
+        const {homeColor,dataColor,display,visible}=this.state;
+        console.log('render ',display)
         return (
-            <Animated.View style={[cmpStyle.container,{left:x,bottom:y,transform:[{scaleX},{scaleY}]}]}>
-                <TouchableWithoutFeedback onPress={this.navHome}>
-                    <View style={cmpStyle.part}>
+            <View>
+            {visible? (<View style={[cmpStyle.container,{display}]}>
+               
+                    <TouchableWithoutFeedback onPress={this.navHome}>
+                        <View style={cmpStyle.part}>
 
-                        <View style={cmpStyle.icon}>
-                            <Icon name="home" size={24} color={homeColor}/>    
-                        </View> 
-                        <Text style={cmpStyle.text}>首页</Text>
-                    </View>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback onPress={this.navData}>
-                    <View style={cmpStyle.part}>
-                        {/* <Image style={cmpStyle.icon} source={heroIcon}/> */}
-                        <View style={cmpStyle.icon}>
-                            <Icon name="database" size={24} color={dataColor}/>
+                            <View style={cmpStyle.icon}>
+                                <Icon name="home" size={24} color={homeColor}/>    
+                            </View> 
+                            <Text style={cmpStyle.text}>首页</Text>
                         </View>
-                        <Text style={cmpStyle.text}>数据侠</Text>
-                    </View>
-                </TouchableWithoutFeedback>
-            </Animated.View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this.navData}>
+                        <View style={cmpStyle.part}>
+                            {/* <Image style={cmpStyle.icon} source={heroIcon}/> */}
+                            <View style={cmpStyle.icon}>
+                                <Icon name="database" size={24} color={dataColor}/>
+                            </View>
+                            <Text style={cmpStyle.text}>数据侠</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+
+            </View>):<View style={[cmpStyle.empty,{display}]}/>}</View>
         );
     }
 }
 
-export default withNavigation<{}>(BottomBar)
+export default withNavigation<Prop>(BottomBar)
 
 
 
 
 export const cmpStyle = MyStyleSheetCreate({
+
     container:{
         flexDirection:'row',
-        height:0,
+        height:49,
         borderTopWidth:0.5,
         borderTopColor:'#f8f8f8',
         backgroundColor:'#f8f8f8',
         position:'absolute',
-        width:WindowWidth
+        width:WindowWidth,
+        bottom:0
+    },
+    empty:{
+        flexDirection:'row',
+        height:49,
+        backgroundColor:'transparent',
+        position:'absolute',
+        width:WindowWidth,
+        bottom:0
     },
     
     part:{

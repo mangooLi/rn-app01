@@ -1,7 +1,7 @@
 
 
 import React,{Component} from 'react';
-import {View,TouchableWithoutFeedback,Animated,NetInfo} from'react-native';
+import {View,TouchableWithoutFeedback,Animated,DeviceEventEmitter} from'react-native';
 import {observer} from 'mobx-react';
 import {WindowWidth, WindowHeight, getSize,MyStyleSheetCreate} from '../../utils';
 import {autorun } from 'mobx';
@@ -27,14 +27,6 @@ class HomeContainer extends Component<NavigationInjectedProps> {
 
     constructor(props:any){
         super(props)
-        autorun(()=>{
-            if(listStore.fold){
-                this.fold();
-
-            }else{
-                this.expand()
-            }
-        })
     }
 
 
@@ -49,35 +41,42 @@ class HomeContainer extends Component<NavigationInjectedProps> {
     folded:boolean = false;
 
     componentWillMount(){
-        Orientation.lockToPortrait()
+        Orientation.lockToPortrait();
+
+        DeviceEventEmitter.addListener('HidePage',()=>{
+            this.fold()
+        })
+        DeviceEventEmitter.addListener('PageExpand',()=>{
+            this.expand()
+        })
     }
 
 
     componentWillUnmount(){
         console.log('home contaner unmount')
-        this.expand()
+        this.expand();
+
+       
     }
 
-    toggle(){
-        //
-        if(this.folded){
-            // this.expand();
-            listStore.expandPage()
-        }else{
-            // this.fold()
-            listStore.foldPage()
-        }
-    }
+    
 
     expand(){
+        if(!this.folded){
+            return;  //展开状态下不做处理
+        }
         this.folded = false;
-        listStore.expandPage()
+        // listStore.expandPage()
         Animated.parallel([
             Animated.timing(this.state.x,{toValue:0,duration:500}),
             // Animated.timing(this.state.y,{toValue:0,duration:500}),
             Animated.timing(this.state.scaleY,{toValue:1,duration:500}),
             Animated.timing(this.state.scaleX,{toValue:1,duration:500})
-        ]).start()
+        ]).start(()=>{
+
+            DeviceEventEmitter.emit('PageExpand')
+        })
+
     }
     fold(){
         this.folded = true;
@@ -124,7 +123,7 @@ class HomeContainer extends Component<NavigationInjectedProps> {
                         <View style={{flex:1}}>
                             {this.props.children}
                         </View>
-                        <Bottombar />
+                        <Bottombar noHide/>
                     </View>
                 </Animated.View>
                 </TouchableWithoutFeedback>

@@ -90,6 +90,9 @@ class AllPage extends React.Component<NavigationInjectedProps>{
         this.props.navigation.addListener('willFocus',()=>{
             DeviceEventEmitter.emit('ListRouteSwipeTo',{page:0})
         })
+        this.props.navigation.addListener('willBlur',()=>{
+            DeviceEventEmitter.emit('PageExpand')
+        })
         
 
         Promise.all([this._loadinfo(),getBanners(),getRandomReportProduct()]).then(values=>{

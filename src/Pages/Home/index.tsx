@@ -136,7 +136,7 @@ export default class Home extends Component {
                         <DataDiscover />
                         <DataReport />
                     </ScrollView>
-                    <BottomBar />
+                    {/* <BottomBar /> */}
                 </Animated.View>
                 </TouchableWithoutFeedback>
                 <View style={animateStyle.two}>

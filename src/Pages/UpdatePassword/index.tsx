@@ -13,6 +13,7 @@ import {pageStyle}  from './style';
 import IptCrd from './IptCard';
 
 import {updatePassword} from '../../api';
+import { noop } from '../../utils';
 
 export default class UpdatePassword extends Component {
 
@@ -49,7 +50,7 @@ export default class UpdatePassword extends Component {
                     this.ipt2.clear();
                     this.ipt3.clear()
                 }
-            })
+            }).catch(noop)
         }
         
     }

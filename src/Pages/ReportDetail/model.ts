@@ -3,6 +3,7 @@
 
 import {observable,action,extendObservable, toJS } from 'mobx';
 import {getReportProductsDetail , } from '../../api'
+import { noop } from '../../utils';
 
 
 export default class ReportDetailModel {
@@ -35,6 +36,6 @@ export default class ReportDetailModel {
                 this.title=res.data.data.report.title;
                 this.page=res.data.data.report.images_count;
             }
-        })
+        }).catch(noop)
     }
 }

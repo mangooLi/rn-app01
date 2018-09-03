@@ -30,7 +30,7 @@ interface Props{
     handlePress(item:BannerItem){
         //
         const {navigation} =this.props
-        navigation.navigate('ArticleDetail',{id:item.id})
+        navigation.navigate('ArticleDetail',{id:item.id,type:item.information_type})
     }
 
     renderImg(bn:BannerItem,id?:string|number){

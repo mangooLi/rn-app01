@@ -2,7 +2,7 @@ import {observable,action, toJS } from 'mobx';
 
 
 import {getInformaatinDetail,getRecommendations,} from '../../api';
-import { assign ,MyStyleSheetCreate} from '../../utils';
+import { assign ,MyStyleSheetCreate, noop} from '../../utils';
 
 
 
@@ -29,15 +29,15 @@ export default class DetailModel{
     }
 
     @action
-    setId(id:number){
+    setId(id:number,type?:string){
         this.id=id;
-
+        this._type=type||'';
         this.getInfoDetail()
     }
 
     @action
     getInfoDetail(){
-        getInformaatinDetail(this.id).then(res=>{
+        getInformaatinDetail(this.id,this._type).then(res=>{
             if(res.data){
                 this.updateArticle(res.data.data);
                 const {content} = this.article; 
@@ -57,7 +57,7 @@ export default class DetailModel{
                     }
                 }
             }
-        })
+        }).catch(noop)
     }
 
     @action

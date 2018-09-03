@@ -29,7 +29,8 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
 
     componentWillMount(){
         const id=this.props.navigation.getParam('id');
-        this.store.setId(id)
+        const type = this.props.navigation.getParam('type')
+        this.store.setId(id,type)
     }
 
     handleScroll(e:NativeSyntheticEvent<NativeScrollEvent> | undefined){

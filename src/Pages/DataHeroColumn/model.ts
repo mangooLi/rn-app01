@@ -2,6 +2,7 @@
 
 import {observable,action,} from 'mobx';
 import {getDataHeroTopics} from '../../api';
+import { noop } from '../../utils';
 
 
 
@@ -20,7 +21,7 @@ export default class Model {
                 this.topics = observable(topics );
                 this.selectedTopic = this.topics[0];
             }
-        })
+        }).catch(noop)
     }
 
     @action 

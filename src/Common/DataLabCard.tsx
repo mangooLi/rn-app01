@@ -34,8 +34,8 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
                             <Text style={dataLabStyle.detail_title} numberOfLines={2}>{title}</Text>
                             <View style={dataLabStyle.detail_tagAndAddress}>
 
-                                <Text style={dataLabStyle.detail_tag}>{tags.map(tag=>tag.name).join('・')}</Text>
-                                <Text style={dataLabStyle.detail_address}>&nbsp;活动地点：{address}</Text>
+                                <Text style={dataLabStyle.detail_tag}>{tags && tags.map(tag=>tag.name).join('・')}</Text>
+                                <Text style={dataLabStyle.detail_address}>&nbsp;活动地点：{address|| ""}</Text>
                             </View>
                     </View>
                 </View>

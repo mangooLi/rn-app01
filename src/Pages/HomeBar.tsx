@@ -132,7 +132,6 @@ class HomeBar extends Component<Prop & NavigationInjectedProps> {
 
 export default withNavigation<Prop>(HomeBar)
 
-
 export const barStyle=MyStyleSheetCreate({
     bar:{
 

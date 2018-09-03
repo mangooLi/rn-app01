@@ -12,6 +12,7 @@ import {getSms,register} from '../../api';
 
 
 import {pageStyle} from './style';
+import { noop } from '../../utils';
 
 const arrowRight = require('../../assets/img/arrow_right.png');
 const check = require('../../assets/img/check.png');
@@ -51,7 +52,7 @@ export default class RegisterPage extends Component {
             if(res.data){
                 storage.save({key:'user',data:res.data.data,expires:null});
             }
-        })
+        }).catch(noop)
 
     }
     toggleCheck(){

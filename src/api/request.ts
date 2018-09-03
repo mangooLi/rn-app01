@@ -1,7 +1,9 @@
 
 
 
-export const baseUrl='http://staging.dtcj.com/';
+// export const baseUrl='http://staging.dtcj.com/';
+
+export const baseUrl = 'http://www.dtcj.com/'
 export interface Options<T> {
   url: string;
   method?: string;

@@ -65,6 +65,10 @@ export const homeStyle=MyStyleSheetCreate({
             color:'#999',
             fontSize:12,
         },
+        footer:{
+            height:89,
+            width:200
+        }
         
 })
 

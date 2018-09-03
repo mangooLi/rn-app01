@@ -10,13 +10,14 @@ import Banner from './Banner';
 import DataLabCardContainer from './DataLabContainer';
 import {homeStyle} from './style';
 
-import { debounce ,MyStyleSheetCreate} from '../../utils';
+import { debounce ,MyStyleSheetCreate, noop} from '../../utils';
 import Report, {ReportProps} from '../../Common/Report'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import HomeContainer from '../Home/HomeContainer';
 import NetError from '../../Common/NetError';
 import Loading from '../../Common/Loading';
+
 
 
 interface HomeState{
@@ -79,14 +80,13 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                 this.totalPage=res.data.meta.total_page;
                 this.pageToLoad+=1;
            }
-       })
+       }).catch(noop)
    }
 
 
     componentWillMount(){
         this.loadInfo=debounce(this._loadinfo,1000)
         this.beforeLoad();
-
         this.props.navigation.addListener('willFocus',()=>{
             DeviceEventEmitter.emit('ListRouteSwipeTo',{page:0})
         })
@@ -111,21 +111,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                 this.setState({report_product:(values[2].data as {data:ReportProductItem[]}).data})
             }
         }).catch(this.handleLoadError)
-        // this._loadinfo().then(()=>{
-        //     let information=this.state.information;
-        //     this.preInfo= information.splice(0,7)
-        //     this.setState({information})
-        // }).catch(this.handleLoadError)
-        // getBanners().then(res=>{
-        //     if(res.data){
-        //         this.setState({banners:res.data.data})
-        //     }
-        // }).catch(this.handleLoadError)
-        // getRandomReportProduct().then(res=>{
-        //     if(res.data){
-        //         this.setState({report_product:res.data.data})
-        //     }
-        // }).then(this.handleLoadError)
+
     }
 
     handleScroll(e:NativeSyntheticEvent<NativeScrollEvent> |undefined){
@@ -164,19 +150,8 @@ class AllPage extends React.Component<NavigationInjectedProps>{
         
         return (
             <View style={homeStyle.page_container} ref={c=>this.cn=c}>
-            {(!loading && !netError)? <ScrollView  
-                // refreshControl={
-                //     <RefreshControl
-                //         refreshing={false}
-                //         onRefresh={this._onRefresh}
-                //         colors={['#f00','#0f0','#00f']}
-                //         // progressBackgroundColor='#f0f'
-                //         enabled={true}
-                //         progressViewOffset={20}
-                //         // tintColor='#0ff'    
-                //         title='下拉刷新'
-                //     />
-                // }
+            {(!loading && !netError)? 
+            <ScrollView  
                 onScroll={(e)=>this.handleScroll(e)}
                 testID='homePage'>
                 <Banner banners={banners}/>
@@ -196,6 +171,10 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                             :<ArticleBrief {...item}/>)
                     }}
                     keyExtractor={(index) => String(index)+String(Math.random())}
+                    // onEndReached={()=>this._loadinfo()}
+                    onEndReachedThreshold={0.2}
+                    ListFooterComponent={<View style={homeStyle.footer}/>}
+
                 />
             </ScrollView>:netError?<NetError />:<Loading/> }
             </View>

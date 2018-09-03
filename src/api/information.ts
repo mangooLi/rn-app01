@@ -30,8 +30,8 @@ export enum InformationFlowType{
 /**
  * 获取文章咨询详情
  */
-export function getInformaatinDetail(id:number){
-    return fetch<{data:DataHeroInformations|DataDiscoverInformations|DataFiftyInformations|DataLabInformations}>({url:`api/v1/informations/${id}`})
+export function getInformaatinDetail(id:number,type?:string){
+    return fetch<{data:DataHeroInformations|DataDiscoverInformations|DataFiftyInformations|DataLabInformations}>({url:`api/v1/${type?type:'information'}s/${id}`})
 }
 
 

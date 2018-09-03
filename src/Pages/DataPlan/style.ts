@@ -6,7 +6,7 @@ import { getSize ,MyStyleSheetCreate} from '../../utils';
 export const dataPlanstyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#f8f6f6',
-        // paddingBottom:40
+        paddingBottom:20,
         flex:1
     },
     card:{

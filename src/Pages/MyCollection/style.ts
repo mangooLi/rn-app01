@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../../utils';
 
 
-export const pageStyle=MyStyleSheetCreate({
+export const pageStyle=({
 
     container:{
         // flex:1,
@@ -16,7 +16,7 @@ export const pageStyle=MyStyleSheetCreate({
         position:'absolute',
         width:36+WindowWidth,
         top:40,
-        height:WindowHeight-40,
+        height:WindowHeight-getSize(40),
         backgroundColor:'#fff'
     },
     footer:{

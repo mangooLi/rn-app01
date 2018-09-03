@@ -2,7 +2,7 @@
 
 import {observable, action,} from 'mobx';
 import List from '../../Common/List';
-import {remove, getSize,MyStyleSheetCreate} from '../../utils';
+import {remove, getSize,MyStyleSheetCreate, noop} from '../../utils';
 import {Animated} from 'react-native';
 import {getAccountComment,getAccountCollection,deleteStarInformations,deleteMineComment} from '../../api';
 
@@ -72,7 +72,7 @@ export default class CollectionModel extends List<DataDiscoverItem|DataLabItem|D
             remove(this.informations,info=>ids.includes(info.id));
             this.toggleSetting();
             // this.loadData()
-        })
+        }).catch(noop)
     }
 
 }

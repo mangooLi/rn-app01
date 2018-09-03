@@ -11,8 +11,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import { autorun } from 'mobx';
 
-const homeIcon = require('../assets/img/ic_home_24px/ic_home_24px.png')
-const heroIcon = require('../assets/img/ic_home_24px/ic_home_24px.png');
+const _homeIcon = require('../assets/img/ic_home/ic_home_black.png');
+const _homeActive = require('../assets/img/ic_home_active/ic_home_24px.png');
+
+const _HeroIcon = require('../assets/img/ic_school/ic_school_24px.png');
+const _HeroActive = require('../assets/img/ic_school_active/ic_school_orange.png');
 
 interface Prop{
     noHide?:boolean
@@ -22,7 +25,9 @@ interface State{
     homeColor:string,
     dataColor:string,
     display:'flex'|'none',
-    visible:boolean
+    visible:boolean,
+    homeIcon:any,
+    dataIcon:any
 }
 
 class BottomBar extends Component<NavigationInjectedProps & Prop> {
@@ -31,6 +36,8 @@ class BottomBar extends Component<NavigationInjectedProps & Prop> {
        
         homeColor:'#f00',
         dataColor:'#333',
+        homeIcon:_homeActive,
+        dataIcon:_HeroIcon,
         display:'flex',
         visible:true
     }
@@ -69,12 +76,16 @@ class BottomBar extends Component<NavigationInjectedProps & Prop> {
         if(state.index === 0){
             this.setState({
                 homeColor:'#f00',
-                dataColor:'#333'
+                dataColor:'#333',
+                homeIcon:_homeActive,
+                dataIcon:_HeroIcon
             })
         }else{
             this.setState({
                 homeColor:'#333',
-                dataColor:'#f00'
+                dataColor:'#f00',
+                homeIcon:_homeIcon,
+                dataIcon:_HeroActive
             })
         }
         // return true
@@ -93,39 +104,39 @@ class BottomBar extends Component<NavigationInjectedProps & Prop> {
         this.props.navigation.navigate('ListRoute');
         this.setState({
             homeColor:'#f00',
-            dataColor:'#333'
+            dataColor:'#333',
+            homeIcon:_homeActive,
+            dataIcon:_HeroIcon
         })
     }
     navData=()=>{
         this.props.navigation.navigate('DataPlan');
         this.setState({
             homeColor:'#333',
-            dataColor:'#f00'
+            dataColor:'#f00',
+            homeIcon:_homeIcon,
+            dataIcon:_HeroActive
         })
     }
 
     render() {
-        const {homeColor,dataColor,display,visible}=this.state;
-        console.log('render ',display)
+        const {homeColor,dataColor,display,visible,homeIcon,dataIcon}=this.state;
+        // console.log('render ',display)
         return (
             <View>
             {visible? (<View style={[cmpStyle.container,{display}]}>
                
                     <TouchableWithoutFeedback onPress={this.navHome}>
                         <View style={cmpStyle.part}>
-
-                            <View style={cmpStyle.icon}>
-                                <Icon name="home" size={24} color={homeColor}/>    
-                            </View> 
+                            <Image style={cmpStyle.icon} source={homeIcon}/>
+                            
                             <Text style={cmpStyle.text}>首页</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={this.navData}>
                         <View style={cmpStyle.part}>
-                            {/* <Image style={cmpStyle.icon} source={heroIcon}/> */}
-                            <View style={cmpStyle.icon}>
-                                <Icon name="database" size={24} color={dataColor}/>
-                            </View>
+                            <Image style={cmpStyle.icon} source={dataIcon}/>
+                          
                             <Text style={cmpStyle.text}>数据侠</Text>
                         </View>
                     </TouchableWithoutFeedback>
@@ -178,3 +189,5 @@ export const cmpStyle = MyStyleSheetCreate({
         marginTop:4
     }
 })
+
+

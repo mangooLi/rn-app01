@@ -55,6 +55,7 @@ export default class MyCollection extends Component<NavigationFocusInjectedProps
             <Animated.View style={[pageStyle.flatList,{left:this.store.position_left},onSetting?{height:WindowHeight-84}:null]}>
                 <FlatList 
                     data={informations}
+                    refreshing
                     renderItem={({item})=>{
                         return  <CollectionCard article={item} store = {this.store} />
                     }}

@@ -1,5 +1,6 @@
 import {observable,action,extendObservable, toJS } from 'mobx';
 import {getInformationComments,addCommentToInformation,toogleCommentLike} from '../../api';
+import { noop } from '../../utils';
 
 
 export default class CommentModel {
@@ -59,7 +60,7 @@ export default class CommentModel {
             if(res.success){
                 this.reload()
             }
-        })
+        }).catch(noop)
     }
 
     toggleLike(comment_id:number){

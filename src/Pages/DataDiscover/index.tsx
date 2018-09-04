@@ -6,11 +6,13 @@ import ArticleBrief from '../../Common/ArticleBrief';
 import HomeContainer from '../Home/HomeContainer';
 import NetError from '../../Common/NetError';
 import Loading from '../../Common/Loading';
+import FooterLoading from '../../Common/FooterLoading';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import {observer} from 'mobx-react';
 import {dataDiscoverStyle} from './style';
 import Tags from './Tags';
+import { WindowHeight, getSize } from '../../utils';
 
 
 @observer
@@ -29,15 +31,12 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
         })
 
     }
-     componentWillReceiveProps(next:any){
-        console.log('datadiscover',next);
 
-    }
     render(){
         const {informations,loading,netError} =this.store;
         return (
         <View>
-        {(!loading && !netError)? <View style={dataDiscoverStyle.container}>
+        {(!loading && !netError)? <View style={[dataDiscoverStyle.container,{height:WindowHeight-getSize(89)}]}>
 
             <Tags store={this.store}/>
             <FlatList 
@@ -49,7 +48,7 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
                 onEndReached={()=>this.store.loadData()}
                 onEndReachedThreshold={0.1}
                 keyExtractor={(index) => String(index)+String(Math.random())}
-                ListFooterComponent={<View style={dataDiscoverStyle.footer}/>}
+                ListFooterComponent={<FooterLoading loading={loading}/>}
             />
 
 

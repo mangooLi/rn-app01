@@ -1,7 +1,7 @@
 
 
-import * as React from 'react';
-import { View,Image, Text,StyleSheet ,TouchableOpacity,GestureResponderEvent} from 'react-native';
+import React,{Component,PureComponent} from 'react';
+import { View,Image, Text ,TouchableOpacity,GestureResponderEvent} from 'react-native';
 import moment from 'moment';
 import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -18,12 +18,13 @@ interface Props{
     date:string|Date;
     summary:string,
     id:number,
+    title:string
 }
 
 
 
 
- class ArticleBrief extends React.Component<Props & NavigationInjectedProps>{
+ class ArticleBrief extends Component<Props & NavigationInjectedProps>{
 
     
     handlePress(e:GestureResponderEvent){
@@ -31,8 +32,12 @@ interface Props{
         navigation.push('ArticleDetail',{id})
     }
 
+    shouldComponentUpdate(nextProp:Props & NavigationInjectedProps){
+        return nextProp.id !== this.props.id
+    }
+
     render(){
-        const {thumbnail_url,author,date,summary}=this.props;
+        const {thumbnail_url,author,date,summary,title}=this.props;
         return (
             <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
             <View style={cardStyle.container} >
@@ -44,7 +49,7 @@ interface Props{
                         <Text style={cardStyle.detail_author_text}>{author}</Text>
                     </View>
                     <View style={cardStyle.detail_title}>
-                        <Text style={cardStyle.detail_title_text} numberOfLines={2} >{summary}</Text>
+                        <Text style={cardStyle.detail_title_text} numberOfLines={2} >{title}</Text>
                     </View>
                     <View style={cardStyle.detail_date}>
                         <Text  style={cardStyle.detail_date_text}>{moment(date).format('MM-DD HH:mm:ss')}</Text>

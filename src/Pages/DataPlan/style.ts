@@ -106,9 +106,9 @@ export const tabBarStyle=MyStyleSheetCreate({
         width:'100%',
         textAlign:'center'
     },
+    
     nav:{
-        position:'absolute',
-        right:0,
+        
         marginRight:8,
         top:10,
         fontSize:17,

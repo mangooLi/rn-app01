@@ -10,14 +10,14 @@ import Banner from './Banner';
 import DataLabCardContainer from './DataLabContainer';
 import {homeStyle} from './style';
 
-import { debounce ,MyStyleSheetCreate, noop} from '../../utils';
+import { debounce ,MyStyleSheetCreate, noop, WindowHeight, getSize} from '../../utils';
 import Report, {ReportProps} from '../../Common/Report'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import HomeContainer from '../Home/HomeContainer';
 import NetError from '../../Common/NetError';
 import Loading from '../../Common/Loading';
-
+import FooterLoading from '../../Common/FooterLoading';
 
 
 interface HomeState{
@@ -26,7 +26,10 @@ interface HomeState{
     information:DataDiscoverItem[]|DataLabItem[]|DataHeroItem[]|DataFiftyItem[],
     refreshing:boolean,
     loading:boolean,
-    netError:boolean
+    netError:boolean,
+    // initializing:boolean,
+    initialized:boolean
+
 }
 
 class AllPage extends React.Component<NavigationInjectedProps>{
@@ -34,7 +37,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
     loadInfo:() => void;
     pageToLoad:number=1;
     totalPage:number =1;
-    per:number=20;
+    per:number=10;
     cn:any;
     static navigationOptions={
         // tabBarVisible:false,
@@ -47,45 +50,54 @@ class AllPage extends React.Component<NavigationInjectedProps>{
        report_product:[],
        information:[],
        refreshing:false,
+        initialized:false,
+
        loading:false,
-       netError:false
+       netError:false,
 
    }
    
    handleLoadError=()=>{
        this.setState({
            loading:false,
-           netError:true
+           netError:true,
+
        })
    }
    beforeLoad(){
+       console.log('loading')
        this.setState({
         loading:true,
-        netError:false
+        netError:false,
        })
    }
    handleLoadDone(){
        this.setState({
            loading:false,
-           netError:false
+           netError:false,
        })
    }
    _loadinfo():Promise<any>{
-
+       if(this.state.loading){
+           return Promise.reject()
+       }
+        this.beforeLoad()
        if( this.pageToLoad>this.totalPage)return Promise.resolve([]);
        return getInformationFlow({page:this.pageToLoad,per:this.per}).then(res=>{
+           this.handleLoadDone()
            if(res.data){
                let {information}=this.state;
                this.setState({information:[...information,...res.data.data]});
                 this.totalPage=res.data.meta.total_page;
                 this.pageToLoad+=1;
            }
-       }).catch(noop)
+       }).catch(this.handleLoadError)
    }
 
 
     componentWillMount(){
         this.loadInfo=debounce(this._loadinfo,1000)
+
         this.beforeLoad();
         this.props.navigation.addListener('willFocus',()=>{
             DeviceEventEmitter.emit('ListRouteSwipeTo',{page:0})
@@ -96,6 +108,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
         
 
         Promise.all([this._loadinfo(),getBanners(),getRandomReportProduct()]).then(values=>{
+            this.setState({initialized:true})
             this.handleLoadDone()
             // handle load info 
             let information=this.state.information;
@@ -121,7 +134,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
         const oriageScrollHeight = e.nativeEvent.layoutMeasurement.height; //scrollView高度
         if (offsetY + oriageScrollHeight >= contentSizeHeight-20){
             // 滑动到底部
-            this.loadInfo()
+            this._loadinfo()
         }
 
     }
@@ -146,37 +159,50 @@ class AllPage extends React.Component<NavigationInjectedProps>{
     
 
     render(){
-        const {banners, information,report_product,loading,netError}=this.state;
+        const {banners, information,report_product,loading,netError,initialized}=this.state;
         
         return (
-            <View style={homeStyle.page_container} ref={c=>this.cn=c}>
-            {(!loading && !netError)? 
-            <ScrollView  
-                onScroll={(e)=>this.handleScroll(e)}
-                testID='homePage'>
-                <Banner banners={banners}/>
+            <View style={[homeStyle.page_container,{height:WindowHeight-getSize(89)}]} ref={c=>this.cn=c}>
+            {initialized ?
+            // <ScrollView  
+            //     onScroll={(e)=>this.handleScroll(e)}
+            //     testID='homePage'>
+            //     <Banner banners={banners}/>
 
-                <View style={homeStyle.preInfo}>
-                    {this.preInfo?this.preInfo.map(item=>{
-                        return (item._type===InformationFlowType.data_lab_information?<DataLabCardContainer key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
-                    }):null}
-                </View>
-                <Report {...{list:report_product}}/>
+            //     <View style={homeStyle.preInfo}>
+            //         {this.preInfo?this.preInfo.map(item=>{
+            //             return (item._type===InformationFlowType.data_lab_information?<DataLabCardContainer key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
+            //         }):null}
+            //     </View>
+            //     <Report {...{list:report_product}}/>
 
                 <FlatList
                     data={information}
+                    ListHeaderComponent={
+                        <View>
+                            <Banner banners={banners}/>
+
+                            <View style={homeStyle.preInfo}>
+                                {this.preInfo?this.preInfo.map(item=>{
+                                    return (item._type===InformationFlowType.data_lab_information?<DataLabCardContainer key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
+                                }):null}
+                            </View>
+                            <Report {...{list:report_product}}/>
+                        </View>
+                    }
+
                     renderItem={({item})=>{
                         return (item._type===InformationFlowType.data_lab_information
                             ?( <DataLabCardContainer {...item as DataLabItem}/>)
                             :<ArticleBrief {...item}/>)
                     }}
                     keyExtractor={(index) => String(index)+String(Math.random())}
-                    // onEndReached={()=>this._loadinfo()}
+                    onEndReached={()=>this._loadinfo()}
                     onEndReachedThreshold={0.2}
-                    ListFooterComponent={<View style={homeStyle.footer}/>}
-
+                    ListFooterComponent={<FooterLoading loading ={loading} netError={netError}/>}
                 />
-            </ScrollView>:netError?<NetError />:<Loading/> }
+            // </ScrollView>
+            :loading?<Loading />:netError?<NetError/>:<View/>}
             </View>
         )
     }

@@ -1,12 +1,10 @@
 
-import {StyleSheet} from 'react-native';
+
 import {getSize,MyStyleSheetCreate} from '../../utils';
 export const tagsStyle=MyStyleSheetCreate({
     tags:{
         height:44,
         width:375,
-
-
     },
     topic_container:{
         height:44,
@@ -34,11 +32,11 @@ export const tagsStyle=MyStyleSheetCreate({
 export const listStyle = MyStyleSheetCreate({
     flat_list:{
         backgroundColor:'#fff',
-
+        // height:
     },
     footer:{
         width:300,
-        height:40+40
+        height:150
     }
 })
 

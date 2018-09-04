@@ -1,7 +1,7 @@
 /**
  * 用户信息
  */
-interface AcountInfo {
+interface AccountInfo {
     id: number,
     nickname: string,
     phone: string,

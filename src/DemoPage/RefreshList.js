@@ -156,7 +156,7 @@ class RefreshListView extends PureComponent<Props, State> {
                             this.props.onFooterRefresh && this.props.onFooterRefresh(RefreshState.FooterRefreshing)
                         }}
                     >
-                        <Text style={footerTextStyle}>{footerFailureText}</Text>
+                        <View><Text style={footerTextStyle}>{footerFailureText}</Text></View>
                     </TouchableOpacity>
                 )
                 break
@@ -169,7 +169,7 @@ class RefreshListView extends PureComponent<Props, State> {
                             this.props.onFooterRefresh && this.props.onFooterRefresh(RefreshState.FooterRefreshing)
                         }}
                     >
-                        <Text style={footerTextStyle}>{footerEmptyDataText}</Text>
+                       <View><Text style={footerTextStyle}>{footerEmptyDataText}</Text></View> 
                     </TouchableOpacity>
                 )
                 break

@@ -27,36 +27,29 @@ class Article extends Component<Props> {
     }
 
     render (){
-        const {tags,title,author,content,thumbnail_url,date}=this.props.store.article;
-        const {_type,laboIndex,informationCards,video}=this.props.store;
+        const {tags,title,author,content,thumbnail_url,date,summary}=this.props.store.article;
+        const {_type,informationCards,video}=this.props.store;
 
+        // console.log('informationCards', informationCards)
 
         return (
-            content? (<View >
+            <View >
                 <Text style={articleStyle.tag}>{map(tags,tag=>tag.name).join('・')}</Text>
-                {/* <AutoHeightWebView 
-                    source={{html:`<div>${title}${title}${title}${title}${title}</div>`}}
-                    // heightOffset={5}
-                    style={articleStyle.title}
-                    customStyle={`div{font-size:22px;line-height:30px;}`}
-                /> */}
                 <Text  style={articleStyle.title}>{title}</Text>
                 <Text style={articleStyle.author}>文/{author}&nbsp;&nbsp;&nbsp;{moment(date).format('MM-DD HH:mm')}</Text>
                 <Image style={articleStyle.thumnb_nail} source={{uri:thumbnail_url,cache:'force-cache'}} />
 
-                {   _type !== 'data_lab_information' ? <AutoHeightWebView 
+                <Text style={articleStyle.laboindex}>{summary}</Text>
+                {content ? <AutoHeightWebView 
                     source={{html:content}}
                     // heightOffset={5}
                     style={articleStyle.content}
                     customStyle={`img{max-width:100%}`}
                 />:<View/>}
-                {
-                    Boolean(laboIndex)?(<Text style={articleStyle.laboindex}>关于数据侠实验室第{laboIndex}期，你想知道的都在这里。</Text> ):<View/>
-                }
 
                 {informationCards && informationCards.length ?
                     <View>
-                        {informationCards.map(info=><InformationCard key={info.id} {...info}/>)}
+                        {informationCards.map((info:any)=><InformationCard key={info.id} {...info}/>)}
                     </View>
                     :<View/>
 
@@ -66,16 +59,16 @@ class Article extends Component<Props> {
                     <View style={informationCardStyle.container}>
                         <Text style={informationCardStyle.title}>{video.title}</Text>
                         <TouchableWithoutFeedback onPress={()=>this.pause()}>
-                        <Video 
-                            style={informationCardStyle.video}
-                            source={{uri:video.source_url}}
-                            paused = {this.state.paused}
-                        />
+                            <Video 
+                                style={informationCardStyle.video}
+                                source={{uri:video.source_url}}
+                                paused = {this.state.paused}
+                            />
                         </TouchableWithoutFeedback>
                     </View>:<View/>
                 }
 
-            </View>):<View/>
+            </View>
         )
     }
 }

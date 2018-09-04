@@ -11,6 +11,9 @@ import {reportProductsStyle } from './style';
 import HomeContainer from '../Home/HomeContainer';
 import NetError from '../../Common/NetError';
 import Loading from '../../Common/Loading';
+import FooterLoading from '../../Common/FooterLoading';
+import { WindowHeight } from '../../constant';
+import { getSize } from '../../utils';
 
 @observer
 class ReportProducts  extends React.Component<NavigationInjectedProps>{
@@ -28,7 +31,7 @@ class ReportProducts  extends React.Component<NavigationInjectedProps>{
     render(){
         const {informations,loading,netError} =this.store
         return (
-            <View style={reportProductsStyle.container}>
+            <View style={[reportProductsStyle.container,{height:WindowHeight-getSize(89)}]}>
                 {(!loading && !netError)? <FlatList 
                     data={informations}
                     renderItem={({item})=>{
@@ -38,7 +41,7 @@ class ReportProducts  extends React.Component<NavigationInjectedProps>{
                     onEndReached={()=>this.store.loadData()}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent={
-                        <View style={reportProductsStyle.footer}/>
+                        <FooterLoading loading={loading}/>
                     }
                 />:netError?<NetError />:<Loading/>}
             </View>

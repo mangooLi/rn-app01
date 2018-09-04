@@ -39,7 +39,7 @@ class PersonalCenter extends Component<NavigationInjectedProps & Props> {
     }
 
     render (){
-        const user:AcountInfo=globalStore.user;
+        const user:AccountInfo=globalStore.user;
         return (
             <LinearGradient colors={['#F09819','#FF5858']} style={pageStyle.container}>
                 <TouchableWithoutFeedback onPress={this.handlePress}>

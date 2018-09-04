@@ -42,7 +42,7 @@ export default class DetailModel{
                 this.updateArticle(res.data.data);
                 const {content} = this.article; 
                 this._type = res.data.data._type;
-                if(content.length<300){ // 如果正文字数太少，直接加载推荐文章
+                if(!content || content.length<300 ){ // 如果正文字数太少，直接加载推荐文章
                     this.loadRecommendations()
                 }
                 if(res.data.data.video){
@@ -51,10 +51,10 @@ export default class DetailModel{
 
                 if(this._type === 'data_lab_information' && (res.data.data as DataLabInformations).category==='for_review'){
                     this.informationCards = observable((res.data.data as DataLabInformations).information_cards)
-                    let tag = res.data.data.tags[0];
-                    if(tag && tag.name.includes('dt-labo-')){
-                        this.laboIndex = Number(tag.name.replace('dt-labo-',''))
-                    }
+                    // let tag = res.data.data.tags[0];
+                    // if(tag && tag.name.includes('dt-labo-')){
+                    //     this.laboIndex = Number(tag.name.replace('dt-labo-',''))
+                    // }
                 }
             }
         }).catch(noop)

@@ -25,7 +25,7 @@ export default class InputBar extends Component<{store:CommentModel}> {
                     onChangeText={value=>this.handleChangetext(value)}
                 />
                 <TouchableOpacity style={inputBarStyle.text_container} onPress={()=>this.props.store.publish()}>
-                    <Text style={inputBarStyle.text}>发表</Text>
+                    <View><Text style={inputBarStyle.text}>发表</Text></View> 
                 </TouchableOpacity>
             </View>
 

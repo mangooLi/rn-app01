@@ -6,7 +6,8 @@ import {StyleSheet } from 'react-native';
 export const homeStyle=MyStyleSheetCreate({
 
         page_container:{
-            backgroundColor:'#fff'
+            backgroundColor:'#fff',
+            // height:
         },
         preInfo:{
             marginTop:24

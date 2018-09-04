@@ -85,6 +85,7 @@ const Route = createStackNavigator({
 
     },{
         initialRouteName: 'BottomRoute',
+        // initialRouteName: 'Main',
         mode: 'card',
         headerMode: 'none',
         // transitionConfig:()=>({

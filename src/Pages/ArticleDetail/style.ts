@@ -136,6 +136,7 @@ export const informationCardStyle=MyStyleSheetCreate({
     },
     content:{
         width:375-32,
+        // height:37
         marginTop:16,
         marginBottom:16
     },
@@ -145,11 +146,18 @@ export const informationCardStyle=MyStyleSheetCreate({
         marginBottom:20,
         flexDirection:'row',
         flexWrap:'wrap',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        // alignContent:'space-between'
+    },
+    imgWrap:{
+        width:111,
+        height:116,
+        paddingTop:5
     },
     img:{
         width:111,
-        height:111
+        height:111,
+        
     },
     link:{
         fontSize:14,

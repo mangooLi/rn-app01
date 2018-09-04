@@ -6,10 +6,10 @@ import {observable, action} from 'mobx';
 class  GlobalModel {
 
     @observable
-    user:AcountInfo
+    user:AccountInfo
 
     @action 
-    setUser (user:AcountInfo){
+    setUser (user:AccountInfo){
         this.user = user;
     }
 }

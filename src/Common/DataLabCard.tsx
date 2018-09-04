@@ -2,6 +2,7 @@
 import  React ,{Component}from 'react';
 
 import {View,Text,Image,TouchableOpacity,StyleSheet} from 'react-native';
+import FastImage from 'react-native-fast-image'
 import {getSize,MyStyleSheetCreate} from '../utils';
 // import {dataLabStyle} from './style';
 import moment from 'moment';
@@ -13,10 +14,13 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
  class DataLabCard extends Component<DataLabItem   & NavigationInjectedProps>{
 
 
-
     handlePress(){
         const {navigation,id} =this.props
         navigation.navigate('ArticleDetail',{id})
+    }
+
+    shouldComponentUpdate(nextProp:DataLabItem){
+       return nextProp.id !== this.props.id;
     }
     render(){
 
@@ -24,7 +28,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
         return (
             <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
             <View style={dataLabStyle.container}>
-                <Image style={dataLabStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
+                <FastImage style={dataLabStyle.img} source={{uri:thumbnail_url}}/>
                 <View style={dataLabStyle.detail}>
                     <View style={dataLabStyle.detail_left}>
                         <Text style={dataLabStyle.detial_left_day}>{moment(date).format('DD')}</Text>

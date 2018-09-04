@@ -10,6 +10,7 @@ const right = require('../../assets/img/right0.png');
 import {pageStyle,modalStyle} from './style'
 import ModalContent from './ModalContent';
 import {modifyUserInfo} from '../../api';
+import { noop } from '../../utils';
 
 export default class AccountCenter extends Component {
 
@@ -38,12 +39,12 @@ export default class AccountCenter extends Component {
                     global.user = res.data.data;
                     this.forceUpdate()
                 }
-            })
+            }).catch(noop)
         }
     }
 
     render (){
-        const user:AcountInfo = global.user;
+        const user:AccountInfo = global.user;
         return (<View style={pageStyle.container}>
         <TabBar title = "我" style={{backgroundColor:'#f8f8f8',borderBottomColor:'#c8c7cc',}}/>
             <View style={pageStyle.head_container}>

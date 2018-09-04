@@ -1,10 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {getSize, WindowWidth,MyStyleSheetCreate} from '../../utils'
 
+
 export const reportProductsStyle=MyStyleSheetCreate({
     container:{
         backgroundColor:'#fff',
-        width:WindowWidth
+        width:WindowWidth,
+        
     },
     tabBar:{
         height:40,
@@ -13,7 +15,7 @@ export const reportProductsStyle=MyStyleSheetCreate({
         borderBottomColor:'rgba(0,0,0,0.2)'
     },
     footer:{
-        height:28,
+        height:89,
         width:300
     }
 })

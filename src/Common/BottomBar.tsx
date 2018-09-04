@@ -3,8 +3,8 @@
 import React,{Component} from 'react';
 import {View,Text,Image,TouchableWithoutFeedback,DeviceEventEmitter,Animated, ViewStyle} from 'react-native';
 import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
-import listStore from '../Pages/GlobalModel';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 
 
 // import {cmpStyle} from './style';

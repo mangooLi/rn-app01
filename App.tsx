@@ -12,6 +12,7 @@ import Storage from 'react-native-storage';
 import { AsyncStorage } from 'react-native';
 import {login} from './src/api';
 import './src/typings';
+import { noop } from './src/utils';
 
 // declare const global: any;
 if (__DEV__) {
@@ -41,6 +42,12 @@ global.storage = new Storage({
 //   }
 
 // })
+global.storage.load({
+  key:'user'
+}).then((ret:AccountInfo)=>{
+  global.token = ret.token;
+  global.user = ret;
+}).catch(noop)
 
 
 

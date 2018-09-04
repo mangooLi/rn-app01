@@ -14,7 +14,7 @@ export function login(login:string,password:string){
         login,password
     }
 
-    return fetch<{data:AcountInfo}>({url:'api/v1/sessions',method:'post',data})
+    return fetch<{data:AccountInfo}>({url:'api/v1/sessions',method:'post',data})
 }
 
 /**
@@ -107,7 +107,7 @@ export function modifyUserInfo(nickname?:string,avatar_url?:string){
         data:{user:{nickname,avatar_url}}
     }
 
-    return fetch<{data:AcountInfo}>(options)
+    return fetch<{data:AccountInfo}>(options)
 }
 
 
@@ -127,7 +127,7 @@ export function updatePassword(password:string,new_password:string){
             }
         }
     }
-    return fetch<{data:AcountInfo}>(options)
+    return fetch<{data:AccountInfo}>(options)
 }
 
 

@@ -17,10 +17,6 @@ export default class DataDiscoverModel extends List<DataDiscoverItem>{
         return getDataDiscoverInformations(null,page)
     }
 
-    
-
-
-
     @action
     loadTags(){
         getDataDiscoverTopic().then(res=>{

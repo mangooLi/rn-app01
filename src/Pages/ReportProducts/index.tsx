@@ -29,21 +29,25 @@ class ReportProducts  extends React.Component<NavigationInjectedProps>{
 
 
     render(){
-        const {informations,loading,netError} =this.store
+        const {informations,loading,netError,initialized} =this.store
         return (
             <View style={[reportProductsStyle.container,{height:WindowHeight-getSize(89)}]}>
-                {(!loading && !netError)? <FlatList 
+                {initialized? <FlatList 
                     data={informations}
                     renderItem={({item})=>{
                         return <ReportProductItem {...item}  />
                     }}
-                    keyExtractor={(index) => String(index)+String(Math.random())}
+                    removeClippedSubviews
+                    keyExtractor={item => item.id+''}
                     onEndReached={()=>this.store.loadData()}
-                    onEndReachedThreshold={0.1}
+                    onEndReachedThreshold={0.2}
                     ListFooterComponent={
                         <FooterLoading loading={loading}/>
                     }
-                />:netError?<NetError />:<Loading/>}
+                    getItemLayout={(data, index) => (
+                        {length: 270, offset: 270 * index, index}
+                      )}
+                />:loading?<Loading />:netError?<NetError/>:<View/>}
             </View>
         )
     }

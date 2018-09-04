@@ -10,7 +10,7 @@ export default abstract class  List<T> {
 
     @observable informations:T[] = [];
     @observable netError:boolean = false;
-    
+    @observable initialized:boolean = false;
     pageToLoad:number = 1;
     total_page:number = 1;
     loading :boolean = false;
@@ -18,16 +18,18 @@ export default abstract class  List<T> {
     abstract  apiFn(pageToLoad:number) :Promise<Response<{data:T[],meta:Meta}>>
 
     @action
-    init (){
+    init (id?:number,name?:string,type?:string){
         this.loadData()
     }
 
 
     @action
     addInfo (list:T[]){
-        let pre =this.informations;
-        pre = pre.concat(list);
-        this.informations = observable(pre)
+        // let pre =this.informations;
+        // pre = pre.concat(list);
+        // this.informations = observable(pre)
+
+        this.informations = this.informations.concat(list)
     }
 
     @action 
@@ -36,6 +38,9 @@ export default abstract class  List<T> {
         this.loading = true;
         this.netError = false;
         this.apiFn(this.pageToLoad).then(res=>{
+            if(!this.initialized){
+                this.initialized = true;
+            }
             if(this.loading === false)return; // 表示已经有地方提前结束了loading，此时不需要作任何处理。
             this.loading = false;
             if(res.data  ){
@@ -54,5 +59,6 @@ export default abstract class  List<T> {
         this.pageToLoad = 1;
         this.total_page =1;
         this.loading = false;
+        this.initialized = false;
     }
 }

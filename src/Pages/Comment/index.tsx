@@ -49,7 +49,7 @@ export default class Commment extends Component<NavigationInjectedProps> {
                         renderItem={({item})=>{
                             return <CommentCard {...item} store={this.store}/>
                         }}
-                        keyExtractor={(index) => String(index)+Math.random()}
+                        keyExtractor={item => item.id+''}
                     />
                     {/* <View style={{height:44}}/> */}
                 </ScrollView>

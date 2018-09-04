@@ -14,7 +14,7 @@ export interface ReportProps{
 class Report extends Component<ReportProps & NavigationInjectedProps> {
 
     handlePress(item:ReportProductItem){
-        this.props.navigation.navigate('ArticleDetail',{id:item.id})
+        this.props.navigation.navigate('ReportDetail',{id:item.id})
     }
 
     ReportItmm(item:ReportProductItem){

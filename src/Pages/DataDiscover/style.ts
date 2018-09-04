@@ -11,7 +11,7 @@ export const dataDiscoverStyle=MyStyleSheetCreate({
         // top:44
     },
     flat_list:{
-        // flex:1,
+        flex:1,
         borderTopLeftRadius: 4,
         borderTopRightRadius: 4,
         backgroundColor:'#fff'

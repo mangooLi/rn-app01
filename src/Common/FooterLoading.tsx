@@ -1,6 +1,6 @@
 
 import React,{Component} from 'react';
-import {View,Text,StyleSheet,} from 'react-native';
+import {View,Text,} from 'react-native';
 import {MyStyleSheetCreate, WindowWidth} from '../utils';
 
 interface Prop{
@@ -24,7 +24,7 @@ const style = MyStyleSheetCreate({
     text:{
         height:40,
         lineHeight:40,
-        fontSize:20,
+        fontSize:16,
         textAlign:'center'
     },
     footer:{

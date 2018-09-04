@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { View,Text,Image,WebView,ScrollView,StyleSheet} from 'react-native';
-import {demoStyle} from './style';
+import { View,} from 'react-native';
 
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+
+import { TabView, SceneMap } from 'react-native-tab-view';
 import {WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 // import {a,b,style} from './constants'
 

@@ -15,7 +15,7 @@ import {cardStyle} from './style';
  class ArticleBrief extends React.Component<NavigationInjectedProps & ReportProductItem>{
 
     
-    handlePress(e:GestureResponderEvent){
+    handlePress(){
         const {navigation,id} =this.props
 
         navigation.push('ReportDetail',{id})
@@ -24,7 +24,7 @@ import {cardStyle} from './style';
     render(){
         const {thumbnail_url,title,date,report_images_count}=this.props;
         return (
-            <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
+            <TouchableOpacity onPress={(e)=>this.handlePress()} activeOpacity={1}>
             <View style={cardStyle.container} >
                 <Image style={cardStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
                 <Text style={cardStyle.title} >{title}</Text>

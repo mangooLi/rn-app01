@@ -65,7 +65,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
        })
    }
    beforeLoad(){
-       console.log('loading')
+
        this.setState({
         loading:true,
         netError:false,
@@ -196,7 +196,11 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                             ?( <DataLabCardContainer {...item as DataLabItem}/>)
                             :<ArticleBrief {...item}/>)
                     }}
-                    keyExtractor={(index) => String(index)+String(Math.random())}
+                    keyExtractor={item => item.id+''}
+                    removeClippedSubviews
+                    getItemLayout={(data, index) => (
+                        {length: 107, offset: 107 * index, index}
+                      )}
                     onEndReached={()=>this._loadinfo()}
                     onEndReachedThreshold={0.2}
                     ListFooterComponent={<FooterLoading loading ={loading} netError={netError}/>}

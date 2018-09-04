@@ -8,10 +8,11 @@ const bag  = require ('../../assets/img/bag.jpeg');
 const right = require('../../assets/img/right.png');
 
 interface Props{
-    tags:[{
+
         id:number,
         name:string
-    }]
+    type:string
+   
 }
 
 
@@ -19,17 +20,17 @@ interface Props{
 class TagBar extends Component<NavigationInjectedProps & Props>{
     handlePress(){
         // alert('跳转到数据侠')
-        const {id,name}=this.props.tags[0];
-        id && name &&  this.props.navigation.navigate('Topic',{id,name})
+        const {id,name,type}=this.props;
+        id && name &&  this.props.navigation.navigate('Topic',{id,name,type})
 
     }
     render(){
-        const {tags}=this.props;
+        const {id,name,type}=this.props;
         return (
             <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
             <View style={detailStyle.tagBar}>
                 <Image style={tagBarStyle.img} source={bag}/>
-                <Text style={tagBarStyle.text}>{(tags && tags[0])?tags[0].name:''}</Text>
+                <Text style={tagBarStyle.text}>{name}</Text>
                 <Image style={tagBarStyle.right} source={right}/>
 
             </View>

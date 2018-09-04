@@ -5,7 +5,7 @@ import { View,Image, Text ,TouchableOpacity,GestureResponderEvent} from 'react-n
 import moment from 'moment';
 import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import FastImage from 'react-native-fast-image'
+import FastImage,{FastImageSource} from 'react-native-fast-image'
 
 // import {cardStyle} from './style';
 
@@ -22,8 +22,6 @@ interface Props{
 }
 
 
-
-
  class ArticleBrief extends Component<Props & NavigationInjectedProps>{
 
     
@@ -38,11 +36,12 @@ interface Props{
 
     render(){
         const {thumbnail_url,author,date,summary,title}=this.props;
+
         return (
             <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
             <View style={cardStyle.container} >
                 <View style={cardStyle.img_container}>
-                    <FastImage style={cardStyle.img} source={{uri:thumbnail_url}}/>
+                    <FastImage style={cardStyle.img} source={{uri:thumbnail_url,}}/>
                 </View>
                 <View style={cardStyle.detail_container}>
                     <View style={cardStyle.detail_author}>

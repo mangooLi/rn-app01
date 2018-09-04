@@ -37,7 +37,7 @@ export const detailStyle=MyStyleSheetCreate({
     none:{
         width:375,
         height:40+8,
-        backgroundColor:'#f8f6f6'
+        backgroundColor:'#fff'
     },
 })
 

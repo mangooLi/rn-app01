@@ -49,15 +49,18 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
 
 
     render (){
+        // const {id,name}=this.store.article.topic;
+        const {topic,_type} = this.store.article;
+        console.log('topic',topic)
+
         return (
             <View style={detailStyle.pageContainer}>
                 <TabBar store={this.store}/>
                 <View style={detailStyle.container}>
                     <ScrollView onScroll={(e)=>this.handleScroll(e)} ref={c=>this.scroll =c}>
                         <Article  store={this.store}/>
-                        {this.store._type!=='data_lab_information' ?<TagBar tags={this.store.article.tags}/>:<View/>}
+                        {this.store._type!=='data_lab_information' ?<TagBar id={topic && topic.id} name={topic && topic.name} type={_type}/>:<View/>}
                         {/* <Text ></Text> */}
-                        
                         <Recommendations store={this.store}/>
                         <View style={detailStyle.none}/>
                     </ScrollView>

@@ -1,6 +1,6 @@
 
 
-import { createStackNavigator,NavigationContainer ,StackNavigatorConfig} from 'react-navigation';
+import { createStackNavigator} from 'react-navigation';
 
 
 // pages

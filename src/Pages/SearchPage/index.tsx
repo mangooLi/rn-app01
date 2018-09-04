@@ -36,12 +36,16 @@ export default class SearchPage extends Component {
                     renderItem={({item})=>{
                         return (<View style={listStyle.container}><Searchitem  {...item}/></View>)
                     }}
-                    keyExtractor={(index) => String(index)+String(Math.random())}
+                    keyExtractor={item => item.id+''}
                     onEndReached={()=>this.store.loadData()}
-                    onEndReachedThreshold={0.1}
+                    onEndReachedThreshold={0.2}
                     ListFooterComponent={
                         <View style={listStyle.footer} />
                     }
+                    removeClippedSubviews
+                    getItemLayout={(data, index) => (
+                        {length: 80, offset: 80 * index, index}
+                      )}
                 />
             </View>
         )

@@ -1,9 +1,9 @@
 
 import  React ,{Component}from 'react';
 
-import {View,Text,Image,TouchableOpacity,StyleSheet} from 'react-native';
+import {View,Text,TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image'
-import {getSize,MyStyleSheetCreate} from '../utils';
+import {MyStyleSheetCreate} from '../utils';
 // import {dataLabStyle} from './style';
 import moment from 'moment';
 import 'moment/locale/zh-cn' 

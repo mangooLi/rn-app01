@@ -8,6 +8,8 @@ import { tabstyle } from './style';
 import Tags from './Tags';
 
 import TabBar from '../../Common/TabBar'
+import { WindowHeight } from '../../constant';
+import { getSize } from '../../utils';
 @observer
 export default class DataHeroColumn extends Component {
     store = new Model();
@@ -26,7 +28,7 @@ export default class DataHeroColumn extends Component {
         const { topics, selectedTopic} = this.store;
 
         return (
-        <View style={tabstyle.tabContainer}>
+        <View style={[tabstyle.tabContainer]}>
             <TabBar title="数据侠专栏"/>
             <Tags store={this.store}/>
             {topics && topics.length && selectedTopic ?

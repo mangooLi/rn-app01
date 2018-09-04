@@ -30,9 +30,9 @@ export default class MyReport extends Component {
                 renderItem={({item})=>{
                     return  <ReportCard {...item} />
                 }}
-                keyExtractor={(index) => String(index)+String(Math.random())}
+                keyExtractor={item => item.id+''}
                 onEndReached={()=>this.store.loadData()}
-                onEndReachedThreshold={0.1}
+                onEndReachedThreshold={0.2}
                 ListFooterComponent={
                     <View style={pageStyle.footer} />
                 }

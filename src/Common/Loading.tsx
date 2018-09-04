@@ -1,9 +1,9 @@
 
 
 import React,{Component} from 'react';
-import {View,Image,StyleSheet,} from 'react-native';
+import {View,Image,} from 'react-native';
 
-import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
+import {WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 
 const loadingGif = require('../assets/img/loading.gif');
 

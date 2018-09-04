@@ -81,6 +81,7 @@ export default function request<T>(options: Options<any>):Promise<Response<T>> {
       //   data: null,
       //   message: error.message || error.stack || 'request error',
       // }
+      console.log('error')
       console.log(error.message || error.stack)
       throw error;
     });

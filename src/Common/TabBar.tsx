@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
-import {View,Text,Image,TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
-import { StyleSheet} from 'react-native'
+import {View,Text,TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
+
 import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-const leftIcon = require('../assets/img/left.png');
+
 
 
 interface Prop {

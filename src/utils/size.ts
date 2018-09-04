@@ -28,7 +28,7 @@ interface MyStyle{
 }
 
 
-export function MyStyleSheetCreate(configs:MyStyle){
+export const MyStyleSheetCreate=(configs:MyStyle)=>{
     Object.keys(configs).forEach(name=>{
         Object.keys(configs[name]).forEach(key=>{
             const value:any = (configs[name] as any)[key]

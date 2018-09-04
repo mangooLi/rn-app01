@@ -64,9 +64,10 @@ export default class ColumnPage extends Component<DataHeroTopic> {
                     renderItem={({item})=>{
                         return  <ArticleBrief {...item} />
                     }}
-                    keyExtractor={(index) => String(index)+String(Math.random())}
+                    keyExtractor={item => item.id+''}
                     onEndReached={()=>this.store.loadData()}
-                    onEndReachedThreshold={0.1}
+                    onEndReachedThreshold={0.2}
+                    removeClippedSubviews
                     ListFooterComponent={
                         <View style={columnStyle.footer} />
                     }

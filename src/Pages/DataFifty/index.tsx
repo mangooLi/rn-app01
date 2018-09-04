@@ -35,7 +35,11 @@ class DataFifty extends Component {
                     renderItem={({item})=>{
                         return  <CardContainer {...item} />
                     }}
-                    keyExtractor={(index) => String(index)+String(Math.random())}
+                    removeClippedSubviews
+                    getItemLayout={(data, index) => (
+                        {length: 107, offset: 107 * index, index}
+                      )}
+                    keyExtractor={item => item.id+''}
                     onEndReached={()=>this.store.loadData()}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent={

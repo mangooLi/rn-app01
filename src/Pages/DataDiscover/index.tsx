@@ -33,10 +33,10 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
     }
 
     render(){
-        const {informations,loading,netError} =this.store;
+        const {informations,loading,netError,initialized} =this.store;
         return (
         <View>
-        {(!loading && !netError)? <View style={[dataDiscoverStyle.container,{height:WindowHeight-getSize(89)}]}>
+        { initialized? <View style={[dataDiscoverStyle.container,{height:WindowHeight-getSize(89)}]}>
 
             <Tags store={this.store}/>
             <FlatList 
@@ -46,13 +46,16 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
                     return <ArticleBrief {...item}  />
                 }}
                 onEndReached={()=>this.store.loadData()}
-                onEndReachedThreshold={0.1}
-                keyExtractor={(index) => String(index)+String(Math.random())}
-                ListFooterComponent={<FooterLoading loading={loading}/>}
+                onEndReachedThreshold={0.2}
+                removeClippedSubviews
+                keyExtractor={item => item.id+''}
+                getItemLayout={(data, index) => (
+                    {length: 107, offset: 107 * index, index}
+                  )}
+                ListFooterComponent={ <FooterLoading loading={loading} netError={netError}/>}
             />
 
-
-        </View>:netError?<NetError />:<Loading/>}
+        </View>:loading?<Loading />:netError?<NetError />:<View/>}
         </View>
         )
     }

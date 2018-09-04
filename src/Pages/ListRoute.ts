@@ -5,7 +5,7 @@ import {createMaterialTopTabNavigator,TabNavigatorConfig} from 'react-navigation
 import {AllPageWithAnimate} from './All';
 import {DataDiscoverWithAnimate} from './DataDiscover';
 import {ReportProductsWithAnimate} from './ReportProducts';
-import {NetErrorWithAnimate} from '../Common/NetError';
+// import {NetErrorWithAnimate} from '../Common/NetError';
 
 import HomeBar from './HomeBar';
 

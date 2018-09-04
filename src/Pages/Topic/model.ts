@@ -1,48 +1,35 @@
 
 
-import {observable,action,extendObservable, toJS } from 'mobx';
-import {getDataDiscoverInformations, } from '../../api'
+import {observable,action, toJS } from 'mobx';
+import {getDataDiscoverInformations, getDataHeroInformations} from '../../api'
+import List from '../../Common/List';
 
 
-export default class TopicModel {
+export default class TopicModel extends List<DataDiscoverItem|DataHeroItem>{
 
     @observable id:number;
     @observable name:string;
-    @observable informations:DataDiscoverItem[]=[];
-    pageToLoad:number =1;
-    total_page:number =1;
-    loading :boolean = false;
+    type:string;
 
     @action
-    init (id:number,name:string){
+    init (id:number,name:string,type:string){
         this.id=id;
         this.name=name;
+        this.type = type
         this.loadData()
     }
 
-    @action
-    addInfo (infos:DataDiscoverItem[]){
-        let pre = toJS(this.informations);
-        pre=pre.concat(infos);
-        this.informations=observable(pre)
+    
+
+    apiFn =()=>{
+        switch (this.type){
+            case 'data_hero_information':return getDataHeroInformations(this.id,this.pageToLoad);break;
+            case 'data_discover_information':return getDataDiscoverInformations(this.id,this.pageToLoad);break;
+            default: return getDataDiscoverInformations(this.id,this.pageToLoad)
+        }
+
     }
 
 
-    @action
-    loadData(){
-        if( (this.pageToLoad>this.total_page) || this.loading)return
-        this.loading = true;
-        getDataDiscoverInformations(this.id,this.pageToLoad).then(res=>{
-            this.loading = false;
-            if(res.data){
-                this.addInfo(res.data.data);
-                if(this.pageToLoad<=res.data.meta.total_page){
-                    this.pageToLoad=this.pageToLoad+1;
-                    this.total_page=res.data.meta.total_page;
-                }
-            }
-        }).catch(()=>{
-            this.loading = false;
-        })
-    }
+    
 }

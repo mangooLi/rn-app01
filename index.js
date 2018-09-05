@@ -4,8 +4,8 @@ import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
 import App from './App';
 
-// import { Sentry } from 'react-native-sentry';
-// Sentry.config('https://<key>@sentry.io/<project>').install();
+import { Sentry } from 'react-native-sentry';
+Sentry.config('https://917893a1ec624cc28c4837fb52455435@sentry.io/1274748').install();
 
 AppRegistry.registerComponent(appName, () => App);
 

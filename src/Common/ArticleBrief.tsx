@@ -74,9 +74,10 @@ const cardStyle=MyStyleSheetCreate({
     },
 
     img_container:{
-        width:164,
+        width:164-16,
         height:83,
-        paddingLeft:16 
+        marginLeft:16,
+        backgroundColor:'#efefef'
     },
     img:{
         width:148,
@@ -97,7 +98,6 @@ const cardStyle=MyStyleSheetCreate({
         color:'#ff570c',
     },
     detail_title:{
-        
         width:187,
         height:40,
         marginTop:2
@@ -109,7 +109,6 @@ const cardStyle=MyStyleSheetCreate({
     detail_date:{
         height:14,
         marginTop:4
-
     },
     detail_date_text:{
         color:'#999',

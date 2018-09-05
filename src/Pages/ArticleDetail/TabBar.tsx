@@ -26,6 +26,9 @@ class TabBar extends Component<NavigationInjectedProps & {store:DetailModel}>{
     toggleCollect(){
         const {article,id}=this.props.store;
         const {has_star}=article;
+        if(!global.user){
+            this.props.navigation.navigate('LoginPage')
+        }
         if(has_star){
             deleteStarInformations([id]).then(res=>{
                 console.log('delete ',res)

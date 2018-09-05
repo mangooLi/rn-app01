@@ -27,14 +27,16 @@ class TagBar extends Component<NavigationInjectedProps & Props>{
     render(){
         const {id,name,type}=this.props;
         return (
-            <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
-            <View style={detailStyle.tagBar}>
-                <Image style={tagBarStyle.img} source={bag}/>
-                <Text style={tagBarStyle.text}>{name}</Text>
-                <Image style={tagBarStyle.right} source={right}/>
+            <View>
+                {name ?  <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
+                <View style={detailStyle.tagBar}>
+                    <Image style={tagBarStyle.img} source={bag}/>
+                    <Text style={tagBarStyle.text}>{name}</Text>
+                    <Image style={tagBarStyle.right} source={right}/>
 
+                </View>
+                </TouchableOpacity>:<View/>}
             </View>
-            </TouchableOpacity>
         )
     }
 }

@@ -27,22 +27,11 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
     componentWillMount(){
         const id=this.props.navigation.getParam('id');
         const type = this.props.navigation.getParam('type')
-        this.store.setId(id,type)
+        this.store.setId(id,type);
+        this.store.loadRecommendations();
     }
 
-    handleScroll(e:NativeSyntheticEvent<NativeScrollEvent> | undefined){
-        
-        if(!(e && !this.store. hasLoadRecommend) )return;
-
-        const offset = e.nativeEvent.contentOffset.y;
-        const scrollViewHeight = e.nativeEvent.layoutMeasurement.height;
-        const totalHeight = e.nativeEvent.contentSize.height;
-        if(offset+scrollViewHeight > totalHeight-300){
-
-            this.store.loadRecommendations();
-        }
-
-    }
+    
 
 
     render (){
@@ -54,7 +43,7 @@ class ArticleDetail extends Component<NavigationInjectedProps> {
             <View style={detailStyle.pageContainer}>
                 <TabBar store={this.store}/>
                 <View style={detailStyle.container}>
-                    <ScrollView onScroll={(e)=>this.handleScroll(e)} ref={c=>this.scroll =c}>
+                    <ScrollView  ref={c=>this.scroll =c}>
                         <Article  store={this.store}/>
                         {this.store._type!=='data_lab_information' ?<TagBar id={topic && topic.id} name={topic && topic.name} type={_type}/>:<View/>}
                         {/* <Text ></Text> */}

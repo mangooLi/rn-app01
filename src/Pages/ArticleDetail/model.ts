@@ -18,7 +18,7 @@ export default class DetailModel{
     @observable video :Video;
     @observable number = 0;
 
-    hasLoadRecommend:boolean = false;
+
 
     @action
     updateArticle(entity:any){
@@ -41,10 +41,7 @@ export default class DetailModel{
             if(res.data){
                 this.updateArticle(res.data.data);
                 const {content} = this.article; 
-                this._type = res.data.data._type;
-                if(!content || content.length<300 ){ // 如果正文字数太少，直接加载推荐文章
-                    this.loadRecommendations()
-                }
+                
                 if(res.data.data.video){
                     this.video = observable(res.data.data.video)
                 }
@@ -67,14 +64,12 @@ export default class DetailModel{
 
     @action
     loadRecommendations():Promise<void> {
-        this.hasLoadRecommend = true;
+
          return getRecommendations(this.id).then(res=>{
             if(res.data){
-                this.recommendations = observable(this.recommendations.concat(res.data.data)) ;
+                this.recommendations = observable(res.data.data) ;
             };
-        }).catch(()=>{
-            this.hasLoadRecommend=false
-        })
+        }).catch(noop)
     }
 
 }

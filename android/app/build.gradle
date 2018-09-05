@@ -77,7 +77,6 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-sentry/sentry.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 /**
@@ -100,11 +99,11 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.app01"
+        applicationId "com.dtcj.hugo.android"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 
+        versionName "2.1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -150,7 +149,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-sentry')
     compile project(':react-native-orientation')
     compile project(':react-native-fast-image')
     compile project(':react-native-vector-icons')

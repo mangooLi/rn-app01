@@ -46,7 +46,7 @@ export default class DetailModel{
                     this.video = observable(res.data.data.video)
                 }
 
-                if(this._type === 'data_lab_information' && (res.data.data as DataLabInformations).category==='for_review'){
+                if(res.data.data._type === 'data_lab_information' && (res.data.data as DataLabInformations).category==='for_review'){
                     this.informationCards = observable((res.data.data as DataLabInformations).information_cards)
                     // let tag = res.data.data.tags[0];
                     // if(tag && tag.name.includes('dt-labo-')){

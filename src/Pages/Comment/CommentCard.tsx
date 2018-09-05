@@ -59,7 +59,7 @@ export default class CommentCard extends Component<CommentItem & Props> {
 
                             </TouchableOpacity>
                         </View>
-                        <Text style={cardStyle.info_time}>{moment(created_at).startOf('day').fromNow()}</Text>
+                        <Text style={cardStyle.info_time}>{moment(created_at).fromNow()}</Text>
                     </View>
                 </View>
                 <Text style={cardStyle.content}>{content}</Text>

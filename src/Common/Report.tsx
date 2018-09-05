@@ -25,7 +25,7 @@ class Report extends Component<ReportProps & NavigationInjectedProps> {
             <View  style={reportStyle.card}>
                 <Image style={reportStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
                 <Text style={reportStyle.title} numberOfLines={1} >{title}</Text>
-                <Text style={reportStyle.date}>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
+                <Text style={reportStyle.date}>{moment(date).format('YYYY-MM-DD HH:mm')}</Text>
             </View>
             </TouchableOpacity>
         )

@@ -350,19 +350,19 @@ interface DataDiscoverItem{
  */
 interface DataLabItem{
     _type:InformationFlowType,
-    id: 1,
+    id: number,
     title: string,
     summary: string,
     thumbnail_url: string,
-    category: string, // 活动类型 for_register:活动报名 for_review:精彩回顾
-    place: string,
-    place_pinyin: string,
-    address:string,
+    category?: string, // 活动类型 for_register:活动报名 for_review:精彩回顾
+    place?: string,
+    place_pinyin?: string,
+    address?:string,
     date: string, // 显示时间
-    start_at: string, // 活动开始时间
-    end_at: string, // 活动结束时间
-    author: string
-    state: string, // to_begin living ended
+    start_at?: string, // 活动开始时间
+    end_at?: string, // 活动结束时间
+    author?: string
+    state?: string, // to_begin living ended
     tags: [
         {
         id: number,
@@ -384,6 +384,10 @@ interface DataHeroItem{
     summary: string,
     date: string
     thumbnail_url: string,
+    topic:{
+      id:number,
+      name:string
+    }
     tags: [
         {
             id: number,
@@ -502,26 +506,7 @@ interface BannerItem{
     information_link_url: string,
 }
 
-interface DataLabItem{
-    id: 1,
-        title: string,
-        summary: string,
-        thumbnail_url: string,
-        category: string, // 活动类型 for_register:活动报名 for_review:精彩回顾
-        place: string,
-        place_pinyin: string,
-        date: string, // 显示时间
-        start_at: string, // 活动开始时间
-        end_at: string, // 活动结束时间
-        state: string, // to_begin living ended
-        tags: [
-          {
-            id: number,
-            name: string,
-          }
-          
-        ]
-}
+
 
 
 interface DataVisualizationItem{

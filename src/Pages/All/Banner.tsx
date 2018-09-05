@@ -30,7 +30,7 @@ interface Props{
     handlePress(item:BannerItem){
         //
         const {navigation} =this.props
-        navigation.navigate('ArticleDetail',{id:item.id,type:item.information_type})
+        navigation.navigate('ArticleDetail',{id:item.information_id,type:item.information_type})
     }
 
     renderImg(bn:BannerItem,id?:string|number){
@@ -43,7 +43,7 @@ interface Props{
                 <View style={bannerStyle.detail}>
                     <Text style={bannerStyle.detail_prefix}>{bn.prefix}</Text>
                     <Text style={bannerStyle.detail_title} numberOfLines={2} >{bn.title}</Text>
-                    <Text style={bannerStyle.detail_date}>{moment(bn.date).format('MM-DD HH:mm:ss')}</Text>
+                    <Text style={bannerStyle.detail_date}>{moment(bn.date).format('MM-DD HH:mm')}</Text>
                 </View>
             </View>
             </TouchableOpacity>

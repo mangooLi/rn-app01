@@ -79,7 +79,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
    }
    _loadinfo():Promise<any>{
        if(this.state.loading){
-           return Promise.reject()
+           return Promise.resolve()
        }
         this.beforeLoad()
        if( this.pageToLoad>this.totalPage)return Promise.resolve([]);
@@ -178,6 +178,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
                 <FlatList
                     data={information}
+                    // onScroll={(e)=>this.handleScroll(e)}
                     ListHeaderComponent={
                         <View>
                             <Banner banners={banners}/>
@@ -190,6 +191,15 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                             <Report {...{list:report_product}}/>
                         </View>
                     }
+
+                    // onViewableItemsChanged={({viewableItems,changed})=>{
+                    //     console.log(viewableItems,changed)
+                    // }}
+                    // viewabilityConfig={
+                    //     {
+                    //         viewAreaCoveragePercentThreshold:20
+                    //     }
+                    // }
 
                     renderItem={({item})=>{
                         return (item._type===InformationFlowType.data_lab_information

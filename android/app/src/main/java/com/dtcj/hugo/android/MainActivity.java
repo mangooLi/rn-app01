@@ -1,4 +1,4 @@
-package com.app01;
+package com.dtcj.hugo.android;
 
 import com.facebook.react.ReactActivity;
 import android.content.Intent; // <--- import

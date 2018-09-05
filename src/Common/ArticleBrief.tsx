@@ -18,7 +18,12 @@ interface Props{
     date:string|Date;
     summary:string,
     id:number,
-    title:string
+    title:string,
+    topic:{
+        id:number,
+        name:string
+    },
+    
 }
 
 
@@ -35,7 +40,7 @@ interface Props{
     }
 
     render(){
-        const {thumbnail_url,author,date,summary,title}=this.props;
+        const {thumbnail_url,author,date,summary,title,topic}=this.props;
 
         return (
             <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
@@ -45,13 +50,13 @@ interface Props{
                 </View>
                 <View style={cardStyle.detail_container}>
                     <View style={cardStyle.detail_author}>
-                        <Text style={cardStyle.detail_author_text}>{author}</Text>
+                        <Text style={cardStyle.detail_author_text}>{topic && topic.name}</Text>
                     </View>
                     <View style={cardStyle.detail_title}>
                         <Text style={cardStyle.detail_title_text} numberOfLines={2} >{title}</Text>
                     </View>
                     <View style={cardStyle.detail_date}>
-                        <Text  style={cardStyle.detail_date_text}>{moment(date).format('MM-DD HH:mm:ss')}</Text>
+                        <Text  style={cardStyle.detail_date_text}>{moment(date).format('MM-DD HH:mm')}</Text>
                     </View>
                 </View>
             </View>

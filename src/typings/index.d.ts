@@ -82,3 +82,9 @@ declare var  Orientation :any;
 declare module 'react-native-orientation'{
     export default Orientation
 }
+
+
+declare var HTML:any
+declare module 'react-native-render-html'{
+    export default HTML;
+}

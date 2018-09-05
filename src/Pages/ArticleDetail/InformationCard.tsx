@@ -16,7 +16,7 @@ export default class InformationCard extends Component<InformationCardItem>{
 
     render (){
         const {title,content,images,link_title,link_url,category}=this.props;
-        // console.log('content',content)
+        console.log('content',content)
         return (
             <View style={informationCardStyle.container}>
                 <Text style={informationCardStyle.title}>{title}</Text>

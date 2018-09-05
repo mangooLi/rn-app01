@@ -13,19 +13,16 @@ import Recommendations from './Recommendations'
 
 import {detailStyle} from './style';
 
-
 @observer
 class ArticleDetail extends Component<NavigationInjectedProps> {
 
     scroll:any ;
     store = new DetailModel()
    
-
     static navigationOptions={
         // tabBarVisible:true,
         // header:    //隐藏顶部导航栏
     }
-
 
     componentWillMount(){
         const id=this.props.navigation.getParam('id');

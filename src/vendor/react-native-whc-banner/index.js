@@ -66,7 +66,7 @@ class BannerIndicater extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageIndex: 3,
+            pageIndex: 2,
         };
     }
 

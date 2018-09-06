@@ -19,11 +19,11 @@ interface Props{
     summary:string,
     id:number,
     title:string,
-    topic:{
+    topic?:{
         id:number,
         name:string
     },
-    
+
 }
 
 

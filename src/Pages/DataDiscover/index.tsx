@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View ,Text,FlatList,ScrollView,NativeScrollEvent,DeviceEventEmitter} from 'react-native';
+// import {SmartRefreshControl,ClassicsHeader,StoreHouseHeader,DefaultHeader} from 'react-native-smartrefreshlayout';
 import DataDiscoverModel from './model';
 import ArticleBrief from '../../Common/ArticleBrief';
 
@@ -22,6 +23,7 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
 
     store = new DataDiscoverModel();
 
+    // srf:any;
 
     componentWillMount(){
 
@@ -40,6 +42,18 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
 
             <Tags store={this.store}/>
             <FlatList 
+                // refreshControl={
+                //     <SmartRefreshControl 
+                //         ref = {(c:any)=>this.srf=c}
+                //         headerHeight={30}
+                //         HeaderComponent={<Text>&nbsp;</Text>}
+                //         onRefresh={()=>{
+                //            console.log('loaddata');
+                //            this.store.loadPreData();
+                //            this.srf.finishRefresh()
+                //         }}
+                //     />
+                // }
                 style={dataDiscoverStyle.flat_list}
                 data={informations}
                 renderItem={({item})=>{

@@ -34,7 +34,7 @@ class TabBar extends Component<NavigationInjectedProps &Prop>{
                     <View style={tabBarStyle.img}><Icon size={getSize(20)} name="chevron-left"/></View> 
                     <View style={{marginLeft:4}}>{leftIcon}</View>
                 </TouchableOpacity>}
-                <Text style={tabBarStyle.text}>{title}</Text>
+                <Text numberOfLines={1} style={tabBarStyle.text}>{title}</Text>
                 {rightIcon ?<View style={tabBarStyle.right}>
                     <TouchableWithoutFeedback onPress={()=>this.props.pressRight && this.props.pressRight()}>
                        <View style={{flex:1}}>{rightIcon}</View> 
@@ -77,7 +77,9 @@ const tabBarStyle=MyStyleSheetCreate({
         flexGrow:1,
         fontSize:17,
         textAlign:'center',
-        zIndex:100
+        zIndex:100,
+        paddingLeft:30,
+        paddingRight:30
     },
     right:{
 

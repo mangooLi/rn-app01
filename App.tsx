@@ -14,7 +14,7 @@ import {login} from './src/api';
 import './src/typings';
 import { noop } from './src/utils';
 
-// declare const global: any;
+declare const global: any;
 if (__DEV__) {
   global.XMLHttpRequest = global.originalXMLHttpRequest || global.XMLHttpRequest;
   global.FormData = global.originalFormData || global.FormData;

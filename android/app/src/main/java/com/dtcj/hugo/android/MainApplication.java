@@ -3,6 +3,7 @@ package com.dtcj.hugo.android;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lmy.smartrefreshlayout.SmartRefreshLayoutPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SmartRefreshLayoutPackage(),
             new OrientationPackage(),
             new FastImageViewPackage(),
             new VectorIconsPackage(),

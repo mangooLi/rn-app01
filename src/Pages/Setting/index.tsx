@@ -38,7 +38,7 @@ export default class SettingPage extends Component<NavigationInjectedProps> {
             <Text style={[pageStyle.title,pageStyle.title_about_us]}>关于我们</Text> 
             <View style={pageStyle.line}>
                 <Text style={pageStyle.line_left}>版本</Text>
-                <Text style={pageStyle.line_right}>2.1.0</Text>
+                <Text style={pageStyle.line_right}>3.0.0</Text>
             </View>
             <TouchableWithoutFeedback 
                 onPress={()=>this.props.navigation.navigate('Feedback')}>

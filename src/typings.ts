@@ -332,11 +332,11 @@ interface DataDiscoverItem{
     summary: string,
     date: string
     thumbnail_url: string,
-    author: string,
-      topic: [{
+    author?: string,
+      topic?: {
         id: number,
         name: string,
-      }],
+      },
     tags: [
       {
         id: number,
@@ -384,7 +384,7 @@ interface DataHeroItem{
     summary: string,
     date: string
     thumbnail_url: string,
-    topic:{
+    topic?:{
       id:number,
       name:string
     }
@@ -478,20 +478,7 @@ interface SearchInformation{
     }]
 }
 
-interface DataDiscoverItem{
 
-    id: number,
-    title: string,
-    summary: string,
-    date: string
-    thumbnail_url: string,
-    tags: [
-      {
-        id: number,
-        name: string,
-      }
-    ],
-}
 
 interface BannerItem{
 

@@ -54,7 +54,8 @@ declare var storage:{
 
 
 
-declare const global:any
+// declare const  global:any
+
 
 
 declare var Icon:any;

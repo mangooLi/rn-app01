@@ -103,7 +103,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 
-        versionName "2.1.0"
+        versionName "3.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-smartrefreshlayout')
     compile project(':react-native-orientation')
     compile project(':react-native-fast-image')
     compile project(':react-native-vector-icons')

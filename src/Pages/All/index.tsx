@@ -28,8 +28,9 @@ interface HomeState{
     loading:boolean,
     netError:boolean,
     // initializing:boolean,
-    initialized:boolean
+    initialized:boolean,
 
+    // onrefreshing:boolean
 }
 
 class AllPage extends React.Component<NavigationInjectedProps>{
@@ -54,6 +55,7 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
        loading:false,
        netError:false,
+    //    onrefreshing:false
 
    }
    
@@ -112,7 +114,9 @@ class AllPage extends React.Component<NavigationInjectedProps>{
             this.handleLoadDone()
             // handle load info 
             let information=this.state.information;
+
             this.preInfo= information.splice(0,7)
+
             this.setState({information});
             // handle get banner
             if(values[1].data){
@@ -156,7 +160,11 @@ class AllPage extends React.Component<NavigationInjectedProps>{
             })
         },3000)
     }
-    
+
+    handleViewableItemsChanged=(info:{viewableItems:any[],changed:any[]})=>{
+        console.log(info)
+    }
+    config = {viewAreaCoveragePercentThreshold:50}
 
     render(){
         const {banners, information,report_product,loading,netError,initialized}=this.state;
@@ -192,15 +200,8 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                         </View>
                     }
 
-                    // onViewableItemsChanged={({viewableItems,changed})=>{
-                    //     console.log(viewableItems,changed)
-                    // }}
-                    // viewabilityConfig={
-                    //     {
-                    //         viewAreaCoveragePercentThreshold:20
-                    //     }
-                    // }
-
+                    // onViewableItemsChanged={this.handleViewableItemsChanged}
+                    // viewabilityConfig={this.config}
                     renderItem={({item})=>{
                         return (item._type===InformationFlowType.data_lab_information
                             ?( <DataLabCardContainer {...item as DataLabItem}/>)

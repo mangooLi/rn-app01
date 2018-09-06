@@ -1,7 +1,7 @@
 
 
 import React,{Component,PureComponent} from 'react';
-import { View,Image, Text ,TouchableOpacity,GestureResponderEvent} from 'react-native';
+import { View,Image, Text ,TouchableOpacity,GestureResponderEvent, FlatList} from 'react-native';
 import moment from 'moment';
 import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
@@ -46,7 +46,7 @@ interface Props{
             <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
             <View style={cardStyle.container} >
                 <View style={cardStyle.img_container}>
-                    <FastImage style={cardStyle.img} source={{uri:thumbnail_url,}}/>
+                    <FastImage style={cardStyle.img} source={{uri:thumbnail_url}}/>
                 </View>
                 <View style={cardStyle.detail_container}>
                     <View style={cardStyle.detail_author}>

@@ -89,3 +89,18 @@ declare var HTML:any
 declare module 'react-native-render-html'{
     export default HTML;
 }
+
+
+declare var SmartRefreshControlAll:{
+    SmartRefreshControl:any
+}
+
+declare module 'react-native-smartrefreshlayout' {
+    export default SmartRefreshControlAll
+    export var  SmartRefreshControl:any;
+    export var AnyHeader:any
+
+}
+
+
+

@@ -4,7 +4,7 @@
 import {observable,action} from 'mobx';
 
 import {Response} from '../api/request';
-// import uuid from 'uuid'
+import uuid from 'uuid'
 
 
 export default abstract class  List<T> {
@@ -13,58 +13,18 @@ export default abstract class  List<T> {
     @observable informations:T[] = [];
     @observable netError:boolean = false;
     @observable initialized:boolean = false;
-    pageToLoad:number = 1;
-    total_page:number = 1;
+
+    @observable
     loading :boolean = false;
 
-    // preStack:string[] = [];
+    @observable 
+    headLoading:boolean = false;
+    
+    total_page:number = 1;
+    current_page:number = 0;
+    prev_page:number = 0;
+    next_page:number = 1;
 
-    // sufStack:string[] = [];
-
-    /**
-     * 存入storage
-     * @param data 需要存入的数据
-     * @param pre 存入preStack(true) 或者sufStack(false)
-     */
-    // cache(data:any,pre:boolean){
-    //     const key = uuid.v1();
-    //     if(pre){
-    //         this.preStack.push(key)
-    //     }else{
-    //         this.sufStack.push(key)
-    //     }
-
-    //     storage.save({
-    //         key,
-    //         data,
-    //         expires:null
-    //     });
-
-    // }
-
-    /**
-     * 从cache里拿数据
-     * @param pre 从preStack(true) 或者sufStack(false) 取数据
-     */
-    // @action
-    // loadCache(pre:boolean){
-    //     if(pre){
-    //         const key = this.preStack.shift();
-            
-    //         key &&  storage.load({key}).then(data=>{
-
-
-    //             console.log('data',data)
-    //             this.addInofToPre(data)
-    //         })
-    //     }else{
-    //         const key = this.sufStack.shift();
-
-    //         key && storage.load({key}).then(data=>{
-    //             this.addInfo(data)
-    //         })
-    //     }
-    // }
 
 
 
@@ -78,40 +38,23 @@ export default abstract class  List<T> {
 
     @action
     addInfo (list:T[]){
-        // let pre =this.informations;
-        // pre = pre.concat(list);
-        // this.informations = observable(pre)
 
-        this.informations = this.informations.concat(list);
-        // if(this.informations.length > 20){
-        //     const pre = this.informations.splice(0,20);
-        //     this.cache(pre,true)
-        // }
+        // this.informations = this.informations.concat(list);
+        this.informations = observable(list)
+        
     }
 
-    // @action
-    // addInofToPre(list:T[]){
-    //     this.informations = list.concat(this.informations);
-    //     const length = this.informations.length;
-    //     if(length >20){
-    //         const suf = this.informations.splice(length-20,20);
-    //         this.cache(suf,false)
-    //     }
-    // }
+    
 
     @action 
-    loadData(){
-        if( (this.pageToLoad>this.total_page)|| this.loading )return;
+    loadData(page?:number){
+        page = page || this.next_page;
+        if( (page>this.total_page)|| this.loading )return Promise.resolve();
 
-        // if(this.sufStack.length>0){
-        //     this.loadCache(false);
-        //     return;
-        // }
-        
-
+        console.log('loading start ');
         this.loading = true;
         this.netError = false;
-        this.apiFn(this.pageToLoad).then(res=>{
+        return this.apiFn(page).then(res=>{
             if(!this.initialized){
                 this.initialized = true;
             }
@@ -119,7 +62,12 @@ export default abstract class  List<T> {
             this.loading = false;
             if(res.data  ){
                 this.addInfo(res.data.data);
-                this.pageToLoad = this.pageToLoad +1;
+
+                this.current_page = res.data.meta.current_page;
+                this.prev_page = res.data.meta.prev_page || 0;
+                this.next_page = res.data.meta.next_page;
+
+                // this.pageToLoad = this.pageToLoad +1;
                 this.total_page = res.data.meta.total_page;
             }
         }).catch(()=>{
@@ -130,19 +78,29 @@ export default abstract class  List<T> {
     @action
     reset (){
         this.informations = observable([]);
-        this.pageToLoad = 1;
+        // this.pageToLoad = 1;
         this.total_page =1;
+
         this.loading = false;
         this.initialized = false;
+
+        this.current_page = 0;
+        this.next_page =1;
+        this.prev_page =0;
     }
 
 
-    // @action 
-    // loadPreData(){
-    //     if(this.preStack.length>0){
-    //         this.loadCache(true);
-    //     }
-    // }
+    @action 
+    loadPreData(){
+        // this.headLoading = true;
+        if(this.prev_page === 0){
+            this.headLoading = false;
+            return Promise.resolve()
+        }
+        return this.loadData(this.prev_page)
+    }
+
+
 
 
 }

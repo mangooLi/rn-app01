@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View ,Text,FlatList,ScrollView,NativeScrollEvent,DeviceEventEmitter} from 'react-native';
-// import {SmartRefreshControl,ClassicsHeader,StoreHouseHeader,DefaultHeader} from 'react-native-smartrefreshlayout';
+import { SmartRefreshControl ,AnyHeader} from 'react-native-smartrefreshlayout';
 import DataDiscoverModel from './model';
 import ArticleBrief from '../../Common/ArticleBrief';
 
@@ -23,7 +23,8 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
 
     store = new DataDiscoverModel();
 
-    // srf:any;
+    srf:any;
+    flatList:FlatList<any>;
 
     componentWillMount(){
 
@@ -35,31 +36,43 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
     }
 
     render(){
-        const {informations,loading,netError,initialized} =this.store;
+        const {informations,loading,headLoading, netError,initialized} =this.store;
         return (
         <View>
         { initialized? <View style={[dataDiscoverStyle.container,{height:WindowHeight-getSize(89)}]}>
 
             <Tags store={this.store}/>
             <FlatList 
-                // refreshControl={
-                //     <SmartRefreshControl 
-                //         ref = {(c:any)=>this.srf=c}
-                //         headerHeight={30}
-                //         HeaderComponent={<Text>&nbsp;</Text>}
-                //         onRefresh={()=>{
-                //            console.log('loaddata');
-                //            this.store.loadPreData();
-                //            this.srf.finishRefresh()
-                //         }}
-                //     />
-                // }
+                ref = {(c:FlatList<any>)=>this.flatList=c}
+                refreshControl={
+                    <SmartRefreshControl 
+                        ref = {(c:any)=>this.srf=c}
+                        headerHeight={getSize(40)}
+                        HeaderComponent={   
+                            <AnyHeader >
+
+                                <FooterLoading loading={true} netError={netError}/>
+                            </AnyHeader>}
+                            
+                        onRefresh={()=>{
+                           console.log('loaddata');
+                           this.store.loadPreData().then(res=>{
+                                this.srf.finishRefresh();
+                           })
+                           
+                        }}
+                    />
+                }
                 style={dataDiscoverStyle.flat_list}
                 data={informations}
                 renderItem={({item})=>{
                     return <ArticleBrief {...item}  />
                 }}
-                onEndReached={()=>this.store.loadData()}
+                onEndReached={()=>{
+                    this.store.loadData().then(()=>{
+                        this.flatList.scrollToIndex({index:0,animated:false})
+                    })
+                }}
                 onEndReachedThreshold={0.2}
                 removeClippedSubviews
                 keyExtractor={item => item.id+''}

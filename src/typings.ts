@@ -47,10 +47,10 @@ interface Video{
  */
 interface Meta{
     current_page: number,
-    next_page: 2,
-    prev_page: null,
-    total_page: 2,
-    total_count: 30
+    next_page: number,
+    prev_page: number,
+    total_page: number,
+    total_count: number
   }
 
 

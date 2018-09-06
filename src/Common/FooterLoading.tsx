@@ -3,6 +3,7 @@ import React,{Component} from 'react';
 import {View,Text,} from 'react-native';
 import {MyStyleSheetCreate, WindowWidth} from '../utils';
 
+
 interface Prop{
     loading:boolean,
     netError?:boolean
@@ -10,11 +11,15 @@ interface Prop{
 
 export default class FooterLoading extends Component<Prop>{
 
+    shouldComponentUpdate(nextProp:Prop){
+        return nextProp.loading !== this.props.loading || nextProp.netError !==this.props.netError
+    }
 
     render (){
+        console.log('loadding',this.props.loading)
         const {loading,netError}=this.props;
         return (<View >
-             {loading &&  <Text style={style.text}>{!netError?'正在加载，请耐心等待......':'网络错误，请稍后重试'} </Text> }
+             {loading && <Text style={style.text}>{loading?'正在加载，请耐心等待......':netError? '网络错误，请稍后重试':''} </Text> }
             {/* <View style={style.footer}/> */}
         </View>)
     }

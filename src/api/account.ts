@@ -14,7 +14,7 @@ export function login(login:string,password:string){
         login,password
     }
 
-    return fetch<{data:AccountInfo}>({url:'api/v1/sessions',method:'post',data})
+    return fetch<{data:AccountInfo}>({url:'api/v1/sessions',method:'post',data,cache:false})
 }
 
 /**
@@ -22,7 +22,7 @@ export function login(login:string,password:string){
  * @param phone 手机号码
  */
 export function getSms (phone:string){
-    return fetch <{data:{}}>({url:'api/v1/sms',method:'post',data:{phone}})
+    return fetch <{data:{}}>({url:'api/v1/sms',method:'post',data:{phone},cache:false})
 }
 
 
@@ -34,7 +34,7 @@ export function getSms (phone:string){
  * @param password 密码
  */
 export function register(phone:string,code:string,password:string){
-    return fetch<{data:Account}>({url:'api/v1/user',method:'post',data:{phone,password,phone_code:code}})
+    return fetch<{data:Account}>({url:'api/v1/user',method:'post',data:{phone,password,phone_code:code,cache:false}})
 }
 
 /**
@@ -42,7 +42,7 @@ export function register(phone:string,code:string,password:string){
  * @param page 
  */
 export function getAccountCollection(page:number){
-    return fetch<InformationFlow>({url:'api/v1/mine/star_informations',data:{page}})
+    return fetch<InformationFlow>({url:'api/v1/mine/star_informations',data:{page},cache:false})
 }
 
 
@@ -56,7 +56,8 @@ export function deleteStarInformations(information_ids:number[]){
         url:'api/v1/mine/star_informations/batch_delete',
         data:{
             information_ids
-        }
+        },
+        cache:false
     }
     return fetch<{}>(options)
 }
@@ -67,7 +68,7 @@ export function deleteStarInformations(information_ids:number[]){
  * @param page 
  */
 export function   getAccountComment(page:number){
-    return fetch<{data:CommentItem[],meta:Meta}>({url:'api/v1/mine/comments'})
+    return fetch<{data:CommentItem[],meta:Meta}>({url:'api/v1/mine/comments',cache:false})
 }
 
 /**
@@ -77,7 +78,8 @@ export function   getAccountComment(page:number){
 export function toggleMineLike(comment_id:number){
     const options = {
         url:`api/v1/mine/comments/${comment_id}/toggle_like`,
-        method:'post'
+        method:'post',
+        cache:false
     }
     return fetch<{data:CommentItem}>(options)
 }
@@ -90,7 +92,8 @@ export function deleteMineComment (comment_ids:number[]){
     const options = {
         url:'api/v1/mine/comments/batch_delete',
         method:'post',
-        data:{comment_ids}
+        data:{comment_ids},
+        cache:false
     }
     return fetch<{}>(options)
 }
@@ -104,7 +107,8 @@ export function modifyUserInfo(nickname?:string,avatar_url?:string){
     const options = {
         method:'put',
         url:'api/v1/user',
-        data:{user:{nickname,avatar_url}}
+        data:{user:{nickname,avatar_url}},
+        cache:false
     }
 
     return fetch<{data:AccountInfo}>(options)
@@ -125,7 +129,8 @@ export function updatePassword(password:string,new_password:string){
             user:{
                 password,new_password
             }
-        }
+        },
+        cache:false
     }
     return fetch<{data:AccountInfo}>(options)
 }
@@ -138,7 +143,7 @@ export function updatePassword(password:string,new_password:string){
  * 获取我的报告
  */
 export function getMyReport (){
-    return fetch<{data:ReportProductItem[],meta:Meta}>({url:'api/v1/mine/products/report'})
+    return fetch<{data:ReportProductItem[],meta:Meta}>({url:'api/v1/mine/products/report',cache:false})
 }
 
 
@@ -157,7 +162,8 @@ export function feedback(content:string,username:string){
         method:'post',
         data:{
             content,email:username
-        }
+        },
+        cache:false
     }
     return fetch<{data:Feedback}>(options)
 }

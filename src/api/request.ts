@@ -9,6 +9,7 @@ export interface Options<T> {
   method?: string;
   headers?: any;
   data?: T;
+  cache?:boolean
 };
 
 function addParamsToUrl(url: string, data: any) {
@@ -50,40 +51,69 @@ export interface Response<T>{
     message:string|number|null;
 }
 
+
 export default function request<T>(options: Options<any>):Promise<Response<T>> {
-  
 
-    const config=getConfig(options);
-    return fetch(baseUrl+ config.url, config).then(response => {
-      const contentType = response.headers.get('content-type') || '';
-      if (contentType.indexOf('application/json;') !== -1) {
-        return response.json();
-      } else {
-        return response.text();
-      }
-    }).then(resp => {
-      if(resp.error){
-        throw {
-          message:resp.error
-        }
-      }
+    let key;
+    if(!options.cache){
+        key = JSON.stringify(options);
+        return storage.load({key}).then(ret=>{
+          return ret;
+        }).catch(e=>{
+          return requestFromUrl(options)
+        })
+    }else{
+      return requestFromUrl(options)
+    }
 
-      return {
-        success: true,
-        data: resp,
-        message: null,
-      }
-    })
-    .catch(error => {
 
-      // return  {
-      //   success: false,
-      //   data: null,
-      //   message: error.message || error.stack || 'request error',
-      // }
-      console.log('error')
-      console.log(error.message || error.stack)
-      throw error;
-    });
+    
+
+}
+
+
+function requestFromUrl<T>(options: Options<any>):Promise<Response<T>> {
+
+  const config=getConfig(options);
+  return fetch(baseUrl+ config.url, config).then(response => {
+    const contentType = response.headers.get('content-type') || '';
+    if (contentType.indexOf('application/json;') !== -1) {
+
+      const ret = response.json();
+      if(!options.cache){
+        storage.save({key:JSON.stringify(options),data:ret,expires:1*60*3600*1000})
+      }
+      return ret;
+    } else {
+      const ret = response.text();
+      if(!options.cache){
+        storage.save({key:JSON.stringify(options),data:ret,expires:1*60*3600*1000})
+      }
+      return ret;
+    }
+  }).then(resp => {
+    if(resp.error){
+      throw {
+        message:resp.error
+      }
+    }
+
+    return {
+      success: true,
+      data: resp,
+      message: null,
+    }
+  })
+  .catch(error => {
+
+    // return  {
+    //   success: false,
+    //   data: null,
+    //   message: error.message || error.stack || 'request error',
+    // }
+    console.log('error')
+    console.log(error.message || error.stack)
+    throw error;
+  });
 
 }

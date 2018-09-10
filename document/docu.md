@@ -211,8 +211,41 @@ export function MyStyleSheetCreate(configs:MyStyle){
 ```
 
 
+### 十二 打包和发布
+1. 生成签名密钥。运行命令`keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000`,会要求你输入密钥库（keystore）和对应密钥的密码，然后设置一些发行相关的信息。最后它会生成一个叫做my-release-key.keystore的密钥库文件。
 
-### 十二 其他
+2. 修改包名。包名是APP在应用市场的唯一标识。如果我们新建项目的时候的包名和最终需要发布的包名不一样，在打包前就需要修改包名。包名的修改需要配置以下三个地方：
+   1. AndroidManifest.xml文件中，package="你需要的包名"
+   2. android/app/build.gradle文件
+        ```
+        ......
+        android{
+            ......
+            defaultConfig{
+                ......
+                applicationId "你需要的包名"
+            }
+        }
+
+        ```
+    3. MainActivity.java和MainApplication.java的位置。仔细观察原来的这两个文件，如果项目新建的时候，包名是'com.app01',这时候这两个文件在`android/app/src/main/java/com/app01`文件夹下。如果包名改成了'com.a.b.c',则需要将MainActivity.java和MainApplication.java这两个文件放到`android/app/src/main/java/com/a/b/c`文件夹下。
+    4. 移动MainActivity.java和MainApplication.java的位置后，修改这两个文件的package字段
+3. 版本号。每次在应用市场更新APP之前，需要在APP内部制定版本号。版本号可以在android/app/build.gradle versionName字段中配置。具体如下：
+```
+```
+......
+android{
+    ......
+    defaultConfig{
+        ......
+        versionCode 3000    //版本code
+        versionName "3.0.0"   // 版本号
+    }
+}
+```
+versionName和versionCode都不能低于之前设置的值。
+
+### 十三 其他
 1. interface的处理。定义的interface，有两种处理方法，一种是定义在模块中，然后在需要的地方import进来。一种是定义在非模块的TS文件中，然后在tsconfig.json中配置include字段。经过对比判断，定义在非模块化文件中更方便。值得注意的是，枚举值只能定义在模块化文件中然后export出去。如果定义在非模块化文件中，运行的时候枚举值会找不到。如果非模块化TS文件中的interface也需要用到该枚举值怎么办？只能分别在两个文件里定义两个一样的interface了。
 2. 获取网络状态。有时候，APP需要获取网络状态，在无网络或者网络状态不佳的时候提示。react-native提供了NetInfo模块，供APP访问网络状态。在`getConnectionInfo`方法的回调里，提供了`ConnectionType`和`EffectiveConnectionType`信息。这两个枚举可选值如下：
 
@@ -244,3 +277,4 @@ dependencies {
 5. 修改APP名称：进入android/app/src/main/res/valuse/strings.xml，修改`<string name="app_name">你的APP名称</string>`
 6. 网络图片资源，可以设置cache属性，来控制是否启用缓存。
 7. Image组件在安卓中有一个大坑，当页面图片比较多的时候，快速加载很多图片会导致内存爆炸，然后图片不显示。解决方法：用`react-native-fast-image`代替原生组件可以解决这个问题。
+8. 使用虚拟机的时候，有时候会发现无法调试，并提示`debugger and device times have drifted by more than 60s. please correct this by running adb shell "date `date +%m%d%H%M%Y.%S`"`，这时候按照提示，运行`adb shell "date `date +%m%d%H%M%Y.%S`"`，也不见有用。可能的原因是模拟器的时间和PC时间不一样，将模拟器的时间和时区调整为和PC一样就OK了

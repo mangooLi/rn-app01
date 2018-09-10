@@ -42,11 +42,12 @@ import PullDemo from './DemoPage/PullDemo';
 import IconPage from './DemoPage/Icon';
 import Refresh from './DemoPage/Refresh';
 import Banner from './DemoPage/Banner';
+import paginatedList from './DemoPage/PaginatedList';
 
 
 const Route = createStackNavigator({
     HomePage:HomePage,
-    Main:Main,
+   
     AllPage:AllPage,
     ListRoute:ListRoute,
     ArticleDetail:ArticleDetail,
@@ -73,6 +74,8 @@ const Route = createStackNavigator({
     Feedback:Feedback,
     WebPage:WebPage,
     // demo
+
+    Main:Main,
     Demo:DemoMain,
     DemoRoute:DemoRoute,
     Animate:Animate,
@@ -81,7 +84,8 @@ const Route = createStackNavigator({
     PullDemo:PullDemo,
     IconPage:IconPage,
     Refresh:Refresh,
-    Banner:Banner
+    Banner:Banner,
+    paginatedList:paginatedList
 
     },{
         initialRouteName: 'BottomRoute',

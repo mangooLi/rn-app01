@@ -6,6 +6,8 @@ import map from 'lodash.map'
 import debounce from 'lodash.debounce';
 import noop from 'lodash.noop';
 import remove from 'lodash.remove';
+import get from 'lodash.get';
+
 import moment from 'moment';
 
 import 'moment/locale/zh-cn';
@@ -21,7 +23,7 @@ export {
     map,
     debounce,
     noop,
-    
+    get,
     moment,
 
     WindowHeight,

@@ -1,7 +1,7 @@
 
 
 
-
+declare const global:any;
 // declare const Banner:()=>any
 declare const Banner:any
 declare module 'react-native-whc-banner'{

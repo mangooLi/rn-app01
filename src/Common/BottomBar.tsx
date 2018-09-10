@@ -9,7 +9,7 @@ import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 
 // import {cmpStyle} from './style';
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
-import { autorun } from 'mobx';
+// import { autorun } from 'mobx';
 
 const _homeIcon = require('../assets/img/ic_home/ic_home_black.png');
 const _homeActive = require('../assets/img/ic_home_active/ic_home_24px.png');

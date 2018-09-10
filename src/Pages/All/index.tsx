@@ -2,13 +2,18 @@
 
 import * as React from 'react';
 import { View ,FlatList ,ScrollView,NativeSyntheticEvent,NativeScrollEvent,DeviceEventEmitter} from 'react-native';
-import { getInformationFlow,getBanners,getRandomReportProduct,InformationFlowType} from '../../api'
+import {observer} from 'mobx-react';
+import { SmartRefreshControl ,AnyHeader} from 'react-native-smartrefreshlayout';
 
+
+import { getInformationFlow,getBanners,getRandomReportProduct,InformationFlowType} from '../../api'
+import AllPageModel from './model';
 import ArticleBrief from '../../Common/ArticleBrief';
 import Banner from './Banner';
 
 import DataLabCardContainer from './DataLabContainer';
 import {homeStyle} from './style';
+
 
 import { debounce ,MyStyleSheetCreate, noop, WindowHeight, getSize} from '../../utils';
 import Report, {ReportProps} from '../../Common/Report'
@@ -20,200 +25,95 @@ import Loading from '../../Common/Loading';
 import FooterLoading from '../../Common/FooterLoading';
 
 
-interface HomeState{
-    banners:BannerItem[],
-    report_product:ReportProductItem[],
-    information:DataDiscoverItem[]|DataLabItem[]|DataHeroItem[]|DataFiftyItem[],
-    refreshing:boolean,
-    loading:boolean,
-    netError:boolean,
-    // initializing:boolean,
-    initialized:boolean,
 
-    // onrefreshing:boolean
-}
-
+@observer
 class AllPage extends React.Component<NavigationInjectedProps>{
-    preInfo:any[]=[]
-    loadInfo:() => void;
-    pageToLoad:number=1;
-    totalPage:number =1;
-    per:number=10;
+
+    store = new AllPageModel()
+   
     cn:any;
+    srf:any;
+    last:any;
+
+    flatList:FlatList<any>
     static navigationOptions={
         // tabBarVisible:false,
         header:null    //隐藏顶部导航栏
     }
 
-   
-   state:HomeState={
-       banners:[],
-       report_product:[],
-       information:[],
-       refreshing:false,
-        initialized:false,
-
-       loading:false,
-       netError:false,
-    //    onrefreshing:false
-
-   }
-   
-   handleLoadError=()=>{
-       this.setState({
-           loading:false,
-           netError:true,
-
-       })
-   }
-   beforeLoad(){
-
-       this.setState({
-        loading:true,
-        netError:false,
-       })
-   }
-   handleLoadDone(){
-       this.setState({
-           loading:false,
-           netError:false,
-       })
-   }
-   _loadinfo():Promise<any>{
-       if(this.state.loading){
-           return Promise.resolve()
-       }
-        this.beforeLoad()
-       if( this.pageToLoad>this.totalPage)return Promise.resolve([]);
-       return getInformationFlow({page:this.pageToLoad,per:this.per}).then(res=>{
-           this.handleLoadDone()
-           if(res.data){
-               let {information}=this.state;
-               this.setState({information:[...information,...res.data.data]});
-                this.totalPage=res.data.meta.total_page;
-                this.pageToLoad+=1;
-           }
-       }).catch(this.handleLoadError)
-   }
 
 
     componentWillMount(){
-        this.loadInfo=debounce(this._loadinfo,1000)
 
-        this.beforeLoad();
+
+
         this.props.navigation.addListener('willFocus',()=>{
             DeviceEventEmitter.emit('ListRouteSwipeTo',{page:0})
         })
         this.props.navigation.addListener('willBlur',()=>{
             DeviceEventEmitter.emit('PageExpand')
         })
+
+        this.store.init();
         
 
-        Promise.all([this._loadinfo(),getBanners(),getRandomReportProduct()]).then(values=>{
-            this.setState({initialized:true})
-            this.handleLoadDone()
-            // handle load info 
-            let information=this.state.information;
-
-            this.preInfo= information.splice(0,7)
-
-            this.setState({information});
-            // handle get banner
-            if(values[1].data){
-                this.setState({banners:(values[1].data as {data:BannerItem[]}).data})
-            }
-
-            // handle getRandomReportProduct
-            if(values[2].data){
-                this.setState({report_product:(values[2].data as {data:ReportProductItem[]}).data})
-            }
-        }).catch(this.handleLoadError)
-
+       
     }
 
-    handleScroll(e:NativeSyntheticEvent<NativeScrollEvent> |undefined){
-        if(!e){return}
-        const offsetY = e.nativeEvent.contentOffset.y; //滑动距离
-        const contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
-        const oriageScrollHeight = e.nativeEvent.layoutMeasurement.height; //scrollView高度
-        if (offsetY + oriageScrollHeight >= contentSizeHeight-20){
-            // 滑动到底部
-            this._loadinfo()
-        }
+    
 
-    }
-
-    _onRefresh=()=>{
-        this.setState({refreshing:true});
-        // console.log('refrehing');
-        this.cn.setNativeProps({
-            style:{
-                marginTop:80
-            }
-        })
-        setTimeout(()=>{
-            this.setState({refreshing:false});
-            this.cn.setNativeProps({
-                style:{
-                    marginTop:0
-                }
-            })
-        },3000)
-    }
-
-    handleViewableItemsChanged=(info:{viewableItems:any[],changed:any[]})=>{
-        console.log(info)
-    }
-    config = {viewAreaCoveragePercentThreshold:50}
 
     render(){
-        const {banners, information,report_product,loading,netError,initialized}=this.state;
+        const {banners, informations,report_product,showHead, loading,netError,initialized}=this.store;
         
+        // console.log('showhead',showHead)
         return (
             <View style={[homeStyle.page_container,{height:WindowHeight-getSize(89)}]} ref={c=>this.cn=c}>
             {initialized ?
-            // <ScrollView  
-            //     onScroll={(e)=>this.handleScroll(e)}
-            //     testID='homePage'>
-            //     <Banner banners={banners}/>
-
-            //     <View style={homeStyle.preInfo}>
-            //         {this.preInfo?this.preInfo.map(item=>{
-            //             return (item._type===InformationFlowType.data_lab_information?<DataLabCardContainer key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
-            //         }):null}
-            //     </View>
-            //     <Report {...{list:report_product}}/>
+           
 
                 <FlatList
-                    data={information}
+                    ref={(c:FlatList<any>)=>this.flatList=c}
+                    refreshControl={
+                        <SmartRefreshControl 
+                            ref = {(c:any)=>this.srf=c}
+                            headerHeight={getSize(40)}
+                            HeaderComponent={   
+                                <AnyHeader >
+                                    <FooterLoading loading={true} netError={netError}/>
+                                </AnyHeader>}
+                                
+                            onRefresh={()=>{
+                                this.store.loadPreData().then(res=>{
+                                        this.flatList.scrollToIndex({index:21,animated:false})
+                                        this.srf.finishRefresh();
+                                })
+                            }}/>
+                    }
+                    data={informations}
                     // onScroll={(e)=>this.handleScroll(e)}
                     ListHeaderComponent={
                         <View>
-                            <Banner banners={banners}/>
-
-                            <View style={homeStyle.preInfo}>
-                                {this.preInfo?this.preInfo.map(item=>{
-                                    return (item._type===InformationFlowType.data_lab_information?<DataLabCardContainer key={item.id}  {...item as DataLabItem}/>:<ArticleBrief key={item.id} {...item}/>)
-                                }):null}
-                            </View>
-                            <Report {...{list:report_product}}/>
+                            {showHead? <Banner banners={banners}/>:<View/>}
                         </View>
                     }
 
-                    // onViewableItemsChanged={this.handleViewableItemsChanged}
-                    // viewabilityConfig={this.config}
-                    renderItem={({item})=>{
-                        return (item._type===InformationFlowType.data_lab_information
+                    renderItem={({item,index})=>{
+                        return (<View>  
+                                {item._type===InformationFlowType.data_lab_information
                             ?( <DataLabCardContainer {...item as DataLabItem}/>)
-                            :<ArticleBrief {...item}/>)
+                            :<ArticleBrief {...item}/>}
+                                {showHead && index ===6?<Report {...{list:report_product}}/>:<View/>}
+                            </View>)
                     }}
                     keyExtractor={item => item.id+''}
                     removeClippedSubviews
-                    getItemLayout={(data, index) => (
-                        {length: 107, offset: 107 * index, index}
-                      )}
-                    onEndReached={()=>this._loadinfo()}
+                    // getItemLayout={(data, index) => (
+                    //     {length: 107, offset: 107 * index, index}
+                    //   )}
+                    onEndReached={()=>this.store.loadData()}
                     onEndReachedThreshold={0.2}
+                    scrollEventThrottle={500}
                     ListFooterComponent={<FooterLoading loading ={loading} netError={netError}/>}
                 />
             // </ScrollView>

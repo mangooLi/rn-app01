@@ -5,7 +5,7 @@ import {WindowWidth,WindowHeight,getSize,MyStyleSheetCreate} from '../utils'
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 
 import listStore from './GlobalModel';
-import { autorun } from 'mobx';
+
 const searchIcon = require('../assets/img/ic_search_24px/ic_search_24px.png');
 const shapeIcon = require('../assets/img/icAccountCircle24Px/icAccountCircle24Px.png');
 
@@ -32,7 +32,6 @@ class HomeBar extends Component<Prop & NavigationInjectedProps> {
         'Home','DataDiscover','ReportProducts'
     ]
     state:State={
-
         boxX:new Animated.Value(getSize(30)),
         display:'flex',
         visible:true
@@ -77,14 +76,12 @@ class HomeBar extends Component<Prop & NavigationInjectedProps> {
         this.setState({visible:!hide})
     }
     
-
     hidePage(){
         // this.fold = !this.fold;
 
         DeviceEventEmitter.emit('HidePage');
 
         console.log('toggle',this.fold);
-
 
         if(this.props.noHide){  // 只有自定义导航栏会隐藏
             this.hide(false)

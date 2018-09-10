@@ -16,7 +16,6 @@ export default class FooterLoading extends Component<Prop>{
     }
 
     render (){
-        console.log('loadding',this.props.loading)
         const {loading,netError}=this.props;
         return (<View >
              {loading && <Text style={style.text}>{loading?'正在加载，请耐心等待......':netError? '网络错误，请稍后重试':''} </Text> }

@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 import {View,TouchableWithoutFeedback,Animated,DeviceEventEmitter} from'react-native';
 import {observer} from 'mobx-react';
 import {WindowWidth, WindowHeight, getSize,MyStyleSheetCreate} from '../../utils';
-import {autorun } from 'mobx';
+
 import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import Orientation from 'react-native-orientation';
 
@@ -13,7 +13,7 @@ import PersonCenter from './PersonalCenter';
 
 import HomeBar from '../HomeBar';
 
-import listStore from '../GlobalModel';
+
 import Bottombar from '../../Common/BottomBar';
 
 

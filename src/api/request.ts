@@ -57,15 +57,10 @@ export default function request<T>(options: Options<any>):Promise<Response<T>> {
     let key:string;
     if(!options.nocache){
         key = JSON.stringify(options).replace(/_/g,'');;
-
-        // console.log(key)
-
         return storage.load({key}).then(ret=>{
-
-          console.log('load ret is ',options.url)
           return Promise.resolve(JSON.parse(ret));
         }).catch(()=>{
-          console.log('no cache',options.url)
+
           return Promise.resolve(requestFromUrl(options)) 
         })
     }else{

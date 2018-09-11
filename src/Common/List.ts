@@ -60,7 +60,6 @@ export default abstract class  List<T> {
     }
     @action 
     loadData(page?:number){
-        console.log('loading ')
         page = page || this.startPage;
         if( (page>this.total_page)|| this.loading )return Promise.resolve();
 

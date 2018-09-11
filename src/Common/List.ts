@@ -48,32 +48,19 @@ export default abstract class  List<T> {
 
     @action
     init (config?:InitConfig){
-        this.loadData()
+        if(config && config.limit){
+            this._limit = true;
+        }
     }
-
     @action
     pushInfo (list:T[]){
         this.informations.push(...list)
         this.showHead = this.startPage===1;
 
     }
-
-    limit(){
-        this._limit = true;
-    }
-    
-
-
     @action 
     loadData(page?:number){
-        let now = Date.now()
-        if(this.timestamp){
-            if(now-this.timestamp <2000){
-                this.timestamp = now;
-                return Promise.resolve()
-            }
-        }
-        this.timestamp = now;
+        console.log('loading ')
         page = page || this.startPage;
         if( (page>this.total_page)|| this.loading )return Promise.resolve();
 
@@ -95,7 +82,9 @@ export default abstract class  List<T> {
                 this.next_page = meta.next_page;
                 this.total_page = meta.total_page;
 
-                if(this.informations.length >this.maxLength && this._limit){
+                console.log('splice', this.informations.length,this._limit)
+                if(this.informations.length >this.maxLength && this._limit ){
+
                     this.informations.splice(0,this.informations.length- list.length);
                     this.informations = observable(Array.from(this.informations))
                     this.startPage =this.prev_page;
@@ -104,6 +93,7 @@ export default abstract class  List<T> {
             }
             return res;
         }).catch(()=>{
+            console.log('loading err')
             this.loading = false;
             this.netError = true;
         })

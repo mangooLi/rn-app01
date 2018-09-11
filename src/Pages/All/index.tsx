@@ -45,9 +45,6 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
 
     componentWillMount(){
-
-
-
         this.props.navigation.addListener('willFocus',()=>{
             DeviceEventEmitter.emit('ListRouteSwipeTo',{page:0})
         })
@@ -63,9 +60,8 @@ class AllPage extends React.Component<NavigationInjectedProps>{
 
     render(){
         const {banners, informations,report_product,showHead, loading,netError,initialized}=this.store;
-        
-        console.log('render', toJS(informations),toJS(banners))
-        // console.log('showhead',showHead)
+    
+
         return (
             <View style={[homeStyle.page_container,{height:WindowHeight-getSize(89)}]} ref={c=>this.cn=c}>
             {initialized ?

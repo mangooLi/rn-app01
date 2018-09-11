@@ -54,20 +54,19 @@ export interface Response<T>{
 
 export default function request<T>(options: Options<any>):Promise<Response<T>> {
 
-    let key;
+    let key:string;
     if(!options.cache){
         key = JSON.stringify(options);
+        key = key.replace(/_/g,'');
         return storage.load({key}).then(ret=>{
+          console.log('ret is ',options.url,key, ret)
           return ret;
-        }).catch(e=>{
+        }).catch(()=>{
           return requestFromUrl(options)
         })
     }else{
       return requestFromUrl(options)
     }
-
-
-    
 
 }
 
@@ -77,17 +76,19 @@ function requestFromUrl<T>(options: Options<any>):Promise<Response<T>> {
   const config=getConfig(options);
   return fetch(baseUrl+ config.url, config).then(response => {
     const contentType = response.headers.get('content-type') || '';
+    let key = JSON.stringify(options);
+    key = key.replace(/_/g,'');
     if (contentType.indexOf('application/json;') !== -1) {
 
       const ret = response.json();
       if(!options.cache){
-        storage.save({key:JSON.stringify(options),data:ret,expires:1*60*3600*1000})
+        storage.save({key,data:ret,expires:1*60*3600*1000})
       }
       return ret;
     } else {
       const ret = response.text();
       if(!options.cache){
-        storage.save({key:JSON.stringify(options),data:ret,expires:1*60*3600*1000})
+        storage.save({key,data:ret,expires:1*60*3600*1000})
       }
       return ret;
     }

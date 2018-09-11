@@ -37,16 +37,14 @@ class ReportProducts  extends React.Component<NavigationInjectedProps>{
                     renderItem={({item})=>{
                         return <ReportProductItem {...item}  />
                     }}
-                    removeClippedSubviews
+
                     keyExtractor={item => item.id+''}
-                    onEndReached={()=>this.store.loadData()}
+                    onEndReached={()=>this.store.loadMore()}
                     onEndReachedThreshold={0.2}
                     ListFooterComponent={
                         <FooterLoading loading={loading}/>
                     }
-                    getItemLayout={(data, index) => (
-                        {length: 270, offset: 270 * index, index}
-                      )}
+                    
                 />:loading?<Loading />:netError?<NetError/>:<View/>}
             </View>
         )

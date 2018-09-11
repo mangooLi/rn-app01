@@ -31,7 +31,7 @@ export default class MyReport extends Component {
                     return  <ReportCard {...item} />
                 }}
                 keyExtractor={item => item.id+''}
-                onEndReached={()=>this.store.loadData()}
+                onEndReached={()=>this.store.loadMore()}
                 onEndReachedThreshold={0.2}
                 ListFooterComponent={
                     <View style={pageStyle.footer} />

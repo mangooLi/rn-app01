@@ -555,3 +555,13 @@ interface Feedback{
   email: string,
   created_at: string,
 }
+
+/**
+ * 列表初始化时的参数
+ */
+interface  InitConfig{
+  id?:number;
+  name?:string;
+  type?:string;
+  limit?:boolean
+}

@@ -1,6 +1,6 @@
 
 import React,{Component} from 'react';
-import {View ,Text,FlatList,ScrollView,Image,TouchableWithoutFeedback} from 'react-native';
+import {View ,Text,FlatList,AsyncStorage,Image,TouchableWithoutFeedback} from 'react-native';
 import {NavigationInjectedProps} from 'react-navigation';
 import TabBar from '../../Common/TabBar';
 
@@ -19,6 +19,13 @@ enum Url {
 export default class SettingPage extends Component<NavigationInjectedProps> {
 
 
+    clear=()=>{
+        AsyncStorage.clear();
+        alert('缓存清除成功')
+
+    }
+
+
     render (){
         return (<View style={pageStyle.container}>
             <TabBar title="设置"/>
@@ -28,7 +35,7 @@ export default class SettingPage extends Component<NavigationInjectedProps> {
                 <Text>信息保留</Text>
             </View> */}
             <View style={pageStyle.line}>
-                <Text style={pageStyle.line_left}>清除缓存</Text>
+                <Text style={pageStyle.line_left} onPress={this.clear}>清除缓存</Text>
                 <Text style={pageStyle.line_right}>4.34M</Text>
             </View>
             <View style={pageStyle.line}>

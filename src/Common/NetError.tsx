@@ -6,12 +6,21 @@ import {View,Text,StyleSheet,} from 'react-native';
 import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from '../utils';
 import HomeContainer from '../Pages/Home/HomeContainer'
 
-export default class NetError extends Component {
+
+interface Prop{
+    reload?:()=>void
+}
+export default class NetError extends Component<Prop> {
 
 
+    reload=()=>{
+        if(this.props.reload){
+            this.props.reload()
+        }
+    }
     render(){
         return (<View style={style.container}>
-            <Text style={style.text}>网络异常，请检查链接</Text>
+            <Text style={style.text} onPress={this.reload}>网络异常，请检查链接</Text>
         </View>)
     }
 }

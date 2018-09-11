@@ -9,7 +9,7 @@ export interface Options<T> {
   method?: string;
   headers?: any;
   data?: T;
-  cache?:boolean
+  nocache?:boolean
 };
 
 function addParamsToUrl(url: string, data: any) {
@@ -55,14 +55,15 @@ export interface Response<T>{
 export default function request<T>(options: Options<any>):Promise<Response<T>> {
 
     let key:string;
-    if(!options.cache){
+    if(!options.nocache){
         key = JSON.stringify(options);
         key = key.replace(/_/g,'');
         return storage.load({key}).then(ret=>{
-          console.log('ret is ',options.url,key, ret)
-          return ret;
+          console.log('load ret is ',options.url)
+          return Promise.resolve(JSON.parse(ret));
         }).catch(()=>{
-          return requestFromUrl(options)
+          console.log('no cache',options.url)
+          return Promise.resolve(requestFromUrl(options)) 
         })
     }else{
       return requestFromUrl(options)
@@ -76,21 +77,12 @@ function requestFromUrl<T>(options: Options<any>):Promise<Response<T>> {
   const config=getConfig(options);
   return fetch(baseUrl+ config.url, config).then(response => {
     const contentType = response.headers.get('content-type') || '';
-    let key = JSON.stringify(options);
-    key = key.replace(/_/g,'');
-    if (contentType.indexOf('application/json;') !== -1) {
+   
 
-      const ret = response.json();
-      if(!options.cache){
-        storage.save({key,data:ret,expires:1*60*3600*1000})
-      }
-      return ret;
+    if (contentType.indexOf('application/json;') !== -1) {
+      return response.json();
     } else {
-      const ret = response.text();
-      if(!options.cache){
-        storage.save({key,data:ret,expires:1*60*3600*1000})
-      }
-      return ret;
+      return response.text();
     }
   }).then(resp => {
     if(resp.error){
@@ -98,12 +90,19 @@ function requestFromUrl<T>(options: Options<any>):Promise<Response<T>> {
         message:resp.error
       }
     }
-
-    return {
+    const ret = {
       success: true,
       data: resp,
       message: null,
     }
+    const key = JSON.stringify(options).replace(/_/g,'');
+
+    if(!options.nocache){
+        storage.save({key,data:ret,expires:1*3600*1000})
+    }
+
+
+    return ret;
   })
   .catch(error => {
 

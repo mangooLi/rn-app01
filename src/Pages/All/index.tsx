@@ -23,6 +23,7 @@ import HomeContainer from '../Home/HomeContainer';
 import NetError from '../../Common/NetError';
 import Loading from '../../Common/Loading';
 import FooterLoading from '../../Common/FooterLoading';
+import { toJS } from 'mobx';
 
 
 
@@ -53,11 +54,8 @@ class AllPage extends React.Component<NavigationInjectedProps>{
         this.props.navigation.addListener('willBlur',()=>{
             DeviceEventEmitter.emit('PageExpand')
         })
+        this.store.init({limit:true}); 
 
-        this.store.init();
-        
-
-       
     }
 
     
@@ -66,12 +64,12 @@ class AllPage extends React.Component<NavigationInjectedProps>{
     render(){
         const {banners, informations,report_product,showHead, loading,netError,initialized}=this.store;
         
+        console.log('render', toJS(informations),toJS(banners))
         // console.log('showhead',showHead)
         return (
             <View style={[homeStyle.page_container,{height:WindowHeight-getSize(89)}]} ref={c=>this.cn=c}>
             {initialized ?
            
-
                 <FlatList
                     ref={(c:FlatList<any>)=>this.flatList=c}
                     refreshControl={
@@ -85,13 +83,12 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                                 
                             onRefresh={()=>{
                                 this.store.loadPreData().then(res=>{
-                                        this.flatList.scrollToIndex({index:21,animated:false})
+
                                         this.srf.finishRefresh();
                                 })
                             }}/>
                     }
                     data={informations}
-                    // onScroll={(e)=>this.handleScroll(e)}
                     ListHeaderComponent={
                         <View>
                             {showHead? <Banner banners={banners}/>:<View/>}
@@ -111,13 +108,13 @@ class AllPage extends React.Component<NavigationInjectedProps>{
                     // getItemLayout={(data, index) => (
                     //     {length: 107, offset: 107 * index, index}
                     //   )}
-                    onEndReached={()=>this.store.loadData()}
+                    onEndReached={()=>this.store.loadMore()}
                     onEndReachedThreshold={0.2}
                     scrollEventThrottle={500}
                     ListFooterComponent={<FooterLoading loading ={loading} netError={netError}/>}
                 />
             // </ScrollView>
-            :loading?<Loading />:netError?<NetError/>:<View/>}
+            :loading?<Loading />:netError?<NetError reload={()=>this.store.reload()}/>:<View/>}
             </View>
         )
     }

@@ -26,7 +26,7 @@ export default class ReportDetail extends Component<NavigationInjectedProps>{
     vertial:boolean = true;
 
     componentWillMount(){
-        const id = this.props.navigation.getParam('id');
+        const id:number = this.props.navigation.getParam('id');
         this.store.init(id);
         Orientation.unlockAllOrientations()
     }

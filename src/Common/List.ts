@@ -4,7 +4,7 @@
 import {observable,action} from 'mobx';
 
 import {Response} from '../api/request';
-import uuid from 'uuid'
+
 
 
 export default abstract class  List<T> {
@@ -42,13 +42,12 @@ export default abstract class  List<T> {
 
     timestamp:number;
 
-
-
+    _limit:boolean = false;
 
     abstract  apiFn(pageToLoad:number) :Promise<Response<{data:T[],meta:Meta}>>
 
     @action
-    init (id?:number,name?:string,type?:string){
+    init (config?:InitConfig){
         this.loadData()
     }
 
@@ -57,6 +56,10 @@ export default abstract class  List<T> {
         this.informations.push(...list)
         this.showHead = this.startPage===1;
 
+    }
+
+    limit(){
+        this._limit = true;
     }
     
 
@@ -74,29 +77,32 @@ export default abstract class  List<T> {
         page = page || this.startPage;
         if( (page>this.total_page)|| this.loading )return Promise.resolve();
 
-
         this.loading = true;
 
         this.netError = false;
         return this.apiFn(page).then(res=>{
+            console.log('apifn',res)
             if(!this.initialized){
                 this.initialized = true;
             }
             if(this.loading === false)return; // 表示已经有地方提前结束了loading，此时不需要作任何处理。
             this.loading = false;
             if(res.data  ){
-                this.current_page = res.data.meta.current_page;
-                this.prev_page = res.data.meta.prev_page || 0;
-                this.next_page = res.data.meta.next_page;
-                this.total_page = res.data.meta.total_page;
+                const list = res.data.data;
+                const meta = res.data.meta;
+                this.current_page = meta.current_page;
+                this.prev_page = meta.prev_page || 0;
+                this.next_page = meta.next_page;
+                this.total_page = meta.total_page;
 
-                if(this.informations.length >this.maxLength){
-                    this.informations.splice(0,this.per);
+                if(this.informations.length >this.maxLength && this._limit){
+                    this.informations.splice(0,this.informations.length- list.length);
                     this.informations = observable(Array.from(this.informations))
-                    this.startPage += 1
+                    this.startPage =this.prev_page;
                 }
-                this.pushInfo(res.data.data);
+                this.pushInfo(list);
             }
+            return res;
         }).catch(()=>{
             this.loading = false;
             this.netError = true;
@@ -124,8 +130,6 @@ export default abstract class  List<T> {
         this.prev_page =0;
     }
 
-
-
     @action 
     loadPreData(){
         this.informations=observable([])
@@ -135,5 +139,9 @@ export default abstract class  List<T> {
        
     }
 
-
+    @action
+    reload (){
+        this.reset();
+        this.loadData()
+    }
 }

@@ -60,7 +60,7 @@ export default class MyCollection extends Component<NavigationFocusInjectedProps
                         return  <CollectionCard article={item} store = {this.store} />
                     }}
                     keyExtractor={item => item.id+''}
-                    onEndReached={()=>this.store.loadData()}
+                    onEndReached={()=>this.store.loadMore()}
                     onEndReachedThreshold={0.2}
                     ListFooterComponent={
                         <View style={pageStyle.footer} />

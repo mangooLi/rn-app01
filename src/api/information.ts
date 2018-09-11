@@ -56,7 +56,7 @@ export function starInformation(information_id:number){
         data:{
             information_id
         },
-        cache:false
+        nocache:true
     }
     return fetch<{}>(options)
 }

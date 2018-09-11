@@ -65,7 +65,7 @@ export default class LabList extends Component<DataLabTopics> {
                         return  <LabContainer {...item} />
                     }}
                     keyExtractor={item => item.id+''}
-                    onEndReached={()=>this.store.loadData()}
+                    onEndReached={()=>this.store.loadMore()}
                     onEndReachedThreshold={0.2}
                     ListFooterComponent={
                         <View style={listStyle.footer} />

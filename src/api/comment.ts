@@ -12,7 +12,7 @@ import fetch from './request';
  * @param pageToLoad 分页
  */
 export function getInformationComments(information_id:number, pageToLoad:number=1){
-    return fetch<{data:CommentItem,meta:Meta}>({url:`api/v1/informations/${information_id}/comments`,data:{page:pageToLoad,per:10},cache:false})
+    return fetch<{data:CommentItem,meta:Meta}>({url:`api/v1/informations/${information_id}/comments`,data:{page:pageToLoad,per:10},nocache:true})
 }
 
 
@@ -26,7 +26,7 @@ export function addCommentToInformation(information_id:number,content:string){
         url:`api/v1/informations/${information_id}/comments`,
         method:'post',
         data:{content},
-        cache:false
+        nocache:true
     }
     return fetch<{data:CommentItem}>(options)
 }
@@ -41,7 +41,7 @@ export function toogleCommentLike(information_id:number,comment_id:number){
     const options={
         url:`api/v1/informations/${information_id}/comments/${comment_id}/toggle_like`,
         method:'post',
-        cache:false
+        nocache:true
     }
     return fetch<{data:CommentItem}>(options)
 }

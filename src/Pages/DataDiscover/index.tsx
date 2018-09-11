@@ -38,12 +38,11 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
     _onStartAlreadyCalled:boolean =false;
 
     componentWillMount(){
-
+        this.store.init({limit:true})
         this.store.loadData();
         this.props.navigation.addListener('willFocus',()=>{
             DeviceEventEmitter.emit('ListRouteSwipeTo',{page:1})
         })
-
 
 
     }
@@ -63,11 +62,9 @@ class DataDiscover extends React.Component<NavigationInjectedProps>{
                         headerHeight={getSize(40)}
                         HeaderComponent={   
                             <AnyHeader >
-
                                 <FooterLoading loading={true} netError={netError}/>
                             </AnyHeader>}
                         onRefresh={()=>{
-                           console.log('loaddata');
                            this.store.loadPreData().then(res=>{
                                 this.srf.finishRefresh();
                            }) 

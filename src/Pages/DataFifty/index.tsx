@@ -40,7 +40,7 @@ class DataFifty extends Component {
                         {length: 107, offset: 107 * index, index}
                       )}
                     keyExtractor={item => item.id+''}
-                    onEndReached={()=>this.store.loadData()}
+                    onEndReached={()=>this.store.loadMore()}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent={
                         <View style={dataFiftyStyle.footer} />

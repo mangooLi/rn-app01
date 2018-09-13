@@ -1,8 +1,8 @@
 
 import  React ,{Component}from 'react';
 
-import {View,Text,TouchableOpacity} from 'react-native';
-import FastImage from 'react-native-fast-image'
+import {View,Text,TouchableOpacity,Image} from 'react-native';
+
 import {MyStyleSheetCreate} from '../utils';
 // import {dataLabStyle} from './style';
 import moment from 'moment';
@@ -19,8 +19,8 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
         navigation.navigate('ArticleDetail',{id})
     }
 
-    shouldComponentUpdate(nextProp:DataLabItem){
-       return nextProp.id !== this.props.id;
+    shouldComponentUpdate(nextProp:DataLabItem ){
+       return nextProp.id !== this.props.id || nextProp.show !==this.props.show
     }
     render(){
 
@@ -41,7 +41,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
             <TouchableOpacity onPress={()=>this.handlePress()} activeOpacity={1}>
             <View style={dataLabStyle.container}>
                 <Text style={[dataLabStyle.state,dataLabStyle[`stateColor${stateIndex}`]]}>{labState}</Text>
-                <FastImage style={dataLabStyle.img} source={{uri:thumbnail_url}}/>
+                 {this.props.show? <Image style={dataLabStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>:<View style={[dataLabStyle.img,{backgroundColor:'#efefef'}]}/>}
                    
                 <View style={dataLabStyle.detail}>
                     <View style={dataLabStyle.detail_left}>
@@ -63,7 +63,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
     }
 }
 
-export default withNavigation<DataLabItem >(DataLabCard);
+export default withNavigation<DataLabItem &{hide?:boolean}>(DataLabCard);
 
 
 const dataLabStyle=MyStyleSheetCreate({

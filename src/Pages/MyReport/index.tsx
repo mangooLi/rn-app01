@@ -28,7 +28,7 @@ export default class MyReport extends Component {
                 // style={dataFiftyStyle.flatList}
                 data={informations}
                 renderItem={({item})=>{
-                    return  <ReportCard {...item} />
+                    return  <ReportCard show {...item} />
                 }}
                 keyExtractor={item => item.id+''}
                 onEndReached={()=>this.store.loadMore()}

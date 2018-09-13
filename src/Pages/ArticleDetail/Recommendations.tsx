@@ -25,7 +25,7 @@ class Recommendations extends Component<Props> {
                 <Text style={recommendationStyle.title}>更多推荐</Text>
                 {
                 map(recommendations,rmd=>(
-                    <ArticleBrief key={rmd.id} {...rmd}/>
+                    <ArticleBrief show key={rmd.id} {...rmd}/>
                 ))   
             }
             </View>

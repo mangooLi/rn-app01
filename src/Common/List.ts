@@ -10,7 +10,7 @@ import {Response} from '../api/request';
 export default abstract class  List<T> {
     
 
-    @observable informations:T[] = [];
+    @observable informations:(T & {hide?:boolean})[] = [];
     @observable netError:boolean = false;
     @observable initialized:boolean = false;
 
@@ -82,7 +82,7 @@ export default abstract class  List<T> {
                 this.total_page = meta.total_page;
 
                 console.log('splice', this.informations.length,this._limit)
-                if(this.informations.length >this.maxLength && this._limit ){
+                if(this.informations.length >this.maxLength && this._limit && false ){
 
                     this.informations.splice(0,this.informations.length- list.length);
                     this.informations = observable(Array.from(this.informations))
@@ -133,4 +133,12 @@ export default abstract class  List<T> {
         this.reset();
         this.loadData()
     }
+
+    @action
+    showImage(index:number){
+        this.informations = this.informations.map((item,idx)=>{
+            item.hide = idx>index+5 || idx<index-5;
+            return item;
+        })
+    }   
 }

@@ -22,11 +22,13 @@ import {cardStyle} from './style';
     }
 
     render(){
-        const {thumbnail_url,title,date,report_images_count}=this.props;
+        const {thumbnail_url,title,date,report_images_count,show}=this.props;
         return (
             <TouchableOpacity onPress={(e)=>this.handlePress()} activeOpacity={1}>
             <View style={cardStyle.container} >
-                <Image style={cardStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
+
+                {show? <Image style={cardStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>:<View style={[cardStyle.img,{backgroundColor:'#efefef'}]}/>}
+
                 <Text style={cardStyle.title} >{title}</Text>
                 <Text style={cardStyle.date} >{moment(date).format('YYYY-MM') }/{report_images_count}页</Text>
             </View>

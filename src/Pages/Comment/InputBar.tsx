@@ -3,14 +3,26 @@ import {View,Text,Image,TouchableOpacity,TextInput,KeyboardAvoidingView,Dimensio
 import {commentStyle,inputBarStyle} from './style'
 import {observer} from 'mobx-react'
 import CommentModel from './model'
+import {NavigationInjectedProps,withNavigation} from 'react-navigation';
+
 
 @observer
-export default class InputBar extends Component<{store:CommentModel}> {
+class InputBar extends Component<{store:CommentModel} & NavigationInjectedProps> {
 
     handleChangetext(value:string){
 
         this.props.store.updateComment(value)
 
+    }
+
+    publish=()=>{
+
+        if(global.user){
+
+            this.props.store.publish()
+        }else{
+            this.props.navigation.navigate('LoginPage')
+        }
     }
 
     render(){
@@ -24,7 +36,7 @@ export default class InputBar extends Component<{store:CommentModel}> {
                     value={comment}
                     onChangeText={value=>this.handleChangetext(value)}
                 />
-                <TouchableOpacity style={inputBarStyle.text_container} onPress={()=>this.props.store.publish()}>
+                <TouchableOpacity style={inputBarStyle.text_container} onPress={this.publish}>
                     <View><Text style={inputBarStyle.text}>发表</Text></View> 
                 </TouchableOpacity>
             </View>
@@ -32,3 +44,5 @@ export default class InputBar extends Component<{store:CommentModel}> {
         )
     }
 }
+
+export default withNavigation<NavigationInjectedProps>(InputBar)

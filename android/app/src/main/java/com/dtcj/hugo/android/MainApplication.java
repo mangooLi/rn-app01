@@ -5,7 +5,6 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.lmy.smartrefreshlayout.SmartRefreshLayoutPackage;
 import com.github.yamill.orientation.OrientationPackage;
-import com.dylanvann.fastimage.FastImageViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -35,7 +34,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new SmartRefreshLayoutPackage(),
             new OrientationPackage(),
-            new FastImageViewPackage(),
             new VectorIconsPackage(),
             new PickerPackage(),
             new LinearGradientPackage(),

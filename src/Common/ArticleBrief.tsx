@@ -5,9 +5,9 @@ import { View,Image, Text ,TouchableOpacity,GestureResponderEvent, FlatList} fro
 import moment from 'moment';
 import {getSize,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import FastImage,{FastImageSource} from 'react-native-fast-image'
 
-// import {cardStyle} from './style';
+
+
 
 
 
@@ -23,30 +23,43 @@ interface Props{
         id:number,
         name:string
     },
+    show?:boolean
 
 }
 
 
- class ArticleBrief extends Component<Props & NavigationInjectedProps>{
+ class ArticleBrief extends Component<Props & NavigationInjectedProps >{
 
-    
+
+    updated:boolean = false;
+
     handlePress(e:GestureResponderEvent){
         const {navigation,id} =this.props
         navigation.push('ArticleDetail',{id})
     }
 
-    shouldComponentUpdate(nextProp:Props & NavigationInjectedProps){
-        return nextProp.id !== this.props.id
+    
+    componentDidMount(){
+        this.updated = true;
     }
 
+    shouldComponentUpdate(nextProp:Props & NavigationInjectedProps){
+        return  this.props.show !== nextProp.show || !this.updated
+        // return   !this.updated
+    }
+
+
+
     render(){
-        const {thumbnail_url,author,date,summary,title,topic}=this.props;
+        const {thumbnail_url,author,date,summary,title,topic,show}=this.props;
+
+        
 
         return (
             <TouchableOpacity onPress={(e)=>this.handlePress(e)} activeOpacity={1}>
-            <View style={cardStyle.container} >
+             <View style={cardStyle.container} >
                 <View style={cardStyle.img_container}>
-                    <FastImage style={cardStyle.img} source={{uri:thumbnail_url}}/>
+                    {show ? <Image style={cardStyle.img}   source={{uri:thumbnail_url,cache:'force-cache'}}/>:<View/>}
                 </View>
                 <View style={cardStyle.detail_container}>
                     <View style={cardStyle.detail_author}>

@@ -142,15 +142,8 @@ export default abstract class  List<T> {
 
 
 
-### 八 路由(react-navigation)
 
-1. 创建路由最基础的方法是`createStackNavigator`，它返回一个react组件。创建路由的配置并不复杂，可以直接查阅[文档](https://reactnavigation.org/docs/en/getting-started.html)。
-2. 很多时候，笔者更推荐`createMaterialTopTabNavigator`和`createBottomTabNavigator`，结合路由配置的`tabBarComponent`参数，可以非常方便地自定义顶部或者底部TabBar。
-3. createStackNavigator 返回的是一个react组件，所以你可以把它包含进另一个路由里，实现路由的嵌套。
-4. createStackNavigator 方法返回的虽然是以一个react组件，但是如果你把它当子组件插在页面中的某个角落，这时候页面是不会渲染的。它只能当作某个页面的跟组件。如果你想实现web端很多单页面APP那样的布局，多个路由页面复用一个导航栏，可以采用上面那种方式。`tabBarComponent`传入的组件可以高度自定义，并且可以通过`position:relative|absolute`定位在任意地方。
-5. 只要知道路由的名称，就能很方便地跳转到任意路由。不管这两个路由在嵌套路由中的层级如何。
-6. 创建路由的时候需要注意，`createBottomTabNavigator`和`createMaterialBottomTabNavigator`的路由是懒加载的，但是`createMaterialTopTabNavigator`的不是。如果需要懒加载，可以在`TabNavigatorConfig`选项里配置`lazy:true`
-7. 很多页面需要左侧滑动返回上一个路由，可以通过`navigationOptions`的`gesturesEnabled`属性配置。该属性在IOS上默认维true，但是在安卓中默认是false。
+
 
 
 ### 九 下拉刷新
@@ -231,7 +224,7 @@ export function MyStyleSheetCreate(configs:MyStyle){
     3. MainActivity.java和MainApplication.java的位置。仔细观察原来的这两个文件，如果项目新建的时候，包名是'com.app01',这时候这两个文件在`android/app/src/main/java/com/app01`文件夹下。如果包名改成了'com.a.b.c',则需要将MainActivity.java和MainApplication.java这两个文件放到`android/app/src/main/java/com/a/b/c`文件夹下。
     4. 移动MainActivity.java和MainApplication.java的位置后，修改这两个文件的package字段
 3. 版本号。每次在应用市场更新APP之前，需要在APP内部制定版本号。版本号可以在android/app/build.gradle versionName字段中配置。具体如下：
-```
+
 ```
 ......
 android{
@@ -278,3 +271,178 @@ dependencies {
 6. 网络图片资源，可以设置cache属性，来控制是否启用缓存。
 7. Image组件在安卓中有一个大坑，当页面图片比较多的时候，快速加载很多图片会导致内存爆炸，然后图片不显示。解决方法：用`react-native-fast-image`代替原生组件可以解决这个问题。
 8. 使用虚拟机的时候，有时候会发现无法调试，并提示`debugger and device times have drifted by more than 60s. please correct this by running adb shell "date `date +%m%d%H%M%Y.%S`"`，这时候按照提示，运行`adb shell "date `date +%m%d%H%M%Y.%S`"`，也不见有用。可能的原因是模拟器的时间和PC时间不一样，将模拟器的时间和时区调整为和PC一样就OK了
+9. 运行react-native run-android，编译出错，报错`Error:Execution failed for task ':app:transformDexArchiveWithExternalLibsDexMergerForDebug'`这是由于某两个或者多个第三方包重复导包造成的。打开MainApplication.java，在文件头部import的地方那一堆包里，有重复倒入的。只留一个即可。在app/build.gradle，和android/setting.gradle里，找到重复导包的两个组件，只留下一个即可。
+
+
+
+
+
+
+
+### 三 长列表优化
+首先，我们来分析一个长列表需要有那些子组件和方法。
+长列表所需的子组件有：
+1. 列表头部，可能是一个轮播图之类的，或者是一个页面的tabar.
+2. 列表尾部。例如，有的列表滑动到最地下的时候，会有‘已经是最后一条’之类的提示。
+3. 列表项。
+长列表所需的方法有：
+1. 上拉加载更多。
+2. 下拉刷新。
+
+因此，一个基础的长列表render如下：
+```
+render() {
+    return <FlatList ref={c=>this.flatList = c}
+
+        data={this.state.list}
+        style={{ flex: 1, backgroundColor: "#f2f2f2" }}
+        refreshing={this.state.refreshing}
+        numColumns={1}
+        onRefresh={() => this.refresh()}  // 下拉刷新
+        onEndReached={() => this.loadMore()}  // 上滑加载更多
+        renderItem={({ item, index }) => this.renderItem(item, index)} // 渲染列表页
+        keyExtractor={item => item.id}
+        scrollEventThrottle={100}
+        initialNumToRender={2}
+        ListHeaderComponent={this.header()}  // 列表头
+        ListEmptyComponent={this.empty()}  // 空列表项
+        ListFooterComponent={this.footer()}  //列表尾部
+    />
+    }
+```
+头部和尾部并不想必须的，可以定义一个默认方法，返回<View />即可。
+renderItem 作用是渲染列表项，需要在根据实际情况自定义。我们可以先将其定义为抽象方法：
+```
+abstract render_item(item:T,index:number):JSX.Element
+```
+
+在实际项目中，列表的数据一般是通过传递分页参数给后台某个接口来获取的。我们定义一个抽象方法
+```
+abstract  apiFn(page:number) :Promise<Response<{data:T[],meta:Meta}>>
+```
+其中，{data:T[],meta:Meta}是接口返回数据的类型。
+然后定义一个loadData方法
+```
+loadData(page:number):Promise<any>{
+    if(this.state.loading)return Promise.resolve();
+    this.setState({loading:true});
+    return this.apifn(page).then(res=>{
+        // 在这里处理具体的业务逻辑
+    })
+}
+```
+在loadData方法中，我们使用 loading 阻止多次加载同一数据。
+在组件内部，我们维护`pre_page,cur_page,next_page`三个变量，来判断加载页数。这样，很容易得出，
+```
+    reload(){
+        this.loadData(1)
+    }
+    loadMore(){
+        this.loadData(this.next_page)
+    }
+```
+到这里，一个长列表基本框架就完成了，在一般的列表页面中，只需要继承上述组件，并自定义apiFn和readerItem方法即可。
+
+
+当列表每一项都有图片的时候，就需要额外注意了。
+1. 当列表上滑不停加载列表项的时候，列表项的图片不断在内存中堆积，到一定程度，就会导致内存泄漏，APP闪退。因此，针对有图片的列表项，我们要进行额外优化。
+2. 上述问题的根源，在于图片在内存中堆积，引起内存泄漏。因此，只要想办法阻止图片堆积，应该就能解决问题。
+3. 怎么解决图片堆积呢，我们可以判断当前列表项是在屏幕中，还是在屏幕外。如果在屏幕外，就将图片移除。
+4. 如何判断列表项是否在屏幕中呢，这里需要借助onScroll事件。我们知道，在onScroll事件中，FlatList屏幕外的高度为`e.nativeEvent.contentOffset.y`。假设我们知道列表每一项的高度，这里假设为50。如果 `50*index >y && 50*(index-1)<y`，那么列表序号为index-1的项，就是显示在屏幕最上方的项。这样，根据实际情况，我们可以把index附近项的图片显示，其他项隐藏。
+5. 如果列表每一项高度不定的话，我们可以借助onlayout事件。在onLayout事件的回调里，e.nativeEvent.layout.height 即为该组件高度。我们可以用一个数组，来保存每一项的高度。
+```
+renderItem(item, index) {
+    return (<View onLayout={e => this.setLayout(e, index)}>
+        {/** 这里是具体组件*/}
+    </View>)
+}
+
+setLayout(e,index){
+    this.layout[index]=e.nativeEvent.layout.height;
+}
+```
+这样，我们就获得了每一项的高度。如果y大于前N项的高度的和，小与N+1项的高度的和，那么N就是显示在屏幕最上方的项。具体代码如下:
+```
+_onScroll=(e)=>{
+    const y = e.nativeEvent.contentOffset.y;
+    var index=0;var cur = 0;
+    while(y>cur){
+        if(!this.layout[index]){
+            break;
+        }
+        cur +=this.layout[index];
+        index++
+    }
+
+    this._showImage(index)  // 显示index项及附近几项
+}
+_showImage(number:number){
+    let {informations}=this.state;
+    informations = informations.map((item,index)=>{
+        item.show = (index<number+3 && index>=number -4) ;  // 具体范围由业务确定。
+        return item;
+    });
+    this.setState({informations})
+}   
+
+```
+6. 下拉刷新。FlatList和ScrollView提供了默认的下拉刷新功能（RefreshControl组件）。但是该组件不支持自定义提示指示器。笔者经过搜查资料和实践，推荐使用
+[react-native-smartrefreshlayout](https://github.com/react-native-studio/react-native-SmartRefreshLayout#readme)。该组件不仅能自定义下拉提示器，还有多项自定义配置属性，能满足开发中多项需求。
+
+
+## 四 路由(react-navigation)
+RN项目中，路由推荐使用[react-navigation](https://reactnavigation.org/docs/en/getting-started.html)
+1. 创建路由最基础的方法是`createStackNavigator`，它返回一个react组件。创建路由的配置并不复杂，可以直接查阅[文档]。
+2. 很多时候，笔者更推荐`createMaterialTopTabNavigator`和`createBottomTabNavigator`，结合路由配置的`tabBarComponent`参数，可以非常方便地自定义顶部或者底部TabBar。
+3. createStackNavigator 返回的是一个react组件，所以你可以把它包含进另一个路由里，实现路由的嵌套。
+4. createStackNavigator 方法返回的虽然是以一个react组件，但是如果你把它当子组件插在页面中的某个角落，这时候页面是不会渲染的。它只能当作某个页面的跟组件。如果你想实现web端很多单页面APP那样的布局，多个路由页面复用一个导航栏，可以通过配置`tabBarComponent`，传入一个组件来实现。`tabBarComponent`传入的组件可以高度自定义，并且可以通过`position:relative|absolute`定位在任意地方。
+5. 只要知道路由的名称，就能很方便地跳转到任意路由。不管这两个路由在嵌套路由中的层级如何。因此，不同路由的名称不能相同，不管它们在路由中的层级如何。
+6. 创建路由的时候需要注意，`createBottomTabNavigator`和`createMaterialBottomTabNavigator`的路由是懒加载的，但是`createMaterialTopTabNavigator`的不是。如果需要懒加载，可以在`TabNavigatorConfig`选项里配置`lazy:true`来实现懒加载。
+7. 很多页面需要左侧滑动返回上一个路由，可以通过`navigationOptions`的`gesturesEnabled`属性配置。该属性在IOS上默认维true，但是在安卓中默认是false。
+
+
+
+
+六 踩坑经历
+
+
+
+3. react-native在安卓端默认是不支持GIF动图的，根据文档提示，需要在android/app/build.gradle文件中根据需要手动添加以下模块：
+
+```
+dependencies {
+  // If your app supports Android versions before Ice Cream Sandwich (API level 14)
+  compile 'com.facebook.fresco:animated-base-support:1.9.0'
+
+  // For animated GIF support
+  compile 'com.facebook.fresco:animated-gif:1.9.0'
+
+  // For WebP support, including animated WebP
+  compile 'com.facebook.fresco:animated-webp:1.9.0'
+  compile 'com.facebook.fresco:webpsupport:1.9.0'
+
+  // For WebP support, without animations
+  compile 'com.facebook.fresco:webpsupport:1.9.0'
+}
+```
+注意，不同的RN版本，需要的`com.facebook.fresco`的版本号是不一样的。请查看对应RN版本的文档，获取正确的`com.facebook.fresco`的版本号。
+
+
+8. 使用虚拟机的时候，有时候会发现无法调试，并提示`debugger and device times have drifted by more than 60s. please correct this by running adb shell "date `date +%m%d%H%M%Y.%S`"`，这时候按照提示，运行`adb shell "date `date +%m%d%H%M%Y.%S`"`，也不见有用。可能的原因是模拟器的时间和PC时间不一样，将模拟器的时间和时区调整为和PC一样就OK了。
+
+9. 运行react-native run-android，编译出错，报错`Error:Execution failed for task ':app:transformDexArchiveWithExternalLibsDexMergerForDebug'`这是由于某两个或者多个第三方包重复导包造成的。打开MainApplication.java，在文件头部import的地方那一堆包里，有重复倒入的。只留一个即可。在app/build.gradle，和android/setting.gradle里，找到重复导包的两个组件，只留下一个即可。
+1. 报告页详情需要展示PDF，用的[react-native-pef](https://www.npmjs.com/package/react-native-pdf)插件。传入PDF的路径，组件回自己解析PDF。该组件同时提供 onLoadProgress 和 onLoadComplete回调，提示加载进度。更多配置信息可以查看文档。
+
+3. `react-native-orientation`组件，可以提供获取当前屏幕方向，锁定屏幕方法，监听屏幕方向改变等功能。当业务需要上述功能的时候可以了解一下。
+
+4. 引入某些第三方包的时候，构建报错，提示Can't find variable: Symbol。这是由于当前JS环境不支持Symbol数据类型引起的。引入polyfill，即在某个文件中import 'core-js/es6/symbol'即可。
+
+
+5. 构建成功，但是加载中不出来，手机屏幕显示
+```unable to load script from assets index.android.bundle```
+解决方法：
+```
+mkdir android/app/src/main/assets
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+react-native run-android
+```

@@ -4,7 +4,7 @@
 import {observable,action} from 'mobx';
 import List from '../../Common/List';
 
-import {SearchInformation,getSearchInformations} from '../../api';
+import {getSearchInformations} from '../../api';
 
 export default class SearchModel extends List<SearchInformation> {
 

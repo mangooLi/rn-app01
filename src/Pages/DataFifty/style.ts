@@ -8,7 +8,7 @@ import {getSize,MyStyleSheetCreate} from '../../utils';
 export const dataFiftyStyle=MyStyleSheetCreate({
     footer:{
         width:300,
-        height:40+24
+        height:40+44
     },
     flatList:{
         backgroundColor:'#fff',

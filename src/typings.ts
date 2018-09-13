@@ -30,6 +30,7 @@ interface CommentItem{
     created_at: string,
     like_items_count: 1, // 点赞数
     has_like: false, // 是否点赞过
+    show?:boolean
 }
 
 /**
@@ -302,7 +303,7 @@ interface DataHeroTopic{
     introduction: string,
     logo_url: string,
     informations_count: number, // 文章数量
-
+    show?:boolean
 }
 
 
@@ -348,6 +349,7 @@ interface DataDiscoverItem{
         name: string,
       }
     ],
+    show?:boolean
 }
 
 /**
@@ -374,7 +376,8 @@ interface DataLabItem{
         name: string,
         }
         
-    ]
+    ],
+    show?:boolean
 }
 
 
@@ -398,7 +401,8 @@ interface DataHeroItem{
             id: number,
             name: string,
         }
-    ]
+    ],
+    show?:boolean
 }
 
 /**
@@ -418,10 +422,11 @@ interface DataFiftyItem{
     data_scientist_introduction: string,
     tags: [
       {
-        id: 1,
+        id: number,
         name: string,
       }
     ],
+    show?:boolean
 }
 
 interface InformationFlow{
@@ -463,7 +468,8 @@ interface ReportProductItem{
     original_price: string,
     enable_discount: boolean,
     discount_price: string,
-    report_images_count: number
+    report_images_count: number,
+    show?:boolean
    
     
 }

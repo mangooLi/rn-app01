@@ -42,10 +42,7 @@ export default class SearchPage extends Component {
                     ListFooterComponent={
                         <View style={listStyle.footer} />
                     }
-                    removeClippedSubviews
-                    getItemLayout={(data, index) => (
-                        {length: 80, offset: 80 * index, index}
-                      )}
+
                 />
             </View>
         )

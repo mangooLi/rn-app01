@@ -29,7 +29,7 @@ export default class CollectionCard extends Component<Prop> {
                     {(checkList.includes(article.id) || checkAll) &&  <Image style={cardStyle.img} source={circleCheck}/>}
                 </View>
             </TouchableWithoutFeedback>
-            {type ==='article'? <ArticleBrief {...this.props.article as DataDiscoverItem}/> :<CommentCard {...this.props.article as CommentItem} />} 
+            {type ==='article'? <ArticleBrief show {...this.props.article as DataDiscoverItem}/> :<CommentCard {...this.props.article as CommentItem} />} 
         </View>)
     }
 }

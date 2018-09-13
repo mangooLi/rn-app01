@@ -10,7 +10,7 @@ import  {
 } from 'react-native';
 import moment from 'moment';
 import Banner,{IndicaterType,IndicaterAlign} from '../../vendor/react-native-whc-banner';
-import FastImage from 'react-native-fast-image'
+
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { bannerStyle } from './style';
@@ -39,7 +39,7 @@ interface Props{
         return (
             <TouchableOpacity key={id|| bn.id} onPress={()=>this.handlePress(bn)} activeOpacity={1}>
             <View  style={bannerStyle.banner}>
-                <FastImage style={bannerStyle.image} key={bn.id}  source={{uri:bn.thumbnail_url}}/>
+                <Image style={bannerStyle.image} key={bn.id}  source={{uri:bn.thumbnail_url,cache:'force-cache'}}/>
                 <View style={bannerStyle.detail}>
                     <Text style={bannerStyle.detail_prefix}>{bn.prefix}</Text>
                     <Text style={bannerStyle.detail_title} numberOfLines={2} >{bn.title}</Text>

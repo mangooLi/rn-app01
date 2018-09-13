@@ -9,6 +9,7 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 export interface ReportProps{
     list:ReportProductItem[],
+
 }
 
 class Report extends Component<ReportProps & NavigationInjectedProps> {

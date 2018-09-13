@@ -6,16 +6,14 @@ import {getDataDiscoverInformations,getDataDiscoverTopic} from '../../api';
 import List from '../../Common/List';
 import { noop } from '../../utils';
 
-export default class DataDiscoverModel extends List<DataDiscoverItem>{
+export default class DataDiscoverModel {
 
 
 
 
     @observable topics:DataDiscoverTopic[] = [];
 
-    apiFn = (page:number)=>{
-        return getDataDiscoverInformations(null,page)
-    }
+    
 
     @action
     loadTags(){

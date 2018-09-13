@@ -2,58 +2,62 @@
 
 import * as React from 'react';
 import { View ,FlatList,DeviceEventEmitter} from 'react-native';
-import {observer} from 'mobx-react';
+
 import {NavigationInjectedProps, withNavigation} from 'react-navigation';
 
-import ReportProductsModel from './model';
+
 import ReportProductItem from './ReportProductCard'
 import {reportProductsStyle } from './style';
 import HomeContainer from '../Home/HomeContainer';
-import NetError from '../../Common/NetError';
-import Loading from '../../Common/Loading';
-import FooterLoading from '../../Common/FooterLoading';
-import { WindowHeight } from '../../constant';
-import { getSize } from '../../utils';
+import { getSize,WindowHeight } from '../../utils';
 
-@observer
+
+
+
+
+import {getReportProducts} from '../../api';
+
+import LongList from '../../Common/LongList';
+
+
+class ReportProductsList extends LongList<ReportProductItem,{}>{
+
+
+    style=[reportProductsStyle.container,{height:WindowHeight-getSize(89)}]
+
+    apiFn = (page:number)=>{
+        return getReportProducts(page)
+    }
+
+    render_item (item:ReportProductItem,index:number){
+        return (<View onLayout={(e)=>this._onItemLayout(e,index)}>
+            <ReportProductItem {...item}  />
+        </View>)
+    }
+}
+
+
 class ReportProducts  extends React.Component<NavigationInjectedProps>{
 
-    store = new ReportProductsModel();
+
 
     componentWillMount(){
-        this.store.loadData();
+
         this.props.navigation.addListener('willFocus',()=>{
             DeviceEventEmitter.emit('ListRouteSwipeTo',{page:2})
         })
     }
 
-
     render(){
-        const {informations,loading,netError,initialized} =this.store
-        return (
-            <View style={[reportProductsStyle.container,{height:WindowHeight-getSize(89)}]}>
-                {initialized? <FlatList 
-                    data={informations}
-                    renderItem={({item})=>{
-                        return <ReportProductItem {...item}  />
-                    }}
 
-                    keyExtractor={item => item.id+''}
-                    onEndReached={()=>this.store.loadMore()}
-                    onEndReachedThreshold={0.2}
-                    ListFooterComponent={
-                        <FooterLoading loading={loading}/>
-                    }
-                    
-                />:loading?<Loading />:netError?<NetError/>:<View/>}
-            </View>
+        return (
+           <ReportProductsList />
         )
     }
 }
 
 const ReportWithNavigation =  withNavigation<{}>(ReportProducts);
 export default ReportWithNavigation;
-
 
 export class ReportProductsWithAnimate extends React.Component {
 

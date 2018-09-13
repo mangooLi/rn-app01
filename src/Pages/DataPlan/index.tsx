@@ -49,7 +49,7 @@ export default class DataPlan extends React.Component<NavigationInjectedProps>{
                 <View style={dataPlanstyle.card}>
                     <CardHead {...headList[0]} />
                     {map(data_hero_informations,info=>(
-                        <ArticleBrief key={info.id} {...info}/>
+                        <ArticleBrief show key={info.id} {...info}/>
                     ))}
                 </View>
 
@@ -57,10 +57,10 @@ export default class DataPlan extends React.Component<NavigationInjectedProps>{
                     <CardHead {...headList[1]}/>
 
                     <View style={dataPlanstyle.dataLabContainer0}>
-                        <DataLabCard {...data_lab_informations[0]}/>
+                        <DataLabCard show {...data_lab_informations[0]}/>
                     </View>
                     <View style={dataPlanstyle.dataLabContainer1}>
-                        <DataLabCard {...data_lab_informations[1]}/>
+                        <DataLabCard show {...data_lab_informations[1]}/>
                     </View>
 
 
@@ -71,7 +71,7 @@ export default class DataPlan extends React.Component<NavigationInjectedProps>{
                     <CardHead {...headList[2]}/>
                     {map(data_fifty_informations,info=>(
                         <View key={info.id} style={dataPlanstyle.fiftyContainer}>
-                            <DataFifty {...info}/>
+                            <DataFifty show {...info}/>
                         </View>
                     ))}
                 </View>:<View/>

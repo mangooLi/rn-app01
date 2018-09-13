@@ -61,7 +61,7 @@ class TabBar extends Component<NavigationInjectedProps & {store:DetailModel}>{
                 <TouchableWithoutFeedback onPress={()=>this.navToComment()}>
                     <Image style={tabBarStyle.img} source={message}/>
                 </TouchableWithoutFeedback>
-                <Image style={{...tabBarStyle.img,...tabBarStyle.share}} source={share}/>
+                {/* <Image style={{...tabBarStyle.img,...tabBarStyle.share}} source={share}/> */}
             </View>
         )
     }

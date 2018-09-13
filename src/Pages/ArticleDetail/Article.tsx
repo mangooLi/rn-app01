@@ -10,7 +10,7 @@ import {map, getSize, moment,MyStyleSheetCreate, WindowWidth} from '../../utils'
 import {detailStyle,articleStyle, informationCardStyle} from './style';
 
 import InformationCard from './InformationCard';
-import { toJS } from 'mobx';
+
 
 interface Props{
     store:DetailModel
@@ -31,7 +31,6 @@ class Article extends Component<Props> {
         const {tags,title,author,content,thumbnail_url,date,summary}=this.props.store.article;
         const {_type,informationCards,video}=this.props.store;
 
-        console.log('informationCards', toJS(informationCards))
 
         return (
             <View >

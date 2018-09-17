@@ -402,9 +402,7 @@ RN项目中，路由推荐使用[react-navigation](https://reactnavigation.org/d
 
 
 
-
 六 踩坑经历
-
 
 
 3. react-native在安卓端默认是不支持GIF动图的，根据文档提示，需要在android/app/build.gradle文件中根据需要手动添加以下模块：
@@ -446,3 +444,6 @@ mkdir android/app/src/main/assets
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 react-native run-android
 ```
+
+
+优化历程

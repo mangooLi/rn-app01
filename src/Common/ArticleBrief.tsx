@@ -80,11 +80,7 @@ interface Props{
 
 export default withNavigation<Props>(ArticleBrief);
 
-
-
-
 const cardStyle=MyStyleSheetCreate({
-
     container:{
         flexDirection:'row',
         marginTop:12,
@@ -105,7 +101,7 @@ const cardStyle=MyStyleSheetCreate({
     detail_container:{
         flexGrow:1,
         paddingLeft:12,
-        paddingRight:12,
+        paddingRight:12
         // overflow:'hidden',
     },
     detail_author:{
@@ -131,6 +127,5 @@ const cardStyle=MyStyleSheetCreate({
     detail_date_text:{
         color:'#999',
         fontSize:12,
-    },
-    
+    }
 })

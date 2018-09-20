@@ -67,7 +67,7 @@ class LoginPage extends Component<NavigationInjectedProps> {
                 <View style={pageStyle.text_notice}>
                     <Text 
                         style={pageStyle.text_forget}
-                        onPress={()=>this.props.navigation.navigate('UpdatePassword')}
+                        onPress={()=>this.props.navigation.navigate('RegisterPage',{type:'reset'})}
                     >忘记密码</Text>
                     <Text 
                         style={pageStyle.text_new} 

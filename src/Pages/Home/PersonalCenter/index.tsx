@@ -9,7 +9,7 @@ import {NavigationInjectedProps,withNavigation} from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
 import {observer} from 'mobx-react';
 import {pageStyle} from './style';
-import globalStore from '../../GlobalModel';
+import {noop} from '../../../utils';
 
 const key = require('../../../assets/img/Keys.png')
 const favor_disable = require('../../../assets/img/icFavoriteDisable/icFavoriteDisable.png')
@@ -26,7 +26,20 @@ interface Props{
 class PersonalCenter extends Component<NavigationInjectedProps & Props> {
 
 
+    state = {
+        user:{}
+    }
 
+    componentWillMount(){
+        global.storage.load({
+            key:'user'
+          }).then((ret:AccountInfo)=>{
+                this.setState({
+                    user:ret
+                })
+          }).catch(noop)
+          
+    }
 
     handlePress=()=>{
         if(global.user){
@@ -39,7 +52,8 @@ class PersonalCenter extends Component<NavigationInjectedProps & Props> {
     }
 
     render (){
-        const user:AccountInfo=globalStore.user;
+        const user:AccountInfo=this.state.user as AccountInfo;
+        console.log('user',user)
         return (
             <LinearGradient colors={['#F09819','#FF5858']} style={pageStyle.container}>
                 <TouchableWithoutFeedback onPress={this.handlePress}>

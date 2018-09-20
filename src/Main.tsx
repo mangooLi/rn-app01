@@ -16,8 +16,6 @@ export default class Main extends React.Component<NavigationInjectedProps>{
         return (
         <View style={{flex:1}}>
             <View style={style.main}>
-
-
                 <View style={style.btn}><Button
                     title='Pan'
                     onPress={()=>{this.props.navigation.navigate('Pan')}}

@@ -3,10 +3,10 @@ import  React ,{Component}from 'react';
 
 import {View,Text,TouchableOpacity,Image} from 'react-native';
 
-import {MyStyleSheetCreate} from '../utils';
+import {MyStyleSheetCreate,moment} from '../utils';
 // import {dataLabStyle} from './style';
-import moment from 'moment';
-import 'moment/locale/zh-cn' 
+
+
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
@@ -45,8 +45,8 @@ import { NavigationInjectedProps, withNavigation } from 'react-navigation';
                    
                 <View style={dataLabStyle.detail}>
                     <View style={dataLabStyle.detail_left}>
-                        <Text style={dataLabStyle.detial_left_day}>{moment(date).format('DD')}</Text>
-                        <Text style={dataLabStyle.detail_left_month}>{moment(date).format('MMMM')}</Text>
+                        <Text style={dataLabStyle.detial_left_day}>{moment(date).format('dd')}</Text>
+                        <Text style={dataLabStyle.detail_left_month}>{moment(date).format('m')}月</Text>
                     </View>
                     <View style={dataLabStyle.detail_right}>
                             <Text style={dataLabStyle.detail_title} numberOfLines={2}>{title}</Text>

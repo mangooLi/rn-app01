@@ -102,5 +102,9 @@ declare module 'react-native-smartrefreshlayout' {
 
 }
 
+declare var moment:any;
+declare module 'licia/moment'{
+    export default moment
+}
 
 

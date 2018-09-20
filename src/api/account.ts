@@ -167,3 +167,15 @@ export function feedback(content:string,username:string){
     }
     return fetch<{data:Feedback}>(options)
 }
+
+
+
+export function resetPassword (phone:string,phone_code:string,password:string){
+    const options = {
+        url:'api/v1/user/reset_password',
+        method:'post',
+        data:{user:{phone,phone_code,password}}
+    };
+
+    return fetch<{data:Account}>(options)
+}

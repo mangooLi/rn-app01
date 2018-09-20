@@ -8,14 +8,14 @@ import  {
     Text,
     TouchableOpacity
 } from 'react-native';
-import moment from 'moment';
+
 import Banner,{IndicaterType,IndicaterAlign} from '../../vendor/react-native-whc-banner';
 
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import { bannerStyle } from './style';
 import homeModel from '../Home/model';
-import { getSize } from '../../utils';
+import { getSize,moment } from '../../utils';
 
 
 
@@ -43,7 +43,7 @@ interface Props{
                 <View style={bannerStyle.detail}>
                     <Text style={bannerStyle.detail_prefix}>{bn.prefix}</Text>
                     <Text style={bannerStyle.detail_title} numberOfLines={2} >{bn.title}</Text>
-                    <Text style={bannerStyle.detail_date}>{moment(bn.date).format('MM-DD HH:mm')}</Text>
+                    <Text style={bannerStyle.detail_date}>{moment(bn.date).format('mm-dd HH:MM')}</Text>
                 </View>
             </View>
             </TouchableOpacity>

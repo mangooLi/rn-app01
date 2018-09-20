@@ -22,7 +22,7 @@ class SearchItem extends Component<NavigationInjectedProps & SearchInformation> 
                 <Text style={listStyle.tags}>{tags.map(tag=>tag.name).join('・')}</Text>
                 <Text style={listStyle.title} numberOfLines={2}>{title}</Text>
                 <Text style={listStyle.summary} numberOfLines={2}>{summary}</Text>
-                <Text style={listStyle.date}>{moment(date).format('MM-DD HH:mm')}</Text>
+                <Text style={listStyle.date}>{moment(date).format('mm-dd HH:MM')}</Text>
             </View>
             </TouchableWithoutFeedback>
         )

@@ -8,10 +8,11 @@ import noop from 'lodash.noop';
 import remove from 'lodash.remove';
 import get from 'lodash.get';
 
-import moment from 'moment';
+// import moment from 'moment';
+import moment from 'licia/moment';
 
-import 'moment/locale/zh-cn';
-moment.locale('zh-cn')
+// import 'moment/locale/zh-cn';
+// moment.locale('zh-cn')
 
 
 import {getSize,WindowHeight,WindowWidth,MyStyleSheetCreate} from './size';

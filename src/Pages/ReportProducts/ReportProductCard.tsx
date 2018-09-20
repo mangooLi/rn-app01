@@ -1,8 +1,8 @@
 
 
 import * as React from 'react';
-import { View,Image, Text ,TouchableOpacity,GestureResponderEvent} from 'react-native';
-import moment from 'moment';
+import { View,Image, Text ,TouchableOpacity} from 'react-native';
+import {moment} from '../../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
@@ -30,7 +30,7 @@ import {cardStyle} from './style';
                 {show? <Image style={cardStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>:<View style={[cardStyle.img,{backgroundColor:'#efefef'}]}/>}
 
                 <Text style={cardStyle.title} >{title}</Text>
-                <Text style={cardStyle.date} >{moment(date).format('YYYY-MM') }/{report_images_count}页</Text>
+                <Text style={cardStyle.date} >{moment(date).format('yyyy-mm') }/{report_images_count}页</Text>
             </View>
             </TouchableOpacity>
         )

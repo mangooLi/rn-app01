@@ -20,10 +20,6 @@ import Report, {ReportProps} from '../../Common/Report'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 import HomeContainer from '../Home/HomeContainer';
-import NetError from '../../Common/NetError';
-import Loading from '../../Common/Loading';
-import FooterLoading from '../../Common/FooterLoading';
-
 import LongList from '../../Common/LongList';
 
 

@@ -36,7 +36,7 @@ class Article extends Component<Props> {
             <View >
                 <Text style={articleStyle.tag}>{map(tags,tag=>tag.name).join('・')}</Text>
                 <Text  style={articleStyle.title}>{title}</Text>
-                <Text style={articleStyle.author}>{author}&nbsp;&nbsp;&nbsp;{moment(date).format('MM-DD HH:mm')}</Text>
+                <Text style={articleStyle.author}>{author}&nbsp;&nbsp;&nbsp;{moment(date).format('mm-dd HH:MM')}</Text>
                 <Image style={articleStyle.thumnb_nail} source={{uri:thumbnail_url,cache:'force-cache'}} />
 
                 <Text style={articleStyle.laboindex}>{summary}</Text>

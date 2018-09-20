@@ -2,8 +2,8 @@
 
 import React,{Component,PureComponent} from 'react';
 import { View,Image, Text ,TouchableOpacity,GestureResponderEvent, FlatList} from 'react-native';
-import moment from 'moment';
-import {getSize,MyStyleSheetCreate} from '../utils';
+
+import {moment,MyStyleSheetCreate} from '../utils';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
 
@@ -69,7 +69,7 @@ interface Props{
                         <Text style={cardStyle.detail_title_text} numberOfLines={2} >{title}</Text>
                     </View>
                     <View style={cardStyle.detail_date}>
-                        <Text  style={cardStyle.detail_date_text}>{moment(date).format('MM-DD HH:mm')}</Text>
+                        <Text  style={cardStyle.detail_date_text}>{moment(date).format('mm-dd HH:MM')}</Text>
                     </View>
                 </View>
             </View>

@@ -5,7 +5,7 @@ import { createStackNavigator} from 'react-navigation';
 
 // pages
 import AllPage from './Pages/All';
-
+import Main from './Main';
 import ArticleDetail from './Pages/ArticleDetail';
 import Comment from './Pages/Comment'
 import Topic from './Pages/Topic';
@@ -32,7 +32,17 @@ import WebPage from './Pages/WebPage';
 // route
 import ListRoute from './Pages/ListRoute';
 import BottomRoute from './Pages/BottomRoute';
-
+// Demo page
+import DemoMain from './DemoPage/DemoMain';
+import DemoRoute from './DemoPage/DemoRoute';
+import Animate from './DemoPage/Animate';
+import Scroll from './DemoPage/Scroll';
+import Pan from './DemoPage/Pan';
+import PullDemo from './DemoPage/PullDemo';
+import IconPage from './DemoPage/Icon';
+import Refresh from './DemoPage/Refresh';
+import Banner from './DemoPage/Banner';
+import paginatedList from './DemoPage/PaginatedList';
 
 
 const Route = createStackNavigator({
@@ -65,12 +75,35 @@ const Route = createStackNavigator({
     WebPage:WebPage,
     // demo
 
-   
+    Main:Main,
+    Demo:DemoMain,
+    DemoRoute:DemoRoute,
+    Animate:Animate,
+    Scroll:Scroll,
+    Pan:Pan,
+    PullDemo:PullDemo,
+    IconPage:IconPage,
+    Refresh:Refresh,
+    Banner:Banner,
+    paginatedList:paginatedList
 
     },{
         initialRouteName: 'BottomRoute',
+        // initialRouteName: 'Main',
         mode: 'card',
         headerMode: 'none',
+        // transitionConfig:()=>({
+        //     screenInterpolator: (sceneProps) => {
+        //         const routeName = sceneProps.scene.route.routeName;
+        //         // Disable the transition animation when resetting to the home screen.
+        //         if (routeName === 'HomePage') return null;
+                
+            
+        //         return StackViewStyleInterpolator.forFadeFromBottomAndroid(sceneProps)
+        //       },
+        // })
+        // gesturesEnabled:true,
+
         navigationOptions:{
             gesturesEnabled:true,
         }

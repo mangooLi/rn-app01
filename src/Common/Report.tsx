@@ -2,7 +2,7 @@
 
 import React,{Component} from 'react';
 import {View,Text,Image,ScrollView,TouchableOpacity} from 'react-native';
-import {moment,map,MyStyleSheetCreate} from '../utils';
+import {moment,map} from '../utils';
 import  {reportStyle} from '../Pages/All/style'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
 
@@ -26,7 +26,7 @@ class Report extends Component<ReportProps & NavigationInjectedProps> {
             <View  style={reportStyle.card}>
                 <Image style={reportStyle.img} source={{uri:thumbnail_url,cache:'force-cache'}}/>
                 <Text style={reportStyle.title} numberOfLines={1} >{title}</Text>
-                <Text style={reportStyle.date}>{moment(date).format('YYYY-MM-DD HH:mm')}</Text>
+                <Text style={reportStyle.date}>{moment(date).format('yyyy-mm-dd HH:MM')}</Text>
             </View>
             </TouchableOpacity>
         )
